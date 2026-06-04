@@ -483,7 +483,6 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
     payload.set("phone", normalizedValues.phone);
     payload.set("email", normalizedValues.email);
     payload.set("message", normalizedValues.message);
-    payload.set("botcheck", "false");
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -695,6 +694,15 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                 }`}
               />
             </label>
+
+            <input
+              type="checkbox"
+              name="botcheck"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="sr-only"
+            />
 
             <div className="grid gap-3">
               <button
