@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ChangeEvent, type FormEvent, type FocusEvent } from "react";
+import { useState, type ChangeEvent, type FormEvent, type FocusEvent } from "react";
 
 type ContactFieldName = "name" | "phone" | "email" | "message";
 
@@ -11,6 +11,8 @@ type PopupError = {
   field: string;
   message: string;
 };
+
+type SubmissionState = "idle" | "submitting" | "submitted" | "invalid" | "error";
 
 type ContactField = {
   label: string;
@@ -348,19 +350,13 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
   const [values, setValues] = useState<ContactValues>(initialValues);
   const [errors, setErrors] = useState<ContactErrors>({});
   const [touched, setTouched] = useState<ContactTouched>({});
-  const [status, setStatus] = useState<"idle" | "submitting" | "submitted" | "invalid">("idle");
+  const [status, setStatus] = useState<SubmissionState>("idle");
   const [popupErrors, setPopupErrors] = useState<PopupError[]>([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
-  const submitTimerRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    return () => {
-      if (submitTimerRef.current !== null) {
-        window.clearTimeout(submitTimerRef.current);
-      }
-    };
-  }, []);
+  const [submissionError, setSubmissionError] = useState("");
+  const web3formsAccessKey =
+    process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "2cc1e983-2754-448b-91d0-e027f0a9b727";
 
   const quickActions: QuickAction[] = [
     {
@@ -405,8 +401,9 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
       setErrors((current) => ({ ...current, [field]: nextErrors[field] }));
     }
 
-    if (status === "invalid") {
+    if (status !== "idle") {
       setStatus("idle");
+      setSubmissionError("");
     }
   };
 
@@ -425,7 +422,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
     setErrors((current) => ({ ...current, [field]: nextErrors[field] }));
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (status === "submitting") {
@@ -447,6 +444,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
 
     if (hasErrors) {
       setStatus("invalid");
+      setSubmissionError("");
       setPopupErrors(
         (Object.keys(nextErrors) as ContactFieldName[])
           .map((fieldName) => ({
@@ -459,24 +457,57 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
       return;
     }
 
-    setStatus("submitting");
-    setValues((current) => ({
-      ...current,
-      phone: normalizePhone(current.phone),
-    }));
-
-    if (submitTimerRef.current !== null) {
-      window.clearTimeout(submitTimerRef.current);
+    if (!web3formsAccessKey) {
+      setStatus("error");
+      setSubmissionError("Missing Web3Forms access key. Add NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY in Vercel or .env.local.");
+      return;
     }
 
-    submitTimerRef.current = window.setTimeout(() => {
+    const normalizedValues: ContactValues = {
+      ...values,
+      phone: normalizePhone(values.phone),
+      name: trimValue(values.name),
+      email: trimValue(values.email),
+      message: trimValue(values.message),
+    };
+
+    setStatus("submitting");
+    setSubmissionError("");
+
+    const payload = new FormData();
+    payload.set("access_key", web3formsAccessKey);
+    payload.set("subject", "New contact form submission");
+    payload.set("from_name", "Siddhant Yojit Portfolio");
+    payload.set("replyto", normalizedValues.email);
+    payload.set("name", normalizedValues.name);
+    payload.set("phone", normalizedValues.phone);
+    payload.set("email", normalizedValues.email);
+    payload.set("message", normalizedValues.message);
+    payload.set("botcheck", "false");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: payload,
+      });
+      const data = (await response.json().catch(() => null)) as
+        | { success?: boolean; message?: string }
+        | null;
+
+      if (!response.ok || !data?.success) {
+        throw new Error(data?.message || "We could not send your message right now.");
+      }
+
       setStatus("submitted");
       setValues(initialValues);
       setErrors({});
       setTouched({});
       setIsSuccessOpen(true);
-      submitTimerRef.current = null;
-    }, 850);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "We could not send your message right now.";
+      setStatus("error");
+      setSubmissionError(message);
+    }
   };
 
   return (
@@ -605,8 +636,8 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
               Send a message
             </p>
             <p className="mt-2 max-w-2xl text-[1rem] leading-7 text-[var(--muted)] text-pretty sm:text-[1.05rem]">
-              Fill in your details and submit the form. Validation will run here, and the form is
-              ready for Web3Forms wiring next.
+              Fill in your details and submit the form. Validation runs locally, then the message
+              is sent through Web3Forms.
             </p>
           </div>
 
@@ -667,25 +698,32 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
 
             <div className="grid gap-3">
               <button
-              type="submit"
-              className={`send-button w-full justify-center sm:w-fit ${
-                status === "submitting" ? "send-button--sending" : ""
-              }`}
-              aria-busy={status === "submitting"}
-            >
-              <span className="send-button__svg-wrapper-1" aria-hidden="true">
-                <span className="send-button__svg-wrapper">
-                  <SendIcon className="send-button__icon h-6 w-6" />
+                type="submit"
+                className={`send-button w-full justify-center sm:w-fit ${
+                  status === "submitting" ? "send-button--sending" : ""
+                }`}
+                aria-busy={status === "submitting"}
+                disabled={status === "submitting"}
+              >
+                <span className="send-button__svg-wrapper-1" aria-hidden="true">
+                  <span className="send-button__svg-wrapper">
+                    <SendIcon className="send-button__icon h-6 w-6" />
+                  </span>
                 </span>
-              </span>
-              <span className="send-button__text">
-                {status === "submitted" ? "Sent" : "Send"}
-              </span>
+                <span className="send-button__text">
+                  {status === "submitting" ? "Sending" : status === "submitted" ? "Sent" : "Send"}
+                </span>
               </button>
+
+              {submissionError ? (
+                <p className="text-sm text-red-600" role="alert">
+                  {submissionError}
+                </p>
+              ) : null}
 
               {status === "submitted" ? (
                 <p className="text-sm text-[var(--muted)]">
-                  Form validated successfully. Web3Forms can be wired here next.
+                  Message sent successfully. I’ll get back to you as soon as I can.
                 </p>
               ) : null}
             </div>
@@ -701,80 +739,86 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                   return (
                     <a
                       key={label}
-                    href={href}
-                    target={isExternal ? "_blank" : undefined}
-                    rel={isExternal ? "noreferrer" : undefined}
-                    aria-label={label}
+                      href={href}
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noreferrer" : undefined}
+                      aria-label={label}
                       className={`group flex h-[68px] w-full items-center justify-between rounded-[5px] border-[3px] border-[#2d2d2d] bg-white px-4 shadow-[6px_6px_0px_#2d2d2d] transition-all duration-200 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] hover:-translate-x-1.5 hover:-translate-y-1.5 hover:shadow-[12px_12px_0px_#2d2d2d] motion-reveal ${cardToneClassName[tone]}`}
                       style={{ animationDelay: `${220 + index * 90}ms` }}
                     >
                       <span className="flex items-center gap-3">
                         <Icon
-                        className={`${cardIconSizeClassName} ${iconClassName} transition-transform duration-200 group-hover:scale-105 ${hoverIconClassName}`}
-                      />
-                    </span>
-                    <span className="text-left">
-                      <span className="block text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)] transition-colors group-hover:text-white">
-                        {label}
+                          className={`${cardIconSizeClassName} ${iconClassName} transition-transform duration-200 group-hover:scale-105 ${hoverIconClassName}`}
+                        />
                       </span>
-                      <span className="block text-[0.65rem] uppercase tracking-[0.18em] text-[var(--muted)] transition-colors group-hover:text-white/80">
-                        Open
+                      <span className="text-left">
+                        <span className="block text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)] transition-colors group-hover:text-white">
+                          {label}
+                        </span>
+                        <span className="block text-[0.65rem] uppercase tracking-[0.18em] text-[var(--muted)] transition-colors group-hover:text-white/80">
+                          Open
+                        </span>
                       </span>
-                    </span>
-                  </a>
-                );
-              })}
-            </div>
+                    </a>
+                  );
+                })}
+              </div>
 
-              <div className="mx-auto mt-5 w-full max-w-[380px] rounded-3xl border border-[var(--border)] bg-white px-4 py-3 shadow-sm motion-reveal" style={{ animationDelay: "420ms" }}>
+              <div
+                className="mx-auto mt-5 w-full max-w-[380px] rounded-3xl border border-[var(--border)] bg-white px-4 py-3 shadow-sm motion-reveal"
+                style={{ animationDelay: "420ms" }}
+              >
                 <p className="text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
                   Quick details
                 </p>
-              <p className="mt-1.5 text-xs leading-5 text-[var(--muted)]">
-                Share these details in your message so I can reply quickly and clearly.
-              </p>
-              <div className="mt-3 grid gap-2.5">
-                <div className="flex items-center justify-between gap-3 border-b border-[var(--border)] pb-2.5">
-                  <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--foreground)]">
-                    Project type
-                  </p>
-                  <p className="max-w-[12rem] text-right text-xs text-[var(--muted)] sm:max-w-[13rem]">
-                    Website, UI redesign, portfolio, or freelance work.
-                  </p>
-                </div>
-                <div className="flex items-center justify-between gap-3 border-b border-[var(--border)] pb-2.5">
-                  <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--foreground)]">
-                    Timeline
-                  </p>
-                  <p className="max-w-[12rem] text-right text-xs text-[var(--muted)] sm:max-w-[13rem]">
-                    Let me know your expected deadline or urgency.
-                  </p>
-                </div>
-                <div className="flex items-center justify-between gap-3">
-                  <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--foreground)]">
-                    Best contact time
-                  </p>
-                  <p className="max-w-[12rem] text-right text-xs text-[var(--muted)] sm:max-w-[13rem]">
-                    Mention the time window that works for you.
-                  </p>
+                <p className="mt-1.5 text-xs leading-5 text-[var(--muted)]">
+                  Share these details in your message so I can reply quickly and clearly.
+                </p>
+                <div className="mt-3 grid gap-2.5">
+                  <div className="flex items-center justify-between gap-3 border-b border-[var(--border)] pb-2.5">
+                    <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--foreground)]">
+                      Project type
+                    </p>
+                    <p className="max-w-[12rem] text-right text-xs text-[var(--muted)] sm:max-w-[13rem]">
+                      Website, UI redesign, portfolio, or freelance work.
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between gap-3 border-b border-[var(--border)] pb-2.5">
+                    <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--foreground)]">
+                      Timeline
+                    </p>
+                    <p className="max-w-[12rem] text-right text-xs text-[var(--muted)] sm:max-w-[13rem]">
+                      Let me know your expected deadline or urgency.
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--foreground)]">
+                      Best contact time
+                    </p>
+                    <p className="max-w-[12rem] text-right text-xs text-[var(--muted)] sm:max-w-[13rem]">
+                      Mention the time window that works for you.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
 
               <div className="mt-auto pt-4">
-              <div className="mx-auto flex w-full max-w-[380px] items-center justify-between gap-3 rounded-3xl border border-[var(--border)] bg-white px-4 py-3 shadow-sm motion-reveal" style={{ animationDelay: "500ms" }}>
-                <div className="rounded-2xl bg-[var(--accent-soft)] px-3 py-2 text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--accent)]">
-                  Reply fast
+                <div
+                  className="mx-auto flex w-full max-w-[380px] items-center justify-between gap-3 rounded-3xl border border-[var(--border)] bg-white px-4 py-3 shadow-sm motion-reveal"
+                  style={{ animationDelay: "500ms" }}
+                >
+                  <div className="rounded-2xl bg-[var(--accent-soft)] px-3 py-2 text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--accent)]">
+                    Reply fast
+                  </div>
+                  <div className="flex-1 text-right">
+                    <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+                      Quick reply
+                    </p>
+                    <p className="mt-1 text-xs leading-5 text-[var(--muted)]">
+                      Usually within 1 business day.
+                    </p>
+                  </div>
                 </div>
-                <div className="flex-1 text-right">
-                  <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
-                    Quick reply
-                  </p>
-                  <p className="mt-1 text-xs leading-5 text-[var(--muted)]">
-                    Usually within 1 business day.
-                  </p>
-                </div>
-              </div>
               </div>
             </div>
           </div>
