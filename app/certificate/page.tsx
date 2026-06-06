@@ -127,7 +127,7 @@ export default function CertificatePage() {
                     <h2 className="text-xl font-bold tracking-tight text-[var(--foreground)]">
                       {certificate.title}
                     </h2>
-                    <span className="rounded-full border border-[var(--border)] px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-[var(--muted)]">
+                    <span className="text-[10px] font-black uppercase tracking-[0.18em] text-[var(--muted)]">
                       {certificate.period}
                     </span>
                   </div>
