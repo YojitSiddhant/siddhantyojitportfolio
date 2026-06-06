@@ -26,12 +26,14 @@ const education = [
     institution: "St Francis PU College",
     period: "2019 - 2020",
     result: "61.33%",
+    logo: "/company-logos/st-francis-pu-college-logo.jpeg",
   },
   {
     degree: "Class X",
     institution: "Narayana e-Techno School",
     period: "2016 - 2017",
     result: "CGPA: 10/10",
+    logo: "/company-logos/narayana-e-techno-school.jpeg",
   },
 ];
 
