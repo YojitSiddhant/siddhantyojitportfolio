@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,12 +12,14 @@ const education = [
     institution: "PES University",
     period: "2024 - 2026",
     result: "CGPA: 5.99/10",
+    logo: "/company-logos/pes-logo.webp",
   },
   {
     degree: "BCA",
     institution: "New Horizon College",
     period: "2020 - 2023",
     result: "CGPA: 7.59/10",
+    logo: "/company-logos/nhcm-logo.jpeg",
   },
   {
     degree: "Class XII",
@@ -78,9 +81,22 @@ export default function EducationPage() {
                   <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
                     {item.degree}
                   </p>
-                  <h2 className="mt-1 text-xl font-bold tracking-tight text-[var(--foreground)]">
-                    {item.institution}
-                  </h2>
+                  <div className="mt-2 flex flex-wrap items-center gap-3">
+                    {"logo" in item && item.logo ? (
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-white shadow-sm">
+                        <Image
+                          src={item.logo}
+                          alt={`${item.institution} logo`}
+                          width={48}
+                          height={48}
+                          className="h-full w-full object-contain p-1"
+                        />
+                      </div>
+                    ) : null}
+                    <h2 className="text-xl font-bold tracking-tight text-[var(--foreground)]">
+                      {item.institution}
+                    </h2>
+                  </div>
                 </div>
 
                 <div className="flex flex-col gap-1 text-sm text-[var(--foreground)] sm:min-w-[8rem] sm:text-right">
