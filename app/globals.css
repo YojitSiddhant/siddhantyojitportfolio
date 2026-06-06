@@ -236,6 +236,18 @@ p {
   will-change: transform, opacity;
 }
 
+.page-watermark {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.35;
+  background-image: url("/siddhant-watermark-transparent.png");
+  background-repeat: no-repeat;
+  background-position: center 28%;
+  background-size: min(92vw, 1100px) auto;
+}
+
 .send-button {
   font-family: inherit;
   font-size: 1rem;
@@ -313,6 +325,19 @@ p {
 
 .send-button--sending .send-button__text {
   animation: send-text-slide 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (max-width: 768px) {
+  .page-watermark {
+    background-position: center center;
+    background-size: min(96vw, 760px) auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-watermark {
+    background-size: min(102vw, 620px) auto;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
