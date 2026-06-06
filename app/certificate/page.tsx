@@ -7,6 +7,8 @@ export const metadata: Metadata = {
 
 type CertificateItem = {
   title: string;
+  issuer: string;
+  period: string;
   note: string;
 };
 
@@ -49,18 +51,26 @@ function DocumentIcon({ className }: { className?: string }) {
 const certificates: CertificateItem[] = [
   {
     title: "ChatGPT for Excel",
+    issuer: "Great Learning Academy",
+    period: "Mar 2024",
     note: "Practical AI-assisted spreadsheet workflow training.",
   },
   {
     title: "Data Visualization With Power BI",
+    issuer: "Great Learning Academy",
+    period: "Mar 2024",
     note: "Dashboarding and business intelligence visualization work.",
   },
   {
     title: "Google Bard for Microsoft Powerpoint",
+    issuer: "Great Learning Academy",
+    period: "Mar 2024",
     note: "Presentation workflow support using AI tools.",
   },
   {
     title: "Html In Hindi",
+    issuer: "Great Learning Academy",
+    period: "Mar 2024",
     note: "HTML fundamentals and front-end structure learning.",
   },
 ];
@@ -98,11 +108,14 @@ export default function CertificatePage() {
                       <h2 className="text-xl font-bold tracking-tight text-[var(--foreground)]">
                         {certificate.title}
                       </h2>
+                      <span className="rounded-full border border-[var(--border)] bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-[var(--muted)]">
+                        {certificate.period}
+                      </span>
                     </div>
                   </div>
 
                   <div className="flex flex-col gap-1 text-sm text-[var(--foreground)] sm:min-w-[14rem] sm:text-right">
-                    <p className="font-black text-[var(--foreground)]">Completed</p>
+                    <p className="font-black text-[var(--foreground)]">{certificate.issuer}</p>
                     <p>{certificate.note}</p>
                   </div>
                 </div>
