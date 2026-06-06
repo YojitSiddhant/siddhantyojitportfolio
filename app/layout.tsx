@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import { SiteNavbar } from "@/components/site-navbar";
-import { NavigationLoaderProvider } from "@/components/navigation-loader-provider";
 import { PageWatermark } from "@/components/page-watermark";
 import "./globals.css";
 
@@ -36,12 +35,10 @@ export default function RootLayout({
     >
       <body className="relative isolate min-h-full bg-[var(--background)] text-[var(--foreground)]">
         <PageWatermark />
-        <NavigationLoaderProvider>
-          <div className="relative z-10">
-            <SiteNavbar />
-            {children}
-          </div>
-        </NavigationLoaderProvider>
+        <div className="relative z-10">
+          <SiteNavbar />
+          {children}
+        </div>
       </body>
     </html>
   );

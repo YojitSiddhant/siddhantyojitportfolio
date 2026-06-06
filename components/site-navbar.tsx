@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { useNavigationLoader } from "@/components/navigation-loader-provider";
 
 const navItems = [
   { label: "Home", href: "/", icon: HomeIcon },
@@ -127,7 +126,6 @@ function MailIcon({ className }: IconProps) {
 export function SiteNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const { beginNavigation } = useNavigationLoader();
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
@@ -139,7 +137,6 @@ export function SiteNavbar() {
           <Link
             href="/"
             prefetch={false}
-            onClick={beginNavigation}
             className="min-w-0 flex items-center gap-2 text-sm font-black uppercase tracking-[0.18em] text-[var(--foreground)]"
             aria-label="Go to home"
           >
@@ -172,7 +169,6 @@ export function SiteNavbar() {
               href={item.href}
               prefetch={false}
               aria-current={isActive(item.href) ? "page" : undefined}
-              onClick={beginNavigation}
               className={`group inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm transition duration-300 ${
                 isActive(item.href)
                   ? "!bg-[var(--accent)] !font-bold !text-white shadow-sm"
@@ -204,7 +200,6 @@ export function SiteNavbar() {
                 prefetch={false}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 onClick={() => {
-                  beginNavigation();
                   setIsOpen(false);
                 }}
                 className={`group inline-flex w-full items-center justify-center gap-3 rounded-2xl border px-4 py-3 text-center text-sm transition duration-300 motion-reveal ${
