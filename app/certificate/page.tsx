@@ -101,10 +101,10 @@ export default function CertificatePage() {
             {certificates.map((certificate, index) => (
               <article
                 key={certificate.title}
-                className="flex flex-col gap-4 rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-[0_10px_30px_rgba(0,0,0,0.04)] motion-reveal"
+                className="flex flex-col gap-4 motion-reveal"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
-                <div className="overflow-hidden rounded-[1.25rem] border border-[var(--border)] bg-white">
+                <div className="overflow-hidden border border-[var(--border)] bg-white">
                   <Image
                     src={certificate.image}
                     alt={`${certificate.title} certificate screenshot`}
@@ -127,7 +127,7 @@ export default function CertificatePage() {
                     <h2 className="text-xl font-bold tracking-tight text-[var(--foreground)]">
                       {certificate.title}
                     </h2>
-                    <span className="rounded-full border border-[var(--border)] bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-[var(--muted)]">
+                    <span className="rounded-full border border-[var(--border)] px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-[var(--muted)]">
                       {certificate.period}
                     </span>
                   </div>
