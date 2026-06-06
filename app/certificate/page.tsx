@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,6 +11,7 @@ type CertificateItem = {
   issuer: string;
   period: string;
   note: string;
+  image: string;
 };
 
 function CertificateBadgeIcon({ className }: { className?: string }) {
@@ -54,24 +56,28 @@ const certificates: CertificateItem[] = [
     issuer: "Great Learning Academy",
     period: "Mar 2024",
     note: "Practical AI-assisted spreadsheet workflow training.",
+    image: "/certificates/chatgpt-for-excel.png",
   },
   {
     title: "Data Visualization With Power BI",
     issuer: "Great Learning Academy",
     period: "Mar 2024",
     note: "Dashboarding and business intelligence visualization work.",
+    image: "/certificates/data-visualization-with-power-bi.png",
   },
   {
     title: "Google Bard for Microsoft Powerpoint",
     issuer: "Great Learning Academy",
     period: "Mar 2024",
     note: "Presentation workflow support using AI tools.",
+    image: "/certificates/google-bard-for-microsoft-powerpoint.png",
   },
   {
     title: "Html In Hindi",
     issuer: "Great Learning Academy",
     period: "Mar 2024",
     note: "HTML fundamentals and front-end structure learning.",
+    image: "/certificates/html-in-hindi.png",
   },
 ];
 
@@ -95,23 +101,35 @@ export default function CertificatePage() {
             {certificates.map((certificate, index) => (
               <article
                 key={certificate.title}
-                className="flex flex-col gap-4 rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] px-5 py-5 shadow-[0_10px_30px_rgba(0,0,0,0.04)] motion-reveal"
+                className="flex flex-col gap-4 rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-[0_10px_30px_rgba(0,0,0,0.04)] motion-reveal"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
-                <div className="flex flex-col gap-2">
+                <div className="overflow-hidden rounded-[1.25rem] border border-[var(--border)] bg-white">
+                  <Image
+                    src={certificate.image}
+                    alt={`${certificate.title} certificate screenshot`}
+                    width={842}
+                    height={595}
+                    className="h-auto w-full object-cover"
+                    priority={index < 2}
+                  />
+                </div>
+
+                <div className="flex flex-col gap-3 px-1 pb-1">
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
                       <DocumentIcon className="h-4 w-4 text-[var(--accent)]" />
                       Certificate
                     </div>
-                    <div className="mt-2 flex flex-wrap items-center gap-3">
-                      <h2 className="text-xl font-bold tracking-tight text-[var(--foreground)]">
-                        {certificate.title}
-                      </h2>
-                      <span className="rounded-full border border-[var(--border)] bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-[var(--muted)]">
-                        {certificate.period}
-                      </span>
-                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-3">
+                    <h2 className="text-xl font-bold tracking-tight text-[var(--foreground)]">
+                      {certificate.title}
+                    </h2>
+                    <span className="rounded-full border border-[var(--border)] bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-[var(--muted)]">
+                      {certificate.period}
+                    </span>
                   </div>
 
                   <div className="flex flex-col gap-1 text-sm text-[var(--foreground)]">
