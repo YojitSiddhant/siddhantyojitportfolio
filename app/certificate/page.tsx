@@ -91,14 +91,14 @@ export default function CertificatePage() {
         </div>
 
         <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
-          <div className="grid gap-5">
+          <div className="grid gap-5 md:grid-cols-2">
             {certificates.map((certificate, index) => (
               <article
                 key={certificate.title}
-                className="flex flex-col gap-4 border-b border-[var(--border)] pb-5 motion-reveal"
+                className="flex flex-col gap-4 rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] px-5 py-5 shadow-[0_10px_30px_rgba(0,0,0,0.04)] motion-reveal"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                <div className="flex flex-col gap-2">
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
                       <DocumentIcon className="h-4 w-4 text-[var(--accent)]" />
@@ -114,9 +114,9 @@ export default function CertificatePage() {
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-1 text-sm text-[var(--foreground)] sm:min-w-[14rem] sm:text-right">
+                  <div className="flex flex-col gap-1 text-sm text-[var(--foreground)]">
                     <p className="font-black text-[var(--foreground)]">{certificate.issuer}</p>
-                    <p>{certificate.note}</p>
+                    <p className="text-[var(--muted)]">{certificate.note}</p>
                   </div>
                 </div>
               </article>
