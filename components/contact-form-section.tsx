@@ -655,10 +655,6 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
               <FormIcon className="h-4 w-4 text-[var(--accent)]" />
               Send a message
             </p>
-            <p className="mt-2 max-w-2xl text-[1rem] leading-7 text-[var(--muted)] text-pretty sm:text-[1.05rem]">
-              Fill in your details and submit the form. Validation runs locally, then the message
-              is sent through Web3Forms.
-            </p>
           </div>
 
           <form onSubmit={handleSubmit} noValidate className="mt-4 grid gap-3">
