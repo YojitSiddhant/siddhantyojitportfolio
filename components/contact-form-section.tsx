@@ -169,15 +169,17 @@ function MailIcon({ className }: { className?: string }) {
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
+      <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.12" />
       <path
         d="M7.5 18.5 4 20l1.2-3.4A8.3 8.3 0 1 1 7.5 18.5Z"
         stroke="currentColor"
-        strokeWidth="1.8"
+        strokeWidth="1.7"
         strokeLinejoin="round"
       />
       <path
         d="M8.8 9.3c.2 2.2 1.9 4 4.1 4.1l1-1a.9.9 0 0 1 .8-.2l1.2.4c.4.1.6.5.6.9v.4c0 .6-.5 1.1-1.1 1.1C11 15 7.9 12 7.9 8.3c0-.6.5-1.1 1.1-1.1h.4c.4 0 .8.2.9.6l.4 1.2a.9.9 0 0 1-.2.8l-1.7 1.2Z"
         fill="currentColor"
+        opacity="0.98"
       />
     </svg>
   );
@@ -186,13 +188,18 @@ function WhatsAppIcon({ className }: { className?: string }) {
 function LinkedInIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <rect x="4.5" y="4.5" width="15" height="15" rx="3.8" stroke="currentColor" strokeWidth="1.7" />
-      <circle cx="8.1" cy="8" r="1.05" fill="currentColor" />
-      <path d="M7 10.7V17h2v-6.3H7Z" fill="currentColor" />
-      <path
-        d="M12 10.7v1.1c.5-.8 1.5-1.3 2.5-1.3 1.9 0 3.3 1.3 3.3 3.7V17h-2v-2.4c0-1.4-.6-2.1-1.7-2.1-1 0-1.8.7-2.1 1.5V17h-2v-6.3h2Z"
-        fill="currentColor"
-      />
+      <rect x="4.5" y="4.5" width="15" height="15" rx="4" fill="currentColor" />
+      <text
+        x="12"
+        y="16.2"
+        textAnchor="middle"
+        fill="#ffffff"
+        fontFamily="Arial, Helvetica, sans-serif"
+        fontSize="9.6"
+        fontWeight="700"
+      >
+        in
+      </text>
     </svg>
   );
 }
@@ -200,8 +207,9 @@ function LinkedInIcon({ className }: { className?: string }) {
 function GitHubIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
+      <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.08" />
       <path
-        d="M12 4.5A7.5 7.5 0 0 0 4.5 12c0 3.4 2.2 6.3 5.2 7.4.4.1.5-.1.5-.3v-1.2c-2.1.5-2.6-1-2.6-1-.4-.9-.9-1.1-.9-1.1-.7-.5.1-.5.1-.5.8 0 1.2.8 1.2.8.7 1.2 1.8.8 2.3.6.1-.5.3-.8.5-1-1.7-.2-3.5-.9-3.5-3.8 0-.9.3-1.5.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8a7.5 7.5 0 0 1 3.8 0c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.2.8 2.1 0 2.9-1.8 3.6-3.5 3.8.3.3.5.7.5 1.4v2.1c0 .2.1.4.5.3A7.5 7.5 0 0 0 19.5 12 7.5 7.5 0 0 0 12 4.5Z"
+        d="M12 4.2c-4.3 0-7.8 3.5-7.8 7.8 0 3.4 2.2 6.3 5.3 7.4.4.1.5-.1.5-.3v-1.3c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8 0 1.2.8 1.2.8.7 1.2 1.8.8 2.3.6.1-.5.3-.8.5-1-1.8-.2-3.7-.9-3.7-4 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8.6-.2 1.3-.3 2-.3s1.4.1 2 .3c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.2.8 2.1 0 3.1-1.9 3.8-3.7 4 .3.3.5.7.5 1.4v2.1c0 .2.1.4.5.3 3.1-1.1 5.3-4 5.3-7.4 0-4.3-3.5-7.8-7.8-7.8Z"
         fill="currentColor"
       />
     </svg>
@@ -756,7 +764,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                       className="group inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[rgba(35,23,18,0.1)] bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(255,248,243,0.96)_100%)] text-[var(--foreground)] shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-all duration-200 ease-out hover:scale-105 hover:border-[rgba(35,23,18,0.16)] hover:shadow-[0_14px_30px_rgba(0,0,0,0.12)] motion-reveal"
                       style={{ animationDelay: `${220 + index * 90}ms` }}
                     >
-                      <Icon className={`h-6 w-6 transition-transform duration-200 group-hover:scale-110 ${iconClassName}`} />
+                      <Icon className={`h-7 w-7 transition-transform duration-200 group-hover:scale-110 ${iconClassName}`} />
                     </a>
                   );
                 })}
