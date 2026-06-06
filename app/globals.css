@@ -241,11 +241,19 @@ p {
   position: fixed;
   inset: 0;
   z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0.35;
-  background-image: url("/siddhant-watermark-transparent.png");
-  background-repeat: no-repeat;
-  background-position: center 28%;
-  background-size: min(92vw, 1100px) auto;
+}
+
+.page-watermark__image {
+  display: block;
+  width: min(92vw, 1100px);
+  height: auto;
+  max-height: 90vh;
+  object-fit: contain;
+  object-position: center;
 }
 
 .send-button {
@@ -328,15 +336,14 @@ p {
 }
 
 @media (max-width: 768px) {
-  .page-watermark {
-    background-position: center center;
-    background-size: min(96vw, 760px) auto;
+  .page-watermark__image {
+    width: min(96vw, 760px);
   }
 }
 
 @media (max-width: 480px) {
-  .page-watermark {
-    background-size: min(102vw, 620px) auto;
+  .page-watermark__image {
+    width: min(102vw, 620px);
   }
 }
 
