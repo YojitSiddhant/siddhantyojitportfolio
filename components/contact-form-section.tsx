@@ -245,17 +245,18 @@ function SendIcon({ className }: { className?: string }) {
   );
 }
 
-const cardToneClassName: Record<CardTone, string> = {
-  whatsapp: "hover:bg-[#4cd137]",
-  phone: "hover:bg-[#25D366]",
-  linkedin: "hover:bg-[#24a0ed]",
-  github: "hover:bg-[#f7b733]",
+const iconToneClassName: Record<CardTone, string> = {
+  whatsapp: "text-[#25D366]",
+  phone: "text-[#24150f]",
+  linkedin: "text-[#0A66C2]",
+  github: "text-[#181717]",
 };
 
 type QuickAction = {
   label: string;
   href: string;
   Icon: ({ className }: { className?: string }) => React.JSX.Element;
+  iconClassName: string;
   tone: CardTone;
 };
 
@@ -362,24 +363,28 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
       label: "WhatsApp",
       href: links.whatsapp,
       Icon: WhatsAppIcon,
+      iconClassName: iconToneClassName.whatsapp,
       tone: "whatsapp",
     },
     {
       label: "Call",
       href: `tel:${links.phone.replace(/\s+/g, "")}`,
       Icon: PhoneIcon,
+      iconClassName: iconToneClassName.phone,
       tone: "phone",
     },
     {
       label: "LinkedIn",
       href: links.linkedin,
       Icon: LinkedInIcon,
+      iconClassName: iconToneClassName.linkedin,
       tone: "linkedin",
     },
     {
       label: "GitHub",
       href: links.github,
       Icon: GitHubIcon,
+      iconClassName: iconToneClassName.github,
       tone: "github",
     },
   ];
@@ -736,8 +741,8 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
         <div className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
           <div className="flex justify-end xl:translate-x-10 xl:translate-y-2">
             <div className="flex h-full w-full max-w-[420px] flex-col">
-              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                {quickActions.map(({ label, href, Icon, tone }, index) => {
+              <div className="flex flex-nowrap items-center justify-center gap-3 overflow-x-auto pb-1 sm:gap-4">
+                {quickActions.map(({ label, href, Icon, iconClassName }, index) => {
                   const isExternal = href.startsWith("http");
                   return (
                     <a
@@ -746,20 +751,10 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                       target={isExternal ? "_blank" : undefined}
                       rel={isExternal ? "noreferrer" : undefined}
                       aria-label={label}
-                      className={`group flex h-[72px] w-full items-center gap-4 rounded-[5px] border-[3px] border-[#2d2d2d] bg-white px-4 shadow-[6px_6px_0px_#2d2d2d] transition-all duration-200 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] hover:-translate-x-1.5 hover:-translate-y-1.5 hover:shadow-[12px_12px_0px_#2d2d2d] motion-reveal ${cardToneClassName[tone]}`}
+                      className="group inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[var(--border)] bg-white text-[var(--foreground)] shadow-sm transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_12px_24px_rgba(0,0,0,0.12)] motion-reveal"
                       style={{ animationDelay: `${220 + index * 90}ms` }}
                     >
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--accent-soft)] text-[var(--foreground)] transition-all duration-200 group-hover:border-white/40 group-hover:bg-white/20 group-hover:text-white">
-                        <Icon className="h-5 w-5 transition-transform duration-200 group-hover:scale-110" />
-                      </span>
-                      <span className="min-w-0 flex-1 text-left">
-                        <span className="block text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)] transition-colors group-hover:text-white">
-                          {label}
-                        </span>
-                        <span className="block text-[0.65rem] uppercase tracking-[0.18em] text-[var(--muted)] transition-colors group-hover:text-white/80">
-                          Open
-                        </span>
-                      </span>
+                      <Icon className={`h-6 w-6 transition-transform duration-200 group-hover:scale-110 ${iconClassName}`} />
                     </a>
                   );
                 })}
