@@ -7,9 +7,9 @@
   --surface: rgba(255, 255, 255, 0.62);
   --surface-strong: rgba(255, 255, 255, 0.78);
   --border: rgba(0, 0, 0, 0.1);
-  --accent: #f97316;
-  --accent-strong: #ea580c;
-  --accent-soft: rgba(249, 115, 22, 0.12);
+  --accent: #2563eb;
+  --accent-strong: #1d4ed8;
+  --accent-soft: rgba(37, 99, 235, 0.12);
   color-scheme: light;
 }
 
@@ -64,7 +64,7 @@ canvas {
 }
 
 ::selection {
-  background: rgba(249, 115, 22, 0.2);
+  background: rgba(37, 99, 235, 0.2);
   color: var(--foreground);
 }
 
@@ -259,7 +259,7 @@ p {
 .send-button {
   font-family: inherit;
   font-size: 1rem;
-  background: #f97316;
+  background: #2563eb;
   color: #ffffff;
   padding: 0.85em 1.15em;
   padding-left: 1em;
@@ -271,11 +271,11 @@ p {
   overflow: hidden;
   transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
   cursor: pointer;
-  box-shadow: 0 14px 30px rgba(249, 115, 22, 0.22);
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.22);
 }
 
 .send-button:hover {
-  background: #ea580c;
+  background: #1d4ed8;
 }
 
 .send-button:active {
