@@ -741,7 +741,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
         <div className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
           <div className="flex justify-end xl:translate-x-10 xl:translate-y-2">
             <div className="flex h-full w-full max-w-[420px] flex-col">
-              <div className="grid w-full grid-cols-4 gap-3 sm:gap-4">
+              <div className="flex flex-wrap items-center justify-center gap-3">
                 {quickActions.map(({ label, href, Icon, iconClassName }, index) => {
                   const isExternal = href.startsWith("http");
                   return (
@@ -751,10 +751,10 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                       target={isExternal ? "_blank" : undefined}
                       rel={isExternal ? "noreferrer" : undefined}
                       aria-label={label}
-                      className="group inline-flex aspect-square w-full items-center justify-center rounded-full border border-[rgba(35,23,18,0.1)] bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(255,248,243,0.96)_100%)] text-[var(--foreground)] shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-all duration-200 ease-out hover:scale-105 hover:border-[rgba(35,23,18,0.16)] hover:shadow-[0_14px_30px_rgba(0,0,0,0.12)] motion-reveal"
+                      className="group inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[rgba(35,23,18,0.1)] bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(255,248,243,0.96)_100%)] text-[var(--foreground)] shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-all duration-200 ease-out hover:scale-105 hover:border-[rgba(35,23,18,0.16)] hover:shadow-[0_14px_30px_rgba(0,0,0,0.12)] motion-reveal"
                       style={{ animationDelay: `${220 + index * 90}ms` }}
                     >
-                      <Icon className={`h-5 w-5 transition-transform duration-200 group-hover:scale-110 ${iconClassName}`} />
+                      <Icon className={`h-6 w-6 transition-transform duration-200 group-hover:scale-110 ${iconClassName}`} />
                     </a>
                   );
                 })}
