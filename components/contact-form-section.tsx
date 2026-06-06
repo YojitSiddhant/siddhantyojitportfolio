@@ -746,13 +746,13 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                       target={isExternal ? "_blank" : undefined}
                       rel={isExternal ? "noreferrer" : undefined}
                       aria-label={label}
-                      className={`group flex h-[72px] w-full items-center gap-3 rounded-[5px] border-[3px] border-[#2d2d2d] bg-white px-4 shadow-[6px_6px_0px_#2d2d2d] transition-all duration-200 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] hover:-translate-x-1.5 hover:-translate-y-1.5 hover:shadow-[12px_12px_0px_#2d2d2d] motion-reveal ${cardToneClassName[tone]}`}
+                      className={`group flex h-[72px] w-full items-center gap-4 rounded-[5px] border-[3px] border-[#2d2d2d] bg-white px-4 shadow-[6px_6px_0px_#2d2d2d] transition-all duration-200 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] hover:-translate-x-1.5 hover:-translate-y-1.5 hover:shadow-[12px_12px_0px_#2d2d2d] motion-reveal ${cardToneClassName[tone]}`}
                       style={{ animationDelay: `${220 + index * 90}ms` }}
                     >
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[var(--border)] bg-[var(--accent-soft)] text-[var(--foreground)] transition-all duration-200 group-hover:border-transparent group-hover:bg-white/20 group-hover:text-white">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--accent-soft)] text-[var(--foreground)] transition-all duration-200 group-hover:border-white/40 group-hover:bg-white/20 group-hover:text-white">
                         <Icon className="h-5 w-5 transition-transform duration-200 group-hover:scale-110" />
                       </span>
-                      <span className="min-w-0 text-left">
+                      <span className="min-w-0 flex-1 text-left">
                         <span className="block text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)] transition-colors group-hover:text-white">
                           {label}
                         </span>
