@@ -133,22 +133,28 @@ export function SiteNavbar() {
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md supports-[backdrop-filter]:bg-white/70">
       <div className="mx-auto flex w-full max-w-7xl items-center px-4 py-3 sm:px-6 sm:py-4 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-8 motion-reveal">
-        <div className="flex w-full items-center justify-between gap-3 rounded-2xl border border-[var(--border)] bg-white/95 px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.08)] backdrop-blur-md lg:hidden">
+        <div className="grid w-full grid-cols-[2.5rem_minmax(0,1fr)_2.75rem] items-center gap-2 rounded-2xl border border-[var(--border)] bg-white/95 px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.08)] backdrop-blur-md lg:hidden">
           <Link
             href="/"
             prefetch={false}
-            className="min-w-0 flex items-center gap-2 text-sm font-black uppercase tracking-[0.18em] text-[var(--foreground)]"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--accent-soft)] text-[var(--accent)]"
             aria-label="Go to home"
           >
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--accent-soft)] text-[var(--accent)]">
-              SY
-            </span>
-            <span className="truncate">Siddhant Yojit</span>
+            SY
+          </Link>
+
+          <Link
+            href="/"
+            prefetch={false}
+            className="min-w-0 justify-self-center overflow-hidden text-ellipsis whitespace-nowrap text-center text-sm font-black uppercase tracking-[0.14em] text-[var(--foreground)]"
+            aria-label="Go to home"
+          >
+            Siddhant Yojit
           </Link>
 
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-white text-[var(--foreground)] shadow-sm"
+            className="justify-self-end inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-white text-[var(--foreground)] shadow-sm"
             onClick={() => setIsOpen((current) => !current)}
             aria-expanded={isOpen}
             aria-label="Toggle navigation menu"
