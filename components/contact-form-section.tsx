@@ -166,14 +166,16 @@ function MailIcon({ className }: { className?: string }) {
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 448 512" aria-hidden="true" className={className} fill="none">
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
       <path
-        fill="currentColor"
-        d="M380.9 97.1C339 55.1 283.5 32 224.4 32 102 32 2.4 131.6 2.4 254c0 39.1 10.2 77.3 29.6 110.4L0 480l117.7-30.9c32.4 17.6 68.8 26.9 106.8 26.9h.1c122.3 0 222-99.6 222-222 0-59.1-23.1-114.6-65.1-156.9zM224.5 438.6h-.1c-34.6 0-68.5-9.3-98.1-26.9l-7-4.1-69.7 18.3 18.6-67.8-4.5-7.2c-19.5-31-29.9-66.7-29.9-103.4 0-107.4 87.5-194.9 195.1-194.9 52 0 100.8 20.3 137.4 57 36.7 36.7 57 85.4 57 137.4 0 107.5-87.5 195-195.1 195z"
+        d="M7.5 18.5 4 20l1.5-3.5A8.3 8.3 0 1 1 7.5 18.5Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
       />
       <path
+        d="M8.5 9.2c.3 2.8 2.5 5 5.3 5.3l1.2-1.2a1 1 0 0 1 1-.2l1.4.5c.5.2.8.7.8 1.2v.6c0 .7-.6 1.3-1.3 1.3C11 17 7 13 7 8.1 7 7.4 7.6 6.8 8.3 6.8h.6c.5 0 1 .3 1.2.8l.5 1.4a1 1 0 0 1-.2 1l-1.9 1.2Z"
         fill="currentColor"
-        d="M342.3 296.4c-5.8-2.9-34.3-16.9-39.7-18.8-5.3-1.9-9.2-2.9-13.1 2.9-3.9 5.8-15.1 18.8-18.5 22.6-3.4 3.9-6.8 4.4-12.6 1.5-5.8-2.9-24.5-9-46.7-29.8-17.3-15.4-29-34.4-32.3-40.2-3.4-5.8-.4-9 2.6-11.9 2.7-2.6 5.8-6.8 8.7-10.2 2.9-3.4 3.9-5.8 5.8-9.7 1.9-3.9 1-7.3-.5-10.2-1.5-2.9-13.1-31.7-17.9-43.4-4.7-11.4-9.6-9.9-13.1-10.1-3.3-.2-7.1-.2-10.9-.2s-10 1.4-15.2 6.8c-5.3 5.3-20.1 19.6-20.1 47.8s20.6 55.5 23.5 59.3c2.9 3.9 41 64.5 100 90.5 14 6 24.9 9.6 33.4 12.3 14 4.4 26.8 3.8 36.9 2.3 11.3-1.7 34.7-13.8 39.6-27.1 4.9-13.3 4.9-24.7 3.4-27.1-1.4-2.4-5.3-3.8-11.1-6.7z"
       />
     </svg>
   );
@@ -182,10 +184,11 @@ function WhatsAppIcon({ className }: { className?: string }) {
 function LinkedInIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <path d="M7 8.5H5V19h2V8.5Z" fill="currentColor" />
-      <circle cx="6" cy="5.5" r="1.15" fill="currentColor" />
+      <rect x="4.5" y="4.5" width="15" height="15" rx="4" stroke="currentColor" strokeWidth="1.7" />
+      <circle cx="8" cy="8" r="1" fill="currentColor" />
+      <path d="M7 10.8V17h2v-6.2H7Z" fill="currentColor" />
       <path
-        d="M12 10.6v1.1c.7-1 1.8-1.6 3.1-1.6 2.4 0 4.3 1.9 4.3 4.8V19h-2v-3.8c0-1.8-.9-2.9-2.4-2.9-1.4 0-2.6 1.1-3.1 2.1V19h-2V10.6h2Z"
+        d="M12 10.8v1c.5-.8 1.5-1.2 2.5-1.2 1.9 0 3.3 1.3 3.3 3.6V17h-2v-2.5c0-1.3-.6-2-1.7-2-1 0-1.8.7-2.1 1.4V17h-2v-6.2h2Z"
         fill="currentColor"
       />
     </svg>
@@ -249,14 +252,10 @@ const cardToneClassName: Record<CardTone, string> = {
   github: "hover:bg-[#f7b733]",
 };
 
-const cardIconSizeClassName = "h-10 w-10 transition-colors duration-200";
-const hoverIconClassName = "group-hover:text-white group-hover:fill-white";
-
 type QuickAction = {
   label: string;
   href: string;
   Icon: ({ className }: { className?: string }) => React.JSX.Element;
-  iconClassName: string;
   tone: CardTone;
 };
 
@@ -363,28 +362,24 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
       label: "WhatsApp",
       href: links.whatsapp,
       Icon: WhatsAppIcon,
-      iconClassName: "text-[#25D366]",
       tone: "whatsapp",
     },
     {
       label: "Call",
       href: `tel:${links.phone.replace(/\s+/g, "")}`,
       Icon: PhoneIcon,
-      iconClassName: "text-[#25D366]",
       tone: "phone",
     },
     {
       label: "LinkedIn",
       href: links.linkedin,
       Icon: LinkedInIcon,
-      iconClassName: "text-[#0A66C2]",
       tone: "linkedin",
     },
     {
       label: "GitHub",
       href: links.github,
       Icon: GitHubIcon,
-      iconClassName: "text-[#181717]",
       tone: "github",
     },
   ];
@@ -742,7 +737,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
           <div className="flex justify-end xl:translate-x-10 xl:translate-y-2">
             <div className="flex h-full w-full max-w-[420px] flex-col">
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                {quickActions.map(({ label, href, Icon, iconClassName, tone }, index) => {
+                {quickActions.map(({ label, href, Icon, tone }, index) => {
                   const isExternal = href.startsWith("http");
                   return (
                     <a
@@ -751,15 +746,13 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                       target={isExternal ? "_blank" : undefined}
                       rel={isExternal ? "noreferrer" : undefined}
                       aria-label={label}
-                      className={`group flex h-[68px] w-full items-center justify-between rounded-[5px] border-[3px] border-[#2d2d2d] bg-white px-4 shadow-[6px_6px_0px_#2d2d2d] transition-all duration-200 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] hover:-translate-x-1.5 hover:-translate-y-1.5 hover:shadow-[12px_12px_0px_#2d2d2d] motion-reveal ${cardToneClassName[tone]}`}
+                      className={`group flex h-[72px] w-full items-center gap-3 rounded-[5px] border-[3px] border-[#2d2d2d] bg-white px-4 shadow-[6px_6px_0px_#2d2d2d] transition-all duration-200 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] hover:-translate-x-1.5 hover:-translate-y-1.5 hover:shadow-[12px_12px_0px_#2d2d2d] motion-reveal ${cardToneClassName[tone]}`}
                       style={{ animationDelay: `${220 + index * 90}ms` }}
                     >
-                      <span className="flex items-center gap-3">
-                        <Icon
-                          className={`${cardIconSizeClassName} ${iconClassName} transition-transform duration-200 group-hover:scale-105 ${hoverIconClassName}`}
-                        />
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[var(--border)] bg-[var(--accent-soft)] text-[var(--foreground)] transition-all duration-200 group-hover:border-transparent group-hover:bg-white/20 group-hover:text-white">
+                        <Icon className="h-5 w-5 transition-transform duration-200 group-hover:scale-110" />
                       </span>
-                      <span className="text-left">
+                      <span className="min-w-0 text-left">
                         <span className="block text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)] transition-colors group-hover:text-white">
                           {label}
                         </span>
