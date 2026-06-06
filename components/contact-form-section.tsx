@@ -757,7 +757,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
 
         <div className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
           <div className="flex justify-end xl:translate-x-10 xl:translate-y-2">
-            <div className="flex h-full w-full max-w-[420px] flex-col">
+          <div className="flex h-full w-full max-w-full flex-col xl:max-w-[420px]">
               <div className="flex flex-wrap items-center justify-center gap-3">
                 {quickActions.map(({ label, href, Icon, iconClassName, tone }, index) => {
                   const isExternal = href.startsWith("http");
@@ -768,17 +768,17 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                       target={isExternal ? "_blank" : undefined}
                       rel={isExternal ? "noreferrer" : undefined}
                       aria-label={label}
-                      className={`group inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full border shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-all duration-200 ease-out hover:scale-105 hover:shadow-[0_14px_30px_rgba(0,0,0,0.12)] motion-reveal ${buttonToneClassName[tone]}`}
+                      className={`group inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-all duration-200 ease-out hover:scale-105 hover:shadow-[0_14px_30px_rgba(0,0,0,0.12)] motion-reveal sm:h-14 sm:w-14 ${buttonToneClassName[tone]}`}
                       style={{ animationDelay: `${220 + index * 90}ms` }}
                     >
-                      <Icon className={`h-7 w-7 transition-transform duration-200 group-hover:scale-110 ${iconClassName}`} />
+                      <Icon className={`h-6 w-6 transition-transform duration-200 group-hover:scale-110 sm:h-7 sm:w-7 ${iconClassName}`} />
                     </a>
                   );
                 })}
               </div>
 
               <div
-                className="mx-auto mt-5 w-full max-w-[380px] rounded-3xl border border-[var(--border)] bg-white px-4 py-3 shadow-sm motion-reveal"
+                className="mx-auto mt-5 w-full max-w-full rounded-3xl border border-[var(--border)] bg-white px-4 py-3 shadow-sm motion-reveal sm:max-w-[380px]"
                 style={{ animationDelay: "420ms" }}
               >
                 <p className="text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
@@ -788,27 +788,27 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                   Share these details in your message so I can reply quickly and clearly.
                 </p>
                 <div className="mt-3 grid gap-2.5">
-                  <div className="flex items-center justify-between gap-3 border-b border-[var(--border)] pb-2.5">
+                  <div className="flex flex-col gap-1 border-b border-[var(--border)] pb-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
                     <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--foreground)]">
                       Project type
                     </p>
-                    <p className="max-w-[12rem] text-right text-xs text-[var(--muted)] sm:max-w-[13rem]">
+                    <p className="max-w-none text-left text-xs text-[var(--muted)] sm:max-w-[13rem] sm:text-right">
                       Website, UI redesign, portfolio, or freelance work.
                     </p>
                   </div>
-                  <div className="flex items-center justify-between gap-3 border-b border-[var(--border)] pb-2.5">
+                  <div className="flex flex-col gap-1 border-b border-[var(--border)] pb-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
                     <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--foreground)]">
                       Timeline
                     </p>
-                    <p className="max-w-[12rem] text-right text-xs text-[var(--muted)] sm:max-w-[13rem]">
+                    <p className="max-w-none text-left text-xs text-[var(--muted)] sm:max-w-[13rem] sm:text-right">
                       Let me know your expected deadline or urgency.
                     </p>
                   </div>
-                  <div className="flex items-center justify-between gap-3">
+                  <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
                     <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--foreground)]">
                       Best contact time
                     </p>
-                    <p className="max-w-[12rem] text-right text-xs text-[var(--muted)] sm:max-w-[13rem]">
+                    <p className="max-w-none text-left text-xs text-[var(--muted)] sm:max-w-[13rem] sm:text-right">
                       Mention the time window that works for you.
                     </p>
                   </div>
@@ -817,13 +817,13 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
 
               <div className="mt-auto pt-4">
                 <div
-                  className="mx-auto flex w-full max-w-[380px] items-center justify-between gap-3 rounded-3xl border border-[var(--border)] bg-white px-4 py-3 shadow-sm motion-reveal"
+                  className="mx-auto flex w-full max-w-full flex-col gap-3 rounded-3xl border border-[var(--border)] bg-white px-4 py-3 shadow-sm motion-reveal sm:max-w-[380px] sm:flex-row sm:items-center sm:justify-between"
                   style={{ animationDelay: "500ms" }}
                 >
                   <div className="rounded-2xl bg-[var(--accent-soft)] px-3 py-2 text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--accent)]">
                     Reply fast
                   </div>
-                  <div className="flex-1 text-right">
+                  <div className="flex-1 text-left sm:text-right">
                     <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
                       Quick reply
                     </p>
