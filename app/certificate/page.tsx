@@ -104,13 +104,13 @@ export default function CertificatePage() {
                 className="flex flex-col gap-4 motion-reveal"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
-                <div className="overflow-hidden border border-[var(--border)] bg-white">
+                <div className="overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-white">
                   <Image
                     src={certificate.image}
                     alt={`${certificate.title} certificate screenshot`}
                     width={842}
                     height={595}
-                    className="h-auto w-full object-cover"
+                    className="h-auto w-full rounded-[1.75rem] object-cover"
                     priority={index < 2}
                   />
                 </div>
