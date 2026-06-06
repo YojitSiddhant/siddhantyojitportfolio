@@ -9,6 +9,7 @@ const navItems = [
   { label: "Education", href: "/education", icon: GraduationIcon },
   { label: "Skills", href: "/skills", icon: SparklesIcon },
   { label: "Projects", href: "/projects", icon: BriefcaseIcon },
+  { label: "Certificate", href: "/certificate", icon: CertificateIcon },
   { label: "Experience", href: "/experience", icon: TimelineIcon },
   { label: "Contact", href: "/contact", icon: MailIcon },
 ];
@@ -85,6 +86,27 @@ function BriefcaseIcon({ className }: IconProps) {
         strokeLinejoin="round"
       />
       <path d="M4 13h16" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function CertificateIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={`h-4 w-4 ${className ?? ""}`} fill="none">
+      <path
+        d="M7 5.5A1.5 1.5 0 0 1 8.5 4h7A1.5 1.5 0 0 1 17 5.5v8A1.5 1.5 0 0 1 15.5 15h-7A1.5 1.5 0 0 1 7 13.5v-8Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9 18.5 10.5 15l1.5 1 1.5-1 1.5 3.5"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M9.5 7.5h5M9.5 10h5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
     </svg>
   );
 }
