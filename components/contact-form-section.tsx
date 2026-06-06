@@ -137,8 +137,10 @@ function PhoneIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
       <path
-        d="M8.2 4.8h1.7c.7 0 1.3.5 1.5 1.2l.4 1.8a1.4 1.4 0 0 1-.4 1.3L10 10.5c1.1 2.4 2.9 4.2 5.3 5.3l1.4-1.4a1.4 1.4 0 0 1 1.3-.4l1.8.4c.7.2 1.2.8 1.2 1.5v1.7c0 1-.8 1.8-1.8 1.8C11.2 20.8 3.2 12.8 4 6c0-1 .8-1.8 1.8-1.8h2.4Z"
-        fill="currentColor"
+        d="M8 4.9h1.8c.7 0 1.2.4 1.4 1l.5 1.9a1.2 1.2 0 0 1-.4 1.2L10 10.5c1.1 2.2 2.8 3.9 5 5l1.5-1.3a1.2 1.2 0 0 1 1.2-.3l1.9.5c.6.1 1 .7 1 1.4v1.7a1.7 1.7 0 0 1-1.7 1.7C11.1 20.8 3.2 12.9 4 6.1c0-.9.7-1.2 1.5-1.2H8Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -168,13 +170,13 @@ function WhatsAppIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
       <path
-        d="M7.5 18.5 4 20l1.5-3.5A8.3 8.3 0 1 1 7.5 18.5Z"
+        d="M7.5 18.5 4 20l1.2-3.4A8.3 8.3 0 1 1 7.5 18.5Z"
         stroke="currentColor"
         strokeWidth="1.8"
         strokeLinejoin="round"
       />
       <path
-        d="M8.5 9.2c.3 2.8 2.5 5 5.3 5.3l1.2-1.2a1 1 0 0 1 1-.2l1.4.5c.5.2.8.7.8 1.2v.6c0 .7-.6 1.3-1.3 1.3C11 17 7 13 7 8.1 7 7.4 7.6 6.8 8.3 6.8h.6c.5 0 1 .3 1.2.8l.5 1.4a1 1 0 0 1-.2 1l-1.9 1.2Z"
+        d="M8.8 9.3c.2 2.2 1.9 4 4.1 4.1l1-1a.9.9 0 0 1 .8-.2l1.2.4c.4.1.6.5.6.9v.4c0 .6-.5 1.1-1.1 1.1C11 15 7.9 12 7.9 8.3c0-.6.5-1.1 1.1-1.1h.4c.4 0 .8.2.9.6l.4 1.2a.9.9 0 0 1-.2.8l-1.7 1.2Z"
         fill="currentColor"
       />
     </svg>
@@ -184,11 +186,11 @@ function WhatsAppIcon({ className }: { className?: string }) {
 function LinkedInIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <rect x="4.5" y="4.5" width="15" height="15" rx="4" stroke="currentColor" strokeWidth="1.7" />
-      <circle cx="8" cy="8" r="1" fill="currentColor" />
-      <path d="M7 10.8V17h2v-6.2H7Z" fill="currentColor" />
+      <rect x="4.5" y="4.5" width="15" height="15" rx="3.8" stroke="currentColor" strokeWidth="1.7" />
+      <circle cx="8.1" cy="8" r="1.05" fill="currentColor" />
+      <path d="M7 10.7V17h2v-6.3H7Z" fill="currentColor" />
       <path
-        d="M12 10.8v1c.5-.8 1.5-1.2 2.5-1.2 1.9 0 3.3 1.3 3.3 3.6V17h-2v-2.5c0-1.3-.6-2-1.7-2-1 0-1.8.7-2.1 1.4V17h-2v-6.2h2Z"
+        d="M12 10.7v1.1c.5-.8 1.5-1.3 2.5-1.3 1.9 0 3.3 1.3 3.3 3.7V17h-2v-2.4c0-1.4-.6-2.1-1.7-2.1-1 0-1.8.7-2.1 1.5V17h-2v-6.3h2Z"
         fill="currentColor"
       />
     </svg>
@@ -199,7 +201,7 @@ function GitHubIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
       <path
-        d="M12 4.5a7.5 7.5 0 0 0-2.4 14.6c.38.07.52-.16.52-.36v-1.27c-2.14.47-2.59-1.03-2.59-1.03-.35-.9-.86-1.14-.86-1.14-.7-.48.05-.47.05-.47.77.05 1.17.8 1.17.8.69 1.16 1.8.82 2.24.62.07-.5.27-.83.5-1.02-1.71-.2-3.51-.86-3.51-3.84 0-.85.3-1.55.8-2.09-.08-.2-.34-1 .08-2.08 0 0 .66-.21 2.15.8a7.5 7.5 0 0 1 3.9 0c1.49-1.01 2.15-.8 2.15-.8.42 1.08.16 1.88.08 2.08.5.54.8 1.24.8 2.09 0 2.99-1.8 3.64-3.52 3.84.28.24.53.7.53 1.41v2.09c0 .2.14.43.53.36A7.5 7.5 0 0 0 12 4.5Z"
+        d="M12 4.5A7.5 7.5 0 0 0 4.5 12c0 3.4 2.2 6.3 5.2 7.4.4.1.5-.1.5-.3v-1.2c-2.1.5-2.6-1-2.6-1-.4-.9-.9-1.1-.9-1.1-.7-.5.1-.5.1-.5.8 0 1.2.8 1.2.8.7 1.2 1.8.8 2.3.6.1-.5.3-.8.5-1-1.7-.2-3.5-.9-3.5-3.8 0-.9.3-1.5.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8a7.5 7.5 0 0 1 3.8 0c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.2.8 2.1 0 2.9-1.8 3.6-3.5 3.8.3.3.5.7.5 1.4v2.1c0 .2.1.4.5.3A7.5 7.5 0 0 0 19.5 12 7.5 7.5 0 0 0 12 4.5Z"
         fill="currentColor"
       />
     </svg>
