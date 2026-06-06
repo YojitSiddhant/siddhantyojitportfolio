@@ -9,6 +9,7 @@ const navItems = [
   { label: "Education", href: "/education", icon: GraduationIcon },
   { label: "Skills", href: "/skills", icon: SparklesIcon },
   { label: "Projects", href: "/projects", icon: BriefcaseIcon },
+  { label: "My Work", href: "/my-work", icon: WorkIcon },
   { label: "Certificate", href: "/certificate", icon: CertificateIcon },
   { label: "Experience", href: "/experience", icon: TimelineIcon },
   { label: "Contact", href: "/contact", icon: MailIcon },
@@ -86,6 +87,27 @@ function BriefcaseIcon({ className }: IconProps) {
         strokeLinejoin="round"
       />
       <path d="M4 13h16" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function WorkIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={`h-4 w-4 ${className ?? ""}`} fill="none">
+      <path
+        d="M9 7V6a3 3 0 0 1 3-3h0a3 3 0 0 1 3 3v1"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+      />
+      <path
+        d="M4 9.5A1.5 1.5 0 0 1 5.5 8h13A1.5 1.5 0 0 1 20 9.5v8A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5v-8Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinejoin="round"
+      />
+      <path d="M4 13h16" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+      <path d="M9.5 13.5V15h5v-1.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
     </svg>
   );
 }
