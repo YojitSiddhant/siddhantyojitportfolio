@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
-import { getCmsSnapshot } from "@/lib/cms";
+import { getSkills } from "@/lib/cms";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Skills | Siddhant Yojit",
@@ -55,7 +56,7 @@ function BriefcaseIcon({ className }: LogoProps) {
 }
 
 export default async function SkillsPage() {
-  const { skills } = await getCmsSnapshot();
+  const skills = await getSkills();
 
   return (
     <main className="relative isolate overflow-hidden">

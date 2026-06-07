@@ -1,8 +1,9 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { getCmsSnapshot } from "@/lib/cms";
+import { getEducation } from "@/lib/cms";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Education | Siddhant Yojit",
@@ -29,7 +30,7 @@ function BookIcon({ className }: { className?: string }) {
 }
 
 export default async function EducationPage() {
-  const { education } = await getCmsSnapshot();
+  const education = await getEducation();
 
   return (
     <main className="relative isolate overflow-hidden">

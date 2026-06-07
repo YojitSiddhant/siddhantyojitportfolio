@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
-import { getCmsSnapshot } from "@/lib/cms";
+import { getWorkItems } from "@/lib/cms";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "My Work | Siddhant Yojit",
@@ -31,7 +32,7 @@ function WorkIcon({ className }: { className?: string }) {
 }
 
 export default async function MyWorkPage() {
-  const { work } = await getCmsSnapshot();
+  const work = await getWorkItems();
 
   return (
     <main className="relative isolate overflow-hidden">

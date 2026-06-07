@@ -1,5 +1,6 @@
 import "server-only";
 
+import { unstable_cache } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import {
   initialCertificates,
@@ -11,56 +12,131 @@ import {
   initialWorkItems,
 } from "@/lib/cms-content";
 
+export const CMS_CACHE_TAG = "portfolio-cms";
+const CMS_CACHE_REVALIDATE_SECONDS = 300;
+
 export type ProfileRecord = typeof initialProfile;
 
+let seedPromise: Promise<void> | null = null;
+
 async function ensureSeeded() {
-  await prisma.profile.upsert({
-    where: { id: 1 },
-    create: initialProfile,
-    update: {},
+  if (seedPromise) {
+    return seedPromise;
+  }
+
+  seedPromise = (async () => {
+    const profileExists = await prisma.profile.findUnique({
+      where: { id: 1 },
+      select: { id: true },
+    });
+
+    if (profileExists) {
+      return;
+    }
+
+    await prisma.profile.create({
+      data: initialProfile,
+    });
+
+    await Promise.all([
+      prisma.education.createMany({ data: initialEducation }),
+      prisma.skill.createMany({ data: initialSkills }),
+      prisma.project.createMany({ data: initialProjects }),
+      prisma.workItem.createMany({ data: initialWorkItems }),
+      prisma.certificate.createMany({ data: initialCertificates }),
+      prisma.experience.createMany({ data: initialExperience }),
+    ]);
+  })().finally(() => {
+    seedPromise = null;
   });
 
-  if ((await prisma.education.count()) === 0) {
-    await prisma.education.createMany({ data: initialEducation });
-  }
-
-  if ((await prisma.skill.count()) === 0) {
-    await prisma.skill.createMany({ data: initialSkills });
-  }
-
-  if ((await prisma.project.count()) === 0) {
-    await prisma.project.createMany({ data: initialProjects });
-  }
-
-  if ((await prisma.workItem.count()) === 0) {
-    await prisma.workItem.createMany({ data: initialWorkItems });
-  }
-
-  if ((await prisma.certificate.count()) === 0) {
-    await prisma.certificate.createMany({ data: initialCertificates });
-  }
-
-  if ((await prisma.experience.count()) === 0) {
-    await prisma.experience.createMany({ data: initialExperience });
-  }
+  return seedPromise;
 }
 
-export async function getCmsSnapshot() {
-  await ensureSeeded();
+function createCachedLoader<T>(key: string, loader: () => Promise<T>) {
+  return unstable_cache(
+    async () => {
+      await ensureSeeded();
+      return loader();
+    },
+    ["cms", key],
+    {
+      tags: [CMS_CACHE_TAG],
+      revalidate: CMS_CACHE_REVALIDATE_SECONDS,
+    },
+  );
+}
 
-  const [profile, education, skills, projects, work, certificates, experience] = await Promise.all([
-    prisma.profile.findUnique({ where: { id: 1 } }),
-    prisma.education.findMany({ orderBy: { id: "asc" } }),
-    prisma.skill.findMany({ orderBy: [{ order: "asc" }, { id: "asc" }] }),
-    prisma.project.findMany({ orderBy: [{ featured: "desc" }, { order: "asc" }, { id: "asc" }] }),
-    prisma.workItem.findMany({ orderBy: [{ order: "asc" }, { id: "asc" }] }),
-    prisma.certificate.findMany({ orderBy: [{ order: "asc" }, { id: "asc" }] }),
-    prisma.experience.findMany({ orderBy: [{ order: "asc" }, { id: "asc" }] }),
-  ]);
-
+const getCachedProfile = createCachedLoader("profile", async () => {
+  const profile = await prisma.profile.findUnique({ where: { id: 1 } });
   if (!profile) {
     throw new Error("Portfolio profile is missing.");
   }
+  return profile;
+});
+
+const getCachedEducation = createCachedLoader("education", async () =>
+  prisma.education.findMany({ orderBy: { id: "asc" } }),
+);
+
+const getCachedSkills = createCachedLoader("skills", async () =>
+  prisma.skill.findMany({ orderBy: [{ order: "asc" }, { id: "asc" }] }),
+);
+
+const getCachedProjects = createCachedLoader("projects", async () =>
+  prisma.project.findMany({ orderBy: [{ featured: "desc" }, { order: "asc" }, { id: "asc" }] }),
+);
+
+const getCachedWorkItems = createCachedLoader("work", async () =>
+  prisma.workItem.findMany({ orderBy: [{ order: "asc" }, { id: "asc" }] }),
+);
+
+const getCachedCertificates = createCachedLoader("certificates", async () =>
+  prisma.certificate.findMany({ orderBy: [{ order: "asc" }, { id: "asc" }] }),
+);
+
+const getCachedExperience = createCachedLoader("experience", async () =>
+  prisma.experience.findMany({ orderBy: [{ order: "asc" }, { id: "asc" }] }),
+);
+
+export async function getProfile() {
+  return getCachedProfile();
+}
+
+export async function getEducation() {
+  return getCachedEducation();
+}
+
+export async function getSkills() {
+  return getCachedSkills();
+}
+
+export async function getProjects() {
+  return getCachedProjects();
+}
+
+export async function getWorkItems() {
+  return getCachedWorkItems();
+}
+
+export async function getCertificates() {
+  return getCachedCertificates();
+}
+
+export async function getExperience() {
+  return getCachedExperience();
+}
+
+export async function getCmsSnapshot() {
+  const [profile, education, skills, projects, work, certificates, experience] = await Promise.all([
+    getProfile(),
+    getEducation(),
+    getSkills(),
+    getProjects(),
+    getWorkItems(),
+    getCertificates(),
+    getExperience(),
+  ]);
 
   return {
     profile,

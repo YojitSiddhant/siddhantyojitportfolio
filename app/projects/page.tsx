@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
-import { getCmsSnapshot } from "@/lib/cms";
+import { getProjects } from "@/lib/cms";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Projects | Siddhant Yojit",
@@ -42,7 +43,7 @@ function TechIcon({ src, name, className }: { src: string; name: string; classNa
 }
 
 export default async function ProjectsPage() {
-  const { projects } = await getCmsSnapshot();
+  const projects = await getProjects();
 
   return (
     <main className="relative isolate overflow-hidden">

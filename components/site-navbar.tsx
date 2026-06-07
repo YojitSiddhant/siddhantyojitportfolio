@@ -180,7 +180,6 @@ export function SiteNavbar() {
         <div className="grid w-full grid-cols-[2.5rem_minmax(0,1fr)_2.75rem] items-center gap-2 rounded-2xl border border-[var(--border)] bg-white/95 px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.08)] backdrop-blur-md lg:hidden">
           <Link
             href="/"
-            prefetch={false}
             className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--accent-soft)] text-[var(--accent)]"
             aria-label="Go to home"
           >
@@ -189,7 +188,6 @@ export function SiteNavbar() {
 
           <Link
             href="/"
-            prefetch={false}
             className="min-w-0 justify-self-center overflow-hidden text-ellipsis whitespace-nowrap text-center text-sm font-black uppercase tracking-[0.14em] text-[var(--foreground)]"
             aria-label="Go to home"
           >
@@ -217,7 +215,6 @@ export function SiteNavbar() {
             <Link
               key={item.label}
               href={item.href}
-              prefetch={false}
               aria-current={isActive(item.href) ? "page" : undefined}
               className={`group inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm transition duration-300 ${
                 isActive(item.href)
@@ -247,7 +244,6 @@ export function SiteNavbar() {
               <Link
                 key={item.label}
                 href={item.href}
-                prefetch={false}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 onClick={() => {
                   setIsOpen(false);

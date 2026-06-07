@@ -1,8 +1,9 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { getCmsSnapshot } from "@/lib/cms";
+import { getExperience } from "@/lib/cms";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Experience | Siddhant Yojit",
@@ -61,7 +62,7 @@ function BulletIcon({ className }: { className?: string }) {
 }
 
 export default async function ExperiencePage() {
-  const { experience } = await getCmsSnapshot();
+  const experience = await getExperience();
 
   return (
     <main className="relative isolate overflow-hidden">

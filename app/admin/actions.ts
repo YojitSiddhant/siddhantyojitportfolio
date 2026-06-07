@@ -3,7 +3,7 @@
 import { compare } from "bcryptjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import {
   ADMIN_SESSION_COOKIE,
@@ -11,6 +11,7 @@ import {
   getAdminSessionCookieOptions,
 } from "@/lib/session";
 import { verifyAdminSessionToken } from "@/lib/session";
+import { CMS_CACHE_TAG } from "@/lib/cms";
 
 export type LoginState = {
   error?: string;
@@ -131,6 +132,7 @@ async function requireAdmin() {
 }
 
 function revalidatePortfolio() {
+  updateTag(CMS_CACHE_TAG);
   for (const route of PUBLIC_ROUTES) {
     revalidatePath(route);
   }

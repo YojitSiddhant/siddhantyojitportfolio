@@ -1,8 +1,9 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { getCmsSnapshot } from "@/lib/cms";
+import { getCertificates } from "@/lib/cms";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Certificate | Siddhant Yojit",
@@ -46,7 +47,7 @@ function DocumentIcon({ className }: { className?: string }) {
 }
 
 export default async function CertificatePage() {
-  const { certificates } = await getCmsSnapshot();
+  const certificates = await getCertificates();
 
   return (
     <main className="relative isolate overflow-hidden">
