@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 export function PageWatermark() {
   const pathname = usePathname();
 
-  if (pathname === "/contact") {
+  if (pathname === "/contact" || pathname.startsWith("/admin")) {
     return null;
   }
 

@@ -171,6 +171,10 @@ export function SiteNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
+  if (pathname.startsWith("/admin")) {
+    return null;
+  }
+
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
