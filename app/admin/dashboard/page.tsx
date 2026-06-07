@@ -28,6 +28,7 @@ import {
   updateWorkItem,
 } from "@/app/admin/actions";
 import { getAdminSnapshot } from "@/lib/cms";
+import { getCmsMediaSrc } from "@/lib/cms-media";
 import { ADMIN_SESSION_COOKIE, verifyAdminSessionToken } from "@/lib/session";
 
 export const metadata: Metadata = {
@@ -378,7 +379,17 @@ export default async function AdminDashboardPage({
                   </div>
                   <TextArea label="Description" name="description" defaultValue={item.description} rows={3} />
                   {item.logo ? (
-                    <img src={item.logo} alt={`${item.institute} logo`} className="h-16 w-16 rounded-2xl border border-[var(--border)] object-contain p-2" />
+                    <img
+                      src={getCmsMediaSrc({
+                        collection: "education",
+                        id: item.id,
+                        field: "logo",
+                        src: item.logo,
+                        updatedAt: item.updatedAt,
+                      }) ?? item.logo}
+                      alt={`${item.institute} logo`}
+                      className="h-16 w-16 rounded-2xl border border-[var(--border)] object-contain p-2"
+                    />
                   ) : null}
                   <label className="block">
                     <span className="text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)]">Replace logo</span>
@@ -515,7 +526,17 @@ export default async function AdminDashboardPage({
                     <span className="text-sm font-semibold text-[var(--foreground)]">Featured project</span>
                   </label>
                   {item.image ? (
-                    <img src={item.image} alt={item.title} className="h-48 w-full rounded-[1.25rem] border border-[var(--border)] object-cover" />
+                    <img
+                      src={getCmsMediaSrc({
+                        collection: "project",
+                        id: item.id,
+                        field: "image",
+                        src: item.image,
+                        updatedAt: item.updatedAt,
+                      }) ?? item.image}
+                      alt={item.title}
+                      className="h-48 w-full rounded-[1.25rem] border border-[var(--border)] object-cover"
+                    />
                   ) : null}
                   <label className="block">
                     <span className="text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)]">Replace image</span>
@@ -628,7 +649,17 @@ export default async function AdminDashboardPage({
                     <Input label="Order" name="order" type="number" defaultValue={item.order} />
                   </div>
                   {item.image ? (
-                    <img src={item.image} alt={item.title} className="h-48 w-full rounded-[1.25rem] border border-[var(--border)] object-cover" />
+                    <img
+                      src={getCmsMediaSrc({
+                        collection: "certificate",
+                        id: item.id,
+                        field: "image",
+                        src: item.image,
+                        updatedAt: item.updatedAt,
+                      }) ?? item.image}
+                      alt={item.title}
+                      className="h-48 w-full rounded-[1.25rem] border border-[var(--border)] object-cover"
+                    />
                   ) : null}
                   <label className="block">
                     <span className="text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)]">Replace image</span>
@@ -693,7 +724,17 @@ export default async function AdminDashboardPage({
                   <TextArea label="Description" name="description" defaultValue={item.description} rows={5} />
                   <TextArea label="Technologies" name="technologies" defaultValue={toTextAreaValue(item.technologies as string[], "strings")} rows={4} />
                   {item.logo ? (
-                    <img src={item.logo} alt={item.company} className="h-16 w-16 rounded-2xl border border-[var(--border)] object-cover" />
+                    <img
+                      src={getCmsMediaSrc({
+                        collection: "experience",
+                        id: item.id,
+                        field: "logo",
+                        src: item.logo,
+                        updatedAt: item.updatedAt,
+                      }) ?? item.logo}
+                      alt={item.company}
+                      className="h-16 w-16 rounded-2xl border border-[var(--border)] object-cover"
+                    />
                   ) : null}
                   <label className="block">
                     <span className="text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)]">Replace logo</span>

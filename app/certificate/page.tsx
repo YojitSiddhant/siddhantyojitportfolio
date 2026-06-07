@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { getCertificates } from "@/lib/cms";
+import { getCmsMediaSrc } from "@/lib/cms-media";
 
 export const dynamic = "force-static";
 export const revalidate = 300;
@@ -74,7 +75,13 @@ export default async function CertificatePage() {
                 {certificate.image ? (
                   <div className="overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-white">
                     <Image
-                      src={certificate.image}
+                      src={getCmsMediaSrc({
+                        collection: "certificate",
+                        id: certificate.id,
+                        field: "image",
+                        src: certificate.image,
+                        updatedAt: certificate.updatedAt,
+                      }) ?? certificate.image}
                       alt={`${certificate.title} certificate screenshot`}
                       width={842}
                       height={595}

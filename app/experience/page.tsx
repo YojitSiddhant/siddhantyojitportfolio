@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { getExperience } from "@/lib/cms";
+import { getCmsMediaSrc } from "@/lib/cms-media";
 
 export const dynamic = "force-static";
 export const revalidate = 300;
@@ -96,7 +97,13 @@ export default async function ExperiencePage() {
                       {item.logo ? (
                         <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-white shadow-sm">
                           <Image
-                            src={item.logo}
+                            src={getCmsMediaSrc({
+                              collection: "experience",
+                              id: item.id,
+                              field: "logo",
+                              src: item.logo,
+                              updatedAt: item.updatedAt,
+                            }) ?? item.logo}
                             alt={`${item.company} logo`}
                             width={48}
                             height={48}

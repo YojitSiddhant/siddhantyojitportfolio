@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { getEducation } from "@/lib/cms";
+import { getCmsMediaSrc } from "@/lib/cms-media";
 
 export const dynamic = "force-static";
 export const revalidate = 300;
@@ -62,7 +63,13 @@ export default async function EducationPage() {
                     {item.logo ? (
                       <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-white shadow-sm">
                         <Image
-                          src={item.logo}
+                          src={getCmsMediaSrc({
+                            collection: "education",
+                            id: item.id,
+                            field: "logo",
+                            src: item.logo,
+                            updatedAt: item.updatedAt,
+                          }) ?? item.logo}
                           alt={`${item.institute} logo`}
                           width={48}
                           height={48}
