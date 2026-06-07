@@ -6,34 +6,34 @@ export default function Loading() {
 
       <section className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8">
         <div className="rounded-[2rem] border border-[var(--border)] bg-white p-5 shadow-[0_16px_40px_rgba(0,0,0,0.06)] sm:p-6">
-          <div className="h-4 w-36 animate-pulse rounded-full bg-[var(--accent-soft)]" />
-          <div className="mt-3 h-8 w-64 animate-pulse rounded-full bg-[var(--accent-soft)]" />
+          <div className="h-4 w-32 animate-pulse rounded-full bg-[var(--accent-soft)]" />
+          <div className="mt-3 h-8 w-56 animate-pulse rounded-full bg-[var(--accent-soft)]" />
           <div className="mt-4 h-4 w-full max-w-3xl animate-pulse rounded-full bg-[var(--accent-soft)]" />
-          <div className="mt-6 flex flex-wrap gap-2 border-t border-[var(--border)] pt-4">
-            <div className="h-8 w-20 animate-pulse rounded-full bg-[var(--accent-soft)]" />
+          <div className="mt-6 flex flex-wrap gap-2">
             <div className="h-8 w-24 animate-pulse rounded-full bg-[var(--accent-soft)]" />
             <div className="h-8 w-20 animate-pulse rounded-full bg-[var(--accent-soft)]" />
             <div className="h-8 w-24 animate-pulse rounded-full bg-[var(--accent-soft)]" />
+            <div className="h-8 w-28 animate-pulse rounded-full bg-[var(--accent-soft)]" />
           </div>
         </div>
 
-        <div className="grid gap-6">
+        <div className="grid gap-6 xl:grid-cols-[minmax(0,1.25fr)_minmax(18rem,0.75fr)]">
           <div className="rounded-[2rem] border border-[var(--border)] bg-white p-5 shadow-[0_16px_40px_rgba(0,0,0,0.06)] sm:p-6">
-            <div className="h-6 w-40 animate-pulse rounded-full bg-[var(--accent-soft)]" />
-            <div className="mt-4 grid gap-4 lg:grid-cols-2">
-              <div className="h-12 animate-pulse rounded-2xl bg-[var(--accent-soft)]" />
-              <div className="h-12 animate-pulse rounded-2xl bg-[var(--accent-soft)]" />
-              <div className="h-12 animate-pulse rounded-2xl bg-[var(--accent-soft)]" />
-              <div className="h-12 animate-pulse rounded-2xl bg-[var(--accent-soft)]" />
+            <div className="h-6 w-44 animate-pulse rounded-full bg-[var(--accent-soft)]" />
+            <div className="mt-4 grid gap-4 md:grid-cols-2">
+              <div className="h-32 animate-pulse rounded-[1.5rem] bg-[var(--accent-soft)]" />
+              <div className="h-32 animate-pulse rounded-[1.5rem] bg-[var(--accent-soft)]" />
+              <div className="h-32 animate-pulse rounded-[1.5rem] bg-[var(--accent-soft)]" />
+              <div className="h-32 animate-pulse rounded-[1.5rem] bg-[var(--accent-soft)]" />
             </div>
-            <div className="mt-4 h-40 animate-pulse rounded-2xl bg-[var(--accent-soft)]" />
           </div>
 
           <div className="rounded-[2rem] border border-[var(--border)] bg-white p-5 shadow-[0_16px_40px_rgba(0,0,0,0.06)] sm:p-6">
-            <div className="h-6 w-48 animate-pulse rounded-full bg-[var(--accent-soft)]" />
-            <div className="mt-4 grid gap-4 md:grid-cols-2">
-              <div className="h-40 animate-pulse rounded-2xl bg-[var(--accent-soft)]" />
-              <div className="h-40 animate-pulse rounded-2xl bg-[var(--accent-soft)]" />
+            <div className="h-6 w-40 animate-pulse rounded-full bg-[var(--accent-soft)]" />
+            <div className="mt-4 space-y-3">
+              <div className="h-20 animate-pulse rounded-[1.5rem] bg-[var(--accent-soft)]" />
+              <div className="h-20 animate-pulse rounded-[1.5rem] bg-[var(--accent-soft)]" />
+              <div className="h-20 animate-pulse rounded-[1.5rem] bg-[var(--accent-soft)]" />
             </div>
           </div>
         </div>

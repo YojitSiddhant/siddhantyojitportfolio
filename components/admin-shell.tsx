@@ -3,25 +3,21 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { adminNavItems, adminRoutes } from "@/lib/admin-routes";
 
 type AdminShellProps = {
   children: ReactNode;
   logoutAction: () => Promise<void>;
 };
 
-const contentSections = [
-  { label: "Home", href: "/admin/dashboard#home" },
-  { label: "Education", href: "/admin/dashboard#education" },
-  { label: "Skills", href: "/admin/dashboard#skills" },
-  { label: "Projects", href: "/admin/dashboard#projects" },
-  { label: "My Work", href: "/admin/dashboard#my-work" },
-  { label: "Certificate", href: "/admin/dashboard#certificate" },
-  { label: "Experience", href: "/admin/dashboard#experience" },
-] as const;
-
 export function AdminShell({ children, logoutAction }: AdminShellProps) {
   const pathname = usePathname();
-  const isLoginPage = pathname === "/admin/login";
+  const [menuOpen, setMenuOpen] = useState(false);
+  const isLoginPage = pathname === adminRoutes.login;
+
+  const isActive = (href: string) =>
+    href === adminRoutes.site ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
   if (isLoginPage) {
     return (
@@ -32,51 +28,112 @@ export function AdminShell({ children, logoutAction }: AdminShellProps) {
   }
 
   return (
-    <div className="relative z-10 mx-auto flex w-full max-w-7xl gap-6 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8">
-      <aside className="sticky top-24 hidden h-[calc(100dvh-8rem)] w-72 shrink-0 overflow-hidden rounded-[2rem] border border-[var(--border)] bg-white/95 p-4 shadow-[0_16px_40px_rgba(0,0,0,0.08)] backdrop-blur-md lg:flex lg:flex-col">
-        <div className="rounded-[1.5rem] border border-[var(--border)] bg-[var(--accent-soft)] px-4 py-4">
-          <p className="text-xs font-black uppercase tracking-[0.28em] text-[var(--muted)]">Admin Area</p>
-          <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--foreground)]">Portfolio CMS</h2>
-          <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-            Manage portfolio content, images, and publishing from one place.
-          </p>
+    <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-10 pt-4 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8">
+      <div className="mb-4 flex items-center justify-between rounded-[1.75rem] border border-[var(--border)] bg-white/95 px-4 py-3 shadow-[0_12px_32px_rgba(0,0,0,0.08)] backdrop-blur-md lg:hidden">
+        <div>
+          <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[var(--muted)]">Admin Area</p>
+          <h2 className="text-lg font-bold tracking-tight text-[var(--foreground)]">Portfolio CMS</h2>
         </div>
 
-        <nav className="mt-4 flex flex-col gap-2">
+        <div className="flex items-center gap-2">
           <Link
-            href="/admin/dashboard"
-            className="rounded-2xl border border-[var(--border)] px-4 py-3 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            href={adminRoutes.site}
+            className="inline-flex items-center justify-center rounded-full border border-[var(--border)] px-3 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
           >
-            Dashboard
+            View Site
           </Link>
-
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-3">
-            <p className="px-1 pb-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--muted)]">Content</p>
-            <div className="grid gap-1">
-              {contentSections.map((section) => (
-                <Link
-                  key={section.label}
-                  href={section.href}
-                  className="rounded-xl px-3 py-2 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-white hover:text-[var(--accent)]"
-                >
-                  {section.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </nav>
-
-        <form action={logoutAction} className="mt-auto pt-4">
           <button
-            type="submit"
-            className="inline-flex w-full items-center justify-center rounded-full border border-[var(--border)] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            type="button"
+            onClick={() => setMenuOpen((current) => !current)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-white text-[var(--foreground)] shadow-sm"
+            aria-expanded={menuOpen}
+            aria-label="Toggle admin navigation"
           >
-            Logout
+            <span className="flex flex-col gap-1.5">
+              <span className="h-0.5 w-5 rounded-full bg-current" />
+              <span className="h-0.5 w-5 rounded-full bg-current" />
+              <span className="h-0.5 w-5 rounded-full bg-current" />
+            </span>
           </button>
-        </form>
-      </aside>
+        </div>
+      </div>
 
-      <div className="min-w-0 flex-1">{children}</div>
+      <div className="grid gap-6 lg:grid-cols-[18rem_minmax(0,1fr)]">
+        <aside className="sticky top-24 hidden h-[calc(100dvh-8rem)] overflow-hidden rounded-[2rem] border border-[var(--border)] bg-white/95 p-4 shadow-[0_16px_40px_rgba(0,0,0,0.08)] backdrop-blur-md lg:flex lg:flex-col">
+          <div className="rounded-[1.5rem] border border-[var(--border)] bg-[var(--accent-soft)] px-4 py-4">
+            <p className="text-xs font-black uppercase tracking-[0.28em] text-[var(--muted)]">Admin Area</p>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--foreground)]">Portfolio CMS</h2>
+            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+              Manage portfolio content, images, and publishing from one place.
+            </p>
+          </div>
+
+          <nav className="mt-4 grid gap-2">
+            {adminNavItems.map((item) => {
+              const active = isActive(item.href);
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className={`rounded-2xl border px-4 py-3 text-sm font-semibold transition-colors ${
+                    active
+                      ? "border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent)]"
+                      : "border-[var(--border)] text-[var(--foreground)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <form action={logoutAction} className="mt-auto pt-4">
+            <button
+              type="submit"
+              className="inline-flex w-full items-center justify-center rounded-full border border-[var(--border)] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            >
+              Logout
+            </button>
+          </form>
+        </aside>
+
+        <div className="min-w-0 flex-1">
+          {menuOpen ? (
+            <div className="mb-4 rounded-[2rem] border border-[var(--border)] bg-white p-4 shadow-[0_16px_40px_rgba(0,0,0,0.08)] lg:hidden">
+              <nav className="grid gap-2">
+                {adminNavItems.map((item) => {
+                  const active = isActive(item.href);
+                  return (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      onClick={() => setMenuOpen(false)}
+                      className={`rounded-2xl border px-4 py-3 text-sm font-semibold transition-colors ${
+                        active
+                          ? "border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent)]"
+                          : "border-[var(--border)] text-[var(--foreground)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                })}
+              </nav>
+
+              <form action={logoutAction} className="mt-4">
+                <button
+                  type="submit"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-[var(--border)] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                >
+                  Logout
+                </button>
+              </form>
+            </div>
+          ) : null}
+
+          {children}
+        </div>
+      </div>
     </div>
   );
 }

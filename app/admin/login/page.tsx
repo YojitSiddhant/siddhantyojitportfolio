@@ -1,32 +1,17 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { AdminLoginForm } from "@/app/admin/login/login-form";
-import { ADMIN_SESSION_COOKIE, verifyAdminSessionToken } from "@/lib/session";
+import { isAdminAuthenticated } from "@/lib/admin-auth";
+import { adminRoutes } from "@/lib/admin-routes";
 
 export const metadata: Metadata = {
   title: "Admin Login | Siddhant Yojit",
   description: "Admin login for the portfolio CMS.",
 };
 
-async function isAuthenticated() {
-  const secret = process.env.ADMIN_SESSION_SECRET;
-  if (!secret) {
-    return false;
-  }
-
-  const cookieStore = await cookies();
-  const token = cookieStore.get(ADMIN_SESSION_COOKIE)?.value;
-  if (!token) {
-    return false;
-  }
-
-  return Boolean(await verifyAdminSessionToken(token, secret));
-}
-
 export default async function AdminLoginPage() {
-  if (await isAuthenticated()) {
-    redirect("/admin/dashboard");
+  if (await isAdminAuthenticated()) {
+    redirect(adminRoutes.dashboard);
   }
 
   return (

@@ -5,19 +5,26 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { revalidatePath, updateTag } from "next/cache";
 import { prisma } from "@/lib/prisma";
-import {
-  ADMIN_SESSION_COOKIE,
-  createAdminSessionToken,
-  getAdminSessionCookieOptions,
-} from "@/lib/session";
-import { verifyAdminSessionToken } from "@/lib/session";
+import { ADMIN_SESSION_COOKIE, createAdminSessionToken, getAdminSessionCookieOptions } from "@/lib/session";
 import { CMS_CACHE_TAG } from "@/lib/cms";
+import { requireAdminActionSession } from "@/lib/admin-auth";
+import { adminRoutes } from "@/lib/admin-routes";
 
 export type LoginState = {
   error?: string;
 };
 
 const PUBLIC_ROUTES = ["/", "/education", "/skills", "/projects", "/my-work", "/certificate", "/experience"];
+const ADMIN_ROUTES = [
+  adminRoutes.dashboard,
+  adminRoutes.home,
+  adminRoutes.education,
+  adminRoutes.skills,
+  adminRoutes.projects,
+  adminRoutes.myWork,
+  adminRoutes.certificates,
+  adminRoutes.experience,
+];
 
 function cleanString(value: FormDataEntryValue | null) {
   if (typeof value !== "string") {
@@ -111,24 +118,7 @@ async function fileToDataUrl(value: FormDataEntryValue | null) {
 }
 
 async function requireAdmin() {
-  const secret = process.env.ADMIN_SESSION_SECRET;
-  if (!secret) {
-    throw new Error("ADMIN_SESSION_SECRET is not configured.");
-  }
-
-  const cookieStore = await cookies();
-  const token = cookieStore.get(ADMIN_SESSION_COOKIE)?.value;
-  if (!token) {
-    redirect("/admin/login");
-  }
-
-  const session = await verifyAdminSessionToken(token, secret);
-  if (!session) {
-    cookieStore.delete(ADMIN_SESSION_COOKIE);
-    redirect("/admin/login");
-  }
-
-  return session;
+  return requireAdminActionSession();
 }
 
 function revalidatePortfolio() {
@@ -136,11 +126,13 @@ function revalidatePortfolio() {
   for (const route of PUBLIC_ROUTES) {
     revalidatePath(route);
   }
-  revalidatePath("/admin/dashboard");
+  for (const route of ADMIN_ROUTES) {
+    revalidatePath(route);
+  }
 }
 
-function dashboardRedirect(message: string, section: string) {
-  redirect(`/admin/dashboard?toast=${encodeURIComponent(message)}#${section}`);
+function adminRedirect(route: string, message: string) {
+  redirect(`${route}?toast=${encodeURIComponent(message)}`);
 }
 
 export async function loginAdmin(_state: LoginState, formData: FormData): Promise<LoginState> {
@@ -215,7 +207,7 @@ export async function saveProfile(formData: FormData) {
   });
 
   revalidatePortfolio();
-  dashboardRedirect("Home updated successfully.", "home");
+  adminRedirect(adminRoutes.home, "Home updated successfully.");
 }
 
 export async function createEducation(formData: FormData) {
@@ -234,7 +226,7 @@ export async function createEducation(formData: FormData) {
   });
 
   revalidatePortfolio();
-  dashboardRedirect("Education item created.", "education");
+  adminRedirect(adminRoutes.education, "Education item created.");
 }
 
 export async function updateEducation(id: number, formData: FormData) {
@@ -254,14 +246,14 @@ export async function updateEducation(id: number, formData: FormData) {
   });
 
   revalidatePortfolio();
-  dashboardRedirect("Education item updated.", "education");
+  adminRedirect(adminRoutes.education, "Education item updated.");
 }
 
 export async function deleteEducation(id: number) {
   await requireAdmin();
   await prisma.education.delete({ where: { id } });
   revalidatePortfolio();
-  dashboardRedirect("Education item deleted.", "education");
+  adminRedirect(adminRoutes.education, "Education item deleted.");
 }
 
 export async function createSkill(formData: FormData) {
@@ -278,7 +270,7 @@ export async function createSkill(formData: FormData) {
   });
 
   revalidatePortfolio();
-  dashboardRedirect("Skill created.", "skills");
+  adminRedirect(adminRoutes.skills, "Skill created.");
 }
 
 export async function updateSkill(id: number, formData: FormData) {
@@ -296,14 +288,14 @@ export async function updateSkill(id: number, formData: FormData) {
   });
 
   revalidatePortfolio();
-  dashboardRedirect("Skill updated.", "skills");
+  adminRedirect(adminRoutes.skills, "Skill updated.");
 }
 
 export async function deleteSkill(id: number) {
   await requireAdmin();
   await prisma.skill.delete({ where: { id } });
   revalidatePortfolio();
-  dashboardRedirect("Skill deleted.", "skills");
+  adminRedirect(adminRoutes.skills, "Skill deleted.");
 }
 
 export async function createProject(formData: FormData) {
@@ -325,7 +317,7 @@ export async function createProject(formData: FormData) {
   });
 
   revalidatePortfolio();
-  dashboardRedirect("Project created.", "projects");
+  adminRedirect(adminRoutes.projects, "Project created.");
 }
 
 export async function updateProject(id: number, formData: FormData) {
@@ -348,14 +340,14 @@ export async function updateProject(id: number, formData: FormData) {
   });
 
   revalidatePortfolio();
-  dashboardRedirect("Project updated.", "projects");
+  adminRedirect(adminRoutes.projects, "Project updated.");
 }
 
 export async function deleteProject(id: number) {
   await requireAdmin();
   await prisma.project.delete({ where: { id } });
   revalidatePortfolio();
-  dashboardRedirect("Project deleted.", "projects");
+  adminRedirect(adminRoutes.projects, "Project deleted.");
 }
 
 export async function createWorkItem(formData: FormData) {
@@ -372,7 +364,7 @@ export async function createWorkItem(formData: FormData) {
   });
 
   revalidatePortfolio();
-  dashboardRedirect("Work item created.", "my-work");
+  adminRedirect(adminRoutes.myWork, "Work item created.");
 }
 
 export async function updateWorkItem(id: number, formData: FormData) {
@@ -390,14 +382,14 @@ export async function updateWorkItem(id: number, formData: FormData) {
   });
 
   revalidatePortfolio();
-  dashboardRedirect("Work item updated.", "my-work");
+  adminRedirect(adminRoutes.myWork, "Work item updated.");
 }
 
 export async function deleteWorkItem(id: number) {
   await requireAdmin();
   await prisma.workItem.delete({ where: { id } });
   revalidatePortfolio();
-  dashboardRedirect("Work item deleted.", "my-work");
+  adminRedirect(adminRoutes.myWork, "Work item deleted.");
 }
 
 export async function createCertificate(formData: FormData) {
@@ -417,7 +409,7 @@ export async function createCertificate(formData: FormData) {
   });
 
   revalidatePortfolio();
-  dashboardRedirect("Certificate created.", "certificate");
+  adminRedirect(adminRoutes.certificates, "Certificate created.");
 }
 
 export async function updateCertificate(id: number, formData: FormData) {
@@ -438,14 +430,14 @@ export async function updateCertificate(id: number, formData: FormData) {
   });
 
   revalidatePortfolio();
-  dashboardRedirect("Certificate updated.", "certificate");
+  adminRedirect(adminRoutes.certificates, "Certificate updated.");
 }
 
 export async function deleteCertificate(id: number) {
   await requireAdmin();
   await prisma.certificate.delete({ where: { id } });
   revalidatePortfolio();
-  dashboardRedirect("Certificate deleted.", "certificate");
+  adminRedirect(adminRoutes.certificates, "Certificate deleted.");
 }
 
 export async function createExperience(formData: FormData) {
@@ -466,7 +458,7 @@ export async function createExperience(formData: FormData) {
   });
 
   revalidatePortfolio();
-  dashboardRedirect("Experience created.", "experience");
+  adminRedirect(adminRoutes.experience, "Experience created.");
 }
 
 export async function updateExperience(id: number, formData: FormData) {
@@ -488,12 +480,12 @@ export async function updateExperience(id: number, formData: FormData) {
   });
 
   revalidatePortfolio();
-  dashboardRedirect("Experience updated.", "experience");
+  adminRedirect(adminRoutes.experience, "Experience updated.");
 }
 
 export async function deleteExperience(id: number) {
   await requireAdmin();
   await prisma.experience.delete({ where: { id } });
   revalidatePortfolio();
-  dashboardRedirect("Experience deleted.", "experience");
+  adminRedirect(adminRoutes.experience, "Experience deleted.");
 }
