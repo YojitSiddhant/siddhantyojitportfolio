@@ -38,9 +38,9 @@ export function AdminSidebar({ collapsed, mobileOpen, onClose, onToggleCollapse,
       />
 
       <aside
-        className={`fixed left-4 top-20 z-40 h-[calc(100dvh-6rem)] overflow-hidden rounded-[2rem] border border-black/5 bg-white/95 shadow-[0_18px_45px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-[transform,width,opacity] duration-300 lg:sticky lg:top-24 lg:z-20 ${
+        className={`fixed inset-x-3 top-16 z-40 h-[calc(100dvh-4.5rem)] overflow-hidden rounded-[1.75rem] border border-black/5 bg-white/95 shadow-[0_18px_45px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-[transform,width,opacity] duration-300 lg:sticky lg:top-24 lg:z-20 ${
           mobileOpen ? "translate-x-0" : "-translate-x-[110%] lg:translate-x-0"
-        } ${collapsed ? "lg:w-[72px]" : "lg:w-[260px]"} w-[min(20rem,calc(100vw-2rem))]`}
+        } ${collapsed ? "lg:w-[72px]" : "lg:w-[260px]"} w-auto lg:left-auto lg:right-auto`}
       >
         <div className="flex h-full flex-col p-3">
           <div
