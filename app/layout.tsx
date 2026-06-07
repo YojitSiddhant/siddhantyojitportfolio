@@ -1,20 +1,7 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import { SiteNavbar } from "@/components/site-navbar";
 import { PageWatermark } from "@/components/page-watermark";
 import "./globals.css";
-
-const bodyFont = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-body-font",
-});
-
-const headingFont = Space_Grotesk({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-heading-font",
-});
 
 export const metadata: Metadata = {
   title: "Siddhant Yojit | Frontend Developer",
@@ -28,11 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${bodyFont.variable} ${headingFont.variable} h-full antialiased`}
-      style={{ colorScheme: "light" }}
-    >
+    <html lang="en" className="h-full antialiased" style={{ colorScheme: "light" }}>
       <body className="relative isolate min-h-full bg-[var(--background)] text-[var(--foreground)]">
         <PageWatermark />
         <div className="relative z-10">

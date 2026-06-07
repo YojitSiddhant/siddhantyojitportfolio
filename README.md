@@ -1,40 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Siddhant Yojit Portfolio CMS
 
-## Getting Started
+This is the existing personal portfolio, extended into a custom CMS inside the same Next.js app.
 
-First, run the development server:
+## What changed
+
+- Public pages still use the same visual design.
+- Content now comes from Prisma-backed data instead of hard-coded arrays.
+- Admin auth lives inside Next.js at `/admin/login` and `/admin/dashboard`.
+- The contact page and Web3Forms integration are unchanged.
+
+## Stack
+
+- Next.js 16 App Router
+- TypeScript
+- Prisma ORM
+- SQLite-compatible database
+- Turso/libSQL for Vercel persistence
+
+## Environment
+
+Copy `.env.example` to your local environment and set:
+
+- `DATABASE_URL`
+- `TURSO_DATABASE_URL`
+- `TURSO_AUTH_TOKEN`
+- `ADMIN_SESSION_SECRET`
+- `ADMIN_PASSWORD_HASH`
+
+Local development can use:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+DATABASE_URL="file:./prisma/dev.db"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Production on Vercel should point `DATABASE_URL` to your Turso libSQL URL and set `TURSO_AUTH_TOKEN`.
+The install/build hooks automatically apply the checked-in SQLite migration SQL before Prisma Client generation.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Admin login
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The admin area is password-protected.
 
-## Learn More
+- Go to `/admin/login`
+- Sign in with the password whose bcrypt hash is stored in `ADMIN_PASSWORD_HASH`
+- The session is stored in an HTTP-only signed cookie
+- Generate a hash with:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+node -e "console.log(require('bcryptjs').hashSync('your-password', 10))"
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Development
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm install
+npm run dev
+```
 
-## Deploy on Vercel
+The app seeds its initial portfolio content automatically from the existing site copy the first time the database is empty.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Database
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Prisma is configured in:
 
-### Contact form
+- [`prisma/schema.prisma`](/prisma/schema.prisma)
+- [`prisma.config.ts`](/prisma.config.ts)
 
-To enable the contact form, add `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` to your local `.env.local` file and the same environment variable in Vercel. Web3Forms access keys are public-facing, so this can be a public env var.
+Useful scripts:
+
+```bash
+npm run prisma:generate
+npm run prisma:migrate
+npm run prisma:deploy
+npm run prisma:studio
+```
+
+## Deployment on Vercel
+
+1. Create a Turso database.
+2. Set Vercel environment variables:
+   - `DATABASE_URL`
+   - `TURSO_DATABASE_URL`
+   - `TURSO_AUTH_TOKEN`
+   - `ADMIN_SESSION_SECRET`
+   - `ADMIN_PASSWORD_HASH`
+3. Deploy normally on Vercel.
+4. Visit `/admin/login` to manage the portfolio content.
+
+## Content areas
+
+Editable sections:
+
+- Home
+- Education
+- Skills
+- Projects
+- My Work
+- Certificate
+- Experience
+
+## Notes
+
+- Images uploaded in the admin dashboard are stored as data URLs in the database so the app stays self-contained.
+- The contact page and its form were intentionally left untouched.

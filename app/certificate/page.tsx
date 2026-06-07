@@ -1,17 +1,12 @@
 import Image from "next/image";
 import type { Metadata } from "next";
+import { getCmsSnapshot } from "@/lib/cms";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Certificate | Siddhant Yojit",
   description: "Certificates for Siddhant Yojit.",
-};
-
-type CertificateItem = {
-  title: string;
-  issuer: string;
-  period: string;
-  note: string;
-  image: string;
 };
 
 function CertificateBadgeIcon({ className }: { className?: string }) {
@@ -50,38 +45,9 @@ function DocumentIcon({ className }: { className?: string }) {
   );
 }
 
-const certificates: CertificateItem[] = [
-  {
-    title: "ChatGPT for Excel",
-    issuer: "Great Learning Academy",
-    period: "Mar 2024",
-    note: "Practical AI-assisted spreadsheet workflow training.",
-    image: "/certificates/chatgpt-for-excel.png",
-  },
-  {
-    title: "Data Visualization With Power BI",
-    issuer: "Great Learning Academy",
-    period: "Mar 2024",
-    note: "Dashboarding and business intelligence visualization work.",
-    image: "/certificates/data-visualization-with-power-bi.png",
-  },
-  {
-    title: "Google Bard for Microsoft Powerpoint",
-    issuer: "Great Learning Academy",
-    period: "Mar 2024",
-    note: "Presentation workflow support using AI tools.",
-    image: "/certificates/google-bard-for-microsoft-powerpoint.png",
-  },
-  {
-    title: "Html In Hindi",
-    issuer: "Great Learning Academy",
-    period: "Mar 2024",
-    note: "HTML fundamentals and front-end structure learning.",
-    image: "/certificates/html-in-hindi.png",
-  },
-];
+export default async function CertificatePage() {
+  const { certificates } = await getCmsSnapshot();
 
-export default function CertificatePage() {
   return (
     <main className="relative isolate overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(0,0,0,0.01),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(0,0,0,0.008),_transparent_28%),radial-gradient(circle_at_bottom,_rgba(0,0,0,0.004),_transparent_36%)]" />
@@ -104,16 +70,18 @@ export default function CertificatePage() {
                 className="flex flex-col gap-4 motion-reveal"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
-                <div className="overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-white">
-                  <Image
-                    src={certificate.image}
-                    alt={`${certificate.title} certificate screenshot`}
-                    width={842}
-                    height={595}
-                    className="h-auto w-full rounded-[1.75rem] object-cover"
-                    priority={index < 2}
-                  />
-                </div>
+                {certificate.image ? (
+                  <div className="overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-white">
+                    <Image
+                      src={certificate.image}
+                      alt={`${certificate.title} certificate screenshot`}
+                      width={842}
+                      height={595}
+                      className="h-auto w-full rounded-[1.75rem] object-cover"
+                      priority={index < 2}
+                    />
+                  </div>
+                ) : null}
 
                 <div className="flex flex-col gap-3 px-1 pb-1">
                   <div className="min-w-0 flex-1">
@@ -128,13 +96,22 @@ export default function CertificatePage() {
                       {certificate.title}
                     </h2>
                     <span className="text-[10px] font-black uppercase tracking-[0.18em] text-[var(--muted)]">
-                      {certificate.period}
+                      {certificate.issueDate}
                     </span>
                   </div>
 
                   <div className="flex flex-col gap-1 text-sm text-[var(--foreground)]">
                     <p className="font-black text-[var(--foreground)]">{certificate.issuer}</p>
-                    <p className="text-[var(--muted)]">{certificate.note}</p>
+                    {certificate.verificationLink ? (
+                      <a
+                        href={certificate.verificationLink}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex w-fit items-center text-[var(--accent-strong)] underline-offset-4 hover:underline"
+                      >
+                        Verify certificate
+                      </a>
+                    ) : null}
                   </div>
                 </div>
               </article>

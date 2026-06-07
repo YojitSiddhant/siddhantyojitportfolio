@@ -1,4 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
+import { getCmsSnapshot } from "@/lib/cms";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Skills | Siddhant Yojit",
@@ -8,72 +12,6 @@ export const metadata: Metadata = {
 type LogoProps = {
   className?: string;
 };
-
-type SkillItem = {
-  name: string;
-  href: string;
-  Logo: ({ className }: LogoProps) => React.JSX.Element;
-};
-
-function HtmlLogo({ className }: LogoProps) {
-  return (
-    <svg viewBox="0 0 64 64" aria-hidden="true" className={className} fill="none">
-      <path d="M10 6h44l-4 46-18 6-18-6-4-46Z" fill="#E34F26" />
-      <path d="M32 12v38.5l13-4.1 3.4-34.4H32Z" fill="#EF652A" opacity="0.9" />
-      <path d="M20 19h24l-1 5H25.4l.7 6.7H42l-1.6 16-8.4 2.5-8.4-2.5-.6-6h4.8l.3 2.9 4 1.2 4-1.2.5-5.3H22.6L21 19Z" fill="#fff" />
-    </svg>
-  );
-}
-
-function CssLogo({ className }: LogoProps) {
-  return (
-    <svg viewBox="0 0 64 64" aria-hidden="true" className={className} fill="none">
-      <path d="M10 6h44l-4 46-18 6-18-6-4-46Z" fill="#1572B6" />
-      <path d="M32 12v38.5l13-4.1 3.4-34.4H32Z" fill="#33A9DC" opacity="0.9" />
-      <path d="M21 19h22l-.4 4.7H25.4l.6 5.6h13.7l-1.5 15.3-6.2 2-6.3-2-.5-4.9h4.2l.2 2 2.4.8 2.4-.8.4-4.4H23.2L21 19Z" fill="#fff" />
-    </svg>
-  );
-}
-
-function JavascriptLogo({ className }: LogoProps) {
-  return (
-    <svg viewBox="0 0 64 64" aria-hidden="true" className={className} fill="none">
-      <rect x="8" y="8" width="48" height="48" rx="8" fill="#F7DF1E" />
-      <path d="M28 24h4v14.5c0 4.7-2.6 7.5-7 7.5-2.6 0-4.4-1-5.8-3l3.1-2.2c.6 1.1 1.4 1.7 2.5 1.7 1.7 0 2.8-1 2.8-3.9V24Zm11 0h4v18h-4V24Z" fill="#1E1E1E" />
-    </svg>
-  );
-}
-
-function AngularLogo({ className }: LogoProps) {
-  return (
-    <svg viewBox="0 0 64 64" aria-hidden="true" className={className} fill="none">
-      <path d="M32 6 10 14l4 26 18 18 18-18 4-26L32 6Z" fill="#DD0031" />
-      <path d="M32 12 16 18l3 20 13 14 13-14 3-20-16-6Z" fill="#C3002F" />
-      <path d="M32 20 22 43h6l2-5h8l2 5h6L32 20Zm-1 13 2.4-6.4L35 33h-4Z" fill="#fff" />
-    </svg>
-  );
-}
-
-function ReactLogo({ className }: LogoProps) {
-  return (
-    <svg viewBox="0 0 64 64" aria-hidden="true" className={className} fill="none">
-      <circle cx="32" cy="32" r="5.2" fill="#61DAFB" />
-      <ellipse cx="32" cy="32" rx="24" ry="8.2" stroke="#61DAFB" strokeWidth="3" />
-      <ellipse cx="32" cy="32" rx="24" ry="8.2" stroke="#61DAFB" strokeWidth="3" transform="rotate(60 32 32)" />
-      <ellipse cx="32" cy="32" rx="24" ry="8.2" stroke="#61DAFB" strokeWidth="3" transform="rotate(120 32 32)" />
-    </svg>
-  );
-}
-
-function FlutterLogo({ className }: LogoProps) {
-  return (
-    <svg viewBox="0 0 64 64" aria-hidden="true" className={className} fill="none">
-      <path d="M10 32 32 10h14L24 32 46 54H32L10 32Z" fill="#02569B" />
-      <path d="M26 32 42 16h10L36 32l16 16H42L26 32Z" fill="#44D1FD" />
-      <path d="M26 32 38 20h8L32 34l12 12h-8L26 32Z" fill="#fff" opacity="0.92" />
-    </svg>
-  );
-}
 
 function TechBadgeIcon({ className }: LogoProps) {
   return (
@@ -116,20 +54,9 @@ function BriefcaseIcon({ className }: LogoProps) {
   );
 }
 
-const skills: SkillItem[] = [
-  { name: "HTML", href: "https://developer.mozilla.org/en-US/docs/Web/HTML", Logo: HtmlLogo },
-  { name: "CSS", href: "https://developer.mozilla.org/en-US/docs/Web/CSS", Logo: CssLogo },
-  {
-    name: "JAVASCRIPT",
-    href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-    Logo: JavascriptLogo,
-  },
-  { name: "ANGULAR", href: "https://angular.dev/", Logo: AngularLogo },
-  { name: "REACT", href: "https://react.dev/", Logo: ReactLogo },
-  { name: "FLUTTER", href: "https://docs.flutter.dev/", Logo: FlutterLogo },
-];
+export default async function SkillsPage() {
+  const { skills } = await getCmsSnapshot();
 
-export default function SkillsPage() {
   return (
     <main className="relative isolate overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(0,0,0,0.01),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(0,0,0,0.008),_transparent_28%),radial-gradient(circle_at_bottom,_rgba(0,0,0,0.004),_transparent_36%)]" />
@@ -149,22 +76,22 @@ export default function SkillsPage() {
 
         <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
           <div className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2">
-            {skills.map(({ name, href, Logo }, index) => (
+            {skills.map((skill, index) => (
               <article
-                key={name}
+                key={skill.name}
                 className="flex flex-col items-center justify-center gap-3 px-4 py-6 text-center motion-reveal"
                 style={{ animationDelay: `${220 + index * 100}ms` }}
               >
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center">
-                  <Logo className="h-14 w-14" />
+                  <img src={skill.icon} alt={`${skill.name} logo`} className="h-14 w-14 object-contain" loading="lazy" />
                 </div>
                 <a
-                  href={href}
+                  href={skill.href ?? "#"}
                   target="_blank"
                   rel="noreferrer"
                   className="min-w-0 text-base font-black uppercase tracking-[0.24em] text-[var(--foreground)] transition-colors hover:text-[var(--accent)]"
                 >
-                  {name}
+                  {skill.name}
                 </a>
               </article>
             ))}

@@ -1,4 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
+import { getCmsSnapshot } from "@/lib/cms";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "My Work | Siddhant Yojit",
@@ -26,7 +30,9 @@ function WorkIcon({ className }: { className?: string }) {
   );
 }
 
-export default function MyWorkPage() {
+export default async function MyWorkPage() {
+  const { work } = await getCmsSnapshot();
+
   return (
     <main className="relative isolate overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(0,0,0,0.01),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(0,0,0,0.008),_transparent_28%),radial-gradient(circle_at_bottom,_rgba(0,0,0,0.004),_transparent_36%)]" />
@@ -43,15 +49,50 @@ export default function MyWorkPage() {
 
         <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
           <div className="grid gap-5">
-            <article className="flex flex-col gap-2 border-b border-[var(--border)] pb-5 motion-reveal" style={{ animationDelay: "220ms" }}>
-              <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">Portfolio Section</p>
-              <h1 className="mt-2 text-3xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl">
-                My Work is coming soon.
-              </h1>
-              <p className="mt-3 max-w-2xl text-base leading-7 text-[var(--muted)] sm:text-lg sm:leading-8">
-                I&apos;m preparing this space to showcase selected work, experiments, and future portfolio pieces in the same clean style as the rest of the site.
-              </p>
-            </article>
+            {work.map((item, index) => (
+              <article
+                key={item.title}
+                className="flex flex-col gap-4 border-b border-[var(--border)] pb-5 motion-reveal"
+                style={{ animationDelay: `${220 + index * 120}ms` }}
+              >
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">My Work</p>
+                    <h1 className="mt-2 text-3xl font-bold tracking-tight text-[var(--foreground)] sm:text-4xl">
+                      {item.title}
+                    </h1>
+                  </div>
+                </div>
+
+                <p className="max-w-3xl text-base leading-7 text-[var(--muted)]">{item.summary}</p>
+
+                {Array.isArray(item.screenshots) && item.screenshots.length > 0 ? (
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {(item.screenshots as string[]).map((screenshot) => (
+                      <div key={screenshot} className="overflow-hidden rounded-[1.5rem] border border-[var(--border)] bg-white">
+                        <img src={screenshot} alt={`${item.title} screenshot`} className="h-56 w-full object-cover" loading="lazy" />
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
+
+                {Array.isArray(item.links) && item.links.length > 0 ? (
+                  <div className="flex flex-wrap gap-2">
+                    {(item.links as Array<{ label: string; url: string }>).map((link) => (
+                      <a
+                        key={`${item.title}-${link.label}`}
+                        href={link.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="rounded-full border border-[var(--border)] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                ) : null}
+              </article>
+            ))}
           </div>
         </section>
       </section>

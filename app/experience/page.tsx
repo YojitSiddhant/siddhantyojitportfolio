@@ -1,24 +1,13 @@
 import Image from "next/image";
 import type { Metadata } from "next";
+import { getCmsSnapshot } from "@/lib/cms";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Experience | Siddhant Yojit",
   description: "Experience details for Siddhant Yojit.",
 };
-
-const experience = [
-  {
-    role: "UI Developer Intern",
-    company: "TechVanta Labs Pvt. Ltd.",
-    period: "Jan 2026 - Present",
-    location: "Bengaluru, India",
-    highlights: [
-      "Develop responsive, client-facing websites and UI flows from business requirements.",
-      "Improve page structure and navigation clarity for better usability.",
-      "Work with manual testing, UI testing, test-case design, and defect reporting.",
-    ],
-  },
-];
 
 function TimelineIcon({ className }: { className?: string }) {
   return (
@@ -71,7 +60,9 @@ function BulletIcon({ className }: { className?: string }) {
   );
 }
 
-export default function ExperiencePage() {
+export default async function ExperiencePage() {
+  const { experience } = await getCmsSnapshot();
+
   return (
     <main className="relative isolate overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(0,0,0,0.01),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(0,0,0,0.008),_transparent_28%),radial-gradient(circle_at_bottom,_rgba(0,0,0,0.004),_transparent_36%)]" />
@@ -101,16 +92,18 @@ export default function ExperiencePage() {
                       {item.role}
                     </div>
                     <div className="mt-2 flex flex-wrap items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-white shadow-sm">
-                        <Image
-                          src="/company-logos/techvanta-logo-v3.jpeg"
-                          alt={`${item.company} logo`}
-                          width={48}
-                          height={48}
-                          className="h-full w-full object-cover"
-                          priority
-                        />
-                      </div>
+                      {item.logo ? (
+                        <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-white shadow-sm">
+                          <Image
+                            src={item.logo}
+                            alt={`${item.company} logo`}
+                            width={48}
+                            height={48}
+                            className="h-full w-full object-cover"
+                            priority
+                          />
+                        </div>
+                      ) : null}
                       <h2 className="text-xl font-bold tracking-tight text-[var(--foreground)]">
                         {item.company}
                       </h2>
@@ -118,21 +111,37 @@ export default function ExperiencePage() {
                   </div>
 
                   <div className="flex flex-col gap-1 text-sm text-[var(--foreground)] sm:min-w-[10rem] sm:text-right">
-                    <p>{item.period}</p>
+                    <p>{item.duration}</p>
                     <p className="inline-flex items-center gap-2 font-black text-[var(--foreground)] sm:justify-end">
                       <MapPinIcon className="h-4 w-4 text-[var(--accent)]" />
-                      {item.location}
+                      Bengaluru, India
                     </p>
                   </div>
                 </div>
 
                 <div className="grid gap-3 border-t border-[var(--border)] pt-4">
-                  {item.highlights.map((highlight) => (
+                  {item.description
+                    .split(/\r?\n/)
+                    .map((highlight) => highlight.trim())
+                    .filter(Boolean)
+                    .map((highlight) => (
                     <div key={highlight} className="flex gap-3">
                       <BulletIcon className="mt-1 h-4 w-4 shrink-0 text-[var(--accent)]" />
                       <p className="text-sm leading-7 text-[var(--foreground)]">{highlight}</p>
                     </div>
                   ))}
+                  {Array.isArray(item.technologies) && item.technologies.length > 0 ? (
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {(item.technologies as string[]).map((technology) => (
+                        <span
+                          key={`${item.company}-${technology}`}
+                          className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)]"
+                        >
+                          {technology}
+                        </span>
+                      ))}
+                    </div>
+                  ) : null}
                 </div>
               </article>
             ))}

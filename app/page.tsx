@@ -1,3 +1,5 @@
+import { getCmsSnapshot } from "@/lib/cms";
+
 type IconProps = {
   className?: string;
 };
@@ -113,81 +115,30 @@ function CheckIcon({ className }: IconProps) {
   );
 }
 
-const heroNameWords = ["Hi,", "I'm", "Siddhant", "Yojit."];
+const iconMap = {
+  layers: LayersIcon,
+  shield: ShieldIcon,
+  code: CodeIcon,
+  sparkle: SparkleIcon,
+  check: CheckIcon,
+  briefcase: BriefcaseIcon,
+} as const;
 
-const values = [
-  {
-    icon: LayersIcon,
-    title: "Practical UI work",
-    description:
-      "I like building interfaces that feel clear, responsive, and easy to use, with enough structure to stay maintainable as they grow.",
-  },
-  {
-    icon: ShieldIcon,
-    title: "Testing as part of the craft",
-    description:
-      "UI testing, test-case design, defect reporting, and cross-flow validation are part of how I make sure the final experience is dependable.",
-  },
-  {
-    icon: CodeIcon,
-    title: "Learning across the stack",
-    description:
-      "My background also includes project exposure to Flutter Web, Spring Boot, MongoDB, Node.js, SQLite, Java, JDBC, and MySQL.",
-  },
-];
+export const dynamic = "force-dynamic";
 
-const workingStyle = [
-  {
-    icon: SparkleIcon,
-    text: "I turn business requirements into clean frontend screens and reusable interface sections.",
-  },
-  {
-    icon: CheckIcon,
-    text: "I pay attention to navigation clarity, responsive behavior, and handoff quality.",
-  },
-  {
-    icon: LayersIcon,
-    text: "I prefer small, well-structured UI decisions that make a product feel polished.",
-  },
-];
+export default async function Home() {
+  const { profile } = await getCmsSnapshot();
+  const heroNameWords = profile.heroTitle.split(" ");
+  const values = profile.valueCards as Array<{ icon: keyof typeof iconMap; title: string; description: string }>;
+  const workingStyle = profile.workingStyle as Array<{ icon: keyof typeof iconMap; title: string }>;
+  const quickNotes = profile.quickNotes as Array<{ icon?: keyof typeof iconMap; label: string; value: string }>;
+  const headerNotes = profile.headerNotes as Array<{ icon?: keyof typeof iconMap; label: string; value: string }>;
 
-const quickNotes = [
-  {
-    icon: ShieldIcon,
-    label: "Testing habit",
-    value: "I keep an eye on edge cases, responsive behavior, and how screens behave when content changes.",
-  },
-  {
-    icon: CodeIcon,
-    label: "Current stack",
-    value: "React, Next.js, HTML, CSS, JavaScript, Angular, and a growing set of full-stack tools.",
-  },
-  {
-    icon: BriefcaseIcon,
-    label: "Project style",
-    value: "I like business and NGO websites, clean dashboards, and practical interfaces that stay maintainable.",
-  },
-];
+  function renderIcon(icon: keyof typeof iconMap | undefined, className: string) {
+    const Icon = icon ? iconMap[icon] : null;
+    return Icon ? <Icon className={className} /> : null;
+  }
 
-const headerNotes = [
-  {
-    icon: BriefcaseIcon,
-    label: "Current role",
-    value: "UI Developer Intern at TechVanta Labs Pvt. Ltd.",
-  },
-  {
-    icon: CodeIcon,
-    label: "Experience style",
-    value: "Client-facing frontend work, component-based UI, and testing-focused delivery.",
-  },
-  {
-    icon: SparkleIcon,
-    label: "Working goal",
-    value: "To build interfaces that are clear, dependable, and easy to grow over time.",
-  },
-];
-
-export default function Home() {
   return (
     <main className="relative isolate overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(0,0,0,0.01),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(0,0,0,0.008),_transparent_28%),radial-gradient(circle_at_bottom,_rgba(0,0,0,0.004),_transparent_36%)]" />
@@ -199,11 +150,11 @@ export default function Home() {
             <SparkleIcon className="h-4 w-4 text-[var(--accent)]" />
             About me
           </div>
-          <div className="flex items-center gap-2 text-sm text-[var(--muted)]">
-            <BriefcaseIcon className="h-4 w-4 text-[var(--accent)]" />
-            UI Developer Intern at TechVanta Labs Pvt. Ltd.
+            <div className="flex items-center gap-2 text-sm text-[var(--muted)]">
+              <BriefcaseIcon className="h-4 w-4 text-[var(--accent)]" />
+            {profile.currentRole}
+            </div>
           </div>
-        </div>
 
         <section className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-5 px-1 py-2 motion-reveal" style={{ animationDelay: "140ms" }}>
@@ -219,9 +170,7 @@ export default function Home() {
               ))}
             </h1>
             <p className="max-w-2xl text-[1rem] leading-7 text-[var(--muted)] text-pretty sm:text-[1.05rem]">
-              I&apos;m a frontend developer with internship experience in building responsive,
-              client-facing interfaces and validating them with a strong testing mindset.
-              I enjoy turning requirements into UI that feels simple, practical, and polished.
+              {profile.introText}
             </p>
 
             <div className="grid gap-3 border-t border-[var(--border)] pt-4 sm:grid-cols-2">
@@ -229,23 +178,23 @@ export default function Home() {
                 <MapPinIcon className="h-5 w-5 text-[var(--accent)]" />
                 <div>
                   <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">Location</p>
-                  <p className="mt-1 text-sm font-medium text-[var(--foreground)]">Bangalore, India</p>
+                  <p className="mt-1 text-sm font-medium text-[var(--foreground)]">{profile.location}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 py-2 motion-reveal" style={{ animationDelay: "500ms" }}>
                 <CodeIcon className="h-5 w-5 text-[var(--accent)]" />
                 <div>
                   <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">Core focus</p>
-                  <p className="mt-1 text-sm font-medium text-[var(--foreground)]">Frontend, UI, testing</p>
+                  <p className="mt-1 text-sm font-medium text-[var(--foreground)]">{profile.coreFocus}</p>
                 </div>
               </div>
             </div>
 
             <div className="border-t border-[var(--border)] pt-4">
-              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-                <SparkleIcon className="h-4 w-4 text-[var(--accent)]" />
-                Quick notes
-              </p>
+                <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
+                  <SparkleIcon className="h-4 w-4 text-[var(--accent)]" />
+                  Quick notes
+                </p>
               <div className="mt-4 grid gap-0">
                 {quickNotes.map((item, index) => (
                   <div
@@ -253,7 +202,7 @@ export default function Home() {
                     className="flex gap-3 border-b border-[var(--border)] py-4 last:border-b-0 motion-reveal"
                     style={{ animationDelay: `${560 + index * 120}ms` }}
                   >
-                    <item.icon className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" />
+                    {renderIcon(item.icon, "mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]")}
                     <div className="min-w-0">
                       <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
                         {item.label}
@@ -274,11 +223,11 @@ export default function Home() {
                   Snapshot
                 </p>
                 <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--foreground)]">
-                  Frontend Developer
+                  {profile.snapshotTitle}
                 </h2>
               </div>
               <div className="rounded-full border border-[var(--border)] bg-white px-3 py-1 text-xs font-medium text-[var(--accent-strong)]">
-                Open to opportunities
+                {profile.openToOpportunitiesBadge}
               </div>
             </div>
 
@@ -286,11 +235,11 @@ export default function Home() {
               {values.map((item, index) => (
                 <div
                   key={item.title}
-                  className="border-b border-[var(--border)] py-4 last:border-b-0 motion-reveal"
-                  style={{ animationDelay: `${320 + index * 120}ms` }}
-                >
-                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
-                    <item.icon className="h-4 w-4 text-[var(--accent)]" />
+                className="border-b border-[var(--border)] py-4 last:border-b-0 motion-reveal"
+                style={{ animationDelay: `${320 + index * 120}ms` }}
+              >
+                <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+                    {renderIcon(item.icon, "h-4 w-4 text-[var(--accent)]")}
                     {item.title}
                   </div>
                   <p className="mt-2 text-sm leading-7 text-[var(--muted)]">{item.description}</p>
@@ -304,7 +253,7 @@ export default function Home() {
                 What I care about
               </p>
               <p className="mt-2 text-sm leading-7 text-[var(--foreground)]">
-                Clear UI, thoughtful testing, and small details that improve the overall product experience.
+                {profile.whatICareAbout}
               </p>
             </div>
 
@@ -316,7 +265,7 @@ export default function Home() {
               <div className="mt-4 grid gap-0">
                 {headerNotes.map((item) => (
                   <div key={item.label} className="flex gap-3 border-b border-[var(--border)] py-4 last:border-b-0">
-                    <item.icon className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" />
+                    {renderIcon(item.icon, "mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]")}
                     <div className="min-w-0">
                       <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
                         {item.label}
@@ -338,7 +287,7 @@ export default function Home() {
               style={{ animationDelay: `${220 + index * 120}ms` }}
             >
               <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-                <item.icon className="h-4 w-4 text-[var(--accent)]" />
+                {renderIcon(item.icon, "h-4 w-4 text-[var(--accent)]")}
                 Value
               </div>
               <h3 className="mt-3 text-xl font-bold tracking-tight text-[var(--foreground)]">
@@ -357,15 +306,15 @@ export default function Home() {
           <div className="mt-4 grid gap-0 lg:grid-cols-3 lg:gap-x-6">
             {workingStyle.map((item, index) => (
               <div
-                key={item.text}
+                key={item.title}
                 className="border-b border-[var(--border)] py-4 lg:border-b-0 lg:border-t lg:pt-4 motion-reveal"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
                 <div className="flex items-center gap-2 text-sm font-black text-[var(--foreground)]">
-                  <item.icon className="h-4 w-4 text-[var(--accent)]" />
+                  {renderIcon(item.icon, "h-4 w-4 text-[var(--accent)]")}
                   Approach
                 </div>
-                <p className="mt-2 text-sm leading-7 text-[var(--muted)]">{item.text}</p>
+                <p className="mt-2 text-sm leading-7 text-[var(--muted)]">{item.title}</p>
               </div>
             ))}
           </div>

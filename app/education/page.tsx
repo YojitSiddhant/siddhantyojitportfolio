@@ -1,41 +1,13 @@
 import Image from "next/image";
 import type { Metadata } from "next";
+import { getCmsSnapshot } from "@/lib/cms";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Education | Siddhant Yojit",
   description: "Education details for Siddhant Yojit.",
 };
-
-const education = [
-  {
-    degree: "MCA",
-    institution: "PES University",
-    period: "2024 - 2026",
-    result: "CGPA: 5.99/10",
-    logo: "/company-logos/pes-logo.webp",
-  },
-  {
-    degree: "BCA",
-    institution: "New Horizon College",
-    period: "2020 - 2023",
-    result: "CGPA: 7.59/10",
-    logo: "/company-logos/nhcm-logo.jpeg",
-  },
-  {
-    degree: "Class XII",
-    institution: "St Francis PU College",
-    period: "2019 - 2020",
-    result: "61.33%",
-    logo: "/company-logos/st-francis-pu-college-logo.jpeg",
-  },
-  {
-    degree: "Class X",
-    institution: "Narayana e-Techno School",
-    period: "2016 - 2017",
-    result: "CGPA: 10/10",
-    logo: "/company-logos/narayana-e-techno-school.jpeg",
-  },
-];
 
 function BookIcon({ className }: { className?: string }) {
   return (
@@ -56,7 +28,9 @@ function BookIcon({ className }: { className?: string }) {
   );
 }
 
-export default function EducationPage() {
+export default async function EducationPage() {
+  const { education } = await getCmsSnapshot();
+
   return (
     <main className="relative isolate overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(0,0,0,0.01),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(0,0,0,0.008),_transparent_28%),radial-gradient(circle_at_bottom,_rgba(0,0,0,0.004),_transparent_36%)]" />
@@ -75,7 +49,7 @@ export default function EducationPage() {
           <div className="grid gap-5">
             {education.map((item, index) => (
               <article
-                key={`${item.degree}-${item.institution}`}
+                key={`${item.degree}-${item.institute}`}
                 className="flex flex-col gap-2 border-b border-[var(--border)] pb-5 sm:flex-row sm:items-center sm:justify-between motion-reveal"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
@@ -84,11 +58,11 @@ export default function EducationPage() {
                     {item.degree}
                   </p>
                   <div className="mt-2 flex flex-wrap items-center gap-3">
-                    {"logo" in item && item.logo ? (
+                    {item.logo ? (
                       <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-white shadow-sm">
                         <Image
                           src={item.logo}
-                          alt={`${item.institution} logo`}
+                          alt={`${item.institute} logo`}
                           width={48}
                           height={48}
                           className="h-full w-full object-contain p-1"
@@ -96,14 +70,14 @@ export default function EducationPage() {
                       </div>
                     ) : null}
                     <h2 className="text-xl font-bold tracking-tight text-[var(--foreground)]">
-                      {item.institution}
+                      {item.institute}
                     </h2>
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-1 text-sm text-[var(--foreground)] sm:min-w-[8rem] sm:text-right">
-                  <p>{item.period}</p>
-                  <p className="font-black text-[var(--foreground)]">{item.result}</p>
+                  <p>{item.duration}</p>
+                  <p className="font-black text-[var(--foreground)]">{item.description}</p>
                 </div>
               </article>
             ))}

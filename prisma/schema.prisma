@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./generated"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Profile {
+  id                        Int      @id @default(1)
+  heroTitle                 String
+  introText                 String
+  location                  String
+  coreFocus                 String
+  snapshotTitle             String
+  whatICareAbout            String
+  currentRole               String
+  openToOpportunitiesBadge  String
+  quickNotes                Json
+  headerNotes               Json
+  valueCards                Json
+  workingStyle              Json
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
+}
+
+model Education {
+  id          Int      @id @default(autoincrement())
+  institute   String
+  degree      String
+  duration    String
+  description String
+  logo        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Skill {
+  id        Int      @id @default(autoincrement())
+  name      String
+  category  String
+  icon      String
+  href      String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Project {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  stack       Json
+  github      String?
+  liveLink    String?
+  image       String?
+  featured    Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model WorkItem {
+  id          Int      @id @default(autoincrement())
+  title       String
+  summary     String
+  screenshots Json
+  links       Json
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Certificate {
+  id               Int      @id @default(autoincrement())
+  title            String
+  issuer           String
+  issueDate        String
+  image            String?
+  verificationLink String?
+  order            Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Experience {
+  id            Int      @id @default(autoincrement())
+  company       String
+  role          String
+  duration      String
+  description   String
+  technologies  Json
+  logo          String?
+  order         Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
