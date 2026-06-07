@@ -24,6 +24,7 @@ const ADMIN_ROUTES = [
   adminRoutes.myWork,
   adminRoutes.certificates,
   adminRoutes.experience,
+  adminRoutes.settings,
 ];
 
 function cleanString(value: FormDataEntryValue | null) {

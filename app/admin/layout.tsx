@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { AdminShell } from "@/components/admin-shell";
+import { AdminPageShell } from "@/components/admin/page-shell";
 import { logoutAdmin } from "@/app/admin/actions";
 
 export const dynamic = "force-dynamic";
@@ -9,5 +9,5 @@ export default function AdminLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  return <AdminShell logoutAction={logoutAdmin}>{children}</AdminShell>;
+  return <AdminPageShell logoutAction={logoutAdmin}>{children}</AdminPageShell>;
 }

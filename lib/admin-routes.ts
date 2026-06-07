@@ -8,6 +8,7 @@ export const adminRoutes = {
   myWork: "/admin/my-work",
   certificates: "/admin/certificates",
   experience: "/admin/experience",
+  settings: "/admin/settings",
   site: "/",
 } as const;
 
@@ -20,6 +21,6 @@ export const adminNavItems = [
   { label: "My Work", href: adminRoutes.myWork },
   { label: "Certificates", href: adminRoutes.certificates },
   { label: "Experience", href: adminRoutes.experience },
+  { label: "Settings", href: adminRoutes.settings },
   { label: "View Site", href: adminRoutes.site },
 ] as const;
-

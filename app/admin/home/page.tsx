@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AdminToast } from "@/components/admin-toast";
-import { AdminCard, AdminInput, AdminPageHeader, AdminSectionCard, AdminSubmitButton, AdminTextArea } from "@/components/admin-ui";
+import { AdminCard, AdminInput, AdminPageHeader, AdminSectionCard, AdminTextArea } from "@/components/admin-ui";
+import { AdminSaveBar } from "@/components/admin/save-bar";
 import { saveProfile } from "@/app/admin/actions";
 import { getAdminSnapshot } from "@/lib/cms";
 import { requireAdminSession } from "@/lib/admin-auth";
@@ -23,11 +24,14 @@ export default async function AdminHomePage({
   const toast = typeof params?.toast === "string" ? params.toast : null;
   const profile = (await getAdminSnapshot()).profile;
   const quickNotes = profile.quickNotes as Array<{ label: string; value: string }>;
+  const headerNotes = profile.headerNotes as Array<{ label: string; value: string }>;
+  const valueCards = profile.valueCards as Array<{ title: string; description: string }>;
+  const workingStyle = profile.workingStyle as Array<{ title: string }>;
 
   return (
     <main className="relative isolate overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(0,0,0,0.01),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(0,0,0,0.008),_transparent_28%),radial-gradient(circle_at_bottom,_rgba(0,0,0,0.004),_transparent_36%)]" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[18rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.78)_0%,rgba(255,255,255,0.56)_70%,rgba(255,255,255,0.18)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.08),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(15,23,42,0.04),_transparent_28%),radial-gradient(circle_at_bottom,_rgba(255,255,255,0.72),_transparent_42%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[18rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.82)_0%,rgba(255,255,255,0.64)_70%,rgba(255,255,255,0.2)_100%)]" />
 
       <AdminToast key={toast ?? "idle"} message={toast} />
 
@@ -38,12 +42,12 @@ export default async function AdminHomePage({
           previewHref={adminRoutes.site}
         />
 
-        <div className="grid gap-6 xl:grid-cols-[minmax(0,1.25fr)_minmax(18rem,0.75fr)]">
+        <div className="grid gap-6 xl:grid-cols-[minmax(0,1.15fr)_minmax(22rem,0.85fr)]">
           <AdminSectionCard
             title="Edit home content"
-            description="Use the same visual style as the public site, but keep the content isolated to this page."
+            description="Keep the homepage copy focused and concise while the preview panel shows the current snapshot."
           >
-            <form action={saveProfile} className="space-y-5">
+            <form id="home-form" action={saveProfile} className="space-y-5">
               <div className="grid gap-4 lg:grid-cols-2">
                 <AdminInput label="Hero title" name="heroTitle" defaultValue={profile.heroTitle} />
                 <AdminInput label="Current role" name="currentRole" defaultValue={profile.currentRole} />
@@ -93,43 +97,73 @@ export default async function AdminHomePage({
                 />
               </div>
 
-              <div className="flex justify-end border-t border-[var(--border)] pt-4">
-                <AdminSubmitButton label="Save Home" pendingLabel="Saving home..." />
-              </div>
+              <AdminSaveBar formId="home-form" label="Save Home" pendingLabel="Saving home..." helper="This updates the public homepage and refreshes cached content." />
             </form>
           </AdminSectionCard>
 
-          <AdminCard>
-            <div className="mb-5 border-b border-[var(--border)] pb-4">
-              <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--muted)]">Current snapshot</p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--foreground)]">Homepage summary</h2>
-            </div>
-
-            <div className="space-y-4 text-sm leading-6 text-[var(--muted)]">
-              <div className="rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface)] p-4">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--muted)]">Hero</p>
-                <p className="mt-2 font-semibold text-[var(--foreground)]">{profile.heroTitle}</p>
-                <p className="mt-2">{profile.introText}</p>
+          <div className="space-y-6">
+            <AdminCard>
+              <div className="mb-5 border-b border-black/5 pb-4">
+                <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--muted)]">Current snapshot</p>
+                <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--foreground)]">Homepage preview</h2>
               </div>
 
-              <div className="rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface)] p-4">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--muted)]">Role</p>
-                <p className="mt-2 font-semibold text-[var(--foreground)]">{profile.currentRole}</p>
-                <p className="mt-2">{profile.location}</p>
+              <div className="space-y-4 text-sm leading-6 text-[var(--muted)]">
+                <div className="rounded-[1.5rem] bg-[var(--surface)] p-4">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--muted)]">Hero</p>
+                  <p className="mt-2 font-semibold text-[var(--foreground)]">{profile.heroTitle}</p>
+                  <p className="mt-2">{profile.introText}</p>
+                </div>
+
+                <div className="rounded-[1.5rem] bg-[var(--surface)] p-4">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--muted)]">Role</p>
+                  <p className="mt-2 font-semibold text-[var(--foreground)]">{profile.currentRole}</p>
+                  <p className="mt-2">{profile.location}</p>
+                </div>
+
+                <div className="rounded-[1.5rem] bg-[var(--surface)] p-4">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--muted)]">Quick notes</p>
+                  <ul className="mt-3 space-y-2">
+                    {quickNotes.slice(0, 3).map((item) => (
+                      <li key={`${item.label}-${item.value}`} className="rounded-2xl bg-white px-3 py-2 text-[var(--foreground)]">
+                        <span className="font-semibold">{item.label}:</span> {item.value}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </AdminCard>
+
+            <AdminCard>
+              <div className="mb-5 border-b border-black/5 pb-4">
+                <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--muted)]">Snapshot detail</p>
+                <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--foreground)]">Live sections</h2>
               </div>
 
-              <div className="rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface)] p-4">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--muted)]">Notes</p>
-                <ul className="mt-3 space-y-2">
-                  {quickNotes.slice(0, 3).map((item) => (
-                    <li key={`${item.label}-${item.value}`} className="rounded-2xl bg-white px-3 py-2 text-[var(--foreground)]">
-                      <span className="font-semibold">{item.label}:</span> {item.value}
-                    </li>
-                  ))}
-                </ul>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {headerNotes.slice(0, 2).map((item) => (
+                  <div key={`${item.label}-${item.value}`} className="rounded-[1.25rem] border border-black/5 bg-white p-4">
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--muted)]">{item.label}</p>
+                    <p className="mt-2 text-sm leading-6 text-[var(--foreground)]">{item.value}</p>
+                  </div>
+                ))}
               </div>
-            </div>
-          </AdminCard>
+
+              <div className="mt-4 grid gap-3">
+                {valueCards.slice(0, 3).map((item) => (
+                  <div key={item.title} className="rounded-[1.25rem] border border-black/5 bg-[var(--surface)] p-4">
+                    <p className="text-sm font-bold text-[var(--foreground)]">{item.title}</p>
+                    <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{item.description}</p>
+                  </div>
+                ))}
+                {workingStyle.slice(0, 2).map((item) => (
+                  <div key={item.title} className="rounded-[1.25rem] border border-black/5 bg-white p-4">
+                    <p className="text-sm font-bold text-[var(--foreground)]">{item.title}</p>
+                  </div>
+                ))}
+              </div>
+            </AdminCard>
+          </div>
         </div>
       </section>
     </main>
