@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { AdminToast } from "@/components/admin-toast";
 import { AdminCard, AdminInput, AdminPageHeader, AdminSectionCard, AdminSubmitButton, AdminTextArea } from "@/components/admin-ui";
 import { saveProfile } from "@/app/admin/actions";
-import { getAdminSnapshot, getEmptyAdminSnapshot, type AdminSnapshot } from "@/lib/cms";
+import { getAdminSnapshot } from "@/lib/cms";
 import { requireAdminSession } from "@/lib/admin-auth";
 import { adminRoutes } from "@/lib/admin-routes";
 import { toTextAreaValue } from "@/lib/admin-form";
@@ -21,15 +21,7 @@ export default async function AdminHomePage({
 
   const params = await searchParams;
   const toast = typeof params?.toast === "string" ? params.toast : null;
-  let profile: AdminSnapshot["profile"];
-  let loadError: string | null = null;
-
-  try {
-    profile = (await getAdminSnapshot()).profile;
-  } catch {
-    profile = getEmptyAdminSnapshot().profile;
-    loadError = "The CMS profile could not be loaded, so fallback homepage content is shown.";
-  }
+  const profile = (await getAdminSnapshot()).profile;
   const quickNotes = profile.quickNotes as Array<{ label: string; value: string }>;
 
   return (
@@ -45,12 +37,6 @@ export default async function AdminHomePage({
           description="Edit the homepage copy, notes, cards, and the top-most portfolio voice. This content feeds the public landing page."
           previewHref={adminRoutes.site}
         />
-
-        {loadError ? (
-          <div className="rounded-[1.5rem] border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-900">
-            {loadError}
-          </div>
-        ) : null}
 
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1.25fr)_minmax(18rem,0.75fr)]">
           <AdminSectionCard

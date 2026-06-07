@@ -3,10 +3,9 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { AdminToast } from "@/components/admin-toast";
 import { AdminCard, AdminPageHeader, AdminStatCard } from "@/components/admin-ui";
-import { getAdminSnapshot, getEmptyAdminSnapshot, type AdminSnapshot } from "@/lib/cms";
+import { getAdminSnapshot, type AdminSnapshot } from "@/lib/cms";
 import { requireAdminSession } from "@/lib/admin-auth";
 import { adminRoutes } from "@/lib/admin-routes";
-import { logAdminError } from "@/lib/admin-logging";
 
 export const metadata: Metadata = {
   title: "Admin Dashboard | Siddhant Yojit",
@@ -85,48 +84,52 @@ function formatRelativeTime(value: string) {
   }).format(new Date(value));
 }
 
+function toIsoString(value: Date | string) {
+  return value instanceof Date ? value.toISOString() : new Date(value).toISOString();
+}
+
 function buildRecentUpdates(snapshot: AdminSnapshot) {
   const items: RecentItem[] = [
     {
       label: "Home profile",
       href: adminRoutes.home,
-      updatedAt: snapshot.profile.updatedAt.toISOString(),
+      updatedAt: toIsoString(snapshot.profile.updatedAt),
       description: snapshot.profile.heroTitle,
     },
     ...snapshot.education.map((item) => ({
       label: item.institute,
       href: adminRoutes.education,
-      updatedAt: item.updatedAt.toISOString(),
+      updatedAt: toIsoString(item.updatedAt),
       description: item.degree,
     })),
     ...snapshot.skills.map((item) => ({
       label: item.name,
       href: adminRoutes.skills,
-      updatedAt: item.updatedAt.toISOString(),
+      updatedAt: toIsoString(item.updatedAt),
       description: item.category,
     })),
     ...snapshot.projects.map((item) => ({
       label: item.title,
       href: adminRoutes.projects,
-      updatedAt: item.updatedAt.toISOString(),
+      updatedAt: toIsoString(item.updatedAt),
       description: item.featured ? "Featured project" : item.description,
     })),
     ...snapshot.work.map((item) => ({
       label: item.title,
       href: adminRoutes.myWork,
-      updatedAt: item.updatedAt.toISOString(),
+      updatedAt: toIsoString(item.updatedAt),
       description: item.summary,
     })),
     ...snapshot.certificates.map((item) => ({
       label: item.title,
       href: adminRoutes.certificates,
-      updatedAt: item.updatedAt.toISOString(),
+      updatedAt: toIsoString(item.updatedAt),
       description: item.issuer,
     })),
     ...snapshot.experience.map((item) => ({
       label: item.role,
       href: adminRoutes.experience,
-      updatedAt: item.updatedAt.toISOString(),
+      updatedAt: toIsoString(item.updatedAt),
       description: item.company,
     })),
   ];
@@ -266,36 +269,13 @@ export default async function AdminDashboardPage({
 }: {
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  try {
-    await requireAdminSession();
+  await requireAdminSession();
 
-    const params = await searchParams;
-    const toast = typeof params?.toast === "string" ? params.toast : null;
-    let data: AdminSnapshot;
-    let loadError: string | null = null;
-
-    try {
-      data = await getAdminSnapshot();
-    } catch (error) {
-      logAdminError({
-        source: "app/admin/dashboard/page.tsx:getAdminSnapshot",
-        error,
-        extra: { route: "/admin/dashboard" },
-      });
-      data = getEmptyAdminSnapshot();
-      loadError = "The CMS snapshot could not be loaded, so the dashboard is showing fallback content.";
-    }
-
-    const recentUpdates = buildRecentUpdates(data);
-    const totalItems = data.education.length + data.skills.length + data.projects.length + data.work.length + data.certificates.length + data.experience.length;
-    const latestUpdate = recentUpdates[0];
-    return renderDashboardContent({ toast, loadError, recentUpdates, totalItems, latestUpdate });
-  } catch (error) {
-    logAdminError({
-      source: "app/admin/dashboard/page.tsx:render",
-      error,
-      extra: { route: "/admin/dashboard" },
-    });
-    throw error;
-  }
+  const params = await searchParams;
+  const toast = typeof params?.toast === "string" ? params.toast : null;
+  const data = await getAdminSnapshot();
+  const recentUpdates = buildRecentUpdates(data);
+  const totalItems = data.education.length + data.skills.length + data.projects.length + data.work.length + data.certificates.length + data.experience.length;
+  const latestUpdate = recentUpdates[0];
+  return renderDashboardContent({ toast, loadError: null, recentUpdates, totalItems, latestUpdate });
 }

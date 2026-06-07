@@ -153,29 +153,3 @@ export async function getCmsSnapshot() {
 export async function getAdminSnapshot() {
   return getCmsSnapshot();
 }
-
-export function getEmptyAdminSnapshot(): AdminSnapshot {
-  const now = new Date();
-
-  return {
-    profile: {
-      ...initialProfile,
-      createdAt: now,
-      updatedAt: now,
-    },
-    education: [],
-    skills: [],
-    projects: [],
-    work: [],
-    certificates: [],
-    experience: [],
-  };
-}
-
-export async function getAdminSnapshotSafe() {
-  try {
-    return await getAdminSnapshot();
-  } catch {
-    return getEmptyAdminSnapshot();
-  }
-}
