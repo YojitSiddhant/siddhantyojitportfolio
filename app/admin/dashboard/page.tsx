@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { AdminToast } from "@/components/admin-toast";
 import { AdminCard, AdminPageHeader, AdminStatCard } from "@/components/admin-ui";
 import { getAdminSnapshot, getEmptyAdminSnapshot, type AdminSnapshot } from "@/lib/cms";
 import { requireAdminSession } from "@/lib/admin-auth";
 import { adminRoutes } from "@/lib/admin-routes";
+import { logAdminError } from "@/lib/admin-logging";
 
 export const metadata: Metadata = {
   title: "Admin Dashboard | Siddhant Yojit",
@@ -132,29 +134,19 @@ function buildRecentUpdates(snapshot: AdminSnapshot) {
   return items.sort((left, right) => new Date(right.updatedAt).getTime() - new Date(left.updatedAt).getTime()).slice(0, 6);
 }
 
-export default async function AdminDashboardPage({
-  searchParams,
+function renderDashboardContent({
+  toast,
+  loadError,
+  recentUpdates,
+  totalItems,
+  latestUpdate,
 }: {
-  searchParams?: Promise<Record<string, string | string[] | undefined>>;
-}) {
-  await requireAdminSession();
-
-  const params = await searchParams;
-  const toast = typeof params?.toast === "string" ? params.toast : null;
-  let data: AdminSnapshot;
-  let loadError: string | null = null;
-
-  try {
-    data = await getAdminSnapshot();
-  } catch {
-    data = getEmptyAdminSnapshot();
-    loadError = "The CMS snapshot could not be loaded, so the dashboard is showing fallback content.";
-  }
-
-  const recentUpdates = buildRecentUpdates(data);
-  const totalItems = data.education.length + data.skills.length + data.projects.length + data.work.length + data.certificates.length + data.experience.length;
-  const latestUpdate = recentUpdates[0];
-
+  toast: string | null;
+  loadError: string | null;
+  recentUpdates: RecentItem[];
+  totalItems: number;
+  latestUpdate?: RecentItem;
+}): ReactNode {
   return (
     <main className="relative isolate overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(0,0,0,0.01),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(0,0,0,0.008),_transparent_28%),radial-gradient(circle_at_bottom,_rgba(0,0,0,0.004),_transparent_36%)]" />
@@ -267,4 +259,43 @@ export default async function AdminDashboardPage({
       </section>
     </main>
   );
+}
+
+export default async function AdminDashboardPage({
+  searchParams,
+}: {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  try {
+    await requireAdminSession();
+
+    const params = await searchParams;
+    const toast = typeof params?.toast === "string" ? params.toast : null;
+    let data: AdminSnapshot;
+    let loadError: string | null = null;
+
+    try {
+      data = await getAdminSnapshot();
+    } catch (error) {
+      logAdminError({
+        source: "app/admin/dashboard/page.tsx:getAdminSnapshot",
+        error,
+        extra: { route: "/admin/dashboard" },
+      });
+      data = getEmptyAdminSnapshot();
+      loadError = "The CMS snapshot could not be loaded, so the dashboard is showing fallback content.";
+    }
+
+    const recentUpdates = buildRecentUpdates(data);
+    const totalItems = data.education.length + data.skills.length + data.projects.length + data.work.length + data.certificates.length + data.experience.length;
+    const latestUpdate = recentUpdates[0];
+    return renderDashboardContent({ toast, loadError, recentUpdates, totalItems, latestUpdate });
+  } catch (error) {
+    logAdminError({
+      source: "app/admin/dashboard/page.tsx:render",
+      error,
+      extra: { route: "/admin/dashboard" },
+    });
+    throw error;
+  }
 }
