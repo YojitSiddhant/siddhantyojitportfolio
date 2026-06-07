@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AdminToast } from "@/components/admin-toast";
 import { AdminCard, AdminPageHeader, AdminStatCard } from "@/components/admin-ui";
-import { getAdminSnapshot } from "@/lib/cms";
+import { getAdminSnapshot, getEmptyAdminSnapshot, type AdminSnapshot } from "@/lib/cms";
 import { requireAdminSession } from "@/lib/admin-auth";
 import { adminRoutes } from "@/lib/admin-routes";
 
@@ -83,7 +83,7 @@ function formatRelativeTime(value: string) {
   }).format(new Date(value));
 }
 
-function buildRecentUpdates(snapshot: Awaited<ReturnType<typeof getAdminSnapshot>>) {
+function buildRecentUpdates(snapshot: AdminSnapshot) {
   const items: RecentItem[] = [
     {
       label: "Home profile",
@@ -141,15 +141,18 @@ export default async function AdminDashboardPage({
 
   const params = await searchParams;
   const toast = typeof params?.toast === "string" ? params.toast : null;
-  const data = await getAdminSnapshot();
+  let data: AdminSnapshot;
+  let loadError: string | null = null;
+
+  try {
+    data = await getAdminSnapshot();
+  } catch {
+    data = getEmptyAdminSnapshot();
+    loadError = "The CMS snapshot could not be loaded, so the dashboard is showing fallback content.";
+  }
+
   const recentUpdates = buildRecentUpdates(data);
-  const totalItems =
-    data.education.length +
-    data.skills.length +
-    data.projects.length +
-    data.work.length +
-    data.certificates.length +
-    data.experience.length;
+  const totalItems = data.education.length + data.skills.length + data.projects.length + data.work.length + data.certificates.length + data.experience.length;
   const latestUpdate = recentUpdates[0];
 
   return (
@@ -172,6 +175,12 @@ export default async function AdminDashboardPage({
             </Link>
           }
         />
+
+        {loadError ? (
+          <div className="rounded-[1.5rem] border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-900">
+            {loadError} You can still navigate to the section pages and edit content.
+          </div>
+        ) : null}
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           <AdminStatCard label="Content records" value={String(totalItems)} description="Education, skills, projects, work, certificates, and experience." />

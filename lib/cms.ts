@@ -16,6 +16,7 @@ export const CMS_CACHE_TAG = "portfolio-cms";
 const CMS_CACHE_REVALIDATE_SECONDS = 300;
 
 export type ProfileRecord = typeof initialProfile;
+export type AdminSnapshot = Awaited<ReturnType<typeof getCmsSnapshot>>;
 
 let seedPromise: Promise<void> | null = null;
 
@@ -151,4 +152,30 @@ export async function getCmsSnapshot() {
 
 export async function getAdminSnapshot() {
   return getCmsSnapshot();
+}
+
+export function getEmptyAdminSnapshot(): AdminSnapshot {
+  const now = new Date();
+
+  return {
+    profile: {
+      ...initialProfile,
+      createdAt: now,
+      updatedAt: now,
+    },
+    education: [],
+    skills: [],
+    projects: [],
+    work: [],
+    certificates: [],
+    experience: [],
+  };
+}
+
+export async function getAdminSnapshotSafe() {
+  try {
+    return await getAdminSnapshot();
+  } catch {
+    return getEmptyAdminSnapshot();
+  }
 }
