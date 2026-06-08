@@ -78,7 +78,8 @@ export function AdminPageShell({ children, logoutAction }: AdminPageShellProps) 
 
   return (
     <div className="relative isolate">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.08),_transparent_32%),radial-gradient(circle_at_top_right,_rgba(15,23,42,0.04),_transparent_30%),radial-gradient(circle_at_bottom,_rgba(255,255,255,0.7),_transparent_42%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(37,99,235,0.04),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(36,21,15,0.03),_transparent_28%),radial-gradient(circle_at_bottom,_rgba(255,255,255,0.74),_transparent_42%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[18rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.86)_0%,rgba(255,255,255,0.68)_70%,rgba(255,255,255,0.18)_100%)]" />
 
       <AdminHeader
         title={route.title}
@@ -88,7 +89,7 @@ export function AdminPageShell({ children, logoutAction }: AdminPageShellProps) 
         sidebarCollapsed={collapsed}
       />
 
-      <div className="mx-auto flex w-full max-w-[1680px] gap-4 px-4 pb-6 pt-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-6xl gap-5 px-4 pb-8 pt-5 sm:px-6 lg:px-8">
         <AdminSidebar
           collapsed={collapsed}
           mobileOpen={mobileOpen}

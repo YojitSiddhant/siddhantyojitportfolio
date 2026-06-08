@@ -17,7 +17,7 @@ export function AdminSubmitButton({ label, pendingLabel = "Saving...", className
       disabled={pending}
       className={
         className ??
-        "inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-4 py-2 text-sm font-black uppercase tracking-[0.18em] text-white transition-colors hover:bg-[var(--accent-strong)] disabled:cursor-not-allowed disabled:opacity-60"
+        "inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-5 py-2.5 text-sm font-black uppercase tracking-[0.18em] text-white transition-colors hover:bg-[var(--accent-strong)] disabled:cursor-not-allowed disabled:opacity-60"
       }
     >
       {pending ? pendingLabel : label}

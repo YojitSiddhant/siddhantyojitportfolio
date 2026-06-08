@@ -28,8 +28,8 @@ export function AdminShell({ children, logoutAction }: AdminShellProps) {
   }
 
   return (
-    <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-10 pt-4 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8">
-      <div className="mb-4 flex items-center justify-between rounded-[1.75rem] border border-[var(--border)] bg-white/95 px-4 py-3 shadow-[0_12px_32px_rgba(0,0,0,0.08)] backdrop-blur-md lg:hidden">
+    <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-10 pt-4 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8">
+      <div className="mb-4 flex items-center justify-between rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 shadow-[0_10px_28px_rgba(36,21,15,0.05)] backdrop-blur-md lg:hidden">
         <div>
           <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[var(--muted)]">Admin Area</p>
           <h2 className="text-lg font-bold tracking-tight text-[var(--foreground)]">Portfolio CMS</h2>
@@ -59,7 +59,7 @@ export function AdminShell({ children, logoutAction }: AdminShellProps) {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[18rem_minmax(0,1fr)]">
-        <aside className="sticky top-24 hidden h-[calc(100dvh-8rem)] overflow-hidden rounded-[2rem] border border-[var(--border)] bg-white/95 p-4 shadow-[0_16px_40px_rgba(0,0,0,0.08)] backdrop-blur-md lg:flex lg:flex-col">
+        <aside className="sticky top-24 hidden h-[calc(100dvh-8rem)] overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface-strong)] p-4 shadow-[0_12px_32px_rgba(36,21,15,0.05)] backdrop-blur-md lg:flex lg:flex-col">
           <div className="rounded-[1.5rem] border border-[var(--border)] bg-[var(--accent-soft)] px-4 py-4">
             <p className="text-xs font-black uppercase tracking-[0.28em] text-[var(--muted)]">Admin Area</p>
             <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--foreground)]">Portfolio CMS</h2>
@@ -78,7 +78,7 @@ export function AdminShell({ children, logoutAction }: AdminShellProps) {
                   className={`rounded-2xl border px-4 py-3 text-sm font-semibold transition-colors ${
                     active
                       ? "border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent)]"
-                      : "border-[var(--border)] text-[var(--foreground)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                      : "border-[var(--border)] bg-white/40 text-[var(--foreground)] hover:border-[var(--accent)] hover:bg-white hover:text-[var(--accent)]"
                   }`}
                 >
                   {item.label}
@@ -90,11 +90,11 @@ export function AdminShell({ children, logoutAction }: AdminShellProps) {
           <form action={logoutAction} className="mt-auto pt-4">
             <button
               type="submit"
-              className="inline-flex w-full items-center justify-center rounded-full border border-[var(--border)] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
-            >
-              Logout
-            </button>
-          </form>
+            className="inline-flex w-full items-center justify-center rounded-full border border-[var(--border)] bg-white/50 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+          >
+            Logout
+          </button>
+        </form>
         </aside>
 
         <div className="min-w-0 flex-1">

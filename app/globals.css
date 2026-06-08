@@ -3,10 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #24150f;
-  --muted: #5c5c5c;
-  --surface: rgba(255, 255, 255, 0.62);
-  --surface-strong: rgba(255, 255, 255, 0.78);
-  --border: rgba(0, 0, 0, 0.1);
+  --muted: #5f5a56;
+  --surface: rgba(255, 255, 255, 0.7);
+  --surface-strong: rgba(255, 255, 255, 0.86);
+  --border: rgba(36, 21, 15, 0.1);
   --accent: #2563eb;
   --accent-strong: #1d4ed8;
   --accent-soft: rgba(37, 99, 235, 0.12);
@@ -38,7 +38,10 @@ html {
 body {
   min-height: 100%;
   min-height: 100dvh;
-  background: #ffffff;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.03), transparent 32%),
+    radial-gradient(circle at top right, rgba(36, 21, 15, 0.025), transparent 28%),
+    linear-gradient(180deg, #ffffff 0%, #fffdfb 62%, #f9f6f2 100%);
   color: var(--foreground);
   font-family: "Inter", "Segoe UI", Arial, Helvetica, sans-serif;
   font-size: clamp(0.96rem, 0.92rem + 0.2vw, 1.04rem);

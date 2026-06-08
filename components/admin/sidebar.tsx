@@ -30,7 +30,7 @@ export function AdminSidebar({ collapsed, mobileOpen, onClose, onToggleCollapse,
   return (
     <>
       <div
-        className={`fixed inset-0 z-30 bg-slate-950/35 backdrop-blur-sm transition-opacity lg:hidden ${
+        className={`fixed inset-0 z-30 bg-[rgba(36,21,15,0.22)] backdrop-blur-sm transition-opacity lg:hidden ${
           mobileOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={onClose}
@@ -38,18 +38,18 @@ export function AdminSidebar({ collapsed, mobileOpen, onClose, onToggleCollapse,
       />
 
       <aside
-        className={`fixed inset-x-3 top-16 z-40 h-[calc(100dvh-4.5rem)] overflow-hidden rounded-[1.75rem] border border-black/5 bg-white/95 shadow-[0_18px_45px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-[transform,width,opacity] duration-300 lg:sticky lg:top-24 lg:z-20 ${
+        className={`fixed inset-x-3 top-16 z-40 h-[calc(100dvh-4.5rem)] overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface-strong)] shadow-[0_14px_36px_rgba(36,21,15,0.08)] backdrop-blur-xl transition-[transform,width,opacity] duration-300 lg:sticky lg:top-24 lg:z-20 ${
           mobileOpen ? "translate-x-0" : "-translate-x-[110%] lg:translate-x-0"
-        } ${collapsed ? "lg:w-[72px]" : "lg:w-[260px]"} w-auto lg:left-auto lg:right-auto`}
+        } ${collapsed ? "lg:w-[74px]" : "lg:w-[256px]"} w-auto lg:left-auto lg:right-auto`}
       >
         <div className="flex h-full flex-col p-3">
           <div
-            className={`rounded-[1.5rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(241,245,249,0.9)_100%)] p-4 ${
+            className={`rounded-[1.5rem] border border-[var(--border)] bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(248,245,241,0.92)_100%)] p-4 ${
               collapsed ? "lg:px-2 lg:py-3" : ""
             }`}
           >
             <div className={`flex items-center gap-3 ${collapsed ? "lg:justify-center" : ""}`}>
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--accent-soft)] text-sm font-black uppercase tracking-[0.16em] text-[var(--accent)]">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[var(--border)] bg-[var(--accent-soft)] text-sm font-black uppercase tracking-[0.16em] text-[var(--accent)]">
                 SY
               </div>
               {!collapsed ? (
@@ -68,7 +68,7 @@ export function AdminSidebar({ collapsed, mobileOpen, onClose, onToggleCollapse,
           </div>
 
           <div className="mt-4 flex-1 overflow-y-auto pr-1">
-            <nav className="grid gap-1.5">
+            <nav className="grid gap-2">
               {adminNavItems.map((item) => {
                 const active = isActive(item.href);
                 const short = initials(item.label);
@@ -83,12 +83,12 @@ export function AdminSidebar({ collapsed, mobileOpen, onClose, onToggleCollapse,
                     } ${
                       active
                         ? "border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent)]"
-                        : "border-transparent text-[var(--foreground)] hover:border-black/5 hover:bg-slate-50"
+                        : "border-[var(--border)] bg-white/40 text-[var(--foreground)] hover:border-[var(--accent)] hover:bg-white"
                     }`}
                   >
                     <span
                       className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-[10px] font-black uppercase tracking-[0.18em] ${
-                        active ? "bg-white text-[var(--accent)]" : "bg-slate-100 text-[var(--muted)] group-hover:bg-white"
+                        active ? "bg-white text-[var(--accent)]" : "bg-white/80 text-[var(--muted)] group-hover:bg-white"
                       }`}
                     >
                       {short}
@@ -105,11 +105,11 @@ export function AdminSidebar({ collapsed, mobileOpen, onClose, onToggleCollapse,
               href={adminRoutes.site}
               target="_blank"
               rel="noreferrer"
-              className={`flex items-center gap-3 rounded-2xl border border-black/5 px-3 py-3 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] ${
+              className={`flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-white/45 px-3 py-3 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] ${
                 collapsed ? "lg:justify-center lg:px-2" : ""
               }`}
             >
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-[10px] font-black uppercase tracking-[0.18em] text-[var(--muted)]">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-[10px] font-black uppercase tracking-[0.18em] text-[var(--muted)]">
                 VS
               </span>
               {!collapsed ? <span>View Site</span> : null}
@@ -118,11 +118,11 @@ export function AdminSidebar({ collapsed, mobileOpen, onClose, onToggleCollapse,
             <form action={logoutAction}>
               <button
                 type="submit"
-                className={`flex w-full items-center gap-3 rounded-2xl border border-black/5 px-3 py-3 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] ${
+                className={`flex w-full items-center gap-3 rounded-2xl border border-[var(--border)] bg-white/45 px-3 py-3 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] ${
                   collapsed ? "lg:justify-center lg:px-2" : ""
                 }`}
               >
-                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-[10px] font-black uppercase tracking-[0.18em] text-[var(--muted)]">
+                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-[10px] font-black uppercase tracking-[0.18em] text-[var(--muted)]">
                   LO
                 </span>
                 {!collapsed ? <span>Logout</span> : null}
@@ -134,7 +134,7 @@ export function AdminSidebar({ collapsed, mobileOpen, onClose, onToggleCollapse,
             <button
               type="button"
               onClick={onToggleCollapse}
-              className="flex w-full items-center justify-center rounded-full border border-black/5 px-3 py-2 text-[10px] font-black uppercase tracking-[0.24em] text-[var(--muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              className="flex w-full items-center justify-center rounded-full border border-[var(--border)] bg-white/50 px-3 py-2 text-[10px] font-black uppercase tracking-[0.24em] text-[var(--muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
             >
               {collapsed ? "Expand" : "Collapse"}
             </button>
