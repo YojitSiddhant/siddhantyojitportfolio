@@ -36,7 +36,7 @@ export function AdminSaveBar({ formId, label, pendingLabel = "Saving...", helper
   }, [formId]);
 
   return (
-    <div className="sticky bottom-4 z-20 mt-6 rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 shadow-[0_12px_30px_rgba(36,21,15,0.05)] backdrop-blur-xl">
+    <div className="sticky bottom-4 z-20 mt-6 rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 shadow-none backdrop-blur-xl">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
         <div className="space-y-1">
           <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[var(--muted)]">Editing state</p>

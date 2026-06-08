@@ -11,7 +11,7 @@ type AdminStatCardProps = {
 export function AdminStatCard({ label, value, description, tone = "default", icon }: AdminStatCardProps) {
   return (
     <div
-      className={`rounded-[1.75rem] border border-[var(--border)] p-5 shadow-[0_10px_28px_rgba(36,21,15,0.04)] ${
+      className={`rounded-[1.5rem] border border-[var(--border)] p-5 shadow-none ${
         tone === "accent" ? "bg-[var(--accent-soft)]" : "bg-[var(--surface-strong)]"
       }`}
     >

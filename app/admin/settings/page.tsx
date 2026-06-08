@@ -23,25 +23,25 @@ export default async function AdminSettingsPage() {
           description="Workspace information, quick references, and a clean home for admin-level controls."
         />
 
-        <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(22rem,0.8fr)]">
+        <div className="space-y-6">
           <AdminSectionCard
             title="Workspace"
             description="The admin area stays separate from the public portfolio and keeps the CMS flow focused."
           >
             <div className="grid gap-4 md:grid-cols-2">
-              <div className="rounded-[1.5rem] bg-[var(--surface)] p-4">
+              <div className="rounded-[1.5rem] border border-[var(--border)] bg-white/80 p-4">
                 <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--muted)]">Shell</p>
                 <p className="mt-2 text-sm leading-6 text-[var(--foreground)]">Collapsible sidebar, sticky header, and mobile drawer.</p>
               </div>
-              <div className="rounded-[1.5rem] bg-[var(--surface)] p-4">
+              <div className="rounded-[1.5rem] border border-[var(--border)] bg-white/80 p-4">
                 <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--muted)]">Auth</p>
                 <p className="mt-2 text-sm leading-6 text-[var(--foreground)]">Cookie-based admin session with request-time protection.</p>
               </div>
-              <div className="rounded-[1.5rem] bg-[var(--surface)] p-4">
+              <div className="rounded-[1.5rem] border border-[var(--border)] bg-white/80 p-4">
                 <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--muted)]">Cache</p>
                 <p className="mt-2 text-sm leading-6 text-[var(--foreground)]">CMS updates revalidate the public pages and admin views.</p>
               </div>
-              <div className="rounded-[1.5rem] bg-[var(--surface)] p-4">
+              <div className="rounded-[1.5rem] border border-[var(--border)] bg-white/80 p-4">
                 <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--muted)]">Navigation</p>
                 <p className="mt-2 text-sm leading-6 text-[var(--foreground)]">Home, Education, Skills, Projects, My Work, Certificates, and Experience.</p>
               </div>
@@ -49,29 +49,35 @@ export default async function AdminSettingsPage() {
           </AdminSectionCard>
 
           <AdminCard>
-            <div className="mb-5 border-b border-black/5 pb-4">
+            <div className="mb-5 border-b border-[var(--border)] pb-4">
               <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--muted)]">Shortcuts</p>
               <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--foreground)]">Fast access</h2>
             </div>
 
-            <div className="space-y-3">
-              <Link
-                href={adminRoutes.dashboard}
-                className="block rounded-[1.5rem] border border-black/5 bg-white px-4 py-3 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
-              >
-                Open dashboard
-              </Link>
+            <div className="grid gap-3 sm:grid-cols-2">
               <Link
                 href={adminRoutes.home}
-                className="block rounded-[1.5rem] border border-black/5 bg-white px-4 py-3 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                className="block rounded-[1.5rem] border border-[var(--border)] bg-white/80 px-4 py-3 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
               >
                 Edit home content
               </Link>
               <Link
                 href={adminRoutes.projects}
-                className="block rounded-[1.5rem] border border-black/5 bg-white px-4 py-3 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                className="block rounded-[1.5rem] border border-[var(--border)] bg-white/80 px-4 py-3 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
               >
                 Review projects
+              </Link>
+              <Link
+                href={adminRoutes.skills}
+                className="block rounded-[1.5rem] border border-[var(--border)] bg-white/80 px-4 py-3 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              >
+                Manage skills
+              </Link>
+              <Link
+                href={adminRoutes.experience}
+                className="block rounded-[1.5rem] border border-[var(--border)] bg-white/80 px-4 py-3 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              >
+                Update experience
               </Link>
             </div>
           </AdminCard>

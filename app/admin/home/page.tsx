@@ -40,10 +40,10 @@ export default async function AdminHomePage({
           description="Edit the homepage copy, notes, cards, and the top-most portfolio voice. This content feeds the public landing page."
         />
 
-        <div className="grid gap-6 xl:grid-cols-[minmax(0,1.15fr)_minmax(22rem,0.85fr)]">
+        <div className="space-y-6">
           <AdminSectionCard
             title="Edit home content"
-            description="Keep the homepage copy focused and concise while the preview panel shows the current snapshot."
+            description="Keep the homepage copy focused and concise while the layout stays simple and clean."
           >
             <form id="home-form" action={saveProfile} className="space-y-5">
               <div className="grid gap-4 lg:grid-cols-2">
@@ -99,69 +99,38 @@ export default async function AdminHomePage({
             </form>
           </AdminSectionCard>
 
-          <div className="space-y-6">
-            <AdminCard>
-              <div className="mb-5 border-b border-black/5 pb-4">
-                <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--muted)]">Current snapshot</p>
-                <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--foreground)]">Homepage preview</h2>
-              </div>
+          <AdminCard>
+            <div className="mb-5 border-b border-[var(--border)] pb-4">
+              <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--muted)]">Current values</p>
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--foreground)]">Live content outline</h2>
+            </div>
 
-              <div className="space-y-4 text-sm leading-6 text-[var(--muted)]">
-                <div className="rounded-[1.5rem] bg-[var(--surface)] p-4">
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--muted)]">Hero</p>
-                  <p className="mt-2 font-semibold text-[var(--foreground)]">{profile.heroTitle}</p>
-                  <p className="mt-2">{profile.introText}</p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {quickNotes.slice(0, 3).map((item) => (
+                <div key={`${item.label}-${item.value}`} className="rounded-[1.25rem] border border-[var(--border)] bg-white/80 p-4">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--muted)]">{item.label}</p>
+                  <p className="mt-2 text-sm leading-6 text-[var(--foreground)]">{item.value}</p>
                 </div>
-
-                <div className="rounded-[1.5rem] bg-[var(--surface)] p-4">
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--muted)]">Role</p>
-                  <p className="mt-2 font-semibold text-[var(--foreground)]">{profile.currentRole}</p>
-                  <p className="mt-2">{profile.location}</p>
+              ))}
+              {headerNotes.slice(0, 2).map((item) => (
+                <div key={`${item.label}-${item.value}`} className="rounded-[1.25rem] border border-[var(--border)] bg-white/80 p-4">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--muted)]">{item.label}</p>
+                  <p className="mt-2 text-sm leading-6 text-[var(--foreground)]">{item.value}</p>
                 </div>
-
-                <div className="rounded-[1.5rem] bg-[var(--surface)] p-4">
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--muted)]">Quick notes</p>
-                  <ul className="mt-3 space-y-2">
-                    {quickNotes.slice(0, 3).map((item) => (
-                      <li key={`${item.label}-${item.value}`} className="rounded-2xl bg-white px-3 py-2 text-[var(--foreground)]">
-                        <span className="font-semibold">{item.label}:</span> {item.value}
-                      </li>
-                    ))}
-                  </ul>
+              ))}
+              {valueCards.slice(0, 3).map((item) => (
+                <div key={item.title} className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-4">
+                  <p className="text-sm font-bold text-[var(--foreground)]">{item.title}</p>
+                  <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{item.description}</p>
                 </div>
-              </div>
-            </AdminCard>
-
-            <AdminCard>
-              <div className="mb-5 border-b border-black/5 pb-4">
-                <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--muted)]">Snapshot detail</p>
-                <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--foreground)]">Live sections</h2>
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-2">
-                {headerNotes.slice(0, 2).map((item) => (
-                  <div key={`${item.label}-${item.value}`} className="rounded-[1.25rem] border border-black/5 bg-white p-4">
-                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--muted)]">{item.label}</p>
-                    <p className="mt-2 text-sm leading-6 text-[var(--foreground)]">{item.value}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-4 grid gap-3">
-                {valueCards.slice(0, 3).map((item) => (
-                  <div key={item.title} className="rounded-[1.25rem] border border-black/5 bg-[var(--surface)] p-4">
-                    <p className="text-sm font-bold text-[var(--foreground)]">{item.title}</p>
-                    <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{item.description}</p>
-                  </div>
-                ))}
-                {workingStyle.slice(0, 2).map((item) => (
-                  <div key={item.title} className="rounded-[1.25rem] border border-black/5 bg-white p-4">
-                    <p className="text-sm font-bold text-[var(--foreground)]">{item.title}</p>
-                  </div>
-                ))}
-              </div>
-            </AdminCard>
-          </div>
+              ))}
+              {workingStyle.slice(0, 2).map((item) => (
+                <div key={item.title} className="rounded-[1.25rem] border border-[var(--border)] bg-white/80 p-4">
+                  <p className="text-sm font-bold text-[var(--foreground)]">{item.title}</p>
+                </div>
+              ))}
+            </div>
+          </AdminCard>
         </div>
       </section>
     </main>

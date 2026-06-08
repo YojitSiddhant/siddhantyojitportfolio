@@ -9,7 +9,7 @@ export function AdminCard({
 }) {
   return (
     <section
-      className={`rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface-strong)] p-5 shadow-[0_10px_28px_rgba(36,21,15,0.04)] backdrop-blur-sm sm:p-6 ${className}`}
+      className={`rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface-strong)] p-5 shadow-none backdrop-blur-sm sm:p-6 ${className}`}
     >
       {children}
     </section>
