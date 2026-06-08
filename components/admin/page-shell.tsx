@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { AdminHeader } from "@/components/admin/header";
 import { AdminSidebar } from "@/components/admin/sidebar";
@@ -12,40 +12,12 @@ type AdminPageShellProps = {
   logoutAction: () => Promise<void>;
 };
 
-function getRouteTitle(pathname: string) {
-  switch (pathname) {
-    case adminRoutes.dashboard:
-      return { title: "Dashboard", description: "A calm overview of the portfolio CMS, recent changes, and quick entry points." };
-    case adminRoutes.home:
-      return { title: "Home", description: "Edit the landing page copy, quick notes, and top-of-page profile content." };
-    case adminRoutes.education:
-      return { title: "Education", description: "Manage education records and their media without leaving the CMS shell." };
-    case adminRoutes.skills:
-      return { title: "Skills", description: "Keep the skill badges and links crisp, ordered, and easy to update." };
-    case adminRoutes.projects:
-      return { title: "Projects", description: "Maintain featured projects, links, ordering, and imagery in one place." };
-    case adminRoutes.myWork:
-      return { title: "My Work", description: "Update the work showcase with concise cards and preview-friendly content." };
-    case adminRoutes.certificates:
-      return { title: "Certificates", description: "Manage certificate details, images, and verification links." };
-    case adminRoutes.experience:
-      return { title: "Experience", description: "Keep the career timeline polished and consistent with the rest of the portfolio." };
-    case adminRoutes.settings:
-      return { title: "Settings", description: "Session and CMS workspace preferences for the admin area." };
-    case adminRoutes.login:
-      return { title: "Portfolio CMS", description: "Sign in to manage the portfolio content." };
-    default:
-      return { title: "Portfolio CMS", description: "Internal content management for the portfolio site." };
-  }
-}
-
 export function AdminPageShell({ children, logoutAction }: AdminPageShellProps) {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileMenuPath, setMobileMenuPath] = useState<string | null>(null);
 
   const isLoginPage = pathname === adminRoutes.login;
-  const route = useMemo(() => getRouteTitle(pathname), [pathname]);
   const mobileOpen = mobileMenuPath === pathname;
 
   useEffect(() => {
@@ -82,8 +54,6 @@ export function AdminPageShell({ children, logoutAction }: AdminPageShellProps) 
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[18rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.86)_0%,rgba(255,255,255,0.68)_70%,rgba(255,255,255,0.18)_100%)]" />
 
       <AdminHeader
-        title={route.title}
-        description={route.description}
         onMenuToggle={() => setMobileMenuPath((current) => (current === pathname ? null : pathname))}
         onSidebarToggle={() => setCollapsed((current) => !current)}
         sidebarCollapsed={collapsed}

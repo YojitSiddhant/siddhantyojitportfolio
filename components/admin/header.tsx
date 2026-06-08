@@ -5,14 +5,12 @@ import { usePathname } from "next/navigation";
 import { adminNavItems, adminRoutes } from "@/lib/admin-routes";
 
 type AdminHeaderProps = {
-  title: string;
-  description: string;
   onMenuToggle: () => void;
   onSidebarToggle: () => void;
   sidebarCollapsed: boolean;
 };
 
-export function AdminHeader({ title, description, onMenuToggle, onSidebarToggle, sidebarCollapsed }: AdminHeaderProps) {
+export function AdminHeader({ onMenuToggle, onSidebarToggle, sidebarCollapsed }: AdminHeaderProps) {
   const pathname = usePathname();
 
   const isActive = (href: string) =>
@@ -36,15 +34,10 @@ export function AdminHeader({ title, description, onMenuToggle, onSidebarToggle,
           </button>
 
           <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
               <div className="min-w-0">
                 <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--muted)]">Portfolio CMS</p>
-                <div className="mt-0.5 flex items-center gap-3">
-                  <h1 className="truncate text-lg font-bold tracking-tight text-[var(--foreground)] sm:text-xl">{title}</h1>
-                  <span className="hidden rounded-full bg-[var(--accent-soft)] px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-[var(--accent)] sm:inline-flex">
-                    Internal
-                  </span>
-                </div>
+                <p className="mt-0.5 text-lg font-bold tracking-tight text-[var(--foreground)] sm:text-xl">Admin Navigation</p>
               </div>
               <div className="ml-auto hidden items-center gap-2 lg:flex">
                 <Link
@@ -65,7 +58,6 @@ export function AdminHeader({ title, description, onMenuToggle, onSidebarToggle,
                 </button>
               </div>
             </div>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-[var(--muted)]">{description}</p>
           </div>
 
           <div className="ml-auto flex items-center gap-2 lg:hidden">

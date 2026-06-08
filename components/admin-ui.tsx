@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
 export { AdminSubmitButton } from "@/components/admin-submit-button";
 export { AdminCard } from "@/components/admin/section-card";
@@ -38,8 +37,6 @@ export function AdminPageHeader({
   title,
   description,
   action,
-  previewHref,
-  previewLabel = "Preview site",
 }: PageHeaderProps) {
   return (
     <section className="rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface-strong)] p-5 shadow-[0_10px_28px_rgba(36,21,15,0.04)] backdrop-blur-sm sm:p-6">
@@ -54,16 +51,6 @@ export function AdminPageHeader({
 
         <div className="flex flex-wrap items-center gap-3">
           {action}
-          {previewHref ? (
-            <Link
-              href={previewHref}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-[var(--border)] bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
-            >
-              {previewLabel}
-            </Link>
-          ) : null}
         </div>
       </div>
     </section>
