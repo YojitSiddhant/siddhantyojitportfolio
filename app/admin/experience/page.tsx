@@ -36,7 +36,6 @@ export default async function AdminExperiencePage({
         <AdminPageHeader
           title="Experience"
           description="Update work history, role descriptions, logos, and technology lists."
-          previewHref="/experience"
         />
 
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1.15fr)_minmax(22rem,0.85fr)]">

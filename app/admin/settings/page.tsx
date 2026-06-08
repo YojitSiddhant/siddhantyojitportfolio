@@ -21,7 +21,6 @@ export default async function AdminSettingsPage() {
         <AdminPageHeader
           title="Settings"
           description="Workspace information, quick references, and a clean home for admin-level controls."
-          previewHref={adminRoutes.site}
         />
 
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(22rem,0.8fr)]">
@@ -44,7 +43,7 @@ export default async function AdminSettingsPage() {
               </div>
               <div className="rounded-[1.5rem] bg-[var(--surface)] p-4">
                 <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--muted)]">Navigation</p>
-                <p className="mt-2 text-sm leading-6 text-[var(--foreground)]">Dashboard, Home, Education, Skills, Projects, My Work, Certificates, and Experience.</p>
+                <p className="mt-2 text-sm leading-6 text-[var(--foreground)]">Home, Education, Skills, Projects, My Work, Certificates, and Experience.</p>
               </div>
             </div>
           </AdminSectionCard>

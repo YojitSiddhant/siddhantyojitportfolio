@@ -36,7 +36,6 @@ export default async function AdminProjectsPage({
         <AdminPageHeader
           title="Projects"
           description="Update project titles, stack badges, links, feature flags, and images."
-          previewHref="/projects"
         />
 
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1.15fr)_minmax(22rem,0.85fr)]">

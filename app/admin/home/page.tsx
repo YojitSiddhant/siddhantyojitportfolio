@@ -5,7 +5,6 @@ import { AdminSaveBar } from "@/components/admin/save-bar";
 import { saveProfile } from "@/app/admin/actions";
 import { getAdminSnapshot } from "@/lib/cms";
 import { requireAdminSession } from "@/lib/admin-auth";
-import { adminRoutes } from "@/lib/admin-routes";
 import { toTextAreaValue } from "@/lib/admin-form";
 
 export const metadata: Metadata = {
@@ -39,7 +38,6 @@ export default async function AdminHomePage({
         <AdminPageHeader
           title="Home"
           description="Edit the homepage copy, notes, cards, and the top-most portfolio voice. This content feeds the public landing page."
-          previewHref={adminRoutes.site}
         />
 
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1.15fr)_minmax(22rem,0.85fr)]">

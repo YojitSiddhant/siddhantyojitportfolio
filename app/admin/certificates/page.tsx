@@ -35,7 +35,6 @@ export default async function AdminCertificatesPage({
         <AdminPageHeader
           title="Certificates"
           description="Manage certificate imagery, issuers, dates, and verification links."
-          previewHref="/certificate"
         />
 
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1.15fr)_minmax(22rem,0.85fr)]">

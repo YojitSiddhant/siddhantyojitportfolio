@@ -35,7 +35,6 @@ export default async function AdminEducationPage({
         <AdminPageHeader
           title="Education"
           description="Create, edit, and remove education rows from the public education page."
-          previewHref="/education"
         />
 
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1.15fr)_minmax(22rem,0.85fr)]">

@@ -13,7 +13,6 @@ export const adminRoutes = {
 } as const;
 
 export const adminNavItems = [
-  { label: "Dashboard", href: adminRoutes.dashboard },
   { label: "Home", href: adminRoutes.home },
   { label: "Education", href: adminRoutes.education },
   { label: "Skills", href: adminRoutes.skills },

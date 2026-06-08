@@ -28,8 +28,6 @@ type PageHeaderProps = {
   title: string;
   description: string;
   action?: ReactNode;
-  previewHref?: string;
-  previewLabel?: string;
 };
 
 export function AdminPageHeader({

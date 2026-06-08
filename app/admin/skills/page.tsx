@@ -34,7 +34,6 @@ export default async function AdminSkillsPage({
         <AdminPageHeader
           title="Skills"
           description="Manage the skill badges, categories, URLs, and display order for the skills page."
-          previewHref="/skills"
         />
 
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1.15fr)_minmax(22rem,0.85fr)]">

@@ -34,7 +34,6 @@ export default async function AdminWorkPage({
         <AdminPageHeader
           title="My Work"
           description="Manage the custom work showcase, screenshots, and links."
-          previewHref="/my-work"
         />
 
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1.15fr)_minmax(22rem,0.85fr)]">
