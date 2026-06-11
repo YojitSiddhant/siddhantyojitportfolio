@@ -1,10 +1,6 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { getCertificates } from "@/lib/cms";
-import { getCmsMediaSrc } from "@/lib/cms-media";
-
-export const dynamic = "force-static";
-export const revalidate = 300;
+import { certificates } from "@/data/certificates";
 
 export const metadata: Metadata = {
   title: "Certificate | Siddhant Yojit",
@@ -47,9 +43,7 @@ function DocumentIcon({ className }: { className?: string }) {
   );
 }
 
-export default async function CertificatePage() {
-  const certificates = await getCertificates();
-
+export default function CertificatePage() {
   return (
     <main className="relative isolate overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(0,0,0,0.01),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(0,0,0,0.008),_transparent_28%),radial-gradient(circle_at_bottom,_rgba(0,0,0,0.004),_transparent_36%)]" />
@@ -75,13 +69,7 @@ export default async function CertificatePage() {
                 {certificate.image ? (
                   <div className="overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-white">
                     <Image
-                      src={getCmsMediaSrc({
-                        collection: "certificate",
-                        id: certificate.id,
-                        field: "image",
-                        src: certificate.image,
-                        updatedAt: certificate.updatedAt,
-                      }) ?? certificate.image}
+                      src={certificate.image}
                       alt={`${certificate.title} certificate screenshot`}
                       width={842}
                       height={595}

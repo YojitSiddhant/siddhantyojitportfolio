@@ -1,10 +1,6 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { getExperience } from "@/lib/cms";
-import { getCmsMediaSrc } from "@/lib/cms-media";
-
-export const dynamic = "force-static";
-export const revalidate = 300;
+import { experience } from "@/data/experience";
 
 export const metadata: Metadata = {
   title: "Experience | Siddhant Yojit",
@@ -62,9 +58,7 @@ function BulletIcon({ className }: { className?: string }) {
   );
 }
 
-export default async function ExperiencePage() {
-  const experience = await getExperience();
-
+export default function ExperiencePage() {
   return (
     <main className="relative isolate overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(0,0,0,0.01),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(0,0,0,0.008),_transparent_28%),radial-gradient(circle_at_bottom,_rgba(0,0,0,0.004),_transparent_36%)]" />
@@ -97,13 +91,7 @@ export default async function ExperiencePage() {
                       {item.logo ? (
                         <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-white shadow-sm">
                           <Image
-                            src={getCmsMediaSrc({
-                              collection: "experience",
-                              id: item.id,
-                              field: "logo",
-                              src: item.logo,
-                              updatedAt: item.updatedAt,
-                            }) ?? item.logo}
+                            src={item.logo}
                             alt={`${item.company} logo`}
                             width={48}
                             height={48}

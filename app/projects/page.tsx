@@ -1,9 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
-import { getProjects } from "@/lib/cms";
-
-export const dynamic = "force-static";
-export const revalidate = 300;
+import { projects } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "Projects | Siddhant Yojit",
@@ -42,9 +39,7 @@ function TechIcon({ src, name, className }: { src: string; name: string; classNa
   );
 }
 
-export default async function ProjectsPage() {
-  const projects = await getProjects();
-
+export default function ProjectsPage() {
   return (
     <main className="relative isolate overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(0,0,0,0.01),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(0,0,0,0.008),_transparent_28%),radial-gradient(circle_at_bottom,_rgba(0,0,0,0.004),_transparent_36%)]" />

@@ -1,4 +1,4 @@
-import { getProfile } from "@/lib/cms";
+import { profile } from "@/data/profile";
 
 type IconProps = {
   className?: string;
@@ -124,11 +124,7 @@ const iconMap = {
   briefcase: BriefcaseIcon,
 } as const;
 
-export const dynamic = "force-static";
-export const revalidate = 300;
-
-export default async function Home() {
-  const profile = await getProfile();
+export default function Home() {
   const heroNameWords = profile.heroTitle.split(" ");
   const values = profile.valueCards as Array<{ icon: keyof typeof iconMap; title: string; description: string }>;
   const workingStyle = profile.workingStyle as Array<{ icon: keyof typeof iconMap; title: string }>;

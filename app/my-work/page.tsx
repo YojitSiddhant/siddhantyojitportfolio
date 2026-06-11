@@ -1,9 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
-import { getWorkItems } from "@/lib/cms";
-
-export const dynamic = "force-static";
-export const revalidate = 300;
+import { workItems } from "@/data/work";
 
 export const metadata: Metadata = {
   title: "My Work | Siddhant Yojit",
@@ -31,9 +28,7 @@ function WorkIcon({ className }: { className?: string }) {
   );
 }
 
-export default async function MyWorkPage() {
-  const work = await getWorkItems();
-
+export default function MyWorkPage() {
   return (
     <main className="relative isolate overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(0,0,0,0.01),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(0,0,0,0.008),_transparent_28%),radial-gradient(circle_at_bottom,_rgba(0,0,0,0.004),_transparent_36%)]" />
@@ -50,7 +45,7 @@ export default async function MyWorkPage() {
 
         <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
           <div className="grid gap-5">
-            {work.map((item, index) => (
+            {workItems.map((item, index) => (
               <article
                 key={item.title}
                 className="flex flex-col gap-4 border-b border-[var(--border)] pb-5 motion-reveal"
