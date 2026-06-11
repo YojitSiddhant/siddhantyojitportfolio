@@ -337,3 +337,44 @@ p {
     scroll-behavior: auto !important;
   }
 }
+
+@media (max-width: 1024px) and (orientation: landscape) and (max-height: 520px) {
+  body {
+    font-size: clamp(0.9rem, 0.88rem + 0.12vw, 0.98rem);
+    line-height: 1.6;
+  }
+
+  header .portfolio-navbar-shell {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  header .portfolio-navbar-mobile {
+    gap: 0.5rem;
+    padding: 0.55rem 0.65rem;
+  }
+
+  header .portfolio-navbar-logo {
+    height: 1.9rem;
+    width: 1.9rem;
+  }
+
+  main > section.relative.z-10 {
+    gap: 1rem;
+    padding-top: 0.85rem;
+    padding-bottom: 1rem;
+  }
+
+  main > section.relative.z-10 h1 {
+    font-size: clamp(2.25rem, 5.4vw, 4.2rem);
+    line-height: 0.92;
+  }
+
+  main > section.relative.z-10 h2 {
+    font-size: clamp(1.1rem, 2.1vw, 1.5rem);
+  }
+
+  main > section.relative.z-10 .text-sm {
+    line-height: 1.55;
+  }
+}

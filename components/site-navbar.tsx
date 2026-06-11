@@ -177,11 +177,11 @@ export function SiteNavbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md supports-[backdrop-filter]:bg-white/70">
-      <div className="mx-auto flex w-full max-w-7xl items-center px-4 py-3 sm:px-6 sm:py-4 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-8 motion-reveal">
-        <div className="grid w-full grid-cols-[2.5rem_minmax(0,1fr)_2.75rem] items-center gap-2 rounded-2xl border border-[var(--border)] bg-white/95 px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.08)] backdrop-blur-md lg:hidden">
+      <div className="portfolio-navbar-shell mx-auto flex w-full max-w-7xl items-center px-4 py-3 sm:px-6 sm:py-4 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-8 motion-reveal">
+        <div className="portfolio-navbar-mobile grid w-full grid-cols-[2.5rem_minmax(0,1fr)_2.75rem] items-center gap-2 rounded-2xl border border-[var(--border)] bg-white/95 px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.08)] backdrop-blur-md lg:hidden">
           <Link
             href="/"
-            className="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-full shadow-[0_6px_16px_rgba(0,0,0,0.08)]"
+            className="portfolio-navbar-logo relative flex h-8 w-8 shrink-0 overflow-hidden rounded-full shadow-[0_6px_16px_rgba(0,0,0,0.08)]"
             aria-label="Go to home"
           >
             <Image
