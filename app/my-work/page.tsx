@@ -60,7 +60,7 @@ export default function MyWorkPage() {
                   </div>
                 </div>
 
-                <p className="max-w-3xl text-base leading-7 text-[var(--muted)]">{item.summary}</p>
+                {item.summary ? <p className="max-w-3xl text-base leading-7 text-[var(--muted)]">{item.summary}</p> : null}
 
                 {Array.isArray(item.screenshots) && item.screenshots.length > 0 ? (
                   <div className="grid gap-3 sm:grid-cols-2">
