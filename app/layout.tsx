@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { SiteNavbar } from "@/components/site-navbar";
-import { PageWatermark } from "@/components/page-watermark";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,7 +16,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased" style={{ colorScheme: "light" }}>
       <body className="relative isolate min-h-full bg-[var(--background)] text-[var(--foreground)]">
-        <PageWatermark />
         <div className="relative z-10">
           <SiteNavbar />
           {children}

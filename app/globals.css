@@ -244,26 +244,6 @@ p {
   will-change: transform, opacity;
 }
 
-.page-watermark {
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.35;
-}
-
-.page-watermark__image {
-  display: block;
-  width: min(92vw, 1100px);
-  height: auto;
-  max-height: 90vh;
-  object-fit: contain;
-  object-position: center;
-}
-
 .send-button {
   font-family: inherit;
   font-size: 1rem;
@@ -341,18 +321,6 @@ p {
 
 .send-button--sending .send-button__text {
   animation: send-text-slide 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@media (max-width: 768px) {
-  .page-watermark__image {
-    width: min(96vw, 760px);
-  }
-}
-
-@media (max-width: 480px) {
-  .page-watermark__image {
-    width: min(102vw, 620px);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
