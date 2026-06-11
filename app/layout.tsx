@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Siddhant Yojit | Frontend Developer",
   description:
     "Portfolio website for Siddhant Yojit, a frontend developer focused on responsive interfaces, UI testing, and practical product delivery.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
