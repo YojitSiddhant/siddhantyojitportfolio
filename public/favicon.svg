@@ -1,36 +1,67 @@
 <svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bg" x1="18" y1="14" x2="110" y2="112" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#24150F"/>
-      <stop offset="0.52" stop-color="#1B2436"/>
-      <stop offset="1" stop-color="#2563EB"/>
+    <radialGradient id="bgGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(64 60) rotate(90) scale(62 64)">
+      <stop offset="0" stop-color="#132235"/>
+      <stop offset="0.55" stop-color="#0d1624"/>
+      <stop offset="1" stop-color="#070d16"/>
+    </radialGradient>
+    <linearGradient id="ring" x1="28" y1="24" x2="100" y2="104" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f4d98b"/>
+      <stop offset="0.35" stop-color="#b98b2f"/>
+      <stop offset="0.6" stop-color="#f8e6ad"/>
+      <stop offset="1" stop-color="#8f651f"/>
     </linearGradient>
-    <linearGradient id="stroke" x1="30" y1="30" x2="98" y2="98" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#F8EBBF" stop-opacity="0"/>
-      <stop offset="0.35" stop-color="#F8EBBF"/>
-      <stop offset="0.55" stop-color="#FFFFFF"/>
-      <stop offset="0.75" stop-color="#F8EBBF"/>
-      <stop offset="1" stop-color="#F8EBBF" stop-opacity="0"/>
+    <linearGradient id="sGold" x1="34" y1="38" x2="70" y2="92" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f6e3b1"/>
+      <stop offset="0.28" stop-color="#d7b25f"/>
+      <stop offset="0.55" stop-color="#fff1c8"/>
+      <stop offset="0.78" stop-color="#b5842e"/>
+      <stop offset="1" stop-color="#f0d28a"/>
     </linearGradient>
+    <linearGradient id="ySilver" x1="58" y1="38" x2="94" y2="92" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.25" stop-color="#d9d9d9"/>
+      <stop offset="0.55" stop-color="#f8f8f8"/>
+      <stop offset="0.8" stop-color="#b7b7b7"/>
+      <stop offset="1" stop-color="#ededed"/>
+    </linearGradient>
+    <filter id="shadow" x="22" y="22" width="84" height="84" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="3" stdDeviation="2.5" flood-color="#000000" flood-opacity="0.42"/>
+    </filter>
   </defs>
 
-  <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#bg)"/>
-  <rect x="16" y="16" width="96" height="96" rx="22" stroke="rgba(255,255,255,0.16)" stroke-width="2"/>
-  <circle cx="64" cy="64" r="34" fill="rgba(255,255,255,0.04)"/>
-  <path d="M30 82L98 40" stroke="url(#stroke)" stroke-width="8" stroke-linecap="round"/>
+  <rect width="128" height="128" rx="32" fill="url(#bgGlow)"/>
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="rgba(255,255,255,0.02)"/>
+  <circle cx="64" cy="64" r="39" stroke="url(#ring)" stroke-width="8"/>
+  <circle cx="64" cy="64" r="30" fill="rgba(255,255,255,0.03)"/>
+  <path d="M33 29L95 99" stroke="rgba(255,255,255,0.05)" stroke-width="10" stroke-linecap="round"/>
 
-  <path
-    d="M43 38H56.4C62.7 38 67.6 40.5 70.3 44.9C72.7 48.8 72.8 53.7 70.6 57.4C68.9 60.3 66.1 62.4 62.5 63.2L70.8 88H60.8L53.7 65H46V88H43V38Z"
-    fill="#F7F3EC"
-  />
-  <path
-    d="M46 45V56H55C59.7 56 62.8 53.8 62.8 50.5C62.8 47.2 59.7 45 55 45H46Z"
-    fill="#24150F"
-    fill-opacity="0.18"
-  />
-  <path
-    d="M73.6 38H84L78.3 47.3L73.7 38H86.1L76.6 53.1V88H67.9V53.2L58.4 38H68.7L73.6 46.9L78.5 38H73.6Z"
-    fill="#F7F3EC"
-  />
-  <path d="M43.5 92H84.5" stroke="#F8EBBF" stroke-width="3.2" stroke-linecap="round" opacity="0.9"/>
+  <g filter="url(#shadow)">
+    <text
+      x="50"
+      y="90"
+      fill="url(#sGold)"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="66"
+      font-weight="900"
+      letter-spacing="-8"
+      transform="skewX(-10)"
+    >
+      S
+    </text>
+    <text
+      x="68"
+      y="89"
+      fill="url(#ySilver)"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="66"
+      font-weight="900"
+      letter-spacing="-8"
+      transform="skewX(-8)"
+    >
+      Y
+    </text>
+  </g>
+
+  <path d="M42 98H86" stroke="#f4d98b" stroke-opacity="0.7" stroke-width="2.2" stroke-linecap="round"/>
 </svg>
