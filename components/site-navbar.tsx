@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -180,10 +181,17 @@ export function SiteNavbar() {
         <div className="grid w-full grid-cols-[2.5rem_minmax(0,1fr)_2.75rem] items-center gap-2 rounded-2xl border border-[var(--border)] bg-white/95 px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.08)] backdrop-blur-md lg:hidden">
           <Link
             href="/"
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--accent-soft)] text-[var(--accent)]"
+            className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[var(--border)] bg-white p-0.5 shadow-[0_6px_16px_rgba(0,0,0,0.08)]"
             aria-label="Go to home"
           >
-            SY
+            <Image
+              src="/favicon.png"
+              alt=""
+              width={32}
+              height={32}
+              className="h-full w-full object-contain"
+              priority={false}
+            />
           </Link>
 
           <Link
