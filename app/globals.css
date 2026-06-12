@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #eef5ff;
+  --background: #f4f8ff;
   --foreground: #17315f;
   --muted: #4a6795;
   --surface: rgba(255, 255, 255, 0.76);
@@ -10,32 +10,9 @@
   --accent: #2563eb;
   --accent-strong: #1d4ed8;
   --accent-soft: rgba(37, 99, 235, 0.12);
-  --orb-1: rgba(59, 130, 246, 0.22);
-  --orb-1-soft: rgba(59, 130, 246, 0.08);
-  --orb-2: rgba(37, 99, 235, 0.18);
-  --orb-2-soft: rgba(37, 99, 235, 0.06);
   --page-glow: radial-gradient(circle at top, rgba(59, 130, 246, 0.18), transparent 42%),
     radial-gradient(circle at bottom right, rgba(37, 99, 235, 0.08), transparent 36%);
   color-scheme: light;
-}
-
-:root[data-theme="dark"] {
-  --background: #07111f;
-  --foreground: #eef5ff;
-  --muted: #b5c8e8;
-  --surface: rgba(11, 21, 39, 0.82);
-  --surface-strong: rgba(8, 16, 31, 0.94);
-  --border: rgba(96, 165, 250, 0.14);
-  --accent: #8bb8ff;
-  --accent-strong: #c8dcff;
-  --accent-soft: rgba(139, 184, 255, 0.14);
-  --orb-1: rgba(59, 130, 246, 0.24);
-  --orb-1-soft: rgba(59, 130, 246, 0.1);
-  --orb-2: rgba(37, 99, 235, 0.2);
-  --orb-2-soft: rgba(37, 99, 235, 0.07);
-  --page-glow: radial-gradient(circle at top, rgba(59, 130, 246, 0.2), transparent 42%),
-    radial-gradient(circle at bottom right, rgba(37, 99, 235, 0.16), transparent 36%);
-  color-scheme: dark;
 }
 
 @theme inline {
@@ -59,10 +36,6 @@ html {
   min-height: 100%;
   -webkit-text-size-adjust: 100%;
   background: var(--background);
-}
-
-html[data-theme="dark"] {
-  color-scheme: dark;
 }
 
 body {

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { SiteNavbar } from "@/components/site-navbar";
 import "./globals.css";
 
@@ -18,28 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
-      <Script id="theme-init" strategy="beforeInteractive">
-        {`
-          (() => {
-            try {
-              const storedTheme = localStorage.getItem("theme");
-              const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-              const theme = storedTheme === "dark" || storedTheme === "light"
-                ? storedTheme
-                : prefersDark
-                  ? "dark"
-                  : "light";
-              const root = document.documentElement;
-              root.dataset.theme = theme;
-              root.style.colorScheme = theme;
-            } catch (error) {
-              document.documentElement.dataset.theme = "light";
-              document.documentElement.style.colorScheme = "light";
-            }
-          })();
-        `}
-      </Script>
+    <html lang="en" className="h-full antialiased">
       <body className="relative isolate min-h-full bg-[var(--background)] text-[var(--foreground)]">
         <div className="relative z-10">
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
