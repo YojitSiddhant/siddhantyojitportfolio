@@ -3,9 +3,9 @@ import { SiteNavbar } from "@/components/site-navbar";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Siddhant Yojit | Frontend Developer",
+  title: "Siddhant Yojit | Full Stack Developer",
   description:
-    "Portfolio website for Siddhant Yojit, a frontend developer focused on responsive interfaces, UI testing, and practical product delivery.",
+    "Full Stack Developer building responsive web applications with frontend excellence, backend integration, and testing mindset.",
   icons: {
     icon: "/favicon.png",
   },

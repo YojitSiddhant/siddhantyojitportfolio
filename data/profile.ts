@@ -1,29 +1,35 @@
 export const profile = {
-  heroTitle: "Hi, I'm Siddhant Yojit.",
+  heroTitle: "Full Stack Developer",
+  heroSubtitle:
+    "Building responsive web applications with a frontend-first mindset, practical backend integration, and attention to usability and testing.",
   introText:
-    "I'm a frontend developer with internship experience in building responsive, client-facing interfaces and validating them with a strong testing mindset. I enjoy turning requirements into UI that feels simple, practical, and polished.",
+    "Hi, I'm Siddhant Yojit.\n\nFull Stack Developer with internship experience building responsive web applications and developing end-to-end software solutions.\n\nI enjoy turning requirements into products that feel simple, practical, and polished.",
   location: "Bangalore, India",
-  coreFocus: "Frontend, UI, testing",
-  snapshotTitle: "Frontend Developer",
-  whatICareAbout: "Clear UI, thoughtful testing, and small details that improve the overall product experience.",
-  currentRole: "UI Developer Intern at TechVanta Labs Pvt. Ltd.",
+  coreFocus: "Frontend, Backend, Testing",
+  snapshotTitle: "Full Stack Developer",
+  whatICareAbout: "Clear UI, thoughtful testing, product quality, and practical solutions.",
+  currentRole: "UI Developer Intern — TechVanta Labs Pvt. Ltd.",
   openToOpportunitiesBadge: "Open to opportunities",
   quickNotes: [
     {
       icon: "shield",
       label: "Testing habit",
-      value:
-        "I keep an eye on edge cases, responsive behavior, and how screens behave when content changes.",
+      value: "Edge cases, responsiveness, and changing content.",
     },
     {
       icon: "code",
       label: "Current stack",
-      value: "React, Next.js, HTML, CSS, JavaScript, Angular, and a growing set of full-stack tools.",
+      value: "React, Next.js, Angular, HTML, CSS, and JavaScript.",
     },
     {
       icon: "briefcase",
-      label: "Project style",
-      value: "I like business and NGO websites, clean dashboards, and practical interfaces that stay maintainable.",
+      label: "Growing focus",
+      value: "Backend work, full stack delivery, and product quality.",
+    },
+    {
+      icon: "layers",
+      label: "Experience style",
+      value: "Business and NGO websites.",
     },
   ],
   headerNotes: [
@@ -34,47 +40,55 @@ export const profile = {
     },
     {
       icon: "code",
-      label: "Experience style",
-      value: "Client-facing frontend work, component-based UI, and testing-focused delivery.",
+      label: "Current focus",
+      value: "Frontend development, full stack development, and testing.",
     },
     {
       icon: "sparkle",
       label: "Working goal",
-      value: "To build interfaces that are clear, dependable, and easy to grow over time.",
+      value: "To build products that are clear, dependable, and easy to grow over time.",
     },
   ],
   valueCards: [
     {
       icon: "layers",
-      title: "Practical UI work",
+      title: "Full Stack Development",
       description:
-        "I like building interfaces that feel clear, responsive, and easy to use, with enough structure to stay maintainable as they grow.",
+        "I like building applications that connect clean frontend screens with practical backend integration and maintainable structure.",
     },
     {
       icon: "shield",
-      title: "Testing as part of the craft",
+      title: "Frontend Engineering",
       description:
-        "UI testing, test-case design, defect reporting, and cross-flow validation are part of how I make sure the final experience is dependable.",
+        "I focus on responsive interfaces, component reuse, and navigation clarity so the product feels polished and easy to use.",
     },
     {
       icon: "code",
-      title: "Learning across the stack",
+      title: "Testing Mindset",
       description:
-        "My background also includes project exposure to Flutter Web, Spring Boot, MongoDB, Node.js, SQLite, Java, JDBC, and MySQL.",
+        "I validate flows through testing, edge-case checks, and defect reporting so the final experience stays dependable.",
     },
   ],
   workingStyle: [
     {
       icon: "sparkle",
-      title: "I turn business requirements into clean frontend screens and reusable interface sections.",
+      title: "Convert business requirements into clean interfaces.",
     },
     {
       icon: "check",
-      title: "I pay attention to navigation clarity, responsive behavior, and handoff quality.",
+      title: "Build reusable UI components.",
     },
     {
       icon: "layers",
-      title: "I prefer small, well-structured UI decisions that make a product feel polished.",
+      title: "Improve navigation clarity.",
+    },
+    {
+      icon: "check",
+      title: "Focus on responsive behavior.",
+    },
+    {
+      icon: "shield",
+      title: "Validate flows through testing and defect reporting.",
     },
   ],
 };

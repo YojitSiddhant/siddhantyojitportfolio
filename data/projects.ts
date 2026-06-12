@@ -2,7 +2,7 @@ export const projects = [
   {
     title: "Smart Civic Grievance Redressal Web Application",
     description:
-      "Built a full-stack civic platform with complaint registration, assignment, tracking, role-based access, image uploads, and status updates.",
+      "Built a full-stack civic platform with complaint registration, assignment workflows, tracking, role-based access, image uploads, and status updates.",
     stack: [
       {
         name: "Flutter Web",
@@ -26,7 +26,7 @@ export const projects = [
   {
     title: "Smart Note-Taking App",
     description:
-      "Developed a responsive note-management app with JWT authentication, bcrypt password hashing, CRUD operations, search, and priority organization.",
+      "Developed a responsive note-management application featuring JWT authentication, bcrypt password hashing, CRUD operations, search, and priority organization.",
     stack: [
       {
         name: "HTML",
@@ -58,7 +58,7 @@ export const projects = [
   {
     title: "Fake News Detection System",
     description:
-      "Built a machine learning web app that classifies news as real or fake using TF-IDF and a Passive Aggressive Classifier, reaching 93.53% accuracy on a 6,335-record dataset.",
+      "Built a machine learning web application that classifies news using TF-IDF and Passive Aggressive Classifier, achieving 93.53% accuracy on 6,335 records.",
     stack: [
       {
         name: "Python",
@@ -92,7 +92,7 @@ export const projects = [
   {
     title: "Fraudulent Seller Detection in Online Marketplaces",
     description:
-      "Created a BCA web application with customer, seller, admin, complaint-filing, and fraud-detection workflows backed by MySQL.",
+      "Created a marketplace platform with customer, seller, admin, complaint-filing, and fraud-detection workflows backed by MySQL.",
     stack: [
       {
         name: "JSP",

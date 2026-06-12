@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
-import { skills } from "@/data/skills";
+import { skillGroups } from "@/data/skills";
 
 export const metadata: Metadata = {
   title: "Skills | Siddhant Yojit",
-  description: "Frontend skills for Siddhant Yojit.",
+  description: "Full stack skills for Siddhant Yojit.",
 };
 
 type LogoProps = {
@@ -62,33 +62,57 @@ export default function SkillsPage() {
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border)] px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
           <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
             <TechBadgeIcon className="h-4 w-4 text-[var(--accent)]" />
-            Frontend Skills
+            Skills
           </div>
           <div className="flex items-center gap-2 text-sm text-[var(--muted)]">
             <BriefcaseIcon className="h-4 w-4 text-[var(--accent)]" />
-            Frontend, UI
+            Frontend, Backend, Database, Tools
           </div>
         </div>
 
         <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
-          <div className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2">
-            {skills.map((skill, index) => (
+          <div className="grid gap-5 lg:grid-cols-2">
+            {skillGroups.map((group, index) => (
               <article
-                key={skill.name}
-                className="flex flex-col items-center justify-center gap-3 px-4 py-6 text-center motion-reveal"
+                key={group.title}
+                className="flex h-full flex-col gap-4 border-b border-[var(--border)] pb-5 motion-reveal"
                 style={{ animationDelay: `${220 + index * 100}ms` }}
               >
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center">
-                  <img src={skill.icon} alt={`${skill.name} logo`} className="h-14 w-14 object-contain" loading="lazy" />
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
+                      {group.title}
+                    </p>
+                    <p className="mt-2 text-sm leading-7 text-[var(--muted)]">{group.description}</p>
+                  </div>
+                  <span className="rounded-full border border-[var(--border)] bg-white px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-[var(--accent-strong)]">
+                    {group.skills.length} skills
+                  </span>
                 </div>
-                <a
-                  href={skill.href ?? "#"}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="min-w-0 text-base font-black uppercase tracking-[0.24em] text-[var(--foreground)] transition-colors hover:text-[var(--accent)]"
-                >
-                  {skill.name}
-                </a>
+
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {group.skills.map((skill) => (
+                    <a
+                      key={skill.name}
+                      href={skill.href ?? "#"}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 transition-transform hover:-translate-y-0.5 hover:border-[var(--accent)]"
+                    >
+                      <img
+                        src={skill.icon}
+                        alt={`${skill.name} logo`}
+                        className="h-8 w-8 shrink-0 object-contain"
+                        loading="lazy"
+                      />
+                      <div className="min-w-0">
+                        <p className="text-sm font-black uppercase tracking-[0.18em] text-[var(--foreground)] transition-colors group-hover:text-[var(--accent)]">
+                          {skill.name}
+                        </p>
+                      </div>
+                    </a>
+                  ))}
+                </div>
               </article>
             ))}
           </div>

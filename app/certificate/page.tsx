@@ -61,42 +61,39 @@ export default function CertificatePage() {
         </div>
 
         <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
-          <div className="grid gap-5">
+          <div className="grid gap-4 sm:grid-cols-2">
             {orderedCertificates.map((certificate, index) => (
               <article
                 key={certificate.title}
-                className="flex flex-col gap-4 border-b border-[var(--border)] pb-5 motion-reveal"
+                className="flex h-full flex-col gap-3 rounded-[1.5rem] border border-[var(--border)] bg-white/80 p-4 shadow-sm transition-transform motion-reveal hover:-translate-y-0.5"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-                    <DocumentIcon className="h-4 w-4 text-[var(--accent)]" />
-                    Certificate
-                  </div>
-
-                  <div className="mt-2 flex flex-wrap items-center gap-3">
-                    {certificate.logo ? (
-                      <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-white shadow-sm">
-                        <Image
-                          src={certificate.logo}
-                          alt={`${certificate.issuer} logo`}
-                          width={48}
-                          height={48}
-                          className="h-full w-full object-contain p-2"
-                        />
-                      </div>
-                    ) : null}
-                    <div className="min-w-0">
-                      <h2 className="text-xl font-bold tracking-tight text-[var(--foreground)]">
-                        {certificate.title}
-                      </h2>
-                      <p className="mt-1 text-sm font-black text-[var(--foreground)]">{certificate.issuer}</p>
+                <div className="flex items-start gap-3">
+                  {certificate.logo ? (
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-white shadow-sm">
+                      <Image
+                        src={certificate.logo}
+                        alt={`${certificate.issuer} logo`}
+                        width={48}
+                        height={48}
+                        className="h-full w-full object-contain p-2"
+                      />
                     </div>
+                  ) : null}
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
+                      <DocumentIcon className="h-4 w-4 text-[var(--accent)]" />
+                      Certificate
+                    </div>
+                    <h2 className="mt-2 text-lg font-bold tracking-tight text-[var(--foreground)]">
+                      {certificate.title}
+                    </h2>
                   </div>
+                </div>
 
-                  <div className="mt-3 flex flex-col gap-1 text-sm text-[var(--foreground)]">
-                    <p>{certificate.issueDate}</p>
-                  </div>
+                <div className="grid gap-1 border-t border-[var(--border)] pt-3 text-sm text-[var(--foreground)]">
+                  <p className="font-black text-[var(--foreground)]">{certificate.issuer}</p>
+                  <p>{certificate.issueDate}</p>
                 </div>
               </article>
             ))}

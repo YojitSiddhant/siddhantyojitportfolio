@@ -1,4 +1,12 @@
+import Link from "next/link";
+import type { Metadata } from "next";
 import { profile } from "@/data/profile";
+
+export const metadata: Metadata = {
+  title: "Siddhant Yojit | Full Stack Developer",
+  description:
+    "Full Stack Developer building responsive web applications with frontend excellence, backend integration, and testing mindset.",
+};
 
 type IconProps = {
   className?: string;
@@ -147,11 +155,11 @@ export default function Home() {
             <SparkleIcon className="h-4 w-4 text-[var(--accent)]" />
             About me
           </div>
-            <div className="flex items-center gap-2 text-sm text-[var(--muted)]">
-              <BriefcaseIcon className="h-4 w-4 text-[var(--accent)]" />
+          <div className="flex items-center gap-2 text-sm text-[var(--muted)]">
+            <BriefcaseIcon className="h-4 w-4 text-[var(--accent)]" />
             {profile.currentRole}
-            </div>
           </div>
+        </div>
 
         <section className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-5 px-1 py-2 motion-reveal" style={{ animationDelay: "140ms" }}>
@@ -166,11 +174,29 @@ export default function Home() {
                 </span>
               ))}
             </h1>
-            <p className="max-w-2xl text-[1rem] leading-7 text-[var(--muted)] text-pretty sm:text-[1.05rem]">
+            <p className="max-w-3xl text-[1rem] leading-7 text-[var(--accent-strong)] text-pretty sm:text-[1.05rem]">
+              {profile.heroSubtitle}
+            </p>
+            <p className="max-w-3xl whitespace-pre-line text-[1rem] leading-7 text-[var(--muted)] text-pretty sm:text-[1.05rem]">
               {profile.introText}
             </p>
 
-            <div className="grid gap-3 border-t border-[var(--border)] pt-4 sm:grid-cols-2">
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Link
+                href="/projects"
+                className="inline-flex items-center justify-center rounded-full border border-[var(--accent)] bg-[var(--accent)] px-5 py-3 text-sm font-black uppercase tracking-[0.18em] text-white shadow-sm transition-transform hover:-translate-y-0.5"
+              >
+                View Projects
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-full border border-[var(--border)] bg-white px-5 py-3 text-sm font-black uppercase tracking-[0.18em] text-[var(--foreground)] transition-transform hover:-translate-y-0.5 hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              >
+                Contact Me
+              </Link>
+            </div>
+
+            <div className="grid gap-3 border-t border-[var(--border)] pt-4 sm:grid-cols-3">
               <div className="flex items-center gap-3 py-2 motion-reveal" style={{ animationDelay: "420ms" }}>
                 <MapPinIcon className="h-5 w-5 text-[var(--accent)]" />
                 <div>
@@ -181,8 +207,15 @@ export default function Home() {
               <div className="flex items-center gap-3 py-2 motion-reveal" style={{ animationDelay: "500ms" }}>
                 <CodeIcon className="h-5 w-5 text-[var(--accent)]" />
                 <div>
-                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">Core focus</p>
-                  <p className="mt-1 text-sm font-medium text-[var(--foreground)]">{profile.coreFocus}</p>
+                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">Role</p>
+                  <p className="mt-1 text-sm font-medium text-[var(--foreground)]">{profile.currentRole}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 py-2 motion-reveal" style={{ animationDelay: "580ms" }}>
+                <BriefcaseIcon className="h-5 w-5 text-[var(--accent)]" />
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">Status</p>
+                  <p className="mt-1 text-sm font-medium text-[var(--foreground)]">{profile.openToOpportunitiesBadge}</p>
                 </div>
               </div>
             </div>
@@ -232,10 +265,10 @@ export default function Home() {
               {values.map((item, index) => (
                 <div
                   key={item.title}
-                className="border-b border-[var(--border)] py-4 last:border-b-0 motion-reveal"
-                style={{ animationDelay: `${320 + index * 120}ms` }}
-              >
-                <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+                  className="border-b border-[var(--border)] py-4 last:border-b-0 motion-reveal"
+                  style={{ animationDelay: `${320 + index * 120}ms` }}
+                >
+                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
                     {renderIcon(item.icon, "h-4 w-4 text-[var(--accent)]")}
                     {item.title}
                   </div>
@@ -300,7 +333,7 @@ export default function Home() {
             <CodeIcon className="h-4 w-4 text-[var(--accent)]" />
             How I work
           </p>
-          <div className="mt-4 grid gap-0 lg:grid-cols-3 lg:gap-x-6">
+          <div className="mt-4 grid gap-0 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-6">
             {workingStyle.map((item, index) => (
               <div
                 key={item.title}
