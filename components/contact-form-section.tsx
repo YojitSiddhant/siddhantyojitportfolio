@@ -256,21 +256,17 @@ function SendIcon({ className }: { className?: string }) {
 }
 
 const iconToneClassName: Record<CardTone, string> = {
-  whatsapp: "text-[#25D366]",
+  whatsapp: "text-[var(--foreground)]",
   phone: "text-[var(--foreground)]",
-  linkedin: "text-[#0A66C2]",
+  linkedin: "text-[var(--foreground)]",
   github: "text-[var(--foreground)]",
 };
 
 const buttonToneClassName: Record<CardTone, string> = {
-  whatsapp:
-    "border-[rgba(37,211,102,0.18)] bg-[rgba(37,211,102,0.12)] text-[#25D366] hover:border-[rgba(37,211,102,0.3)] hover:bg-[rgba(37,211,102,0.18)]",
-  phone:
-    "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]",
-  linkedin:
-    "border-[rgba(10,102,194,0.18)] bg-[rgba(10,102,194,0.12)] text-[#0A66C2] hover:border-[rgba(10,102,194,0.3)] hover:bg-[rgba(10,102,194,0.18)]",
-  github:
-    "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]",
+  whatsapp: "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]",
+  phone: "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]",
+  linkedin: "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]",
+  github: "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]",
 };
 
 type QuickAction = {
