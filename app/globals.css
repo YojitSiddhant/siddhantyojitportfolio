@@ -1,17 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4f8ff;
+  --background: #ffffff;
   --foreground: #17315f;
   --muted: #4a6795;
-  --surface: rgba(255, 255, 255, 0.76);
-  --surface-strong: rgba(247, 250, 255, 0.94);
-  --border: rgba(59, 130, 246, 0.12);
+  --surface: #ffffff;
+  --surface-strong: #ffffff;
+  --border: rgba(23, 49, 95, 0.12);
   --accent: #2563eb;
   --accent-strong: #1d4ed8;
   --accent-soft: rgba(37, 99, 235, 0.12);
-  --page-glow: radial-gradient(circle at top, rgba(59, 130, 246, 0.18), transparent 42%),
-    radial-gradient(circle at bottom right, rgba(37, 99, 235, 0.08), transparent 36%);
+  --page-glow: none;
   color-scheme: light;
 }
 
@@ -43,8 +42,6 @@ body {
   min-height: 100dvh;
   background-color: var(--background);
   background-image: var(--page-glow);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
   color: var(--foreground);
   font-family: "Inter", "Segoe UI", Arial, Helvetica, sans-serif;
   font-size: clamp(0.96rem, 0.92rem + 0.2vw, 1.04rem);
