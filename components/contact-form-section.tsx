@@ -538,14 +538,14 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
           onClick={() => setIsPopupOpen(false)}
         >
           <div
-            className="w-full max-w-md rounded-3xl border border-red-300 bg-[var(--surface-strong)] p-5 shadow-2xl"
+            className="w-full max-w-md rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] p-5 shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p
                   id="contact-validation-title"
-                  className="text-sm font-black uppercase tracking-[0.22em] text-red-600"
+                  className="text-sm font-black uppercase tracking-[0.22em] text-[var(--accent)]"
                 >
                   Validation error
                 </p>
@@ -567,7 +567,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
               {popupErrors.map((error) => (
                 <li
                   key={error.field}
-                  className="rounded-2xl border border-red-300 bg-[var(--surface)] px-4 py-3 text-sm text-red-600"
+                  className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--accent)]"
                 >
                   {error.field}: {error.message}
                 </li>
@@ -600,14 +600,14 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
           }}
         >
           <div
-            className="w-full max-w-md rounded-3xl border border-green-300 bg-[var(--surface-strong)] p-5 shadow-2xl"
+            className="w-full max-w-md rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] p-5 shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p
                   id="contact-success-title"
-                  className="text-sm font-black uppercase tracking-[0.22em] text-green-600"
+                  className="text-sm font-black uppercase tracking-[0.22em] text-[var(--accent)]"
                 >
                   Message sent successfully
                 </p>
@@ -679,7 +679,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                     pattern={field.pattern}
                     aria-invalid={isInvalid}
                     className={`w-full rounded-2xl border bg-[var(--surface-strong)] px-4 py-2.5 text-sm text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)] ${
-                      isInvalid ? "border-red-400 focus:border-red-500" : "border-[var(--border)]"
+                      isInvalid ? "border-[var(--accent)] focus:border-[var(--accent-strong)]" : "border-[var(--border)]"
                     }`}
                   />
                 </label>
@@ -703,7 +703,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                 rows={5}
                 aria-invalid={Boolean(errors.message && touched.message)}
                 className={`w-full resize-y rounded-2xl border bg-[var(--surface-strong)] px-4 py-2.5 text-sm text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)] ${
-                  errors.message && touched.message ? "border-red-400 focus:border-red-500" : "border-[var(--border)]"
+                  errors.message && touched.message ? "border-[var(--accent)] focus:border-[var(--accent-strong)]" : "border-[var(--border)]"
                 }`}
               />
             </label>
@@ -737,7 +737,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
               </button>
 
               {submissionError ? (
-                <p className="text-sm text-red-600" role="alert">
+                <p className="text-sm text-[var(--accent)]" role="alert">
                   {submissionError}
                 </p>
               ) : null}
