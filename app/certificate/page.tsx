@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 import { certificates } from "@/data/certificates";
 
@@ -65,7 +64,7 @@ export default function CertificatePage() {
             {orderedCertificates.map((certificate, index) => (
               <article
                 key={certificate.title}
-                className="flex flex-col gap-4 border-b border-[var(--border)] pb-5 motion-reveal lg:flex-row lg:items-start lg:gap-5"
+                className="flex flex-col gap-4 border-b border-[var(--border)] pb-5 motion-reveal"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
                 <div className="min-w-0 flex-1">
@@ -85,32 +84,9 @@ export default function CertificatePage() {
 
                   <div className="mt-3 flex flex-col gap-1 text-sm text-[var(--foreground)]">
                     <p className="font-black text-[var(--foreground)]">{certificate.issuer}</p>
-                    {certificate.verificationLink ? (
-                      <a
-                        href={certificate.verificationLink}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex w-fit items-center text-[var(--accent-strong)] underline-offset-4 hover:underline"
-                      >
-                        Verify certificate
-                      </a>
-                    ) : null}
+                    <p>{certificate.issueDate}</p>
                   </div>
                 </div>
-
-                {certificate.image ? (
-                  <div className="overflow-hidden rounded-[1.5rem] border border-[var(--border)] bg-white shadow-sm lg:w-[24rem] lg:shrink-0">
-                    <Image
-                      src={certificate.image}
-                      alt={`${certificate.title} certificate screenshot`}
-                      width={842}
-                      height={595}
-                      sizes="(max-width: 1024px) 100vw, 24rem"
-                      className="h-auto w-full object-cover"
-                      priority={index < 2}
-                    />
-                  </div>
-                ) : null}
               </article>
             ))}
           </div>
