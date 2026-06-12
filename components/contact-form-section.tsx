@@ -257,20 +257,20 @@ function SendIcon({ className }: { className?: string }) {
 
 const iconToneClassName: Record<CardTone, string> = {
   whatsapp: "text-[#25D366]",
-  phone: "text-[#24150f]",
+  phone: "text-[var(--foreground)]",
   linkedin: "text-[#0A66C2]",
-  github: "text-[#181717]",
+  github: "text-[var(--foreground)]",
 };
 
 const buttonToneClassName: Record<CardTone, string> = {
   whatsapp:
     "border-[rgba(37,211,102,0.18)] bg-[rgba(37,211,102,0.12)] text-[#25D366] hover:border-[rgba(37,211,102,0.3)] hover:bg-[rgba(37,211,102,0.18)]",
   phone:
-    "border-[rgba(35,23,18,0.12)] bg-[rgba(35,23,18,0.06)] text-[#24150f] hover:border-[rgba(35,23,18,0.18)] hover:bg-[rgba(35,23,18,0.1)]",
+    "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]",
   linkedin:
     "border-[rgba(10,102,194,0.18)] bg-[rgba(10,102,194,0.12)] text-[#0A66C2] hover:border-[rgba(10,102,194,0.3)] hover:bg-[rgba(10,102,194,0.18)]",
   github:
-    "border-[rgba(24,23,23,0.12)] bg-[rgba(24,23,23,0.06)] text-[#181717] hover:border-[rgba(24,23,23,0.2)] hover:bg-[rgba(24,23,23,0.1)]",
+    "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]",
 };
 
 type QuickAction = {
@@ -534,7 +534,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
     <>
       {isPopupOpen ? (
         <div
-          className="fixed inset-0 z-[120] flex items-center justify-center bg-white/55 px-4 py-6 backdrop-blur-[2px]"
+          className="fixed inset-0 z-[120] flex items-center justify-center bg-black/40 px-4 py-6 backdrop-blur-[2px]"
           role="dialog"
           aria-modal="true"
           aria-labelledby="contact-validation-title"
@@ -542,7 +542,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
           onClick={() => setIsPopupOpen(false)}
         >
           <div
-            className="w-full max-w-md rounded-3xl border border-red-200 bg-white p-5 shadow-2xl"
+            className="w-full max-w-md rounded-3xl border border-red-300 bg-[var(--surface-strong)] p-5 shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">
@@ -571,7 +571,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
               {popupErrors.map((error) => (
                 <li
                   key={error.field}
-                  className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+                  className="rounded-2xl border border-red-300 bg-[var(--surface)] px-4 py-3 text-sm text-red-600"
                 >
                   {error.field}: {error.message}
                 </li>
@@ -593,7 +593,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
 
       {isSuccessOpen ? (
         <div
-          className="fixed inset-0 z-[120] flex items-center justify-center bg-white/55 px-4 py-6 backdrop-blur-[2px]"
+          className="fixed inset-0 z-[120] flex items-center justify-center bg-black/40 px-4 py-6 backdrop-blur-[2px]"
           role="dialog"
           aria-modal="true"
           aria-labelledby="contact-success-title"
@@ -604,7 +604,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
           }}
         >
           <div
-            className="w-full max-w-md rounded-3xl border border-green-200 bg-white p-5 shadow-2xl"
+            className="w-full max-w-md rounded-3xl border border-green-300 bg-[var(--surface-strong)] p-5 shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">
@@ -682,7 +682,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                     maxLength={field.maxLength}
                     pattern={field.pattern}
                     aria-invalid={isInvalid}
-                    className={`w-full rounded-2xl border bg-white px-4 py-2.5 text-sm text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)] ${
+                    className={`w-full rounded-2xl border bg-[var(--surface-strong)] px-4 py-2.5 text-sm text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)] ${
                       isInvalid ? "border-red-400 focus:border-red-500" : "border-[var(--border)]"
                     }`}
                   />
@@ -706,7 +706,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                 maxLength={1000}
                 rows={5}
                 aria-invalid={Boolean(errors.message && touched.message)}
-                className={`w-full resize-y rounded-2xl border bg-white px-4 py-2.5 text-sm text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)] ${
+                className={`w-full resize-y rounded-2xl border bg-[var(--surface-strong)] px-4 py-2.5 text-sm text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)] ${
                   errors.message && touched.message ? "border-red-400 focus:border-red-500" : "border-[var(--border)]"
                 }`}
               />
@@ -757,7 +757,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
 
         <div className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
           <div className="flex justify-end xl:translate-x-10 xl:translate-y-2">
-          <div className="flex h-full w-full max-w-full flex-col xl:max-w-[420px]">
+            <div className="flex h-full w-full max-w-full flex-col xl:max-w-[420px]">
               <div className="flex flex-wrap items-center justify-center gap-3">
                 {quickActions.map(({ label, href, Icon, iconClassName, tone }, index) => {
                   const isExternal = href.startsWith("http");
@@ -778,7 +778,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
               </div>
 
               <div
-                className="mx-auto mt-5 w-full max-w-full rounded-3xl border border-[var(--border)] bg-white px-4 py-3 shadow-sm motion-reveal sm:max-w-[380px]"
+                className="mx-auto mt-5 w-full max-w-full rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 shadow-sm motion-reveal sm:max-w-[380px]"
                 style={{ animationDelay: "420ms" }}
               >
                 <p className="text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
@@ -817,7 +817,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
 
               <div className="mt-auto pt-4">
                 <div
-                  className="mx-auto flex w-full max-w-full flex-col gap-3 rounded-3xl border border-[var(--border)] bg-white px-4 py-3 shadow-sm motion-reveal sm:max-w-[380px] sm:flex-row sm:items-center sm:justify-between"
+                  className="mx-auto flex w-full max-w-full flex-col gap-3 rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 shadow-sm motion-reveal sm:max-w-[380px] sm:flex-row sm:items-center sm:justify-between"
                   style={{ animationDelay: "500ms" }}
                 >
                   <div className="rounded-2xl bg-[var(--accent-soft)] px-3 py-2 text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--accent)]">

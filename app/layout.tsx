@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { SiteNavbar } from "@/components/site-navbar";
 import "./globals.css";
 
@@ -17,17 +18,46 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased" style={{ colorScheme: "light" }}>
+    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
+      <Script id="theme-init" strategy="beforeInteractive">
+        {`
+          (() => {
+            try {
+              const storedTheme = localStorage.getItem("theme");
+              const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+              const theme = storedTheme === "dark" || storedTheme === "light"
+                ? storedTheme
+                : prefersDark
+                  ? "dark"
+                  : "light";
+              const root = document.documentElement;
+              root.dataset.theme = theme;
+              root.style.colorScheme = theme;
+            } catch (error) {
+              document.documentElement.dataset.theme = "light";
+              document.documentElement.style.colorScheme = "light";
+            }
+          })();
+        `}
+      </Script>
       <body className="relative isolate min-h-full bg-[var(--background)] text-[var(--foreground)]">
         <div className="relative z-10">
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
             <div
-              className="motion-float absolute left-[-7rem] top-24 h-[18rem] w-[18rem] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.92)_0%,rgba(255,255,255,0.72)_42%,transparent_72%)] blur-3xl md:h-[26rem] md:w-[26rem]"
-              style={{ animationDelay: "0ms" }}
+              className="theme-orb motion-float absolute left-[-7rem] top-24 h-[18rem] w-[18rem] rounded-full blur-3xl md:h-[26rem] md:w-[26rem]"
+              style={{
+                animationDelay: "0ms",
+                background:
+                  "radial-gradient(circle, var(--orb-1) 0%, var(--orb-1-soft) 42%, transparent 72%)",
+              }}
             />
             <div
-              className="motion-pulse absolute bottom-[-8rem] right-[-8rem] h-[20rem] w-[20rem] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.88)_0%,rgba(255,255,255,0.66)_44%,transparent_74%)] blur-3xl md:h-[28rem] md:w-[28rem]"
-              style={{ animationDelay: "1200ms" }}
+              className="theme-orb motion-pulse absolute bottom-[-8rem] right-[-8rem] h-[20rem] w-[20rem] rounded-full blur-3xl md:h-[28rem] md:w-[28rem]"
+              style={{
+                animationDelay: "1200ms",
+                background:
+                  "radial-gradient(circle, var(--orb-2) 0%, var(--orb-2-soft) 44%, transparent 74%)",
+              }}
             />
           </div>
           <SiteNavbar />

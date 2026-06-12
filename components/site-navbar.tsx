@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const navItems = [
   { label: "Home", href: "/", icon: HomeIcon },
@@ -19,6 +19,8 @@ const navItems = [
 type IconProps = {
   className?: string;
 };
+
+type ThemeMode = "light" | "dark";
 
 function HomeIcon({ className }: IconProps) {
   return (
@@ -168,17 +170,73 @@ function MailIcon({ className }: IconProps) {
   );
 }
 
+function SunIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={`h-4 w-4 ${className ?? ""}`} fill="none">
+      <circle cx="12" cy="12" r="4.5" stroke="currentColor" strokeWidth="1.7" />
+      <path d="M12 2.8v2.4M12 18.8v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.8 12h2.4M18.8 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function MoonIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={`h-4 w-4 ${className ?? ""}`} fill="none">
+      <path
+        d="M15.8 16.7A8 8 0 0 1 7.3 8.2a8.1 8.1 0 1 0 8.5 8.5Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function SiteNavbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [theme, setTheme] = useState<ThemeMode>(() => {
+    if (typeof window === "undefined") {
+      return "light";
+    }
+
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "light" || storedTheme === "dark") {
+      return storedTheme;
+    }
+
+    return document.documentElement.dataset.theme === "dark" ||
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  });
   const pathname = usePathname();
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
+  const applyTheme = (nextTheme: ThemeMode) => {
+    const root = document.documentElement;
+    root.dataset.theme = nextTheme;
+    root.style.colorScheme = nextTheme;
+    localStorage.setItem("theme", nextTheme);
+    setTheme(nextTheme);
+  };
+
+  useEffect(() => {
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key === "theme" && (event.newValue === "light" || event.newValue === "dark")) {
+        applyTheme(event.newValue);
+      }
+    };
+
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md supports-[backdrop-filter]:bg-white/70">
+    <header className="sticky top-0 z-50 bg-[var(--surface-strong)] backdrop-blur-md supports-[backdrop-filter]:bg-[var(--surface-strong)]">
       <div className="portfolio-navbar-shell mx-auto flex w-full max-w-7xl items-center px-4 py-3 sm:px-6 sm:py-4 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-8 motion-reveal">
-        <div className="portfolio-navbar-mobile grid w-full grid-cols-[2.5rem_minmax(0,1fr)_2.75rem] items-center gap-2 rounded-2xl border border-[var(--border)] bg-white/95 px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.08)] backdrop-blur-md lg:hidden">
+        <div className="portfolio-navbar-mobile grid w-full grid-cols-[2.5rem_minmax(0,1fr)_2.75rem_2.75rem] items-center gap-2 rounded-2xl border border-[var(--border)] bg-[var(--surface-strong)] px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.08)] backdrop-blur-md lg:hidden">
           <Link
             href="/"
             className="portfolio-navbar-logo relative flex h-8 w-8 shrink-0 overflow-hidden rounded-full shadow-[0_6px_16px_rgba(0,0,0,0.08)]"
@@ -204,7 +262,18 @@ export function SiteNavbar() {
 
           <button
             type="button"
-            className="justify-self-end inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-white text-[var(--foreground)] shadow-sm"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] shadow-sm transition-colors hover:bg-[var(--accent-soft)]"
+            onClick={() => applyTheme(theme === "dark" ? "light" : "dark")}
+            aria-label="Toggle color theme"
+          >
+            <span aria-hidden="true" suppressHydrationWarning>
+              {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+            </span>
+          </button>
+
+          <button
+            type="button"
+            className="justify-self-end inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] shadow-sm transition-colors hover:bg-[var(--accent-soft)]"
             onClick={() => setIsOpen((current) => !current)}
             aria-expanded={isOpen}
             aria-label="Toggle navigation menu"
@@ -218,7 +287,7 @@ export function SiteNavbar() {
           </button>
         </div>
 
-        <nav className="hidden items-center gap-2 rounded-full border border-[var(--border)] bg-white/95 px-2 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.08)] backdrop-blur-md lg:col-start-2 lg:flex">
+        <nav className="hidden items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-strong)] px-2 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.08)] backdrop-blur-md lg:col-start-2 lg:flex">
           {navItems.map((item) => (
             <Link
               key={item.label}
@@ -243,10 +312,23 @@ export function SiteNavbar() {
             </Link>
           ))}
         </nav>
+
+        <div className="hidden justify-end lg:col-start-3 lg:flex">
+          <button
+            type="button"
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-2 text-sm font-bold text-[var(--foreground)] shadow-sm transition-colors hover:bg-[var(--accent-soft)]"
+            onClick={() => applyTheme(theme === "dark" ? "light" : "dark")}
+            aria-label="Toggle color theme"
+          >
+            <span aria-hidden="true" suppressHydrationWarning>
+              {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+            </span>
+          </button>
+        </div>
       </div>
 
       {isOpen ? (
-        <div className="border-t border-[var(--border)] bg-white/95 px-4 py-3 backdrop-blur-md lg:hidden">
+        <div className="border-t border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 backdrop-blur-md lg:hidden">
           <nav className="mx-auto flex max-h-[calc(100dvh-5.5rem)] w-full max-w-7xl flex-col gap-2 overflow-y-auto pb-2">
             {navItems.map((item, index) => (
               <Link

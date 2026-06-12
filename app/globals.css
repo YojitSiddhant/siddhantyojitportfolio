@@ -1,16 +1,37 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #fbfaf7;
   --foreground: #24150f;
-  --muted: #5f5a56;
-  --surface: rgba(255, 255, 255, 0.7);
-  --surface-strong: rgba(255, 255, 255, 0.86);
+  --muted: #665f58;
+  --surface: rgba(255, 255, 255, 0.74);
+  --surface-strong: rgba(255, 255, 255, 0.9);
   --border: rgba(36, 21, 15, 0.1);
   --accent: #2563eb;
   --accent-strong: #1d4ed8;
   --accent-soft: rgba(37, 99, 235, 0.12);
+  --orb-1: rgba(255, 255, 255, 0.92);
+  --orb-1-soft: rgba(255, 255, 255, 0.72);
+  --orb-2: rgba(255, 255, 255, 0.88);
+  --orb-2-soft: rgba(255, 255, 255, 0.68);
   color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --background: #0b1220;
+  --foreground: #f3efe8;
+  --muted: #b5aa9f;
+  --surface: rgba(17, 24, 39, 0.78);
+  --surface-strong: rgba(15, 23, 42, 0.92);
+  --border: rgba(255, 255, 255, 0.1);
+  --accent: #7cb0ff;
+  --accent-strong: #9bc3ff;
+  --accent-soft: rgba(124, 176, 255, 0.14);
+  --orb-1: rgba(96, 165, 250, 0.18);
+  --orb-1-soft: rgba(96, 165, 250, 0.08);
+  --orb-2: rgba(244, 114, 182, 0.16);
+  --orb-2-soft: rgba(244, 114, 182, 0.06);
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -33,12 +54,17 @@ html {
   color-scheme: light;
   min-height: 100%;
   -webkit-text-size-adjust: 100%;
+  background: var(--background);
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 body {
   min-height: 100%;
   min-height: 100dvh;
-  background-color: #ffffff;
+  background-color: var(--background);
   color: var(--foreground);
   font-family: "Inter", "Segoe UI", Arial, Helvetica, sans-serif;
   font-size: clamp(0.96rem, 0.92rem + 0.2vw, 1.04rem);
@@ -69,7 +95,7 @@ img {
 }
 
 ::selection {
-  background: rgba(37, 99, 235, 0.2);
+  background: rgba(37, 99, 235, 0.22);
   color: var(--foreground);
 }
 
@@ -257,6 +283,10 @@ p {
   transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
   cursor: pointer;
   box-shadow: 0 14px 30px rgba(37, 99, 235, 0.22);
+}
+
+.theme-orb {
+  will-change: transform, opacity;
 }
 
 .send-button:hover {

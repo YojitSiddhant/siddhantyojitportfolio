@@ -138,8 +138,8 @@ export default function Home() {
 
   return (
     <main className="relative isolate overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-white" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[18rem] bg-white" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[var(--background)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[18rem] bg-[var(--background)]" />
 
       <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border)] px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
@@ -147,11 +147,11 @@ export default function Home() {
             <SparkleIcon className="h-4 w-4 text-[var(--accent)]" />
             About me
           </div>
-            <div className="flex items-center gap-2 text-sm text-[var(--muted)]">
-              <BriefcaseIcon className="h-4 w-4 text-[var(--accent)]" />
+          <div className="flex items-center gap-2 text-sm text-[var(--muted)]">
+            <BriefcaseIcon className="h-4 w-4 text-[var(--accent)]" />
             {profile.currentRole}
-            </div>
           </div>
+        </div>
 
         <section className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-5 px-1 py-2 motion-reveal" style={{ animationDelay: "140ms" }}>
@@ -223,7 +223,7 @@ export default function Home() {
                   {profile.snapshotTitle}
                 </h2>
               </div>
-              <div className="rounded-full border border-[var(--border)] bg-white px-3 py-1 text-xs font-medium text-[var(--accent-strong)]">
+              <div className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1 text-xs font-medium text-[var(--accent-strong)]">
                 {profile.openToOpportunitiesBadge}
               </div>
             </div>
@@ -232,10 +232,10 @@ export default function Home() {
               {values.map((item, index) => (
                 <div
                   key={item.title}
-                className="border-b border-[var(--border)] py-4 last:border-b-0 motion-reveal"
-                style={{ animationDelay: `${320 + index * 120}ms` }}
-              >
-                <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+                  className="border-b border-[var(--border)] py-4 last:border-b-0 motion-reveal"
+                  style={{ animationDelay: `${320 + index * 120}ms` }}
+                >
+                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
                     {renderIcon(item.icon, "h-4 w-4 text-[var(--accent)]")}
                     {item.title}
                   </div>

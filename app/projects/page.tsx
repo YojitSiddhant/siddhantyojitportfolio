@@ -42,8 +42,8 @@ function TechIcon({ src, name, className }: { src: string; name: string; classNa
 export default function ProjectsPage() {
   return (
     <main className="relative isolate overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-white" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[18rem] bg-white" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[var(--background)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[18rem] bg-[var(--background)]" />
 
       <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border)] px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
