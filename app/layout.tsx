@@ -22,11 +22,11 @@ export default function RootLayout({
         <div className="relative z-10">
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
             <div
-              className="motion-float absolute left-[-7rem] top-24 h-[18rem] w-[18rem] rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.12)_0%,rgba(37,99,235,0.05)_42%,transparent_72%)] blur-3xl md:h-[26rem] md:w-[26rem]"
+              className="motion-float absolute left-[-7rem] top-24 h-[18rem] w-[18rem] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.92)_0%,rgba(255,255,255,0.72)_42%,transparent_72%)] blur-3xl md:h-[26rem] md:w-[26rem]"
               style={{ animationDelay: "0ms" }}
             />
             <div
-              className="motion-pulse absolute bottom-[-8rem] right-[-8rem] h-[20rem] w-[20rem] rounded-full bg-[radial-gradient(circle,rgba(36,21,15,0.08)_0%,rgba(36,21,15,0.03)_44%,transparent_74%)] blur-3xl md:h-[28rem] md:w-[28rem]"
+              className="motion-pulse absolute bottom-[-8rem] right-[-8rem] h-[20rem] w-[20rem] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.88)_0%,rgba(255,255,255,0.66)_44%,transparent_74%)] blur-3xl md:h-[28rem] md:w-[28rem]"
               style={{ animationDelay: "1200ms" }}
             />
           </div>
