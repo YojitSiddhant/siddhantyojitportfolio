@@ -43,6 +43,8 @@ function DocumentIcon({ className }: { className?: string }) {
   );
 }
 
+const orderedCertificates = [...certificates].sort((a, b) => a.order - b.order);
+
 export default function CertificatePage() {
   return (
     <main className="relative isolate overflow-hidden">
@@ -53,41 +55,26 @@ export default function CertificatePage() {
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border)] px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
           <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
             <CertificateBadgeIcon className="h-4 w-4 text-[var(--accent)]" />
-            Certificate
+            Certificates
           </div>
           <div className="text-sm font-black text-[var(--foreground)]">Completed learning</div>
         </div>
 
         <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
-          <div className="grid gap-5 md:grid-cols-2">
-            {certificates.map((certificate, index) => (
+          <div className="grid gap-5">
+            {orderedCertificates.map((certificate, index) => (
               <article
                 key={certificate.title}
-                className="flex flex-col gap-4 motion-reveal"
+                className="flex flex-col gap-4 border-b border-[var(--border)] pb-5 motion-reveal lg:flex-row lg:items-start lg:gap-5"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
-                {certificate.image ? (
-                  <div className="overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-white">
-                    <Image
-                      src={certificate.image}
-                      alt={`${certificate.title} certificate screenshot`}
-                      width={842}
-                      height={595}
-                      className="h-auto w-full rounded-[1.75rem] object-cover"
-                      priority={index < 2}
-                    />
-                  </div>
-                ) : null}
-
-                <div className="flex flex-col gap-3 px-1 pb-1">
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-                      <DocumentIcon className="h-4 w-4 text-[var(--accent)]" />
-                      Certificate
-                    </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
+                    <DocumentIcon className="h-4 w-4 text-[var(--accent)]" />
+                    Certificate
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-3">
+                  <div className="mt-2 flex flex-wrap items-center gap-3">
                     <h2 className="text-xl font-bold tracking-tight text-[var(--foreground)]">
                       {certificate.title}
                     </h2>
@@ -96,7 +83,7 @@ export default function CertificatePage() {
                     </span>
                   </div>
 
-                  <div className="flex flex-col gap-1 text-sm text-[var(--foreground)]">
+                  <div className="mt-3 flex flex-col gap-1 text-sm text-[var(--foreground)]">
                     <p className="font-black text-[var(--foreground)]">{certificate.issuer}</p>
                     {certificate.verificationLink ? (
                       <a
@@ -110,6 +97,20 @@ export default function CertificatePage() {
                     ) : null}
                   </div>
                 </div>
+
+                {certificate.image ? (
+                  <div className="overflow-hidden rounded-[1.5rem] border border-[var(--border)] bg-white shadow-sm lg:w-[24rem] lg:shrink-0">
+                    <Image
+                      src={certificate.image}
+                      alt={`${certificate.title} certificate screenshot`}
+                      width={842}
+                      height={595}
+                      sizes="(max-width: 1024px) 100vw, 24rem"
+                      className="h-auto w-full object-cover"
+                      priority={index < 2}
+                    />
+                  </div>
+                ) : null}
               </article>
             ))}
           </div>
