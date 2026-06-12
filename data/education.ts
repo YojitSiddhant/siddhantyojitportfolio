@@ -3,7 +3,7 @@ export const education = [
     institute: "PES University",
     degree: "MCA",
     duration: "2024 - 2026",
-    description: "CGPA: 5.99/10",
+    description: "CGPA: 6.16/10",
     logo: "/company-logos/pes-logo.webp",
   },
   {
