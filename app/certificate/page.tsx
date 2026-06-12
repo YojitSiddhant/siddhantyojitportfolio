@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import { certificates } from "@/data/certificates";
 
@@ -74,16 +75,26 @@ export default function CertificatePage() {
                   </div>
 
                   <div className="mt-2 flex flex-wrap items-center gap-3">
-                    <h2 className="text-xl font-bold tracking-tight text-[var(--foreground)]">
-                      {certificate.title}
-                    </h2>
-                    <span className="text-[10px] font-black uppercase tracking-[0.18em] text-[var(--muted)]">
-                      {certificate.issueDate}
-                    </span>
+                    {certificate.logo ? (
+                      <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-white shadow-sm">
+                        <Image
+                          src={certificate.logo}
+                          alt={`${certificate.issuer} logo`}
+                          width={48}
+                          height={48}
+                          className="h-full w-full object-contain p-2"
+                        />
+                      </div>
+                    ) : null}
+                    <div className="min-w-0">
+                      <h2 className="text-xl font-bold tracking-tight text-[var(--foreground)]">
+                        {certificate.title}
+                      </h2>
+                      <p className="mt-1 text-sm font-black text-[var(--foreground)]">{certificate.issuer}</p>
+                    </div>
                   </div>
 
                   <div className="mt-3 flex flex-col gap-1 text-sm text-[var(--foreground)]">
-                    <p className="font-black text-[var(--foreground)]">{certificate.issuer}</p>
                     <p>{certificate.issueDate}</p>
                   </div>
                 </div>
