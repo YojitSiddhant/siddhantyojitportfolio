@@ -3,7 +3,7 @@ export const education = [
     institute: "PES University",
     degree: "MCA",
     duration: "2024 - 2026",
-    description: "CGPA: 6.13 / 10",
+    description: "CGPA: 5.99/10",
     logo: "/company-logos/pes-logo.webp",
   },
   {
@@ -24,7 +24,7 @@ export const education = [
     institute: "Narayana e-Techno School",
     degree: "Class X",
     duration: "2016 - 2017",
-    description: "CGPA: 9.5 / 10",
+    description: "CGPA: 10/10",
     logo: "/company-logos/narayana-e-techno-school.jpeg",
   },
 ];

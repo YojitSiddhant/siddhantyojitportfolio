@@ -70,12 +70,7 @@ export default function ExperiencePage() {
             <TimelineIcon className="h-4 w-4 text-[var(--accent)]" />
             Experience
           </div>
-          <div className="flex items-center gap-2 text-sm font-black text-[var(--foreground)]">
-            <span className="rounded-full border border-[var(--border)] bg-[var(--accent-soft)] px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-[var(--accent-strong)]">
-              Current Role
-            </span>
-            <span>Work history</span>
-          </div>
+          <div className="text-sm font-black text-[var(--foreground)]">Work history</div>
         </div>
 
         <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>

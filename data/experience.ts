@@ -4,7 +4,7 @@ export const experience = [
     role: "UI Developer Intern",
     duration: "Jan 2026 - Present",
     description:
-      "Developed responsive client-facing websites.\nBuilt reusable UI components.\nImproved usability and navigation.\nWorked with manual testing.\nCreated test cases.\nReported and validated defects.",
+      "Develop responsive, client-facing websites and UI flows from business requirements.\nImprove page structure and navigation clarity for better usability.\nWork with manual testing, UI testing, test-case design, and defect reporting.",
     technologies: [],
     logo: "/company-logos/techvanta-logo-v3.jpeg",
     order: 1,

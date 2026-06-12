@@ -18,7 +18,7 @@ export const certificates = [
     order: 2,
   },
   {
-    title: "Google Bard for Microsoft PowerPoint",
+    title: "Google Bard for Microsoft Powerpoint",
     issuer: "Great Learning Academy",
     issueDate: "Mar 2024",
     logo: "/company-logos/great-learning-logo.png",
@@ -27,7 +27,7 @@ export const certificates = [
     order: 3,
   },
   {
-    title: "HTML In Hindi",
+    title: "Html In Hindi",
     issuer: "Great Learning Academy",
     issueDate: "Mar 2024",
     logo: "/company-logos/great-learning-logo.png",
