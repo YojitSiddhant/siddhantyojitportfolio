@@ -10,7 +10,7 @@ export function RoutePage({ title, description }: RoutePageProps) {
         <p className="text-sm font-black uppercase tracking-[0.3em] text-[var(--foreground)]">
           Portfolio Section
         </p>
-        <h1 className="mt-3 text-3xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl lg:text-6xl">
+        <h1 className="mt-3 text-3xl font-bold tracking-normal text-[var(--foreground)] sm:text-5xl lg:text-6xl">
           {title}
         </h1>
         <p className="mt-4 text-base leading-7 text-[var(--muted)] sm:mt-5 sm:text-lg sm:leading-8">

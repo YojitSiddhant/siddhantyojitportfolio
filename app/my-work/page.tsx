@@ -54,7 +54,7 @@ export default function MyWorkPage() {
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                   <div className="min-w-0 flex-1">
                     <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">My Work</p>
-                    <h1 className="mt-2 text-3xl font-bold tracking-tight text-[var(--foreground)] sm:text-4xl">
+                    <h1 className="mt-2 text-3xl font-bold tracking-normal text-[var(--foreground)] sm:text-4xl">
                       {item.title}
                     </h1>
                   </div>

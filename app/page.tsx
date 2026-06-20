@@ -155,7 +155,7 @@ export default function Home() {
 
         <section className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-5 px-1 py-2 motion-reveal" style={{ animationDelay: "140ms" }}>
-            <h1 className="max-w-4xl text-[clamp(2.9rem,7vw,5.9rem)] font-semibold tracking-tight text-[var(--foreground)] text-balance leading-[0.95]">
+            <h1 className="max-w-4xl text-4xl font-semibold leading-none tracking-normal text-[var(--foreground)] text-balance sm:text-5xl lg:text-7xl">
               {heroNameWords.map((word, index) => (
                 <span
                   key={word}
@@ -219,7 +219,7 @@ export default function Home() {
                   <BriefcaseIcon className="h-4 w-4 text-[var(--accent)]" />
                   Snapshot
                 </p>
-                <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--foreground)]">
+                <h2 className="mt-2 text-2xl font-bold tracking-normal text-[var(--foreground)]">
                   {profile.snapshotTitle}
                 </h2>
               </div>
@@ -287,7 +287,7 @@ export default function Home() {
                 {renderIcon(item.icon, "h-4 w-4 text-[var(--accent)]")}
                 Value
               </div>
-              <h3 className="mt-3 text-xl font-bold tracking-tight text-[var(--foreground)]">
+              <h3 className="mt-3 text-xl font-bold tracking-normal text-[var(--foreground)]">
                 {item.title}
               </h3>
               <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{item.description}</p>

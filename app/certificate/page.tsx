@@ -87,7 +87,7 @@ export default function CertificatePage() {
                       </div>
                     ) : null}
                     <div className="min-w-0">
-                      <h2 className="text-xl font-bold tracking-tight text-[var(--foreground)]">
+                      <h2 className="text-xl font-bold tracking-normal text-[var(--foreground)]">
                         {certificate.title}
                       </h2>
                       <p className="mt-1 text-sm font-black text-[var(--foreground)]">{certificate.issuer}</p>

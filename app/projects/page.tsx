@@ -64,7 +64,7 @@ export default function ProjectsPage() {
               >
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <h2 className="mt-1 text-xl font-bold tracking-tight text-[var(--foreground)]">
+                    <h2 className="mt-1 text-xl font-bold tracking-normal text-[var(--foreground)]">
                       {project.title}
                     </h2>
                     {project.featured ? (

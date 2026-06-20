@@ -177,8 +177,8 @@ export function SiteNavbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-[var(--surface-strong)] backdrop-blur-md supports-[backdrop-filter]:bg-[var(--surface-strong)]">
-      <div className="portfolio-navbar-shell mx-auto flex w-full max-w-7xl items-center px-4 py-3 sm:px-6 sm:py-4 lg:flex lg:items-center lg:justify-center lg:px-8 motion-reveal">
-        <div className="portfolio-navbar-mobile grid w-full grid-cols-[2.5rem_minmax(0,1fr)_2.75rem] items-center gap-2 rounded-2xl border border-[var(--border)] bg-[var(--surface-strong)] px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.08)] backdrop-blur-md lg:hidden">
+      <div className="portfolio-navbar-shell mx-auto flex w-full max-w-7xl items-center px-3 py-3 sm:px-6 sm:py-4 lg:flex lg:items-center lg:justify-center lg:px-8 motion-reveal">
+        <div className="portfolio-navbar-mobile grid w-full grid-cols-[2.25rem_minmax(0,1fr)_2.75rem] items-center gap-2 rounded-2xl border border-[var(--border)] bg-[var(--surface-strong)] px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.08)] backdrop-blur-md lg:hidden">
           <Link
             href="/"
             className="portfolio-navbar-logo relative flex h-8 w-8 shrink-0 overflow-hidden rounded-full shadow-[0_6px_16px_rgba(0,0,0,0.08)]"
@@ -196,7 +196,7 @@ export function SiteNavbar() {
 
           <Link
             href="/"
-            className="min-w-0 justify-self-center overflow-hidden text-ellipsis whitespace-nowrap text-center text-sm font-black uppercase tracking-[0.14em] text-[var(--foreground)]"
+            className="min-w-0 justify-self-center overflow-hidden text-ellipsis whitespace-nowrap text-center text-sm font-black uppercase tracking-[0.14em] text-[var(--foreground)] sm:text-base"
             aria-label="Go to home"
           >
             Siddhant Yojit
@@ -247,8 +247,8 @@ export function SiteNavbar() {
       </div>
 
       {isOpen ? (
-        <div className="border-t border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 backdrop-blur-md lg:hidden">
-          <nav className="mx-auto flex max-h-[calc(100dvh-5.5rem)] w-full max-w-7xl flex-col gap-2 overflow-y-auto pb-2">
+        <div className="border-t border-[var(--border)] bg-[var(--surface-strong)] px-3 py-3 backdrop-blur-md lg:hidden">
+          <nav className="mx-auto grid max-h-[calc(100dvh-5.5rem)] w-full max-w-7xl gap-2 overflow-y-auto pb-2 sm:grid-cols-2 xl:grid-cols-1">
             {navItems.map((item, index) => (
               <Link
                 key={item.label}

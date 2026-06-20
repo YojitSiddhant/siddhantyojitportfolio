@@ -65,7 +65,7 @@ export default function EducationPage() {
                         />
                       </div>
                     ) : null}
-                    <h2 className="text-xl font-bold tracking-tight text-[var(--foreground)]">
+                    <h2 className="text-xl font-bold tracking-normal text-[var(--foreground)]">
                       {item.institute}
                     </h2>
                   </div>
