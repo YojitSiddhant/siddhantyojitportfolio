@@ -3,6 +3,7 @@ export type WorkItem = {
   summary: string;
   screenshots: string[];
   links: Array<{ label: string; url: string }>;
+  logo?: string;
   order: number;
 };
 
@@ -12,6 +13,7 @@ export const workItems: WorkItem[] = [
     summary:
       "A designed website project for TechVanta Labs, focused on a clean product presentation and responsive layout.",
     screenshots: [],
+    logo: "/company-logos/techvanta-logo-v3.jpeg",
     links: [
       {
         label: "Live Site",

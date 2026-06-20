@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 import type { Metadata } from "next";
 import { workItems } from "@/data/work";
 
@@ -54,9 +54,22 @@ export default function MyWorkPage() {
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                   <div className="min-w-0 flex-1">
                     <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">My Work</p>
-                    <h1 className="mt-2 text-3xl font-bold tracking-normal text-[var(--foreground)] sm:text-4xl">
-                      {item.title}
-                    </h1>
+                    <div className="mt-2 flex flex-wrap items-center gap-3">
+                      {item.logo ? (
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-sm">
+                          <Image
+                            src={item.logo}
+                            alt={`${item.title} logo`}
+                            width={48}
+                            height={48}
+                            className="h-full w-full object-contain p-1.5"
+                          />
+                        </div>
+                      ) : null}
+                      <h1 className="text-3xl font-bold tracking-normal text-[var(--foreground)] sm:text-4xl">
+                        {item.title}
+                      </h1>
+                    </div>
                   </div>
                 </div>
 
