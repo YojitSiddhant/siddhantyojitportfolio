@@ -61,10 +61,10 @@ export default function MyWorkPage() {
             {sortedWorkItems.map((item, index) => (
               <article
                 key={item.title}
-                className="flex h-full flex-col gap-4 border-b border-[var(--border)] pb-5 motion-reveal"
+                className="flex h-full flex-col items-center gap-4 motion-reveal"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
-                <div className="flex items-start gap-3">
+                <div className="flex w-full flex-col items-center gap-3 text-center">
                   {item.logo ? (
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-sm">
                       <Image
@@ -78,9 +78,8 @@ export default function MyWorkPage() {
                     </div>
                   ) : null}
 
-                  <div className="min-w-0 flex-1">
-                    <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">My Work</p>
-                    <h2 className="mt-2 text-xl font-bold tracking-normal text-[var(--foreground)]">
+                  <div className="min-w-0">
+                    <h2 className="text-xl font-bold tracking-normal text-[var(--foreground)]">
                       {item.title}
                     </h2>
                   </div>
