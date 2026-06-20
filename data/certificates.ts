@@ -54,7 +54,7 @@ export const certificates = [
   {
     title: "Python",
     issuer: "New Horizon College Marathahalli",
-    issueDate: "9 Nov 2020 - 24 Nov 2020",
+    issueDate: "Nov 2020",
     logo: "/company-logos/nhcm-logo.jpeg",
     verificationLink: "",
     order: 7,
