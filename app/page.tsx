@@ -155,7 +155,7 @@ export default function Home() {
 
         <section className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-5 px-1 py-2 motion-reveal" style={{ animationDelay: "140ms" }}>
-            <h1 className="max-w-4xl text-4xl font-semibold leading-none tracking-normal text-[var(--foreground)] text-balance sm:text-5xl lg:text-7xl">
+            <h1 className="max-w-4xl text-3xl font-semibold leading-none tracking-normal text-[var(--foreground)] text-balance sm:text-5xl lg:text-7xl">
               {heroNameWords.map((word, index) => (
                 <span
                   key={word}
