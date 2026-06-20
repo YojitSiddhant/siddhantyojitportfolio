@@ -65,7 +65,7 @@ export default function CertificatePage() {
             {orderedCertificates.map((certificate, index) => (
               <article
                 key={certificate.title}
-                className="grid gap-4 border-b border-[var(--border)] pb-5 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:items-start motion-reveal"
+                className="flex flex-col gap-4 border-b border-[var(--border)] pb-5 motion-reveal"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
                 <div className="min-w-0">
@@ -98,18 +98,6 @@ export default function CertificatePage() {
                     <p>{certificate.issueDate}</p>
                   </div>
                 </div>
-
-                {certificate.image ? (
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-sm">
-                    <Image
-                      src={certificate.image}
-                      alt={`${certificate.title} certificate`}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 360px"
-                      className="object-contain p-2"
-                    />
-                  </div>
-                ) : null}
               </article>
             ))}
           </div>
