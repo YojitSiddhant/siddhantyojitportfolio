@@ -12,7 +12,7 @@ export const workItems: WorkItem[] = [
     title: "TechVanta Labs",
     summary: "",
     screenshots: [],
-    logo: "/company-logos/techvanta-logo-tight.png",
+    logo: "/company-logos/techvanta-logo-v3.jpeg",
     links: [],
     order: 1,
   },

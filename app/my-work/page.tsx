@@ -56,17 +56,20 @@ export default function MyWorkPage() {
                     <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">My Work</p>
                     <div className="mt-2 flex flex-wrap items-center gap-3">
                       {item.logo ? (
-                        <Image
-                          src={item.logo}
-                          alt={`${item.title} logo`}
-                          width={72}
-                          height={72}
-                          className="h-16 w-16 shrink-0 object-contain"
-                        />
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-sm">
+                          <Image
+                            src={item.logo}
+                            alt={`${item.title} logo`}
+                            width={48}
+                            height={48}
+                            className="h-full w-full object-cover"
+                            priority
+                          />
+                        </div>
                       ) : null}
-                      <h1 className="text-3xl font-bold tracking-normal text-[var(--foreground)] sm:text-4xl">
+                      <h2 className="text-xl font-bold tracking-normal text-[var(--foreground)]">
                         {item.title}
-                      </h1>
+                      </h2>
                     </div>
                   </div>
                 </div>
