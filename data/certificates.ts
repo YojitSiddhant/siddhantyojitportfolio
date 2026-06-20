@@ -62,7 +62,7 @@ export const certificates = [
   {
     title: "Machine Learning",
     issuer: "New Horizon College Marathahalli",
-    issueDate: "Jan 2022 - Feb 2022",
+    issueDate: "Jan 2022",
     logo: "/company-logos/nhcm-logo.jpeg",
     verificationLink: "",
     order: 8,
