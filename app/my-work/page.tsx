@@ -28,6 +28,17 @@ function WorkIcon({ className }: { className?: string }) {
   );
 }
 
+function ReactIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
+      <ellipse cx="12" cy="12" rx="8.2" ry="3.2" stroke="currentColor" strokeWidth="1.6" />
+      <ellipse cx="12" cy="12" rx="8.2" ry="3.2" stroke="currentColor" strokeWidth="1.6" transform="rotate(60 12 12)" />
+      <ellipse cx="12" cy="12" rx="8.2" ry="3.2" stroke="currentColor" strokeWidth="1.6" transform="rotate(120 12 12)" />
+      <circle cx="12" cy="12" r="1.8" fill="currentColor" />
+    </svg>
+  );
+}
+
 export default function MyWorkPage() {
   return (
     <main className="relative isolate overflow-hidden">
@@ -94,8 +105,9 @@ export default function MyWorkPage() {
                         href={link.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="rounded-full border border-[var(--border)] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                        className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
                       >
+                        <ReactIcon className="h-3.5 w-3.5" />
                         {link.label}
                       </a>
                     ))}
