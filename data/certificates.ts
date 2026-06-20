@@ -38,7 +38,7 @@ export const certificates = [
   {
     title: "Android App Development",
     issuer: "New Horizon College Marathahalli",
-    issueDate: "23 Jan 2023 - 30 Jan 2023",
+    issueDate: "Jan 2023",
     logo: "/company-logos/nhcm-logo.jpeg",
     verificationLink: "",
     order: 5,
@@ -62,7 +62,7 @@ export const certificates = [
   {
     title: "Machine Learning",
     issuer: "New Horizon College Marathahalli",
-    issueDate: "17 Jan 2022 - 6 Feb 2022",
+    issueDate: "Jan 2022 - Feb 2022",
     logo: "/company-logos/nhcm-logo.jpeg",
     verificationLink: "",
     order: 8,
