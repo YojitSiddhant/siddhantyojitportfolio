@@ -6,4 +6,18 @@ export type WorkItem = {
   order: number;
 };
 
-export const workItems: WorkItem[] = [];
+export const workItems: WorkItem[] = [
+  {
+    title: "TechVanta Labs",
+    summary:
+      "A designed website project for TechVanta Labs, focused on a clean product presentation and responsive layout.",
+    screenshots: [],
+    links: [
+      {
+        label: "Live Site",
+        url: "https://techvantalabs.com/",
+      },
+    ],
+    order: 1,
+  },
+];

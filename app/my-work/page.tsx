@@ -40,7 +40,7 @@ export default function MyWorkPage() {
             <WorkIcon className="h-4 w-4 text-[var(--accent)]" />
             My Work
           </div>
-          <div className="text-sm font-black text-[var(--foreground)]">Coming soon</div>
+          <div className="text-sm font-black text-[var(--foreground)]">Featured work</div>
         </div>
 
         <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
