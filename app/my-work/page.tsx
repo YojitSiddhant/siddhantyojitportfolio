@@ -99,7 +99,7 @@ export default function MyWorkPage() {
                 ) : null}
 
                 {Array.isArray(item.links) && item.links.length > 0 ? (
-                  <div className="mt-auto flex flex-wrap gap-2 pt-1">
+                  <div className="mt-auto flex w-full flex-wrap justify-center gap-2 pt-1">
                     {(item.links as Array<{ label: string; url: string }>).map((link) => (
                       <a
                         key={`${item.title}-${link.label}`}
