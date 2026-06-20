@@ -10,16 +10,10 @@ export type WorkItem = {
 export const workItems: WorkItem[] = [
   {
     title: "TechVanta Labs",
-    summary:
-      "A designed website project for TechVanta Labs, focused on a clean product presentation and responsive layout.",
+    summary: "",
     screenshots: [],
     logo: "/company-logos/techvanta-logo-v3.jpeg",
-    links: [
-      {
-        label: "Live Site",
-        url: "https://techvantalabs.com/",
-      },
-    ],
+    links: [],
     order: 1,
   },
 ];
