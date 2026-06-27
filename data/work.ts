@@ -21,4 +21,16 @@ export const workItems: WorkItem[] = [
     ],
     order: 1,
   },
+  {
+    title: "Selco Lift",
+    summary: "",
+    screenshots: [],
+    links: [
+      {
+        label: "Visit Site",
+        url: "https://selcolift.com/",
+      },
+    ],
+    order: 2,
+  },
 ];

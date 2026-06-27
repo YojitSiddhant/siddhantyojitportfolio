@@ -77,7 +77,11 @@ export default function MyWorkPage() {
                         priority={index === 0}
                       />
                     </div>
-                  ) : null}
+                  ) : (
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-dashed border-[var(--border)] bg-[var(--surface)] text-[10px] font-black uppercase tracking-[0.18em] text-[var(--muted)] shadow-sm">
+                      Photo
+                    </div>
+                  )}
 
                   <div className="min-w-0">
                     {item.links.length > 0 ? (
