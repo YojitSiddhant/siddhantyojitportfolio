@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { workItems } from "@/data/work";
 
@@ -79,9 +80,20 @@ export default function MyWorkPage() {
                   ) : null}
 
                   <div className="min-w-0">
-                    <h2 className="text-xl font-bold tracking-normal text-[var(--foreground)]">
-                      {item.title}
-                    </h2>
+                    {item.links.length > 0 ? (
+                      <Link
+                        href={item.links[0].url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group inline-flex items-center gap-2 text-xl font-bold tracking-normal text-[var(--foreground)] transition-colors hover:text-[var(--accent)]"
+                      >
+                        <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+                          {item.title}
+                        </span>
+                      </Link>
+                    ) : (
+                      <h2 className="text-xl font-bold tracking-normal text-[var(--foreground)]">{item.title}</h2>
+                    )}
                   </div>
                 </div>
 
@@ -97,9 +109,9 @@ export default function MyWorkPage() {
                   </div>
                 ) : null}
 
-                {Array.isArray(item.links) && item.links.length > 0 ? (
+                {Array.isArray(item.links) && item.links.length > 1 ? (
                   <div className="mt-auto flex w-full flex-wrap justify-center gap-2 pt-1">
-                    {(item.links as Array<{ label: string; url: string }>).map((link) => (
+                    {(item.links as Array<{ label: string; url: string }>).slice(1).map((link) => (
                       <a
                         key={`${item.title}-${link.label}`}
                         href={link.url}
