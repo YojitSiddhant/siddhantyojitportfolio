@@ -34,4 +34,17 @@ export const workItems: WorkItem[] = [
     ],
     order: 2,
   },
+  {
+    title: "Araq",
+    summary: "",
+    screenshots: [],
+    logo: "/company-logos/araq-logo-black.png",
+    links: [
+      {
+        label: "Visit Site",
+        url: "https://araq.techvantalabs.com/",
+      },
+    ],
+    order: 3,
+  },
 ];
