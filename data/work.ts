@@ -25,6 +25,7 @@ export const workItems: WorkItem[] = [
     title: "Selco Lift",
     summary: "",
     screenshots: [],
+    logo: "/company-logos/selco-lift-logo.webp",
     links: [
       {
         label: "Visit Site",
