@@ -73,4 +73,17 @@ export const workItems: WorkItem[] = [
     ],
     order: 5,
   },
+  {
+    title: "TicketDesk24",
+    summary: "",
+    screenshots: [],
+    logo: "/company-logos/ticketdesk24.png",
+    links: [
+      {
+        label: "Visit Site",
+        url: "https://ticketdesk24.com/about",
+      },
+    ],
+    order: 6,
+  },
 ];
