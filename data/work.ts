@@ -86,4 +86,17 @@ export const workItems: WorkItem[] = [
     ],
     order: 6,
   },
+  {
+    title: "Jullix",
+    summary: "",
+    screenshots: [],
+    logo: "/company-logos/jullix.jpg",
+    links: [
+      {
+        label: "Visit Site",
+        url: "https://jullixweb.mktpls.com/",
+      },
+    ],
+    order: 7,
+  },
 ];
