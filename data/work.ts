@@ -47,4 +47,17 @@ export const workItems: WorkItem[] = [
     ],
     order: 3,
   },
+  {
+    title: "Dainik Bhaskar",
+    summary: "",
+    screenshots: [],
+    logo: "/company-logos/dainik-bhaskar-genius-hunt-2026.jpeg",
+    links: [
+      {
+        label: "Visit Site",
+        url: "https://dblms.techvantalabs.com/",
+      },
+    ],
+    order: 4,
+  },
 ];
