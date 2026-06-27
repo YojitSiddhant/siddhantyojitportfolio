@@ -248,7 +248,7 @@ export function SiteNavbar() {
 
       {isOpen ? (
         <div className="border-t border-[var(--border)] bg-[var(--surface-strong)] px-3 py-3 backdrop-blur-md lg:hidden">
-          <nav className="mx-auto grid max-h-[calc(100dvh-5.5rem)] w-full max-w-7xl gap-2 overflow-y-auto pb-2 sm:grid-cols-2 xl:grid-cols-1">
+          <nav className="mx-auto grid max-h-[calc(100dvh-5.5rem)] w-full max-w-7xl gap-2 overflow-y-auto pb-2 md:grid-cols-2 xl:grid-cols-1">
             {navItems.map((item, index) => (
               <Link
                 key={item.label}

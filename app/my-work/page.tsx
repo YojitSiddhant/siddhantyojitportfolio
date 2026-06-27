@@ -48,7 +48,7 @@ export default function MyWorkPage() {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[var(--background)]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[18rem] bg-[var(--background)]" />
 
-      <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
+      <section className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border)] px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
           <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
             <WorkIcon className="h-4 w-4 text-[var(--accent)]" />
@@ -58,11 +58,11 @@ export default function MyWorkPage() {
         </div>
 
         <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
-          <div className="grid justify-items-center gap-x-16 gap-y-16 sm:grid-cols-2 sm:gap-x-20 sm:gap-y-18 xl:grid-cols-3 xl:gap-x-24">
+          <div className="grid justify-items-center gap-10 md:grid-cols-2 md:gap-12 xl:grid-cols-3 xl:gap-14">
             {sortedWorkItems.map((item, index) => (
               <article
                 key={item.title}
-                className="flex h-full w-full max-w-[18rem] flex-col items-center gap-6 motion-reveal"
+                className="flex h-full w-full max-w-[20rem] flex-col items-center gap-6 motion-reveal md:max-w-[22rem] xl:max-w-[24rem]"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
                 <div className="flex w-full flex-col items-center gap-4 text-center">
@@ -89,7 +89,7 @@ export default function MyWorkPage() {
                         href={item.links[0].url}
                         target="_blank"
                         rel="noreferrer"
-                        className="group inline-flex items-center gap-2 text-xl font-bold tracking-normal text-[var(--foreground)]"
+                        className="group inline-flex items-center gap-2 text-lg font-bold tracking-normal text-[var(--foreground)] sm:text-xl"
                       >
                         <span className="text-[var(--foreground)] transition-colors duration-300 group-hover:text-[var(--accent)]">
                           {item.title}

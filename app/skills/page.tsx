@@ -71,11 +71,11 @@ export default function SkillsPage() {
         </div>
 
         <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
-          <div className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2">
+          <div className="mx-auto grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {skills.map((skill, index) => (
               <article
                 key={skill.name}
-                className="flex flex-col items-center justify-center gap-3 px-4 py-6 text-center motion-reveal"
+                className="flex flex-col items-center justify-center gap-3 rounded-3xl border border-[var(--border)] bg-[var(--surface)] px-4 py-6 text-center motion-reveal"
                 style={{ animationDelay: `${220 + index * 100}ms` }}
               >
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center">
