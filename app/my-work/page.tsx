@@ -58,14 +58,14 @@ export default function MyWorkPage() {
         </div>
 
         <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid justify-items-center gap-x-16 gap-y-16 sm:grid-cols-2 sm:gap-x-20 sm:gap-y-18 xl:grid-cols-3 xl:gap-x-24">
             {sortedWorkItems.map((item, index) => (
               <article
                 key={item.title}
-                className="flex h-full flex-col items-center gap-4 motion-reveal"
+                className="flex h-full w-full max-w-[18rem] flex-col items-center gap-6 motion-reveal"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
-                <div className="flex w-full flex-col items-center gap-3 text-center">
+                <div className="flex w-full flex-col items-center gap-4 text-center">
                   {item.logo ? (
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-sm">
                       <Image
