@@ -60,4 +60,17 @@ export const workItems: WorkItem[] = [
     ],
     order: 4,
   },
+  {
+    title: "MyMeet",
+    summary: "",
+    screenshots: [],
+    logo: "/company-logos/my-meet.png",
+    links: [
+      {
+        label: "Visit Site",
+        url: "https://mymeet.techvantalabs.com/",
+      },
+    ],
+    order: 5,
+  },
 ];
