@@ -85,9 +85,9 @@ export default function MyWorkPage() {
                         href={item.links[0].url}
                         target="_blank"
                         rel="noreferrer"
-                        className="group inline-flex items-center gap-2 text-xl font-bold tracking-normal text-[var(--foreground)] transition-colors hover:text-[var(--accent)]"
+                        className="group inline-flex items-center gap-2 text-xl font-bold tracking-normal text-[var(--foreground)]"
                       >
-                        <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+                        <span className="text-[var(--foreground)] transition-colors duration-300 group-hover:text-[var(--accent)] group-hover:translate-x-0.5">
                           {item.title}
                         </span>
                       </Link>
