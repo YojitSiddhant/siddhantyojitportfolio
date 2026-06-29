@@ -4,10 +4,10 @@ A clean static Next.js portfolio for Siddhant Yojit.
 
 ## What’s included
 
-- Public routes plus an admin booking dashboard
+- Public routes only
 - Static local content in `data/`
 - The existing visual design
-- A slot booking flow on the contact page
+- The contact page and Web3Forms integration
 
 ## Routes
 
@@ -19,7 +19,6 @@ A clean static Next.js portfolio for Siddhant Yojit.
 - `/certificate`
 - `/experience`
 - `/contact`
-- `/admin`
 
 ## Development
 
@@ -28,8 +27,15 @@ npm install
 npm run dev
 ```
 
+## Environment
+
+Set the Web3Forms access key if you want the contact form to submit successfully:
+
+```bash
+NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=""
+```
+
 ## Notes
 
-- Booking requests are stored in `data/booking-requests.json`.
-- The admin page shows the latest booking requests in newest-first order.
-- `/admin` is protected with the password `123`.
+- There is no CMS, admin area, database, or auth layer anymore.
+- All public content is stored locally in the `data/` folder.
