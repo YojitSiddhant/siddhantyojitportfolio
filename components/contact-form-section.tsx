@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, type ChangeEvent, type FormEvent, type FocusEvent } from "react";
+import { useState, type ChangeEvent, type FocusEvent, type FormEvent, type ReactElement } from "react";
 
-type ContactFieldName = "name" | "phone" | "email" | "message";
+type BookingFieldName = "name" | "phone" | "email" | "preferredDate" | "preferredTime" | "meetingMode" | "topic" | "message";
 
-type ContactValues = Record<ContactFieldName, string>;
-type ContactErrors = Partial<Record<ContactFieldName, string>>;
-type ContactTouched = Partial<Record<ContactFieldName, boolean>>;
+type BookingValues = Record<BookingFieldName, string>;
+type BookingErrors = Partial<Record<BookingFieldName, string>>;
+type BookingTouched = Partial<Record<BookingFieldName, boolean>>;
 type PopupError = {
   field: string;
   message: string;
@@ -14,21 +14,72 @@ type PopupError = {
 
 type SubmissionState = "idle" | "submitting" | "submitted" | "invalid" | "error";
 
-type ContactField = {
-  label: string;
-  name: Exclude<ContactFieldName, "message">;
-  type: "text" | "tel" | "email";
-  placeholder: string;
-  required?: boolean;
-  autoComplete: string;
-  inputMode?: "text" | "email" | "tel";
-  minLength?: number;
-  maxLength?: number;
-  pattern?: string;
-  icon: ({ className }: { className?: string }) => React.JSX.Element;
+type BookingLinks = {
+  email: string;
+  phone: string;
+  whatsapp: string;
+  admin: string;
 };
 
-const contactFields: ContactField[] = [
+type BookingResponse = {
+  id: string;
+  name: string;
+  preferredDate: string;
+  preferredTime: string;
+  meetingMode: string;
+  topic: string;
+};
+
+type BookingField = {
+  label: string;
+  name: Exclude<BookingFieldName, "message">;
+  type: "text" | "tel" | "email" | "date" | "time" | "select";
+  placeholder?: string;
+  required?: boolean;
+  autoComplete?: string;
+  inputMode?: "text" | "email" | "tel" | "numeric" | "decimal";
+  minLength?: number;
+  maxLength?: number;
+  icon: ({ className }: { className?: string }) => ReactElement;
+};
+
+const initialValues: BookingValues = {
+  name: "",
+  phone: "+91 ",
+  email: "",
+  preferredDate: "",
+  preferredTime: "",
+  meetingMode: "",
+  topic: "",
+  message: "",
+};
+
+const fieldLabels: Record<BookingFieldName, string> = {
+  name: "Name",
+  phone: "Phone Number",
+  email: "Email",
+  preferredDate: "Preferred date",
+  preferredTime: "Preferred time",
+  meetingMode: "Meeting mode",
+  topic: "Discussion topic",
+  message: "Agenda",
+};
+
+const meetingModeOptions = [
+  { label: "Online call", value: "Online call" },
+  { label: "Phone call", value: "Phone call" },
+  { label: "In person", value: "In person" },
+];
+
+const topicOptions = [
+  { label: "Project discussion", value: "Project discussion" },
+  { label: "Portfolio review", value: "Portfolio review" },
+  { label: "Freelance enquiry", value: "Freelance enquiry" },
+  { label: "Hiring / internship", value: "Hiring / internship" },
+  { label: "Other", value: "Other" },
+];
+
+const bookingFields: BookingField[] = [
   {
     label: "Name",
     name: "name",
@@ -63,36 +114,56 @@ const contactFields: ContactField[] = [
     inputMode: "email",
     minLength: 5,
     maxLength: 254,
-    pattern: "^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$",
+  },
+  {
+    label: "Preferred date",
+    name: "preferredDate",
+    icon: CalendarIcon,
+    type: "date",
+    required: true,
+  },
+  {
+    label: "Preferred time",
+    name: "preferredTime",
+    icon: ClockIcon,
+    type: "time",
+    required: true,
   },
 ];
 
-const fieldLabels: Record<ContactFieldName, string> = {
-  name: "Name",
-  phone: "Phone Number",
-  email: "Email",
-  message: "Message",
-};
-
-type ContactLinks = {
-  email: string;
-  phone: string;
-  whatsapp: string;
-  linkedin: string;
-  github: string;
-};
-
-type CardTone = "whatsapp" | "phone" | "linkedin" | "github";
-
-const initialValues: ContactValues = {
-  name: "",
-  phone: "+91 ",
-  email: "",
-  message: "",
-};
-
 function trimValue(value: string) {
   return value.trim();
+}
+
+function getTodayInputValue() {
+  const today = new Date();
+  today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+  return today.toISOString().slice(0, 10);
+}
+
+function getDateLabel(dateValue: string) {
+  const parsed = new Date(`${dateValue}T00:00:00`);
+  if (Number.isNaN(parsed.getTime())) {
+    return dateValue;
+  }
+
+  return new Intl.DateTimeFormat("en-IN", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  }).format(parsed);
+}
+
+function formatTimeLabel(value: string) {
+  if (!value) return value;
+  const [hoursText, minutesText] = value.split(":");
+  const hours = Number(hoursText);
+  const minutes = Number(minutesText);
+  if (Number.isNaN(hours) || Number.isNaN(minutes)) return value;
+
+  const period = hours >= 12 ? "PM" : "AM";
+  const normalizedHours = hours % 12 || 12;
+  return `${normalizedHours}:${minutesText} ${period}`;
 }
 
 function FormIcon({ className }: { className?: string }) {
@@ -111,6 +182,34 @@ function FormIcon({ className }: { className?: string }) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+    </svg>
+  );
+}
+
+function CalendarIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
+      <path
+        d="M7 4.5v2M17 4.5v2M5 8.5h14"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M6.5 6.5h11A2.5 2.5 0 0 1 20 9v9A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5V9a2.5 2.5 0 0 1 2.5-2.5Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function ClockIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
+      <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M12 7.8V12l3 1.8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -185,68 +284,17 @@ function WhatsAppIcon({ className }: { className?: string }) {
   );
 }
 
-function LinkedInIcon({ className }: { className?: string }) {
+function LinkArrowIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <rect x="4.5" y="4.5" width="15" height="15" rx="4" fill="currentColor" />
-      <text
-        x="12"
-        y="16.2"
-        textAnchor="middle"
-        fill="#ffffff"
-        fontFamily="Arial, Helvetica, sans-serif"
-        fontSize="9.6"
-        fontWeight="700"
-      >
-        in
-      </text>
+      <path d="M7 17 17 7M10 7h7v7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
-function GitHubIcon({ className }: { className?: string }) {
+function SubmitIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.08" />
-      <path
-        d="M12 4.2c-4.3 0-7.8 3.5-7.8 7.8 0 3.4 2.2 6.3 5.3 7.4.4.1.5-.1.5-.3v-1.3c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8 0 1.2.8 1.2.8.7 1.2 1.8.8 2.3.6.1-.5.3-.8.5-1-1.8-.2-3.7-.9-3.7-4 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8.6-.2 1.3-.3 2-.3s1.4.1 2 .3c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.2.8 2.1 0 3.1-1.9 3.8-3.7 4 .3.3.5.7.5 1.4v2.1c0 .2.1.4.5.3 3.1-1.1 5.3-4 5.3-7.4 0-4.3-3.5-7.8-7.8-7.8Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
-
-function ReactAtomIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <ellipse cx="12" cy="12" rx="8.5" ry="3.2" stroke="currentColor" strokeWidth="1.6" />
-      <ellipse
-        cx="12"
-        cy="12"
-        rx="8.5"
-        ry="3.2"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        transform="rotate(60 12 12)"
-      />
-      <ellipse
-        cx="12"
-        cy="12"
-        rx="8.5"
-        ry="3.2"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        transform="rotate(120 12 12)"
-      />
-      <circle cx="12" cy="12" r="1.7" fill="currentColor" />
-    </svg>
-  );
-}
-
-function SendIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <path fill="none" d="M0 0h24v24H0z" />
       <path
         fill="currentColor"
         d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
@@ -255,27 +303,19 @@ function SendIcon({ className }: { className?: string }) {
   );
 }
 
-const iconToneClassName: Record<CardTone, string> = {
-  whatsapp: "text-[var(--foreground)]",
-  phone: "text-[var(--foreground)]",
-  linkedin: "text-[var(--foreground)]",
-  github: "text-[var(--foreground)]",
-};
-
-const buttonToneClassName: Record<CardTone, string> = {
-  whatsapp: "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]",
-  phone: "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]",
-  linkedin: "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]",
-  github: "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]",
-};
-
-type QuickAction = {
-  label: string;
-  href: string;
-  Icon: ({ className }: { className?: string }) => React.JSX.Element;
-  iconClassName: string;
-  tone: CardTone;
-};
+function BookingConfirmationIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
+      <path
+        d="M12 3.5 19 6v5.2c0 4.6-3.1 8.5-7 9.8-3.9-1.3-7-5.2-7-9.8V6l7-2.5Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path d="m9.5 12.2 1.8 1.8 3.3-3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 function validateName(value: string) {
   const trimmed = trimValue(value);
@@ -344,71 +384,131 @@ function validateEmail(value: string) {
   return "";
 }
 
-function validateMessage(value: string) {
-  const trimmed = trimValue(value);
+function validatePreferredDate(value: string) {
+  if (!value) return "Please choose a preferred date.";
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return "Please enter a valid date.";
 
-  if (!trimmed) return "Please add a message.";
-  if (trimmed.length < 20) return "Message should be at least 20 characters.";
-  if (trimmed.length > 1000) return "Message must be 1000 characters or fewer.";
+  const selected = new Date(`${value}T00:00:00`);
+  if (Number.isNaN(selected.getTime())) return "Please enter a valid date.";
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  if (selected < today) return "Choose today or a future date.";
 
   return "";
 }
 
-function validateValues(values: ContactValues) {
+function validatePreferredTime(value: string) {
+  if (!value) return "Please choose a preferred time.";
+  if (!/^\d{2}:\d{2}$/.test(value)) return "Please enter a valid time.";
+
+  const [hoursText, minutesText] = value.split(":");
+  const hours = Number(hoursText);
+  const minutes = Number(minutesText);
+
+  if (Number.isNaN(hours) || Number.isNaN(minutes)) {
+    return "Please enter a valid time.";
+  }
+
+  const totalMinutes = hours * 60 + minutes;
+  const openingMinutes = 9 * 60;
+  const closingMinutes = 19 * 60 + 30;
+
+  if (totalMinutes < openingMinutes || totalMinutes > closingMinutes) {
+    return "Select a time between 09:00 and 19:30.";
+  }
+
+  return "";
+}
+
+function validateMeetingMode(value: string) {
+  if (!value) return "Please select a meeting mode.";
+  if (!meetingModeOptions.some((option) => option.value === value)) return "Please select a valid meeting mode.";
+  return "";
+}
+
+function validateTopic(value: string) {
+  if (!value) return "Please choose a discussion topic.";
+  if (!topicOptions.some((option) => option.value === value)) return "Please choose a valid topic.";
+  return "";
+}
+
+function validateMessage(value: string) {
+  const trimmed = trimValue(value);
+
+  if (!trimmed) return "Please add a short agenda for the meeting.";
+  if (trimmed.length < 20) return "Agenda should be at least 20 characters.";
+  if (trimmed.length > 1000) return "Agenda must be 1000 characters or fewer.";
+
+  return "";
+}
+
+function validateValues(values: BookingValues) {
   return {
     name: validateName(values.name),
     phone: validatePhone(values.phone),
     email: validateEmail(values.email),
+    preferredDate: validatePreferredDate(values.preferredDate),
+    preferredTime: validatePreferredTime(values.preferredTime),
+    meetingMode: validateMeetingMode(values.meetingMode),
+    topic: validateTopic(values.topic),
     message: validateMessage(values.message),
-  } satisfies Record<ContactFieldName, string>;
+  } satisfies Record<BookingFieldName, string>;
 }
 
-export function ContactFormSection({ links }: { links: ContactLinks }) {
-  const [values, setValues] = useState<ContactValues>(initialValues);
-  const [errors, setErrors] = useState<ContactErrors>({});
-  const [touched, setTouched] = useState<ContactTouched>({});
+function DetailIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
+      <path d="M7 12h10M7 8h10M7 16h7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <circle cx="5" cy="8" r="1" fill="currentColor" />
+      <circle cx="5" cy="12" r="1" fill="currentColor" />
+      <circle cx="5" cy="16" r="1" fill="currentColor" />
+    </svg>
+  );
+}
+
+function MeetingIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
+      <path
+        d="M7 7.5A1.5 1.5 0 0 1 8.5 6h7A1.5 1.5 0 0 1 17 7.5v5A1.5 1.5 0 0 1 15.5 14h-3.1L9 17v-3H8.5A1.5 1.5 0 0 1 7 12.5v-5Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function AdminIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
+      <path
+        d="M12 3.5 19 6v5.2c0 4.6-3.1 8.5-7 9.8-3.9-1.3-7-5.2-7-9.8V6l7-2.5Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path d="M9.5 12 11 13.5 14.8 9.8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function ContactFormSection({ links, adminHref }: { links: BookingLinks; adminHref: string }) {
+  const [values, setValues] = useState<BookingValues>(initialValues);
+  const [errors, setErrors] = useState<BookingErrors>({});
+  const [touched, setTouched] = useState<BookingTouched>({});
   const [status, setStatus] = useState<SubmissionState>("idle");
   const [popupErrors, setPopupErrors] = useState<PopupError[]>([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const [submissionError, setSubmissionError] = useState("");
-  const web3formsAccessKey =
-    process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "2cc1e983-2754-448b-91d0-e027f0a9b727";
+  const [confirmedBooking, setConfirmedBooking] = useState<BookingResponse | null>(null);
 
-  const quickActions: QuickAction[] = [
-    {
-      label: "WhatsApp",
-      href: links.whatsapp,
-      Icon: WhatsAppIcon,
-      iconClassName: iconToneClassName.whatsapp,
-      tone: "whatsapp",
-    },
-    {
-      label: "Call",
-      href: `tel:${links.phone.replace(/\s+/g, "")}`,
-      Icon: PhoneIcon,
-      iconClassName: iconToneClassName.phone,
-      tone: "phone",
-    },
-    {
-      label: "LinkedIn",
-      href: links.linkedin,
-      Icon: LinkedInIcon,
-      iconClassName: iconToneClassName.linkedin,
-      tone: "linkedin",
-    },
-    {
-      label: "GitHub",
-      href: links.github,
-      Icon: GitHubIcon,
-      iconClassName: iconToneClassName.github,
-      tone: "github",
-    },
-  ];
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
-    const field = name as ContactFieldName;
+    const field = name as BookingFieldName;
     const nextValue = field === "phone" ? formatPhoneInput(value) : value;
 
     setValues((current) => ({ ...current, [field]: nextValue }));
@@ -424,9 +524,9 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
     }
   };
 
-  const handleBlur = (event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleBlur = (event: FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name } = event.target;
-    const field = name as ContactFieldName;
+    const field = name as BookingFieldName;
     const nextTouched = { ...touched, [field]: true };
     setTouched(nextTouched);
 
@@ -447,6 +547,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
     }
 
     setIsSuccessOpen(false);
+    setConfirmedBooking(null);
 
     const nextErrors = validateValues(values);
     const hasErrors = Object.values(nextErrors).some(Boolean);
@@ -455,6 +556,10 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
       name: true,
       phone: true,
       email: true,
+      preferredDate: true,
+      preferredTime: true,
+      meetingMode: true,
+      topic: true,
       message: true,
     });
     setErrors(nextErrors);
@@ -463,7 +568,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
       setStatus("invalid");
       setSubmissionError("");
       setPopupErrors(
-        (Object.keys(nextErrors) as ContactFieldName[])
+        (Object.keys(nextErrors) as BookingFieldName[])
           .map((fieldName) => ({
             field: fieldLabels[fieldName],
             message: nextErrors[fieldName],
@@ -474,53 +579,46 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
       return;
     }
 
-    if (!web3formsAccessKey) {
-      setStatus("error");
-      setSubmissionError("Missing Web3Forms access key. Add NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY in Vercel or .env.local.");
-      return;
-    }
-
-    const normalizedValues: ContactValues = {
+    const normalizedValues: BookingValues = {
       ...values,
       phone: normalizePhone(values.phone),
       name: trimValue(values.name),
       email: trimValue(values.email),
+      preferredDate: values.preferredDate,
+      preferredTime: values.preferredTime,
+      meetingMode: values.meetingMode,
+      topic: values.topic,
       message: trimValue(values.message),
     };
 
     setStatus("submitting");
     setSubmissionError("");
 
-    const payload = new FormData();
-    payload.set("access_key", web3formsAccessKey);
-    payload.set("subject", "New contact form submission");
-    payload.set("from_name", "Siddhant Yojit Portfolio");
-    payload.set("replyto", normalizedValues.email);
-    payload.set("name", normalizedValues.name);
-    payload.set("phone", normalizedValues.phone);
-    payload.set("email", normalizedValues.email);
-    payload.set("message", normalizedValues.message);
-
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/bookings", {
         method: "POST",
-        body: payload,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(normalizedValues),
       });
+
       const data = (await response.json().catch(() => null)) as
-        | { success?: boolean; message?: string }
+        | { success?: boolean; message?: string; booking?: BookingResponse }
         | null;
 
-      if (!response.ok || !data?.success) {
-        throw new Error(data?.message || "We could not send your message right now.");
+      if (!response.ok || !data?.success || !data.booking) {
+        throw new Error(data?.message || "We could not save your booking request right now.");
       }
 
       setStatus("submitted");
+      setConfirmedBooking(data.booking);
       setValues(initialValues);
       setErrors({});
       setTouched({});
       setIsSuccessOpen(true);
     } catch (error: unknown) {
-      const message = error instanceof Error ? error.message : "We could not send your message right now.";
+      const message = error instanceof Error ? error.message : "We could not save your booking request right now.";
       setStatus("error");
       setSubmissionError(message);
     }
@@ -533,8 +631,8 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
           className="fixed inset-0 z-[120] flex items-center justify-center bg-black/40 px-4 py-6 backdrop-blur-[2px]"
           role="dialog"
           aria-modal="true"
-          aria-labelledby="contact-validation-title"
-          aria-describedby="contact-validation-description"
+          aria-labelledby="booking-validation-title"
+          aria-describedby="booking-validation-description"
           onClick={() => setIsPopupOpen(false)}
         >
           <div
@@ -544,13 +642,13 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p
-                  id="contact-validation-title"
+                  id="booking-validation-title"
                   className="text-sm font-black uppercase tracking-[0.22em] text-[var(--accent)]"
                 >
-                  Validation error
+                  Check the slot details
                 </p>
-                <p id="contact-validation-description" className="mt-2 text-sm text-[var(--muted)]">
-                  Please fix the following fields before sending the message.
+                <p id="booking-validation-description" className="mt-2 text-sm text-[var(--muted)]">
+                  Please fix the highlighted booking fields before sending the request.
                 </p>
               </div>
               <button
@@ -592,8 +690,8 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
           className="fixed inset-0 z-[120] flex items-center justify-center bg-black/40 px-4 py-6 backdrop-blur-[2px]"
           role="dialog"
           aria-modal="true"
-          aria-labelledby="contact-success-title"
-          aria-describedby="contact-success-description"
+          aria-labelledby="booking-success-title"
+          aria-describedby="booking-success-description"
           onClick={() => {
             setIsSuccessOpen(false);
             setStatus("idle");
@@ -606,13 +704,13 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p
-                  id="contact-success-title"
+                  id="booking-success-title"
                   className="text-sm font-black uppercase tracking-[0.22em] text-[var(--accent)]"
                 >
-                  Message sent successfully
+                  Booking request sent
                 </p>
-                <p id="contact-success-description" className="mt-2 text-sm text-[var(--muted)]">
-                  The form has been reset and is ready for a new message.
+                <p id="booking-success-description" className="mt-2 text-sm text-[var(--muted)]">
+                  The slot request has been saved and will appear on the admin page.
                 </p>
               </div>
               <button
@@ -626,6 +724,32 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
               >
                 <span aria-hidden="true">×</span>
               </button>
+            </div>
+
+            <div className="mt-4 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4">
+              <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+                <BookingConfirmationIcon className="h-4 w-4 text-[var(--accent)]" />
+                Confirmation
+              </div>
+              {confirmedBooking ? (
+                <div className="mt-3 grid gap-2 text-sm text-[var(--muted)]">
+                  <p>
+                    Reference: <span className="font-black text-[var(--foreground)]">{confirmedBooking.id.slice(-6).toUpperCase()}</span>
+                  </p>
+                  <p>
+                    Slot:{" "}
+                    <span className="font-black text-[var(--foreground)]">
+                      {getDateLabel(confirmedBooking.preferredDate)} at {formatTimeLabel(confirmedBooking.preferredTime)}
+                    </span>
+                  </p>
+                  <p>
+                    Mode: <span className="font-black text-[var(--foreground)]">{confirmedBooking.meetingMode}</span>
+                  </p>
+                  <p>
+                    Topic: <span className="font-black text-[var(--foreground)]">{confirmedBooking.topic}</span>
+                  </p>
+                </div>
+              ) : null}
             </div>
 
             <div className="mt-5 flex justify-end">
@@ -644,19 +768,30 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
         </div>
       ) : null}
 
-      <section className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr] motion-reveal">
+      <section className="grid gap-5 lg:grid-cols-[1.06fr_0.94fr] motion-reveal">
         <div className="px-1 py-2 motion-reveal" style={{ animationDelay: "80ms" }}>
           <div className="border-b border-[var(--border)] pb-4">
-            <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-              <FormIcon className="h-4 w-4 text-[var(--accent)]" />
-              Send a message
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
+                <FormIcon className="h-4 w-4 text-[var(--accent)]" />
+                Book a slot
+              </p>
+              <span className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1 text-[0.68rem] font-black uppercase tracking-[0.2em] text-[var(--accent-strong)]">
+                Requests go to admin
+              </span>
+            </div>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+              Pick a time, share what you want to discuss, and I will review the request from the admin page.
             </p>
           </div>
 
           <form onSubmit={handleSubmit} noValidate className="mt-4 grid gap-3">
-            {contactFields.map((field) => {
+            {bookingFields.map((field) => {
               const fieldError = errors[field.name];
               const isInvalid = Boolean(fieldError && touched[field.name]);
+              const commonClasses = `w-full rounded-2xl border bg-[var(--surface-strong)] px-4 py-2.5 text-sm text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)] ${
+                isInvalid ? "border-[var(--accent)] focus:border-[var(--accent-strong)]" : "border-[var(--border)]"
+              }`;
 
               return (
                 <label key={field.name} className="grid gap-1.5">
@@ -664,36 +799,104 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                     <field.icon className="h-4 w-4 text-[var(--accent)]" />
                     {field.label}
                   </span>
-                  <input
-                    name={field.name}
-                    type={field.type}
-                    placeholder={field.placeholder}
-                    value={values[field.name]}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    required={field.required}
-                    autoComplete={field.autoComplete}
-                    inputMode={field.inputMode}
-                    minLength={field.minLength}
-                    maxLength={field.maxLength}
-                    pattern={field.pattern}
-                    aria-invalid={isInvalid}
-                    className={`w-full rounded-2xl border bg-[var(--surface-strong)] px-4 py-2.5 text-sm text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)] ${
-                      isInvalid ? "border-[var(--accent)] focus:border-[var(--accent-strong)]" : "border-[var(--border)]"
-                    }`}
-                  />
+
+                  {field.type === "date" || field.type === "time" ? (
+                    <input
+                      name={field.name}
+                      type={field.type}
+                      value={values[field.name]}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      required={field.required}
+                      aria-invalid={isInvalid}
+                      min={field.type === "date" ? getTodayInputValue() : "09:00"}
+                      max={field.type === "time" ? "19:30" : undefined}
+                      step={field.type === "time" ? 1800 : undefined}
+                      className={commonClasses}
+                    />
+                  ) : null}
+
+                  {field.type === "select" ? null : field.type !== "date" && field.type !== "time" ? (
+                    <input
+                      name={field.name}
+                      type={field.type}
+                      placeholder={field.placeholder}
+                      value={values[field.name]}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      required={field.required}
+                      autoComplete={field.autoComplete}
+                      inputMode={field.inputMode}
+                      minLength={field.minLength}
+                      maxLength={field.maxLength}
+                      aria-invalid={isInvalid}
+                      className={commonClasses}
+                    />
+                  ) : null}
                 </label>
               );
             })}
 
             <label className="grid gap-1.5">
               <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
-                <ReactAtomIcon className="h-4 w-4 text-[var(--accent)]" />
-                Message
+                <MeetingIcon className="h-4 w-4 text-[var(--accent)]" />
+                Meeting mode
+              </span>
+              <select
+                name="meetingMode"
+                value={values.meetingMode}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                required
+                aria-invalid={Boolean(errors.meetingMode && touched.meetingMode)}
+                className={`w-full rounded-2xl border bg-[var(--surface-strong)] px-4 py-2.5 text-sm text-[var(--foreground)] outline-none transition-colors focus:border-[var(--accent)] ${
+                  errors.meetingMode && touched.meetingMode
+                    ? "border-[var(--accent)] focus:border-[var(--accent-strong)]"
+                    : "border-[var(--border)]"
+                }`}
+              >
+                <option value="">Choose a meeting mode</option>
+                {meetingModeOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="grid gap-1.5">
+              <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+                <DetailIcon className="h-4 w-4 text-[var(--accent)]" />
+                Discussion topic
+              </span>
+              <select
+                name="topic"
+                value={values.topic}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                required
+                aria-invalid={Boolean(errors.topic && touched.topic)}
+                className={`w-full rounded-2xl border bg-[var(--surface-strong)] px-4 py-2.5 text-sm text-[var(--foreground)] outline-none transition-colors focus:border-[var(--accent)] ${
+                  errors.topic && touched.topic ? "border-[var(--accent)] focus:border-[var(--accent-strong)]" : "border-[var(--border)]"
+                }`}
+              >
+                <option value="">Choose a topic</option>
+                {topicOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="grid gap-1.5">
+              <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+                <MeetingIcon className="h-4 w-4 text-[var(--accent)]" />
+                Agenda
               </span>
               <textarea
                 name="message"
-                placeholder="Tell me what you need help with..."
+                placeholder="Tell me what you would like to cover in the meeting..."
                 value={values.message}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -728,11 +931,11 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
               >
                 <span className="send-button__svg-wrapper-1" aria-hidden="true">
                   <span className="send-button__svg-wrapper">
-                    <SendIcon className="send-button__icon h-6 w-6" />
+                    <SubmitIcon className="send-button__icon h-6 w-6" />
                   </span>
                 </span>
                 <span className="send-button__text">
-                  {status === "submitting" ? "Sending" : status === "submitted" ? "Sent" : "Send"}
+                  {status === "submitting" ? "Saving" : status === "submitted" ? "Saved" : "Request slot"}
                 </span>
               </button>
 
@@ -744,7 +947,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
 
               {status === "submitted" ? (
                 <p className="text-sm text-[var(--muted)]">
-                  Message sent successfully. I’ll get back to you as soon as I can.
+                  Your slot request is saved. You can share this page with the admin so they can review it.
                 </p>
               ) : null}
             </div>
@@ -754,80 +957,108 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
         <div className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
           <div className="flex justify-end xl:translate-x-10 xl:translate-y-2">
             <div className="flex h-full w-full max-w-full flex-col xl:max-w-[420px]">
-              <div className="flex flex-wrap items-center justify-center gap-3">
-                {quickActions.map(({ label, href, Icon, iconClassName, tone }, index) => {
-                  const isExternal = href.startsWith("http");
-                  return (
-                    <a
-                      key={label}
-                      href={href}
-                      target={isExternal ? "_blank" : undefined}
-                      rel={isExternal ? "noreferrer" : undefined}
-                      aria-label={label}
-                      className={`group inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-all duration-200 ease-out hover:scale-105 hover:shadow-[0_14px_30px_rgba(0,0,0,0.12)] motion-reveal sm:h-14 sm:w-14 ${buttonToneClassName[tone]}`}
-                      style={{ animationDelay: `${220 + index * 90}ms` }}
-                    >
-                      <Icon className={`h-6 w-6 transition-transform duration-200 group-hover:scale-110 sm:h-7 sm:w-7 ${iconClassName}`} />
-                    </a>
-                  );
-                })}
-              </div>
+              <div className="rounded-[2rem] border border-[var(--border)] bg-[var(--surface-strong)] p-4 shadow-sm motion-reveal sm:p-5">
+                <div className="flex items-center justify-between gap-3 border-b border-[var(--border)] pb-4">
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.28em] text-[var(--foreground)]">How booking works</p>
+                    <h2 className="mt-2 text-2xl font-bold tracking-normal text-[var(--foreground)]">
+                      A simple slot request flow
+                    </h2>
+                  </div>
+                  <div className="rounded-full border border-[var(--border)] bg-[var(--accent-soft)] px-3 py-1 text-[0.68rem] font-black uppercase tracking-[0.2em] text-[var(--accent-strong)]">
+                    Admin ready
+                  </div>
+                </div>
 
-              <div
-                className="mx-auto mt-5 w-full max-w-full rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 shadow-sm motion-reveal sm:max-w-[380px]"
-                style={{ animationDelay: "420ms" }}
-              >
-                <p className="text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-                  Quick details
-                </p>
-                <p className="mt-1.5 text-xs leading-5 text-[var(--muted)]">
-                  Share these details in your message so I can reply quickly and clearly.
-                </p>
-                <div className="mt-3 grid gap-2.5">
-                  <div className="flex flex-col gap-1 border-b border-[var(--border)] pb-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
-                    <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--foreground)]">
-                      Project type
-                    </p>
-                    <p className="max-w-none text-left text-xs text-[var(--muted)] sm:max-w-[13rem] sm:text-right">
-                      Website, UI redesign, portfolio, or freelance work.
-                    </p>
+                <div className="mt-4 grid gap-3">
+                  <div className="flex gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-3">
+                    <CalendarIcon className="mt-0.5 h-5 w-5 shrink-0 text-[var(--accent)]" />
+                    <div>
+                      <p className="text-sm font-black uppercase tracking-[0.2em] text-[var(--foreground)]">Pick a slot</p>
+                      <p className="mt-1 text-sm text-[var(--muted)]">
+                        Choose a date and time that works for you. The request is saved for admin review.
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex flex-col gap-1 border-b border-[var(--border)] pb-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
-                    <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--foreground)]">
-                      Timeline
-                    </p>
-                    <p className="max-w-none text-left text-xs text-[var(--muted)] sm:max-w-[13rem] sm:text-right">
-                      Let me know your expected deadline or urgency.
-                    </p>
+                  <div className="flex gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-3">
+                    <DetailIcon className="mt-0.5 h-5 w-5 shrink-0 text-[var(--accent)]" />
+                    <div>
+                      <p className="text-sm font-black uppercase tracking-[0.2em] text-[var(--foreground)]">Share context</p>
+                      <p className="mt-1 text-sm text-[var(--muted)]">
+                        Add the agenda and the best way to meet so the admin can prepare before the call.
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
-                    <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--foreground)]">
-                      Best contact time
-                    </p>
-                    <p className="max-w-none text-left text-xs text-[var(--muted)] sm:max-w-[13rem] sm:text-right">
-                      Mention the time window that works for you.
-                    </p>
+                  <div className="flex gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-3">
+                    <AdminIcon className="mt-0.5 h-5 w-5 shrink-0 text-[var(--accent)]" />
+                    <div>
+                      <p className="text-sm font-black uppercase tracking-[0.2em] text-[var(--foreground)]">Admin reviews</p>
+                      <p className="mt-1 text-sm text-[var(--muted)]">
+                        The booking appears on the admin page in newest-first order.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4 rounded-2xl border border-[var(--border)] bg-[var(--accent-soft)] p-3">
+                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
+                    <ClockIcon className="h-4 w-4 text-[var(--accent)]" />
+                    Availability window
+                  </div>
+                  <div className="mt-3 grid gap-2 text-sm text-[var(--muted)] sm:grid-cols-3">
+                    <p>Morning: 9:00 - 11:30</p>
+                    <p>Afternoon: 1:00 - 4:30</p>
+                    <p>Evening: 5:00 - 7:30</p>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-auto pt-4">
-                <div
-                  className="mx-auto flex w-full max-w-full flex-col gap-3 rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 shadow-sm motion-reveal sm:max-w-[380px] sm:flex-row sm:items-center sm:justify-between"
-                  style={{ animationDelay: "500ms" }}
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                <a
+                  href={links.whatsapp}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center gap-3 rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 shadow-sm transition-all duration-200 hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]"
                 >
-                  <div className="rounded-2xl bg-[var(--accent-soft)] px-3 py-2 text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--accent)]">
-                    Reply fast
+                  <WhatsAppIcon className="h-6 w-6 text-[var(--foreground)] transition-transform duration-200 group-hover:scale-110" />
+                  <div>
+                    <p className="text-sm font-black uppercase tracking-[0.22em] text-[var(--foreground)]">WhatsApp</p>
+                    <p className="mt-1 text-xs text-[var(--muted)]">Start a quick conversation</p>
                   </div>
-                  <div className="flex-1 text-left sm:text-right">
-                    <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
-                      Quick reply
-                    </p>
-                    <p className="mt-1 text-xs leading-5 text-[var(--muted)]">
-                      Usually within 1 business day.
+                </a>
+                <a
+                  href={`tel:${links.phone.replace(/\s+/g, "")}`}
+                  className="group flex items-center gap-3 rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 shadow-sm transition-all duration-200 hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]"
+                >
+                  <PhoneIcon className="h-6 w-6 text-[var(--foreground)] transition-transform duration-200 group-hover:scale-110" />
+                  <div>
+                    <p className="text-sm font-black uppercase tracking-[0.22em] text-[var(--foreground)]">Call</p>
+                    <p className="mt-1 text-xs text-[var(--muted)]">{links.phone}</p>
+                  </div>
+                </a>
+                <a
+                  href={`mailto:${links.email}`}
+                  className="group flex items-center gap-3 rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 shadow-sm transition-all duration-200 hover:border-[var(--accent)] hover:bg-[var(--accent-soft)] sm:col-span-2"
+                >
+                  <MailIcon className="h-6 w-6 text-[var(--foreground)] transition-transform duration-200 group-hover:scale-110" />
+                  <div>
+                    <p className="text-sm font-black uppercase tracking-[0.22em] text-[var(--foreground)]">Email</p>
+                    <p className="mt-1 text-xs text-[var(--muted)]">{links.email}</p>
+                  </div>
+                </a>
+                <a
+                  href={adminHref}
+                  className="group flex items-center gap-3 rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 shadow-sm transition-all duration-200 hover:border-[var(--accent)] hover:bg-[var(--accent-soft)] sm:col-span-2"
+                >
+                  <AdminIcon className="h-6 w-6 text-[var(--foreground)] transition-transform duration-200 group-hover:scale-110" />
+                  <div className="min-w-0">
+                    <p className="text-sm font-black uppercase tracking-[0.22em] text-[var(--foreground)]">Admin page</p>
+                    <p className="mt-1 inline-flex items-center gap-1 text-xs text-[var(--muted)]">
+                      Open the booking dashboard
+                      <LinkArrowIcon className="h-3.5 w-3.5 text-[var(--accent)]" />
                     </p>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
           </div>

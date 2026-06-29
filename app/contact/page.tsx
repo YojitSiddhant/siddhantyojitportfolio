@@ -2,16 +2,15 @@ import type { Metadata } from "next";
 import { ContactFormSection } from "@/components/contact-form-section";
 
 export const metadata: Metadata = {
-  title: "Contact | Siddhant Yojit",
-  description: "Contact page for Siddhant Yojit.",
+  title: "Book a Slot | Siddhant Yojit",
+  description: "Book a meeting slot with Siddhant Yojit and send the request to the admin dashboard.",
 };
 
 const contactLinks = {
   email: "sid.mailconnect@gmail.com",
   phone: "+91 7899304430",
   whatsapp: "https://wa.me/917899304430",
-  linkedin: "https://www.linkedin.com/in/siddhant-yojit-ab805327b/",
-  github: "https://github.com/YojitSiddhant",
+  admin: "/admin",
 };
 
 export default function ContactPage() {
@@ -38,13 +37,13 @@ export default function ContactPage() {
                 strokeLinejoin="round"
               />
             </svg>
-            Contact
+            Booking
           </div>
-          <div className="text-sm font-black text-[var(--foreground)]">Form and options</div>
+          <div className="text-sm font-black text-[var(--foreground)]">Request a meeting slot</div>
         </div>
 
         <div className="motion-reveal" style={{ animationDelay: "160ms" }}>
-          <ContactFormSection links={contactLinks} />
+          <ContactFormSection links={contactLinks} adminHref="/admin" />
         </div>
       </section>
     </main>

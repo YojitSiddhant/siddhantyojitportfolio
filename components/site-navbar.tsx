@@ -14,6 +14,7 @@ const navItems = [
   { label: "Certificate", href: "/certificate", icon: CertificateIcon },
   { label: "Experience", href: "/experience", icon: TimelineIcon },
   { label: "Contact", href: "/contact", icon: MailIcon },
+  { label: "Admin", href: "/admin", icon: AdminIcon },
 ];
 
 type IconProps = {
@@ -164,6 +165,20 @@ function MailIcon({ className }: IconProps) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+    </svg>
+  );
+}
+
+function AdminIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={`h-4 w-4 ${className ?? ""}`} fill="none">
+      <path
+        d="M12 3.5 19 6v5.2c0 4.6-3.1 8.5-7 9.8-3.9-1.3-7-5.2-7-9.8V6l7-2.5Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinejoin="round"
+      />
+      <path d="m9.5 12 1.5 1.5L14.8 9.7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
