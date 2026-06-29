@@ -32,4 +32,4 @@ npm run dev
 
 - Booking requests are stored in `data/booking-requests.json`.
 - The admin page shows the latest booking requests in newest-first order.
-- There is no auth layer, so treat `/admin` as a lightweight internal page for local/demo use.
+- `/admin` is protected with the password `123`.
