@@ -78,46 +78,4 @@ export const profile = {
       title: "I prefer small, well-structured decisions that make a product feel polished.",
     },
   ],
-  selectedProjects: [
-    {
-      title: "Smart Civic Grievance Redressal Web Application",
-      stack: "Flutter Web, Spring Boot, MongoDB",
-      description:
-        "Built a full-stack system for complaint registration, assignment, tracking, image uploads, and role-based grievance workflows.",
-    },
-    {
-      title: "Fake News Detection System",
-      stack: "Python, Flask, Scikit-learn",
-      description:
-        "Built a machine learning web application for news classification with 93.53% prediction accuracy.",
-    },
-    {
-      title: "Fraudulent Seller Detection in Online Marketplaces",
-      stack: "JSP, Java, MySQL",
-      description:
-        "Built a marketplace application with seller verification, complaint workflows, and trust-analysis functionality.",
-    },
-  ],
-  education: [
-    {
-      level: "Master of Computer Applications",
-      institute: "PES University",
-      detail: "2024 to 2026, CGPA 6.13 / 10",
-    },
-    {
-      level: "Bachelor of Computer Applications",
-      institute: "New Horizon College",
-      detail: "2020 to 2023, CGPA 7.59 / 10",
-    },
-    {
-      level: "Class XII",
-      institute: "St Francis PU College",
-      detail: "2019 to 2020, 61.33%",
-    },
-    {
-      level: "Class X",
-      institute: "Narayana e-Techno School",
-      detail: "2016 to 2017, CGPA 9.5 / 10",
-    },
-  ],
 };

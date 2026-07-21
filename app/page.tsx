@@ -130,16 +130,6 @@ export default function Home() {
   const workingStyle = profile.workingStyle as Array<{ icon: keyof typeof iconMap; title: string }>;
   const quickNotes = profile.quickNotes as Array<{ icon?: keyof typeof iconMap; label: string; value: string }>;
   const headerNotes = profile.headerNotes as Array<{ icon?: keyof typeof iconMap; label: string; value: string }>;
-  const selectedProjects = profile.selectedProjects as Array<{
-    title: string;
-    stack: string;
-    description: string;
-  }>;
-  const education = profile.education as Array<{
-    level: string;
-    institute: string;
-    detail: string;
-  }>;
 
   function renderIcon(icon: keyof typeof iconMap | undefined, className: string) {
     const Icon = icon ? iconMap[icon] : null;
@@ -324,54 +314,6 @@ export default function Home() {
                 <p className="mt-2 text-sm leading-7 text-[var(--muted)]">{item.title}</p>
               </div>
             ))}
-          </div>
-        </section>
-
-        <section className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="border-t border-[var(--border)] px-1 pt-5 motion-reveal" style={{ animationDelay: "580ms" }}>
-            <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.28em] text-[var(--foreground)]">
-              <BriefcaseIcon className="h-4 w-4 text-[var(--accent)]" />
-              Selected projects
-            </p>
-            <div className="mt-4 grid gap-3">
-              {selectedProjects.map((project, index) => (
-                <article
-                  key={project.title}
-                  className="rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-4 motion-reveal"
-                  style={{ animationDelay: `${620 + index * 90}ms` }}
-                >
-                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--accent-strong)]">
-                    {project.stack}
-                  </p>
-                  <h3 className="mt-2 text-lg font-bold tracking-normal text-[var(--foreground)]">
-                    {project.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-7 text-[var(--muted)]">{project.description}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-
-          <div className="border-t border-[var(--border)] px-1 pt-5 motion-reveal" style={{ animationDelay: "620ms" }}>
-            <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.28em] text-[var(--foreground)]">
-              <ShieldIcon className="h-4 w-4 text-[var(--accent)]" />
-              Education
-            </p>
-            <div className="mt-4 grid gap-3">
-              {education.map((item, index) => (
-                <article
-                  key={item.level}
-                  className="rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-4 motion-reveal"
-                  style={{ animationDelay: `${660 + index * 90}ms` }}
-                >
-                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
-                    {item.level}
-                  </p>
-                  <p className="mt-2 text-sm font-medium text-[var(--foreground)]">{item.institute}</p>
-                  <p className="mt-1 text-sm leading-6 text-[var(--muted)]">{item.detail}</p>
-                </article>
-              ))}
-            </div>
           </div>
         </section>
       </section>
