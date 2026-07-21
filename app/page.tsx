@@ -128,6 +128,14 @@ function TechOrb({ label, monogram }: { label: string; monogram: string }) {
   );
 }
 
+function TechChip({ label }: { label: string }) {
+  return (
+    <div className="inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--surface-strong)] px-3 py-2 text-[0.68rem] font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+      {label}
+    </div>
+  );
+}
+
 const iconMap = {
   layers: LayersIcon,
   shield: ShieldIcon,
@@ -229,15 +237,36 @@ export default function Home() {
                   <LayersIcon className="h-4 w-4 text-[var(--accent)]" />
                   Tech stack
                 </p>
-                <div className="mt-4 grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
-                  <TechOrb label="JavaScript" monogram="JS" />
-                  <TechOrb label="React" monogram="R" />
-                  <TechOrb label="Next.js" monogram="NX" />
-                  <TechOrb label="Node.js" monogram="N" />
-                  <TechOrb label="Flutter" monogram="FL" />
-                  <TechOrb label="MongoDB" monogram="DB" />
-                  <TechOrb label="MySQL" monogram="SQL" />
-                  <TechOrb label="Java" monogram="J" />
+                <div className="mt-4 grid gap-5 lg:grid-cols-[1.25fr_0.75fr]">
+                  <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
+                    <TechOrb label="JavaScript" monogram="JS" />
+                    <TechOrb label="React" monogram="R" />
+                    <TechOrb label="Next.js" monogram="NX" />
+                    <TechOrb label="Node.js" monogram="N" />
+                    <TechOrb label="Flutter" monogram="FL" />
+                    <TechOrb label="MongoDB" monogram="DB" />
+                    <TechOrb label="MySQL" monogram="SQL" />
+                    <TechOrb label="Java" monogram="J" />
+                  </div>
+
+                  <div className="flex h-full flex-col justify-between gap-4 border-l border-[var(--border)] pl-5">
+                    <div>
+                      <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">More tools</p>
+                      <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                        Supporting tools and frameworks I use across projects and handoff work.
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      <TechChip label="Git" />
+                      <TechChip label="GitHub" />
+                      <TechChip label="Postman" />
+                      <TechChip label="Angular" />
+                      <TechChip label="Spring Boot" />
+                      <TechChip label="Flask" />
+                      <TechChip label="Scikit-learn" />
+                      <TechChip label="JSP" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
