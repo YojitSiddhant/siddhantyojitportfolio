@@ -276,11 +276,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="grid gap-4 md:grid-cols-3">
+        <section className="grid items-stretch gap-4 md:grid-cols-3">
           {values.map((item, index) => (
             <article
               key={item.title}
-              className="border-t border-[var(--border)] p-5 motion-reveal"
+              className="flex h-full flex-col items-start rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-5 text-left motion-reveal"
               style={{ animationDelay: `${220 + index * 120}ms` }}
             >
               <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
@@ -300,11 +300,11 @@ export default function Home() {
             <CodeIcon className="h-4 w-4 text-[var(--accent)]" />
             How I work
           </p>
-          <div className="mt-4 grid gap-0 lg:grid-cols-3 lg:gap-x-6">
+          <div className="mt-4 grid items-stretch gap-4 lg:grid-cols-3">
             {workingStyle.map((item, index) => (
               <div
                 key={item.title}
-                className="border-b border-[var(--border)] py-4 lg:border-b-0 lg:border-t lg:pt-4 motion-reveal"
+                className="flex h-full flex-col items-start rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-5 text-left motion-reveal"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
                 <div className="flex items-center gap-2 text-sm font-black text-[var(--foreground)]">
