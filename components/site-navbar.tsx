@@ -244,17 +244,17 @@ export function SiteNavbar() {
             role="dialog"
             aria-modal="true"
             aria-label="Site navigation"
-            className="w-full max-w-[30rem] max-h-[calc(100dvh-3rem)] overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[rgba(255,255,255,0.98)] p-5 shadow-[0_28px_90px_rgba(0,0,0,0.16)] backdrop-blur-xl sm:max-h-[calc(100dvh-4rem)] sm:p-6"
+            className="w-full max-w-[26rem] max-h-[calc(100dvh-4rem)] overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[rgba(255,255,255,0.98)] p-4 shadow-[0_28px_90px_rgba(0,0,0,0.16)] backdrop-blur-xl sm:max-h-[calc(100dvh-5rem)] sm:p-5"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="mb-5 flex items-center justify-between gap-4">
+            <div className="mb-4 flex items-center justify-between gap-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--muted)]">Navigation</p>
                 <p className="mt-1 text-sm text-[var(--muted)]">Choose a section to jump to.</p>
               </div>
               <button
                 type="button"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] transition-colors hover:bg-[var(--accent-soft)]"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] transition-colors hover:bg-[var(--accent-soft)]"
                 onClick={() => setIsOpen(false)}
                 aria-label="Close navigation menu"
               >
@@ -271,7 +271,7 @@ export function SiteNavbar() {
                   onClick={() => {
                     setIsOpen(false);
                   }}
-                  className={`group inline-flex w-full items-center justify-center gap-3 rounded-2xl border px-4 py-3 text-center text-sm transition duration-300 motion-reveal ${
+                  className={`group inline-flex w-full items-center justify-center gap-2.5 rounded-2xl border px-4 py-2.5 text-center text-sm transition duration-300 motion-reveal ${
                     isActive(item.href)
                       ? "!border-[var(--accent)] !bg-[var(--accent)] !font-bold !text-white"
                       : "border-[var(--border)] font-normal text-[var(--muted)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)] hover:font-bold hover:text-[var(--foreground)]"
