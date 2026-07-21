@@ -236,7 +236,7 @@ export function SiteNavbar() {
 
       {isOpen ? (
         <div
-          className="fixed inset-0 z-50 flex items-start justify-center bg-[rgba(15,23,42,0.35)] px-4 pt-20 backdrop-blur-sm motion-reveal-fade"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(15,23,42,0.22)] px-4 backdrop-blur-[2px] motion-reveal-fade"
           onClick={() => setIsOpen(false)}
         >
           <div
