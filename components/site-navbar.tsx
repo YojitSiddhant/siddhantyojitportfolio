@@ -236,7 +236,7 @@ export function SiteNavbar() {
 
       {isOpen ? (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(15,23,42,0.22)] px-4 backdrop-blur-[2px] motion-reveal-fade"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(15,23,42,0.18)] px-4 py-6 backdrop-blur-[1.5px] motion-reveal-fade sm:py-8"
           onClick={() => setIsOpen(false)}
         >
           <div
@@ -244,17 +244,17 @@ export function SiteNavbar() {
             role="dialog"
             aria-modal="true"
             aria-label="Site navigation"
-            className="w-full max-w-md rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface-strong)] p-4 shadow-[0_24px_80px_rgba(0,0,0,0.18)]"
+            className="w-full max-w-[30rem] max-h-[calc(100dvh-3rem)] overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[rgba(255,255,255,0.98)] p-5 shadow-[0_28px_90px_rgba(0,0,0,0.16)] backdrop-blur-xl sm:max-h-[calc(100dvh-4rem)] sm:p-6"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="mb-4 flex items-center justify-between gap-4">
+            <div className="mb-5 flex items-center justify-between gap-4">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">Navigation</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--muted)]">Navigation</p>
                 <p className="mt-1 text-sm text-[var(--muted)]">Choose a section to jump to.</p>
               </div>
               <button
                 type="button"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] transition-colors hover:bg-[var(--accent-soft)]"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] transition-colors hover:bg-[var(--accent-soft)]"
                 onClick={() => setIsOpen(false)}
                 aria-label="Close navigation menu"
               >
@@ -262,7 +262,7 @@ export function SiteNavbar() {
               </button>
             </div>
 
-            <nav className="grid max-h-[calc(100dvh-8rem)] gap-2 overflow-y-auto pr-1 md:grid-cols-2">
+            <nav className="grid max-h-[calc(100dvh-10rem)] gap-2 overflow-y-auto pr-1 sm:grid-cols-2">
               {navItems.map((item, index) => (
                 <Link
                   key={item.label}
