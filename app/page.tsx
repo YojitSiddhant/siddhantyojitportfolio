@@ -333,6 +333,48 @@ export default function Home() {
               </div>
             </div>
 
+            <div className="border-t border-[var(--border)] pt-4">
+              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
+                <LayersIcon className="h-4 w-4 text-[var(--accent)]" />
+                Working approach
+              </p>
+              <div className="mt-4 grid gap-3">
+                <div className="flex gap-3 border-b border-[var(--border)] pb-4">
+                  <SparkleIcon className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" />
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+                      Build clearly
+                    </p>
+                    <p className="mt-1 text-sm leading-6 text-[var(--foreground)]">
+                      I turn requirements into clean screens and reusable interface sections.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-3 border-b border-[var(--border)] pb-4">
+                  <ShieldIcon className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" />
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+                      Validate carefully
+                    </p>
+                    <p className="mt-1 text-sm leading-6 text-[var(--foreground)]">
+                      I watch responsiveness, edge cases, and flow behavior as content changes.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  <BriefcaseIcon className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" />
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+                      Deliver maintainably
+                    </p>
+                    <p className="mt-1 text-sm leading-6 text-[var(--foreground)]">
+                      I prefer small, well-structured decisions that stay easy to grow over time.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </article>
         </div>
 
