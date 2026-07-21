@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const navItems = [
   { label: "Home", href: "/", icon: HomeIcon },
@@ -175,28 +175,42 @@ export function SiteNavbar() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
+
   return (
     <header className="sticky top-0 z-50 bg-[var(--surface-strong)] backdrop-blur-md supports-[backdrop-filter]:bg-[var(--surface-strong)]">
-      <div className="portfolio-navbar-shell mx-auto flex w-full max-w-7xl items-center px-3 py-3 sm:px-6 sm:py-4 lg:flex lg:items-center lg:justify-center lg:px-8 motion-reveal">
-        <div className="portfolio-navbar-mobile grid w-full grid-cols-[2.25rem_minmax(0,1fr)_2.75rem] items-center gap-2 rounded-2xl border border-[var(--border)] bg-[var(--surface-strong)] px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.08)] backdrop-blur-md lg:hidden">
-          <Link
-            href="/"
-            className="portfolio-navbar-logo relative flex h-8 w-8 shrink-0 overflow-hidden rounded-full shadow-[0_6px_16px_rgba(0,0,0,0.08)]"
-            aria-label="Go to home"
-          >
-            <Image
-              src="/favicon.png"
-              alt=""
-              fill
-              sizes="32px"
-              className="object-cover"
-              priority={false}
-            />
-          </Link>
+      <div className="portfolio-navbar-shell mx-auto flex w-full max-w-7xl items-center justify-between px-3 py-3 sm:px-6 sm:py-4 lg:px-8 motion-reveal">
+        <Link
+          href="/"
+          className="portfolio-navbar-logo relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full shadow-[0_6px_16px_rgba(0,0,0,0.08)]"
+          aria-label="Go to home"
+        >
+          <Image src="/favicon.png" alt="" fill sizes="36px" className="object-cover" priority={false} />
+        </Link>
 
+        <div className="flex items-center gap-3">
           <Link
             href="/"
-            className="min-w-0 justify-self-center overflow-hidden text-ellipsis whitespace-nowrap text-center text-sm font-black uppercase tracking-[0.14em] text-[var(--foreground)] sm:text-base"
+            className="hidden text-sm font-black uppercase tracking-[0.14em] text-[var(--foreground)] sm:block sm:text-base"
             aria-label="Go to home"
           >
             Siddhant Yojit
@@ -204,79 +218,80 @@ export function SiteNavbar() {
 
           <button
             type="button"
-            className="justify-self-end inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] shadow-sm transition-colors hover:bg-[var(--accent-soft)]"
+            className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-strong)] text-[var(--foreground)] shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-colors hover:bg-[var(--accent-soft)]"
             onClick={() => setIsOpen((current) => !current)}
             aria-expanded={isOpen}
-            aria-label="Toggle navigation menu"
+            aria-controls="desktop-navigation-menu"
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
           >
-            <span className="sr-only">Toggle navigation menu</span>
+            <span className="sr-only">{isOpen ? "Close navigation menu" : "Open navigation menu"}</span>
             <span className="flex flex-col gap-1.5">
-              <span className="h-0.5 w-5 rounded-full bg-current" />
-              <span className="h-0.5 w-5 rounded-full bg-current" />
-              <span className="h-0.5 w-5 rounded-full bg-current" />
+              <span className={`h-0.5 w-5 rounded-full bg-current transition-transform duration-300 ${isOpen ? "translate-y-2 rotate-45" : ""}`} />
+              <span className={`h-0.5 w-5 rounded-full bg-current transition-opacity duration-300 ${isOpen ? "opacity-0" : "opacity-100"}`} />
+              <span className={`h-0.5 w-5 rounded-full bg-current transition-transform duration-300 ${isOpen ? "-translate-y-2 -rotate-45" : ""}`} />
             </span>
           </button>
         </div>
-
-        <nav className="hidden items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-strong)] px-2 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.08)] backdrop-blur-md lg:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              aria-current={isActive(item.href) ? "page" : undefined}
-              className={`group inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm transition duration-300 ${
-                isActive(item.href)
-                  ? "!bg-[var(--accent)] !font-bold !text-white shadow-sm"
-                  : "font-normal text-[var(--muted)] hover:bg-[var(--accent-soft)] hover:font-bold hover:text-[var(--foreground)]"
-              }`}
-            >
-              <span
-                className={`transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-110 group-hover:rotate-12 ${
-                  isActive(item.href) ? "text-white" : "text-[var(--accent)]"
-                }`}
-              >
-                <item.icon />
-              </span>
-              <span className="transition-transform duration-300 group-hover:translate-x-0.5">
-                {item.label}
-              </span>
-            </Link>
-          ))}
-        </nav>
-
       </div>
 
       {isOpen ? (
-        <div className="border-t border-[var(--border)] bg-[var(--surface-strong)] px-3 py-3 backdrop-blur-md lg:hidden">
-          <nav className="mx-auto grid max-h-[calc(100dvh-5.5rem)] w-full max-w-7xl gap-2 overflow-y-auto pb-2 md:grid-cols-2 xl:grid-cols-1">
-            {navItems.map((item, index) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                aria-current={isActive(item.href) ? "page" : undefined}
-                onClick={() => {
-                  setIsOpen(false);
-                }}
-                className={`group inline-flex w-full items-center justify-center gap-3 rounded-2xl border px-4 py-3 text-center text-sm transition duration-300 motion-reveal ${
-                  isActive(item.href)
-                    ? "!border-[var(--accent)] !bg-[var(--accent)] !font-bold !text-white"
-                    : "border-[var(--border)] font-normal text-[var(--muted)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)] hover:font-bold hover:text-[var(--foreground)]"
-                }`}
-                style={{ animationDelay: `${index * 70}ms` }}
+        <div
+          className="fixed inset-0 z-50 flex items-start justify-center bg-[rgba(15,23,42,0.35)] px-4 pt-20 backdrop-blur-sm motion-reveal-fade"
+          onClick={() => setIsOpen(false)}
+        >
+          <div
+            id="desktop-navigation-menu"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site navigation"
+            className="w-full max-w-md rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface-strong)] p-4 shadow-[0_24px_80px_rgba(0,0,0,0.18)]"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="mb-4 flex items-center justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">Navigation</p>
+                <p className="mt-1 text-sm text-[var(--muted)]">Choose a section to jump to.</p>
+              </div>
+              <button
+                type="button"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] transition-colors hover:bg-[var(--accent-soft)]"
+                onClick={() => setIsOpen(false)}
+                aria-label="Close navigation menu"
               >
-                <span
-                  className={`transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-110 group-hover:rotate-12 ${
-                    isActive(item.href) ? "text-white" : "text-[var(--accent)]"
+                <span className="block text-xl leading-none">&times;</span>
+              </button>
+            </div>
+
+            <nav className="grid max-h-[calc(100dvh-8rem)] gap-2 overflow-y-auto pr-1 md:grid-cols-2">
+              {navItems.map((item, index) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  aria-current={isActive(item.href) ? "page" : undefined}
+                  onClick={() => {
+                    setIsOpen(false);
+                  }}
+                  className={`group inline-flex w-full items-center justify-center gap-3 rounded-2xl border px-4 py-3 text-center text-sm transition duration-300 motion-reveal ${
+                    isActive(item.href)
+                      ? "!border-[var(--accent)] !bg-[var(--accent)] !font-bold !text-white"
+                      : "border-[var(--border)] font-normal text-[var(--muted)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)] hover:font-bold hover:text-[var(--foreground)]"
                   }`}
+                  style={{ animationDelay: `${index * 70}ms` }}
                 >
-                  <item.icon />
-                </span>
-                <span className="text-center transition-transform duration-300 group-hover:translate-x-0.5">
-                  {item.label}
-                </span>
-              </Link>
-            ))}
-          </nav>
+                  <span
+                    className={`transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-110 group-hover:rotate-12 ${
+                      isActive(item.href) ? "text-white" : "text-[var(--accent)]"
+                    }`}
+                  >
+                    <item.icon />
+                  </span>
+                  <span className="text-center transition-transform duration-300 group-hover:translate-x-0.5">
+                    {item.label}
+                  </span>
+                </Link>
+              ))}
+            </nav>
+          </div>
         </div>
       ) : null}
     </header>
