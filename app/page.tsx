@@ -144,7 +144,7 @@ export default function Home() {
       <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
         <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
           <article
-            className="flex h-full flex-col gap-5 rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-5 text-left shadow-[0_12px_30px_rgba(0,0,0,0.05)] motion-reveal sm:p-6"
+            className="flex h-full flex-col gap-5 border-t border-[var(--border)] px-1 py-4 text-left motion-reveal"
             style={{ animationDelay: "80ms" }}
           >
             <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
@@ -171,7 +171,7 @@ export default function Home() {
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2">
-                <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-strong)] p-4 motion-reveal" style={{ animationDelay: "420ms" }}>
+                <div className="flex items-center gap-3 border-t border-[var(--border)] py-4 motion-reveal" style={{ animationDelay: "420ms" }}>
                   <div className="flex items-center gap-3">
                     <MapPinIcon className="h-5 w-5 shrink-0 text-[var(--accent)]" />
                     <div>
@@ -180,7 +180,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-strong)] p-4 motion-reveal" style={{ animationDelay: "500ms" }}>
+                <div className="flex items-center gap-3 border-t border-[var(--border)] py-4 motion-reveal" style={{ animationDelay: "500ms" }}>
                   <div className="flex items-center gap-3">
                     <CodeIcon className="h-5 w-5 shrink-0 text-[var(--accent)]" />
                     <div>
@@ -191,16 +191,16 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] p-4 sm:p-5">
+              <div className="border-t border-[var(--border)] pt-4">
                 <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
                   <SparkleIcon className="h-4 w-4 text-[var(--accent)]" />
                   Quick notes
                 </p>
-                <div className="mt-4 grid gap-3">
+                <div className="mt-4 grid gap-0">
                   {quickNotes.map((item, index) => (
                     <div
                       key={item.label}
-                      className="flex gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 motion-reveal"
+                      className="flex gap-3 border-b border-[var(--border)] py-4 last:border-b-0 motion-reveal"
                       style={{ animationDelay: `${560 + index * 120}ms` }}
                     >
                       {renderIcon(item.icon, "mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]")}
@@ -218,7 +218,7 @@ export default function Home() {
           </article>
 
           <article
-            className="flex h-full flex-col gap-5 rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-5 text-left shadow-[0_12px_30px_rgba(0,0,0,0.05)] motion-reveal sm:p-6"
+            className="flex h-full flex-col gap-5 border-t border-[var(--border)] px-1 py-4 text-left motion-reveal"
             style={{ animationDelay: "180ms" }}
           >
             <div className="flex items-center justify-between gap-3">
@@ -231,16 +231,16 @@ export default function Home() {
                   {profile.snapshotTitle}
                 </h2>
               </div>
-              <div className="rounded-full border border-[var(--border)] bg-[var(--surface-strong)] px-3 py-1 text-xs font-medium text-[var(--accent-strong)]">
+              <div className="rounded-full border border-[var(--border)] px-3 py-1 text-xs font-medium text-[var(--accent-strong)]">
                 {profile.openToOpportunitiesBadge}
               </div>
             </div>
 
-            <div className="grid gap-3">
+            <div className="grid gap-0">
               {values.map((item, index) => (
                 <div
                   key={item.title}
-                  className="rounded-2xl border border-[var(--border)] bg-[var(--surface-strong)] p-4 motion-reveal"
+                  className="border-b border-[var(--border)] py-4 last:border-b-0 motion-reveal"
                   style={{ animationDelay: `${320 + index * 120}ms` }}
                 >
                   <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
@@ -252,7 +252,7 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] p-4 sm:p-5">
+            <div className="border-t border-[var(--border)] pt-4">
               <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
                 <ShieldIcon className="h-4 w-4 text-[var(--accent)]" />
                 What I care about
@@ -262,14 +262,14 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] p-4 sm:p-5">
+            <div className="border-t border-[var(--border)] pt-4">
               <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
                 <SparkleIcon className="h-4 w-4 text-[var(--accent)]" />
                 Header notes
               </p>
-              <div className="mt-4 grid gap-3">
+              <div className="mt-4 grid gap-0">
                 {headerNotes.map((item) => (
-                  <div key={item.label} className="flex gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4">
+                  <div key={item.label} className="flex gap-3 border-b border-[var(--border)] py-4 last:border-b-0">
                     {renderIcon(item.icon, "mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]")}
                     <div className="min-w-0">
                       <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
@@ -288,7 +288,7 @@ export default function Home() {
           {values.map((item, index) => (
             <article
               key={item.title}
-              className="flex h-full flex-col items-start rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-5 text-left motion-reveal"
+              className="flex h-full flex-col items-start border-t border-[var(--border)] px-1 py-4 text-left motion-reveal"
               style={{ animationDelay: `${220 + index * 120}ms` }}
             >
               <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
@@ -308,11 +308,11 @@ export default function Home() {
             <CodeIcon className="h-4 w-4 text-[var(--accent)]" />
             How I work
           </p>
-          <div className="mt-4 grid items-stretch gap-4 lg:grid-cols-3">
+          <div className="mt-4 grid items-stretch gap-0 lg:grid-cols-3 lg:gap-x-6">
             {workingStyle.map((item, index) => (
               <div
                 key={item.title}
-                className="flex h-full flex-col items-start rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-5 text-left motion-reveal"
+                className="flex h-full flex-col items-start border-t border-[var(--border)] pt-4 text-left motion-reveal lg:pt-4"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
                 <div className="flex items-center gap-2 text-sm font-black text-[var(--foreground)]">
