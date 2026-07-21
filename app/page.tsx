@@ -142,78 +142,86 @@ export default function Home() {
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[18rem] bg-[var(--background)]" />
 
       <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border)] px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
-          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-            <SparkleIcon className="h-4 w-4 text-[var(--accent)]" />
-            About me
-          </div>
-          <div className="flex items-center gap-2 text-sm text-[var(--muted)]">
-            <BriefcaseIcon className="h-4 w-4 text-[var(--accent)]" />
-            {profile.currentRole}
-          </div>
-        </div>
-
-        <section className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="space-y-5 px-1 py-2 motion-reveal" style={{ animationDelay: "140ms" }}>
-            <h1 className="max-w-4xl text-3xl font-semibold leading-none tracking-normal text-[var(--foreground)] text-balance sm:text-5xl lg:text-7xl">
-              {heroNameWords.map((word, index) => (
-                <span
-                  key={word}
-                  className="mr-2 inline-block transition duration-200 ease-out last:mr-0 hover:text-[var(--accent)] motion-reveal"
-                  style={{ animationDelay: `${160 + index * 110}ms` }}
-                >
-                  {word}
-                </span>
-              ))}
-            </h1>
-            <p className="max-w-2xl text-[1rem] leading-7 text-[var(--muted)] text-pretty sm:text-[1.05rem]">
-              {profile.introText}
-            </p>
-
-            <div className="grid gap-3 border-t border-[var(--border)] pt-4 sm:grid-cols-2">
-              <div className="flex items-center gap-3 py-2 motion-reveal" style={{ animationDelay: "420ms" }}>
-                <MapPinIcon className="h-5 w-5 text-[var(--accent)]" />
-                <div>
-                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">Location</p>
-                  <p className="mt-1 text-sm font-medium text-[var(--foreground)]">{profile.location}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 py-2 motion-reveal" style={{ animationDelay: "500ms" }}>
-                <CodeIcon className="h-5 w-5 text-[var(--accent)]" />
-                <div>
-                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">Core focus</p>
-                  <p className="mt-1 text-sm font-medium text-[var(--foreground)]">{profile.coreFocus}</p>
-                </div>
-              </div>
+        <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+          <article
+            className="flex h-full flex-col gap-5 rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-5 text-left shadow-[0_12px_30px_rgba(0,0,0,0.05)] motion-reveal sm:p-6"
+            style={{ animationDelay: "80ms" }}
+          >
+            <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
+              <SparkleIcon className="h-4 w-4 text-[var(--accent)]" />
+              About me
             </div>
 
-            <div className="border-t border-[var(--border)] pt-4">
+            <div className="space-y-5">
+              <div className="space-y-4">
+                <h1 className="max-w-4xl text-3xl font-semibold leading-none tracking-normal text-[var(--foreground)] text-balance sm:text-5xl lg:text-7xl">
+                  {heroNameWords.map((word, index) => (
+                    <span
+                      key={word}
+                      className="mr-2 inline-block transition duration-200 ease-out last:mr-0 hover:text-[var(--accent)] motion-reveal"
+                      style={{ animationDelay: `${160 + index * 110}ms` }}
+                    >
+                      {word}
+                    </span>
+                  ))}
+                </h1>
+                <p className="max-w-2xl text-[1rem] leading-7 text-[var(--muted)] text-pretty sm:text-[1.05rem]">
+                  {profile.introText}
+                </p>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-strong)] p-4 motion-reveal" style={{ animationDelay: "420ms" }}>
+                  <div className="flex items-center gap-3">
+                    <MapPinIcon className="h-5 w-5 shrink-0 text-[var(--accent)]" />
+                    <div>
+                      <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">Location</p>
+                      <p className="mt-1 text-sm font-medium text-[var(--foreground)]">{profile.location}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-strong)] p-4 motion-reveal" style={{ animationDelay: "500ms" }}>
+                  <div className="flex items-center gap-3">
+                    <CodeIcon className="h-5 w-5 shrink-0 text-[var(--accent)]" />
+                    <div>
+                      <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">Core focus</p>
+                      <p className="mt-1 text-sm font-medium text-[var(--foreground)]">{profile.coreFocus}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] p-4 sm:p-5">
                 <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
                   <SparkleIcon className="h-4 w-4 text-[var(--accent)]" />
                   Quick notes
                 </p>
-              <div className="mt-4 grid gap-0">
-                {quickNotes.map((item, index) => (
-                  <div
-                    key={item.label}
-                    className="flex gap-3 border-b border-[var(--border)] py-4 last:border-b-0 motion-reveal"
-                    style={{ animationDelay: `${560 + index * 120}ms` }}
-                  >
-                    {renderIcon(item.icon, "mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]")}
-                    <div className="min-w-0">
-                      <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
-                        {item.label}
-                      </p>
-                      <p className="mt-1 text-sm leading-6 text-[var(--foreground)]">{item.value}</p>
+                <div className="mt-4 grid gap-3">
+                  {quickNotes.map((item, index) => (
+                    <div
+                      key={item.label}
+                      className="flex gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 motion-reveal"
+                      style={{ animationDelay: `${560 + index * 120}ms` }}
+                    >
+                      {renderIcon(item.icon, "mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]")}
+                      <div className="min-w-0">
+                        <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+                          {item.label}
+                        </p>
+                        <p className="mt-1 text-sm leading-6 text-[var(--foreground)]">{item.value}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          </article>
 
-          <div className="px-1 py-2 motion-reveal" style={{ animationDelay: "180ms" }}>
-            <div className="flex items-center justify-between gap-3 border-b border-[var(--border)] pb-4">
+          <article
+            className="flex h-full flex-col gap-5 rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-5 text-left shadow-[0_12px_30px_rgba(0,0,0,0.05)] motion-reveal sm:p-6"
+            style={{ animationDelay: "180ms" }}
+          >
+            <div className="flex items-center justify-between gap-3">
               <div>
                 <p className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.3em] text-[var(--foreground)]">
                   <BriefcaseIcon className="h-4 w-4 text-[var(--accent)]" />
@@ -223,16 +231,16 @@ export default function Home() {
                   {profile.snapshotTitle}
                 </h2>
               </div>
-              <div className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1 text-xs font-medium text-[var(--accent-strong)]">
+              <div className="rounded-full border border-[var(--border)] bg-[var(--surface-strong)] px-3 py-1 text-xs font-medium text-[var(--accent-strong)]">
                 {profile.openToOpportunitiesBadge}
               </div>
             </div>
 
-            <div className="grid gap-0 py-4">
+            <div className="grid gap-3">
               {values.map((item, index) => (
                 <div
                   key={item.title}
-                  className="border-b border-[var(--border)] py-4 last:border-b-0 motion-reveal"
+                  className="rounded-2xl border border-[var(--border)] bg-[var(--surface-strong)] p-4 motion-reveal"
                   style={{ animationDelay: `${320 + index * 120}ms` }}
                 >
                   <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
@@ -244,7 +252,7 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="border-t border-[var(--border)] pt-4">
+            <div className="rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] p-4 sm:p-5">
               <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
                 <ShieldIcon className="h-4 w-4 text-[var(--accent)]" />
                 What I care about
@@ -254,14 +262,14 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="border-t border-[var(--border)] pt-4">
+            <div className="rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] p-4 sm:p-5">
               <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
                 <SparkleIcon className="h-4 w-4 text-[var(--accent)]" />
                 Header notes
               </p>
-              <div className="mt-4 grid gap-0">
+              <div className="mt-4 grid gap-3">
                 {headerNotes.map((item) => (
-                  <div key={item.label} className="flex gap-3 border-b border-[var(--border)] py-4 last:border-b-0">
+                  <div key={item.label} className="flex gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4">
                     {renderIcon(item.icon, "mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]")}
                     <div className="min-w-0">
                       <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
@@ -273,8 +281,8 @@ export default function Home() {
                 ))}
               </div>
             </div>
-          </div>
-        </section>
+          </article>
+        </div>
 
         <section className="grid items-stretch gap-4 md:grid-cols-3">
           {values.map((item, index) => (
