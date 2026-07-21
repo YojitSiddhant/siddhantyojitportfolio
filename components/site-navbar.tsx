@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
 
 const navItems = [
@@ -197,103 +198,108 @@ export function SiteNavbar() {
   }, [isOpen]);
 
   return (
-    <header className="sticky top-0 z-50 bg-[var(--surface-strong)] backdrop-blur-md supports-[backdrop-filter]:bg-[var(--surface-strong)]">
-      <div className="portfolio-navbar-shell mx-auto flex w-full max-w-7xl items-center justify-between px-3 py-3 sm:px-6 sm:py-4 lg:px-8 motion-reveal">
-        <Link
-          href="/"
-          className="portfolio-navbar-logo relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full shadow-[0_6px_16px_rgba(0,0,0,0.08)]"
-          aria-label="Go to home"
-        >
-          <Image src="/favicon.png" alt="" fill sizes="36px" className="object-cover" priority={false} />
-        </Link>
-
-        <div className="flex items-center gap-3">
+    <>
+      <header className="sticky top-0 z-50 bg-[var(--surface-strong)] backdrop-blur-md supports-[backdrop-filter]:bg-[var(--surface-strong)]">
+        <div className="portfolio-navbar-shell mx-auto flex w-full max-w-7xl items-center justify-between px-3 py-3 sm:px-6 sm:py-4 lg:px-8 motion-reveal">
           <Link
             href="/"
-            className="hidden text-sm font-black uppercase tracking-[0.14em] text-[var(--foreground)] sm:block sm:text-base"
+            className="portfolio-navbar-logo relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full shadow-[0_6px_16px_rgba(0,0,0,0.08)]"
             aria-label="Go to home"
           >
-            Siddhant Yojit
+            <Image src="/favicon.png" alt="" fill sizes="36px" className="object-cover" priority={false} />
           </Link>
 
-          <button
-            type="button"
-            className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-strong)] text-[var(--foreground)] shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-colors hover:bg-[var(--accent-soft)]"
-            onClick={() => setIsOpen((current) => !current)}
-            aria-expanded={isOpen}
-            aria-controls="desktop-navigation-menu"
-            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-          >
-            <span className="sr-only">{isOpen ? "Close navigation menu" : "Open navigation menu"}</span>
-            <span className="flex flex-col gap-1.5">
-              <span className={`h-0.5 w-5 rounded-full bg-current transition-transform duration-300 ${isOpen ? "translate-y-2 rotate-45" : ""}`} />
-              <span className={`h-0.5 w-5 rounded-full bg-current transition-opacity duration-300 ${isOpen ? "opacity-0" : "opacity-100"}`} />
-              <span className={`h-0.5 w-5 rounded-full bg-current transition-transform duration-300 ${isOpen ? "-translate-y-2 -rotate-45" : ""}`} />
-            </span>
-          </button>
-        </div>
-      </div>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/"
+              className="hidden text-sm font-black uppercase tracking-[0.14em] text-[var(--foreground)] sm:block sm:text-base"
+              aria-label="Go to home"
+            >
+              Siddhant Yojit
+            </Link>
 
-      {isOpen ? (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(15,23,42,0.18)] px-4 py-6 backdrop-blur-[1.5px] motion-reveal-fade sm:py-8"
-          onClick={() => setIsOpen(false)}
-        >
-          <div
-            id="desktop-navigation-menu"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Site navigation"
-            className="w-full max-w-[26rem] max-h-[calc(100dvh-4rem)] overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[rgba(255,255,255,0.98)] p-4 shadow-[0_28px_90px_rgba(0,0,0,0.16)] backdrop-blur-xl sm:max-h-[calc(100dvh-5rem)] sm:p-5"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="mb-4 flex items-center justify-between gap-4">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--muted)]">Navigation</p>
-                <p className="mt-1 text-sm text-[var(--muted)]">Choose a section to jump to.</p>
-              </div>
-              <button
-                type="button"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] transition-colors hover:bg-[var(--accent-soft)]"
-                onClick={() => setIsOpen(false)}
-                aria-label="Close navigation menu"
-              >
-                <span className="block text-xl leading-none">&times;</span>
-              </button>
-            </div>
-
-            <nav className="grid max-h-[calc(100dvh-10rem)] gap-2 overflow-y-auto pr-1 sm:grid-cols-2">
-              {navItems.map((item, index) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  aria-current={isActive(item.href) ? "page" : undefined}
-                  onClick={() => {
-                    setIsOpen(false);
-                  }}
-                  className={`group inline-flex w-full items-center justify-center gap-2.5 rounded-2xl border px-4 py-2.5 text-center text-sm transition duration-300 motion-reveal ${
-                    isActive(item.href)
-                      ? "!border-[var(--accent)] !bg-[var(--accent)] !font-bold !text-white"
-                      : "border-[var(--border)] font-normal text-[var(--muted)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)] hover:font-bold hover:text-[var(--foreground)]"
-                  }`}
-                  style={{ animationDelay: `${index * 70}ms` }}
-                >
-                  <span
-                    className={`transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-110 group-hover:rotate-12 ${
-                      isActive(item.href) ? "text-white" : "text-[var(--accent)]"
-                    }`}
-                  >
-                    <item.icon />
-                  </span>
-                  <span className="text-center transition-transform duration-300 group-hover:translate-x-0.5">
-                    {item.label}
-                  </span>
-                </Link>
-              ))}
-            </nav>
+            <button
+              type="button"
+              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-strong)] text-[var(--foreground)] shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-colors hover:bg-[var(--accent-soft)]"
+              onClick={() => setIsOpen((current) => !current)}
+              aria-expanded={isOpen}
+              aria-controls="desktop-navigation-menu"
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+            >
+              <span className="sr-only">{isOpen ? "Close navigation menu" : "Open navigation menu"}</span>
+              <span className="flex flex-col gap-1.5">
+                <span className={`h-0.5 w-5 rounded-full bg-current transition-transform duration-300 ${isOpen ? "translate-y-2 rotate-45" : ""}`} />
+                <span className={`h-0.5 w-5 rounded-full bg-current transition-opacity duration-300 ${isOpen ? "opacity-0" : "opacity-100"}`} />
+                <span className={`h-0.5 w-5 rounded-full bg-current transition-transform duration-300 ${isOpen ? "-translate-y-2 -rotate-45" : ""}`} />
+              </span>
+            </button>
           </div>
         </div>
-      ) : null}
-    </header>
+      </header>
+
+      {isOpen
+        ? createPortal(
+            <div
+              className="fixed inset-0 z-[60] flex items-center justify-center bg-[rgba(15,23,42,0.18)] px-4 py-6 backdrop-blur-[1.5px] motion-reveal-fade sm:py-8"
+              onClick={() => setIsOpen(false)}
+            >
+              <div
+                id="desktop-navigation-menu"
+                role="dialog"
+                aria-modal="true"
+                aria-label="Site navigation"
+                className="w-full max-w-[26rem] max-h-[calc(100dvh-4rem)] overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[rgba(255,255,255,0.98)] p-4 shadow-[0_28px_90px_rgba(0,0,0,0.16)] backdrop-blur-xl sm:max-h-[calc(100dvh-5rem)] sm:p-5"
+                onClick={(event) => event.stopPropagation()}
+              >
+                <div className="mb-4 flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--muted)]">Navigation</p>
+                    <p className="mt-1 text-sm text-[var(--muted)]">Choose a section to jump to.</p>
+                  </div>
+                  <button
+                    type="button"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] transition-colors hover:bg-[var(--accent-soft)]"
+                    onClick={() => setIsOpen(false)}
+                    aria-label="Close navigation menu"
+                  >
+                    <span className="block text-xl leading-none">&times;</span>
+                  </button>
+                </div>
+
+                <nav className="grid max-h-[calc(100dvh-10rem)] gap-2 overflow-y-auto pr-1 sm:grid-cols-2">
+                  {navItems.map((item, index) => (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      aria-current={isActive(item.href) ? "page" : undefined}
+                      onClick={() => {
+                        setIsOpen(false);
+                      }}
+                      className={`group inline-flex w-full items-center justify-center gap-2.5 rounded-2xl border px-4 py-2.5 text-center text-sm transition duration-300 motion-reveal ${
+                        isActive(item.href)
+                          ? "!border-[var(--accent)] !bg-[var(--accent)] !font-bold !text-white"
+                          : "border-[var(--border)] font-normal text-[var(--muted)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)] hover:font-bold hover:text-[var(--foreground)]"
+                      }`}
+                      style={{ animationDelay: `${index * 70}ms` }}
+                    >
+                      <span
+                        className={`transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-110 group-hover:rotate-12 ${
+                          isActive(item.href) ? "text-white" : "text-[var(--accent)]"
+                        }`}
+                      >
+                        <item.icon />
+                      </span>
+                      <span className="text-center transition-transform duration-300 group-hover:translate-x-0.5">
+                        {item.label}
+                      </span>
+                    </Link>
+                  ))}
+                </nav>
+              </div>
+            </div>,
+            document.body,
+          )
+        : null}
+    </>
   );
 }
