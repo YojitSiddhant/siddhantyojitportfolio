@@ -115,6 +115,26 @@ function CheckIcon({ className }: IconProps) {
   );
 }
 
+function FocusCard({
+  title,
+  description,
+  icon,
+}: {
+  title: string;
+  description: string;
+  icon: keyof typeof iconMap;
+}) {
+  return (
+    <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-strong)] p-4">
+      <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+        {renderIconStatic(icon, "h-4 w-4 text-[var(--accent)]")}
+        {title}
+      </div>
+      <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{description}</p>
+    </div>
+  );
+}
+
 const iconMap = {
   layers: LayersIcon,
   shield: ShieldIcon,
@@ -123,6 +143,11 @@ const iconMap = {
   check: CheckIcon,
   briefcase: BriefcaseIcon,
 } as const;
+
+function renderIconStatic(icon: keyof typeof iconMap, className: string) {
+  const Icon = iconMap[icon];
+  return <Icon className={className} />;
+}
 
 export default function Home() {
   const heroNameWords = profile.heroTitle.split(" ");
@@ -208,6 +233,35 @@ export default function Home() {
                       </div>
                     </div>
                   ))}
+                </div>
+              </div>
+
+              <div className="border-t border-[var(--border)] pt-4">
+                <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
+                  <LayersIcon className="h-4 w-4 text-[var(--accent)]" />
+                  Focus areas
+                </p>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  <FocusCard
+                    icon="layers"
+                    title="Responsive UI"
+                    description="Clear, client-facing interfaces that stay usable across screen sizes."
+                  />
+                  <FocusCard
+                    icon="shield"
+                    title="Validation"
+                    description="Testing edge cases, flow clarity, and behavior after content changes."
+                  />
+                  <FocusCard
+                    icon="code"
+                    title="Full stack"
+                    description="Frontend, backend, and database-driven work that fits together cleanly."
+                  />
+                  <FocusCard
+                    icon="briefcase"
+                    title="Handoff"
+                    description="Practical, maintainable UI decisions for long-term product growth."
+                  />
                 </div>
               </div>
 
