@@ -125,7 +125,7 @@ function FocusCard({
   icon: keyof typeof iconMap;
 }) {
   return (
-    <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-strong)] p-4">
+    <div className="flex flex-col gap-2 border-t border-[var(--border)] pt-4">
       <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
         {renderIconStatic(icon, "h-4 w-4 text-[var(--accent)]")}
         {title}
@@ -241,7 +241,7 @@ export default function Home() {
                   <LayersIcon className="h-4 w-4 text-[var(--accent)]" />
                   Focus areas
                 </p>
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                <div className="mt-4 grid gap-4 sm:grid-cols-2">
                   <FocusCard
                     icon="layers"
                     title="Responsive UI"
@@ -261,6 +261,16 @@ export default function Home() {
                     icon="briefcase"
                     title="Handoff"
                     description="Practical, maintainable UI decisions for long-term product growth."
+                  />
+                  <FocusCard
+                    icon="briefcase"
+                    title="Client feedback"
+                    description="Stakeholder feedback loops that help refine the interface with real context."
+                  />
+                  <FocusCard
+                    icon="code"
+                    title="Workflow clarity"
+                    description="User flows and interactions that stay straightforward as the product grows."
                   />
                 </div>
               </div>
