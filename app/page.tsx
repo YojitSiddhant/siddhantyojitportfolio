@@ -115,6 +115,27 @@ function CheckIcon({ className }: IconProps) {
   );
 }
 
+function TechBadge({
+  label,
+  monogram,
+  className = "",
+}: {
+  label: string;
+  monogram: string;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-strong)] px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)] ${className}`}
+    >
+      <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[var(--accent-soft)] text-[0.65rem] tracking-[0.12em] text-[var(--accent-strong)]">
+        {monogram}
+      </span>
+      <span>{label}</span>
+    </div>
+  );
+}
+
 const iconMap = {
   layers: LayersIcon,
   shield: ShieldIcon,
@@ -172,21 +193,17 @@ export default function Home() {
 
               <div className="grid gap-3 sm:grid-cols-2">
                 <div className="flex items-center gap-3 border-t border-[var(--border)] py-4 motion-reveal" style={{ animationDelay: "420ms" }}>
-                  <div className="flex items-center gap-3">
-                    <MapPinIcon className="h-5 w-5 shrink-0 text-[var(--accent)]" />
-                    <div>
-                      <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">Location</p>
-                      <p className="mt-1 text-sm font-medium text-[var(--foreground)]">{profile.location}</p>
-                    </div>
+                  <MapPinIcon className="h-5 w-5 shrink-0 text-[var(--accent)]" />
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">Location</p>
+                    <p className="mt-1 text-sm font-medium text-[var(--foreground)]">{profile.location}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 border-t border-[var(--border)] py-4 motion-reveal" style={{ animationDelay: "500ms" }}>
-                  <div className="flex items-center gap-3">
-                    <CodeIcon className="h-5 w-5 shrink-0 text-[var(--accent)]" />
-                    <div>
-                      <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">Core focus</p>
-                      <p className="mt-1 text-sm font-medium text-[var(--foreground)]">{profile.coreFocus}</p>
-                    </div>
+                  <CodeIcon className="h-5 w-5 shrink-0 text-[var(--accent)]" />
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">Core focus</p>
+                    <p className="mt-1 text-sm font-medium text-[var(--foreground)]">{profile.coreFocus}</p>
                   </div>
                 </div>
               </div>
@@ -279,6 +296,23 @@ export default function Home() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            <div className="border-t border-[var(--border)] pt-4">
+              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
+                <LayersIcon className="h-4 w-4 text-[var(--accent)]" />
+                Tech stack
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <TechBadge label="JavaScript" monogram="JS" />
+                <TechBadge label="React" monogram="R" />
+                <TechBadge label="Next.js" monogram="NX" />
+                <TechBadge label="Node.js" monogram="N" />
+                <TechBadge label="Flutter" monogram="FL" />
+                <TechBadge label="MongoDB" monogram="DB" />
+                <TechBadge label="MySQL" monogram="SQL" />
+                <TechBadge label="Java" monogram="J" />
               </div>
             </div>
           </article>
