@@ -115,19 +115,6 @@ function CheckIcon({ className }: IconProps) {
   );
 }
 
-function TechOrb({ label, monogram }: { label: string; monogram: string }) {
-  return (
-    <div className="flex flex-col items-center gap-2 text-center">
-      <div className="flex h-18 w-18 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-strong)] shadow-[0_8px_24px_rgba(0,0,0,0.05)]">
-        <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[var(--accent-soft)] text-[0.8rem] font-black tracking-[0.1em] text-[var(--accent-strong)]">
-          {monogram}
-        </span>
-      </div>
-      <span className="text-[0.68rem] font-black uppercase tracking-[0.24em] text-[var(--foreground)]">{label}</span>
-    </div>
-  );
-}
-
 const iconMap = {
   layers: LayersIcon,
   shield: ShieldIcon,
@@ -224,26 +211,6 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="border-t border-[var(--border)] pt-4">
-                <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-                  <LayersIcon className="h-4 w-4 text-[var(--accent)]" />
-                  Tech stack
-                </p>
-                <div className="mt-4 grid grid-cols-2 gap-5 sm:grid-cols-4">
-                  <TechOrb label="JavaScript" monogram="JS" />
-                  <TechOrb label="React" monogram="R" />
-                  <TechOrb label="Next.js" monogram="NX" />
-                  <TechOrb label="Node.js" monogram="N" />
-                  <TechOrb label="Flutter" monogram="FL" />
-                  <TechOrb label="MongoDB" monogram="DB" />
-                  <TechOrb label="MySQL" monogram="SQL" />
-                  <TechOrb label="Java" monogram="J" />
-                  <TechOrb label="Git" monogram="G" />
-                  <TechOrb label="GitHub" monogram="GH" />
-                  <TechOrb label="Angular" monogram="A" />
-                  <TechOrb label="Postman" monogram="P" />
-                </div>
-              </div>
             </div>
           </article>
 
