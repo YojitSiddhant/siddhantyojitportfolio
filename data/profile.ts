@@ -1,80 +1,123 @@
 export const profile = {
   heroTitle: "Hi, I'm Siddhant Yojit.",
   introText:
-    "I'm a frontend developer with internship experience in building responsive, client-facing interfaces and validating them with a strong testing mindset. I enjoy turning requirements into UI that feels simple, practical, and polished.",
-  location: "Bangalore, India",
-  coreFocus: "Frontend, UI, testing",
-  snapshotTitle: "Frontend Developer",
-  whatICareAbout: "Clear UI, thoughtful testing, and small details that improve the overall product experience.",
-  currentRole: "UI Developer Intern at TechVanta Labs Pvt. Ltd.",
+    "I'm a full stack developer with internship experience building responsive web applications and independent end-to-end solutions. I work across frontend, backend, and databases, with a strong focus on clean UI and dependable user flows.",
+  location: "Bangalore, Karnataka",
+  coreFocus: "Frontend, full stack, databases",
+  snapshotTitle: "Full Stack Developer",
+  whatICareAbout:
+    "Clear interfaces, reusable components, reliable workflows, and small details that make the final product easier to use.",
+  currentRole: "UI Developer Intern at TechVanta Labs Pvt. Ltd. (completed)",
   openToOpportunitiesBadge: "Open to opportunities",
   quickNotes: [
     {
       icon: "shield",
-      label: "Testing habit",
-      value:
-        "I keep an eye on edge cases, responsive behavior, and how screens behave when content changes.",
+      label: "Validation habit",
+      value: "I validate user flows, responsiveness, and layout behavior to keep the final experience dependable.",
     },
     {
       icon: "code",
       label: "Current stack",
-      value: "React, Next.js, HTML, CSS, JavaScript, Angular, and a growing set of full-stack tools.",
+      value: "JavaScript, Java, React.js, Next.js, Angular, Flutter, Node.js, MongoDB, and MySQL.",
     },
     {
       icon: "briefcase",
       label: "Project style",
-      value: "I like business and NGO websites, clean dashboards, and practical interfaces that stay maintainable.",
+      value: "Full-stack web apps, practical dashboards, and workflows that stay clear as they scale.",
     },
   ],
   headerNotes: [
     {
       icon: "briefcase",
       label: "Current role",
-      value: "UI Developer Intern at TechVanta Labs Pvt. Ltd.",
+      value: "Designed and developed responsive website interfaces at TechVanta Labs Pvt. Ltd.",
     },
     {
       icon: "code",
       label: "Experience style",
-      value: "Client-facing frontend work, component-based UI, and testing-focused delivery.",
+      value: "Reusable UI components, stakeholder feedback, and improved responsiveness across interfaces.",
     },
     {
       icon: "sparkle",
-      label: "Working goal",
-      value: "To build interfaces that are clear, dependable, and easy to grow over time.",
+      label: "Selected projects",
+      value:
+        "Smart Civic Grievance Redressal, Fake News Detection, and Fraudulent Seller Detection.",
     },
   ],
   valueCards: [
     {
       icon: "layers",
-      title: "Practical UI work",
+      title: "Responsive frontend delivery",
       description:
-        "I like building interfaces that feel clear, responsive, and easy to use, with enough structure to stay maintainable as they grow.",
+        "I build interfaces that work cleanly across screen sizes and stay easy to navigate for real users.",
     },
     {
       icon: "shield",
-      title: "Testing as part of the craft",
+      title: "Full stack integration",
       description:
-        "UI testing, test-case design, defect reporting, and cross-flow validation are part of how I make sure the final experience is dependable.",
+        "I've worked on end-to-end solutions that connect frontend UI, backend logic, and database-driven workflows.",
     },
     {
       icon: "code",
-      title: "Learning across the stack",
+      title: "Broad technical exposure",
       description:
-        "My background also includes project exposure to Flutter Web, Spring Boot, MongoDB, Node.js, SQLite, Java, JDBC, and MySQL.",
+        "My project work includes Flutter Web, Spring Boot, Python, Flask, Scikit-learn, JSP, Java, MongoDB, and MySQL.",
     },
   ],
   workingStyle: [
     {
       icon: "sparkle",
-      title: "I turn business requirements into clean frontend screens and reusable interface sections.",
+      title: "I turn business requirements into clean screens and reusable interface sections.",
     },
     {
       icon: "check",
-      title: "I pay attention to navigation clarity, responsive behavior, and handoff quality.",
+      title: "I pay attention to validation, responsive behavior, and handoff quality.",
     },
     {
       icon: "layers",
-      title: "I prefer small, well-structured UI decisions that make a product feel polished.",
+      title: "I prefer small, well-structured decisions that make a product feel polished.",
+    },
+  ],
+  selectedProjects: [
+    {
+      title: "Smart Civic Grievance Redressal Web Application",
+      stack: "Flutter Web, Spring Boot, MongoDB",
+      description:
+        "Built a full-stack system for complaint registration, assignment, tracking, image uploads, and role-based grievance workflows.",
+    },
+    {
+      title: "Fake News Detection System",
+      stack: "Python, Flask, Scikit-learn",
+      description:
+        "Built a machine learning web application for news classification with 93.53% prediction accuracy.",
+    },
+    {
+      title: "Fraudulent Seller Detection in Online Marketplaces",
+      stack: "JSP, Java, MySQL",
+      description:
+        "Built a marketplace application with seller verification, complaint workflows, and trust-analysis functionality.",
+    },
+  ],
+  education: [
+    {
+      level: "Master of Computer Applications",
+      institute: "PES University",
+      detail: "2024 to 2026, CGPA 6.13 / 10",
+    },
+    {
+      level: "Bachelor of Computer Applications",
+      institute: "New Horizon College",
+      detail: "2020 to 2023, CGPA 7.59 / 10",
+    },
+    {
+      level: "Class XII",
+      institute: "St Francis PU College",
+      detail: "2019 to 2020, 61.33%",
+    },
+    {
+      level: "Class X",
+      institute: "Narayana e-Techno School",
+      detail: "2016 to 2017, CGPA 9.5 / 10",
     },
   ],
 };
