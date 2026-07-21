@@ -115,23 +115,15 @@ function CheckIcon({ className }: IconProps) {
   );
 }
 
-function TechBadge({
-  label,
-  monogram,
-  className = "",
-}: {
-  label: string;
-  monogram: string;
-  className?: string;
-}) {
+function TechOrb({ label, monogram }: { label: string; monogram: string }) {
   return (
-    <div
-      className={`inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-strong)] px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)] ${className}`}
-    >
-      <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[var(--accent-soft)] text-[0.65rem] tracking-[0.12em] text-[var(--accent-strong)]">
-        {monogram}
-      </span>
-      <span>{label}</span>
+    <div className="flex flex-col items-center gap-2 text-center">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-strong)] shadow-[0_8px_24px_rgba(0,0,0,0.05)]">
+        <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--accent-soft)] text-[0.8rem] font-black tracking-[0.1em] text-[var(--accent-strong)]">
+          {monogram}
+        </span>
+      </div>
+      <span className="text-[0.68rem] font-black uppercase tracking-[0.24em] text-[var(--foreground)]">{label}</span>
     </div>
   );
 }
@@ -231,6 +223,23 @@ export default function Home() {
                   ))}
                 </div>
               </div>
+
+              <div className="border-t border-[var(--border)] pt-4">
+                <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
+                  <LayersIcon className="h-4 w-4 text-[var(--accent)]" />
+                  Tech stack
+                </p>
+                <div className="mt-4 grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
+                  <TechOrb label="JavaScript" monogram="JS" />
+                  <TechOrb label="React" monogram="R" />
+                  <TechOrb label="Next.js" monogram="NX" />
+                  <TechOrb label="Node.js" monogram="N" />
+                  <TechOrb label="Flutter" monogram="FL" />
+                  <TechOrb label="MongoDB" monogram="DB" />
+                  <TechOrb label="MySQL" monogram="SQL" />
+                  <TechOrb label="Java" monogram="J" />
+                </div>
+              </div>
             </div>
           </article>
 
@@ -299,22 +308,6 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="border-t border-[var(--border)] pt-4">
-              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-                <LayersIcon className="h-4 w-4 text-[var(--accent)]" />
-                Tech stack
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <TechBadge label="JavaScript" monogram="JS" />
-                <TechBadge label="React" monogram="R" />
-                <TechBadge label="Next.js" monogram="NX" />
-                <TechBadge label="Node.js" monogram="N" />
-                <TechBadge label="Flutter" monogram="FL" />
-                <TechBadge label="MongoDB" monogram="DB" />
-                <TechBadge label="MySQL" monogram="SQL" />
-                <TechBadge label="Java" monogram="J" />
-              </div>
-            </div>
           </article>
         </div>
 
