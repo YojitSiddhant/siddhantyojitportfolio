@@ -142,9 +142,9 @@ export default function Home() {
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[18rem] bg-[var(--background)]" />
 
       <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
-        <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid items-start gap-5 lg:grid-cols-[1.1fr_0.9fr]">
           <article
-            className="flex h-full flex-col gap-5 border-t border-[var(--border)] px-1 py-4 text-left motion-reveal"
+            className="flex flex-col gap-5 border-t border-[var(--border)] px-1 py-4 text-left motion-reveal"
             style={{ animationDelay: "80ms" }}
           >
             <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
@@ -218,7 +218,7 @@ export default function Home() {
           </article>
 
           <article
-            className="flex h-full flex-col gap-5 border-t border-[var(--border)] px-1 py-4 text-left motion-reveal"
+            className="flex flex-col gap-5 border-t border-[var(--border)] px-1 py-4 text-left motion-reveal"
             style={{ animationDelay: "180ms" }}
           >
             <div className="flex items-center justify-between gap-3">
@@ -288,7 +288,7 @@ export default function Home() {
           {values.map((item, index) => (
             <article
               key={item.title}
-              className="flex h-full flex-col items-start border-t border-[var(--border)] px-1 py-4 text-left motion-reveal"
+              className="flex flex-col items-start border-t border-[var(--border)] px-1 py-4 text-left motion-reveal"
               style={{ animationDelay: `${220 + index * 120}ms` }}
             >
               <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
@@ -312,7 +312,7 @@ export default function Home() {
             {workingStyle.map((item, index) => (
               <div
                 key={item.title}
-                className="flex h-full flex-col items-start border-t border-[var(--border)] pt-4 text-left motion-reveal lg:pt-4"
+                className="flex flex-col items-start border-t border-[var(--border)] pt-4 text-left motion-reveal lg:pt-4"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
                 <div className="flex items-center gap-2 text-sm font-black text-[var(--foreground)]">
