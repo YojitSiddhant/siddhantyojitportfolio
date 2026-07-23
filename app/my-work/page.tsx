@@ -62,7 +62,7 @@ export default function MyWorkPage() {
             {sortedWorkItems.map((item, index) => (
               <article
                 key={item.title}
-                className="flex h-full w-full max-w-[20rem] flex-col items-center gap-6 motion-reveal md:max-w-[22rem] xl:max-w-[24rem]"
+                className="flex h-full w-full max-w-80 flex-col items-center gap-6 motion-reveal md:max-w-88 xl:max-w-96"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
                 <div className="flex w-full flex-col items-center gap-4 text-center">

@@ -240,7 +240,7 @@ export function SiteNavbar() {
       {isOpen
         ? createPortal(
             <div
-              className="fixed inset-0 z-60 flex items-center justify-center bg-slate-950/20 px-4 py-6 backdrop-blur-sm motion-reveal-fade sm:py-8"
+              className="fixed inset-0 z-60 flex items-center justify-center bg-black/20 px-4 py-6 backdrop-blur-sm motion-reveal-fade sm:py-8"
               onClick={() => setIsOpen(false)}
             >
               <div
@@ -248,7 +248,7 @@ export function SiteNavbar() {
                 role="dialog"
                 aria-modal="true"
                 aria-label="Site navigation"
-                className="w-full max-w-104 max-h-[calc(100dvh-4rem)] overflow-hidden rounded-3xl border border-border bg-surface-strong p-4 shadow-2xl backdrop-blur-xl sm:max-h-[calc(100dvh-5rem)] sm:p-5"
+                className="w-full max-w-104 max-h-screen overflow-hidden rounded-3xl border border-border bg-surface-strong p-4 shadow-2xl backdrop-blur-xl sm:max-h-screen sm:p-5"
                 onClick={(event) => event.stopPropagation()}
               >
                 <div className="mb-4 flex items-center justify-between gap-4">
@@ -266,7 +266,7 @@ export function SiteNavbar() {
                   </button>
                 </div>
 
-                <nav className="grid max-h-[calc(100dvh-10rem)] gap-2 overflow-y-auto pr-1 sm:grid-cols-2">
+                <nav className="grid max-h-full gap-2 overflow-y-auto pr-1 sm:grid-cols-2">
                   {navItems.map((item, index) => (
                     <Link
                       key={item.label}

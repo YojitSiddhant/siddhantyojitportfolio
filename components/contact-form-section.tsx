@@ -785,7 +785,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                 </p>
                 <div className="mt-3 grid gap-2.5">
                   <div className="flex flex-col gap-1 border-b border-border pb-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
-                    <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-foreground">
+                    <p className="text-xs font-black uppercase tracking-[0.2em] text-foreground">
                       Project type
                     </p>
                     <p className="max-w-none text-left text-xs text-muted sm:max-w-52 sm:text-right">
@@ -793,7 +793,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                     </p>
                   </div>
                   <div className="flex flex-col gap-1 border-b border-border pb-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
-                    <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-foreground">
+                    <p className="text-xs font-black uppercase tracking-[0.2em] text-foreground">
                       Timeline
                     </p>
                     <p className="max-w-none text-left text-xs text-muted sm:max-w-52 sm:text-right">
@@ -801,7 +801,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                     </p>
                   </div>
                   <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
-                    <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-foreground">
+                    <p className="text-xs font-black uppercase tracking-[0.2em] text-foreground">
                       Best contact time
                     </p>
                     <p className="max-w-none text-left text-xs text-muted sm:max-w-52 sm:text-right">
@@ -816,7 +816,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                   className="mx-auto flex w-full max-w-full flex-col gap-3 rounded-3xl border border-border bg-surface-strong px-4 py-3 shadow-sm motion-reveal sm:max-w-95 sm:flex-row sm:items-center sm:justify-between"
                   style={{ animationDelay: "500ms" }}
                 >
-                  <div className="rounded-2xl bg-accent-soft px-3 py-2 text-[0.65rem] font-black uppercase tracking-[0.2em] text-accent">
+                  <div className="rounded-2xl bg-accent-soft px-3 py-2 text-xs font-black uppercase tracking-[0.2em] text-accent">
                     Reply fast
                   </div>
                   <div className="flex-1 text-left sm:text-right">
