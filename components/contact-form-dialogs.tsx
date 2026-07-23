@@ -1,3 +1,6 @@
+"use client";
+
+import { createPortal } from "react-dom";
 import type { PopupError } from "@/components/contact-form-utils";
 
 type ContactFormDialogsProps = {
@@ -15,7 +18,11 @@ export function ContactFormDialogs({
   onClosePopup,
   onCloseSuccess,
 }: ContactFormDialogsProps) {
-  return (
+  if (typeof document === "undefined") {
+    return null;
+  }
+
+  return createPortal(
     <>
       {isPopupOpen ? (
         <div
@@ -123,6 +130,7 @@ export function ContactFormDialogs({
           </div>
         </div>
       ) : null}
-    </>
+    </>,
+    document.body,
   );
 }
