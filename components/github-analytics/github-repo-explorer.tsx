@@ -39,7 +39,7 @@ export function GitHubRepoExplorer({ repos, technologyOptions }: GitHubRepoExplo
 
   return (
     <section className="space-y-5">
-      <div className="grid gap-3 rounded-3xl border border-border bg-surface px-4 py-4 shadow-sm sm:grid-cols-3 sm:items-end sm:gap-4">
+      <div className="grid gap-3 border-t border-border pt-4 sm:grid-cols-3 sm:items-end sm:gap-4">
         <label className="grid gap-2">
           <span className="text-xs font-black uppercase tracking-widest text-foreground">Search</span>
           <input
@@ -102,7 +102,7 @@ export function GitHubRepoExplorer({ repos, technologyOptions }: GitHubRepoExplo
         {filteredRepos.length > 0 ? (
           filteredRepos.map((repo) => <GitHubRepositoryCard key={repo.id} repo={repo} compact />)
         ) : (
-          <div className="rounded-3xl border border-border bg-surface px-4 py-6 text-sm text-muted">
+          <div className="border-t border-border pt-4 text-sm text-muted">
             No repositories match the current filters.
           </div>
         )}

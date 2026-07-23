@@ -21,9 +21,9 @@ export function GitHubRepositoryCard({ repo, compact = false }: GitHubRepository
   const techList = [repo.language, ...repo.topics].filter(Boolean).slice(0, compact ? 3 : 5) as string[];
 
   return (
-    <article className="flex h-full flex-col gap-4 border border-border bg-surface px-4 py-4 shadow-sm motion-reveal sm:px-5 sm:py-5">
+    <article className="flex h-full flex-col gap-4 border-b border-border pb-5 motion-reveal">
       <div className="flex items-start gap-4">
-        <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface-strong shadow-sm">
+        <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
           <img
             src={repo.owner.avatar_url}
             alt={`${repo.owner.login} avatar`}
@@ -51,7 +51,7 @@ export function GitHubRepositoryCard({ repo, compact = false }: GitHubRepository
           {techList.map((tech) => (
             <span
               key={`${repo.id}-${tech}`}
-              className="rounded-full border border-border bg-surface-strong px-3 py-2 text-[11px] font-black uppercase tracking-widest text-foreground"
+              className="rounded-full border border-border px-3 py-2 text-[11px] font-black uppercase tracking-widest text-foreground"
             >
               {tech}
             </span>

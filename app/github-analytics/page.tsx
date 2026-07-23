@@ -135,7 +135,7 @@ function SnapshotIcon({ className }: { className?: string }) {
 
 function GitHubAvatar({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="flex h-32 w-32 items-center justify-center overflow-hidden rounded-3xl border border-border bg-surface shadow-sm sm:h-36 sm:w-36">
+    <div className="flex h-36 w-36 items-center justify-center overflow-hidden rounded-3xl border border-border bg-surface shadow-sm sm:h-40 sm:w-40">
       <img src={src} alt={alt} className="h-full w-full object-cover" loading="eager" referrerPolicy="no-referrer" />
     </div>
   );
@@ -371,9 +371,9 @@ function StatCard({
   description: string;
 }) {
   return (
-    <article className="flex flex-col gap-2 border border-border bg-surface px-4 py-5 shadow-sm motion-reveal">
+    <article className="flex flex-col gap-2 border-t border-border pt-4 motion-reveal">
       <p className="text-xs font-black uppercase tracking-widest text-foreground">{label}</p>
-      <p className="text-2xl font-bold tracking-normal text-foreground">{value}</p>
+      <p className="text-xl font-bold tracking-normal text-foreground sm:text-2xl">{value}</p>
       <p className="text-sm leading-6 text-muted">{description}</p>
     </article>
   );
@@ -456,7 +456,7 @@ export default async function GitHubAnalyticsPage() {
 
           <div className="border-t border-border pt-4">
             {sectionTitle(<SnapshotIcon className="h-4 w-4 text-accent" />, "GitHub Snapshot", "Public repository and profile highlights.")}
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            <div className="mt-4 grid gap-x-6 gap-y-4 sm:grid-cols-2">
               <StatCard
                 label="Public repositories"
                 value={(analytics.user?.public_repos ?? analytics.repos.length).toLocaleString("en-IN")}
@@ -496,7 +496,7 @@ export default async function GitHubAnalyticsPage() {
             {sectionTitle(<CalendarIcon className="h-4 w-4 text-accent" />, "Contribution Calendar", "Public commit activity over the last 365 days.")}
           </div>
 
-          <div className="rounded-3xl border border-border bg-surface px-4 py-4 shadow-sm">
+          <div className="py-1">
             <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] font-black uppercase tracking-widest text-muted">
               <span>Less</span>
               <span className="inline-flex h-3 w-3 rounded-sm bg-accent-soft" aria-hidden="true" />
@@ -507,7 +507,7 @@ export default async function GitHubAnalyticsPage() {
               <span>More</span>
             </div>
 
-            <div className="mt-4 flex justify-center overflow-x-auto">
+            <div className="mt-4 flex justify-center overflow-x-auto border-b border-border pb-4">
               <div className="grid grid-flow-col grid-rows-7 gap-1.5" role="img" aria-label="GitHub contribution heatmap">
                 {analytics.contributionWeeks.flatMap((week, weekIndex) =>
                   week.map((cell, dayIndex) => {
@@ -536,7 +536,7 @@ export default async function GitHubAnalyticsPage() {
             </div>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-3">
+          <div className="grid gap-x-6 gap-y-4 sm:grid-cols-3">
             <StatCard
               label="Total contributions"
               value={analytics.totalContributions.toLocaleString("en-IN")}
@@ -561,11 +561,11 @@ export default async function GitHubAnalyticsPage() {
           {sectionTitle(<RepoIcon className="h-4 w-4 text-accent" />, "Featured Repositories", "A small set of the strongest public repositories from GitHub.")}
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-2">
+        <div className="grid gap-0">
           {analytics.featuredRepos.length > 0 ? (
             analytics.featuredRepos.map((repo) => <GitHubRepositoryCard key={repo.id} repo={repo} />)
           ) : (
-            <div className="rounded-3xl border border-border bg-surface px-4 py-6 text-sm text-muted">
+            <div className="border-t border-border pt-4 text-sm text-muted">
               No featured repositories could be loaded right now.
             </div>
           )}
@@ -586,7 +586,7 @@ export default async function GitHubAnalyticsPage() {
         </div>
 
         <div className="grid gap-5 lg:grid-cols-2">
-          <article className="flex flex-col gap-4 border border-border bg-surface px-4 py-5 shadow-sm">
+          <article className="flex flex-col gap-4 border-t border-border pt-4">
             <p className="text-xs font-black uppercase tracking-widest text-foreground">Languages</p>
             <div className="grid gap-4">
               {analytics.languageUsage.length > 0 ? (
@@ -611,7 +611,7 @@ export default async function GitHubAnalyticsPage() {
             </div>
           </article>
 
-          <article className="flex flex-col gap-4 border border-border bg-surface px-4 py-5 shadow-sm">
+          <article className="flex flex-col gap-4 border-t border-border pt-4">
             <p className="text-xs font-black uppercase tracking-widest text-foreground">Frameworks and tools</p>
             <div className="flex flex-wrap gap-2">
               {analytics.frameworkHighlights.length > 0 ? (
