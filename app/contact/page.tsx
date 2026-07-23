@@ -17,13 +17,13 @@ const contactLinks = {
 export default function ContactPage() {
   return (
     <main className="relative isolate overflow-x-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[var(--background)]" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[18rem] bg-[var(--background)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-background" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-background" />
 
       <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 pb-8 pt-4 sm:px-6 sm:pb-10 sm:pt-5 lg:px-8 lg:pt-6 motion-reveal">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--border)] px-1 py-3 motion-reveal" style={{ animationDelay: "80ms" }}>
-          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-            <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 text-[var(--accent)]" fill="none">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-1 py-3 motion-reveal" style={{ animationDelay: "80ms" }}>
+          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+            <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 text-accent" fill="none">
               <path
                 d="M4 7.5A1.5 1.5 0 0 1 5.5 6h13A1.5 1.5 0 0 1 20 7.5v9A1.5 1.5 0 0 1 18.5 18h-13A1.5 1.5 0 0 1 4 16.5v-9Z"
                 stroke="currentColor"
@@ -40,7 +40,7 @@ export default function ContactPage() {
             </svg>
             Contact
           </div>
-          <div className="text-sm font-black text-[var(--foreground)]">Form and options</div>
+          <div className="text-sm font-black text-foreground">Form and options</div>
         </div>
 
         <div className="motion-reveal" style={{ animationDelay: "160ms" }}>

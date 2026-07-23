@@ -248,7 +248,7 @@ export function SiteNavbar() {
                 role="dialog"
                 aria-modal="true"
                 aria-label="Site navigation"
-                className="w-full max-w-104 max-h-[calc(100dvh-4rem)] overflow-hidden rounded-[1.75rem] border border-border bg-[rgba(255,255,255,0.98)] p-4 shadow-[0_28px_90px_rgba(0,0,0,0.16)] backdrop-blur-xl sm:max-h-[calc(100dvh-5rem)] sm:p-5"
+                className="w-full max-w-104 max-h-[calc(100dvh-4rem)] overflow-hidden rounded-[1.75rem] border border-border bg-surface-strong p-4 shadow-[0_28px_90px_rgba(0,0,0,0.16)] backdrop-blur-xl sm:max-h-[calc(100dvh-5rem)] sm:p-5"
                 onClick={(event) => event.stopPropagation()}
               >
                 <div className="mb-4 flex items-center justify-between gap-4">

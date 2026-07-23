@@ -45,16 +45,16 @@ const sortedWorkItems = [...workItems].sort((a, b) => a.order - b.order);
 export default function MyWorkPage() {
   return (
     <main className="relative isolate overflow-x-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[var(--background)]" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[18rem] bg-[var(--background)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-background" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-background" />
 
       <section className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border)] px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
-          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-            <WorkIcon className="h-4 w-4 text-[var(--accent)]" />
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
+          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+            <WorkIcon className="h-4 w-4 text-accent" />
             My Work
           </div>
-          <div className="text-sm font-black text-[var(--foreground)]">Featured work</div>
+          <div className="text-sm font-black text-foreground">Featured work</div>
         </div>
 
         <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
@@ -67,7 +67,7 @@ export default function MyWorkPage() {
               >
                 <div className="flex w-full flex-col items-center gap-4 text-center">
                   {item.logo ? (
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-sm">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
                       <Image
                         src={item.logo}
                         alt={`${item.title} logo`}
@@ -78,7 +78,7 @@ export default function MyWorkPage() {
                       />
                     </div>
                   ) : (
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-dashed border-[var(--border)] bg-[var(--surface)] text-[10px] font-black uppercase tracking-[0.18em] text-[var(--muted)] shadow-sm">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-dashed border-border bg-surface text-[10px] font-black uppercase tracking-[0.18em] text-muted shadow-sm">
                       Photo
                     </div>
                   )}
@@ -89,26 +89,26 @@ export default function MyWorkPage() {
                         href={item.links[0].url}
                         target="_blank"
                         rel="noreferrer"
-                        className="group inline-flex items-center gap-2 text-lg font-bold tracking-normal text-[var(--foreground)] sm:text-xl"
+                        className="group inline-flex items-center gap-2 text-lg font-bold tracking-normal text-foreground sm:text-xl"
                       >
-                        <span className="text-[var(--foreground)] transition-colors duration-300 group-hover:text-[var(--accent)]">
+                        <span className="text-foreground transition-colors duration-300 group-hover:text-accent">
                           {item.title}
                         </span>
                       </Link>
                     ) : (
-                      <h2 className="text-xl font-bold tracking-normal text-[var(--foreground)]">{item.title}</h2>
+                      <h2 className="text-xl font-bold tracking-normal text-foreground">{item.title}</h2>
                     )}
                   </div>
                 </div>
 
-                {item.summary ? <p className="text-sm leading-7 text-[var(--muted)]">{item.summary}</p> : null}
+                {item.summary ? <p className="text-sm leading-7 text-muted">{item.summary}</p> : null}
 
                 {Array.isArray(item.screenshots) && item.screenshots.length > 0 ? (
                   <div className="grid gap-3 sm:grid-cols-2">
                     {(item.screenshots as string[]).map((screenshot) => (
                       <div
                         key={screenshot}
-                        className="relative h-44 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--background)]"
+                        className="relative h-44 overflow-hidden rounded-lg border border-border bg-background"
                       >
                         <Image
                           src={screenshot}
@@ -130,7 +130,7 @@ export default function MyWorkPage() {
                         href={link.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                        className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-foreground transition-colors hover:border-accent hover:text-accent"
                       >
                         <ReactIcon className="h-3.5 w-3.5" />
                         {link.label}

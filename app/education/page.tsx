@@ -29,16 +29,16 @@ function BookIcon({ className }: { className?: string }) {
 export default function EducationPage() {
   return (
     <main className="relative isolate overflow-x-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[var(--background)]" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[18rem] bg-[var(--background)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-background" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-background" />
 
       <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border)] px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
-          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-            <BookIcon className="text-[var(--accent)]" />
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
+          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+            <BookIcon className="text-accent" />
             Education
           </div>
-          <div className="text-sm font-black text-[var(--foreground)]">Academic background</div>
+          <div className="text-sm font-black text-foreground">Academic background</div>
         </div>
 
         <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
@@ -46,16 +46,16 @@ export default function EducationPage() {
             {education.map((item, index) => (
               <article
                 key={`${item.degree}-${item.institute}`}
-                className="flex flex-col gap-2 border-b border-[var(--border)] pb-5 sm:flex-row sm:items-center sm:justify-between motion-reveal"
+                className="flex flex-col gap-2 border-b border-border pb-5 sm:flex-row sm:items-center sm:justify-between motion-reveal"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
                 <div className="min-w-0 flex-1">
-                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
+                  <p className="text-xs font-black uppercase tracking-[0.24em] text-foreground">
                     {item.degree}
                   </p>
                   <div className="mt-2 flex flex-wrap items-center gap-3">
                     {item.logo ? (
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-sm">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
                         <Image
                           src={item.logo}
                           alt={`${item.institute} logo`}
@@ -65,15 +65,15 @@ export default function EducationPage() {
                         />
                       </div>
                     ) : null}
-                    <h2 className="text-xl font-bold tracking-normal text-[var(--foreground)]">
+                    <h2 className="text-xl font-bold tracking-normal text-foreground">
                       {item.institute}
                     </h2>
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-1 text-sm text-[var(--foreground)] sm:min-w-[8rem] sm:text-right">
+                <div className="flex flex-col gap-1 text-sm text-foreground sm:min-w-[8rem] sm:text-right">
                   <p>{item.duration}</p>
-                  <p className="font-black text-[var(--foreground)]">{item.description}</p>
+                  <p className="font-black text-foreground">{item.description}</p>
                 </div>
               </article>
             ))}

@@ -30,7 +30,7 @@ export default function Loading() {
 
           <div className="space-y-4 px-1 py-2">
             <div className="h-10 animate-pulse rounded-full border border-border bg-surface" />
-            <div className="h-[32rem] animate-pulse rounded-4xl border border-border bg-surface" />
+            <div className="h-128 animate-pulse rounded-4xl border border-border bg-surface" />
           </div>
         </section>
       </section>
