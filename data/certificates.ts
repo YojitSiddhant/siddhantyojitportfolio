@@ -4,8 +4,6 @@ export const certificates = [
     issuer: "Great Learning Academy",
     issueDate: "Mar 2024",
     logo: "/company-logos/great-learning-logo.png",
-    image: "/certificates/chatgpt-for-excel.png",
-    verificationLink: "",
     order: 1,
   },
   {
@@ -13,8 +11,6 @@ export const certificates = [
     issuer: "Great Learning Academy",
     issueDate: "Mar 2024",
     logo: "/company-logos/great-learning-logo.png",
-    image: "/certificates/data-visualization-with-power-bi.png",
-    verificationLink: "",
     order: 2,
   },
   {
@@ -22,8 +18,6 @@ export const certificates = [
     issuer: "Great Learning Academy",
     issueDate: "Mar 2024",
     logo: "/company-logos/great-learning-logo.png",
-    image: "/certificates/google-bard-for-microsoft-powerpoint.png",
-    verificationLink: "",
     order: 3,
   },
   {
@@ -31,8 +25,6 @@ export const certificates = [
     issuer: "Great Learning Academy",
     issueDate: "Mar 2024",
     logo: "/company-logos/great-learning-logo.png",
-    image: "/certificates/html-in-hindi.png",
-    verificationLink: "",
     order: 4,
   },
   {
@@ -40,7 +32,6 @@ export const certificates = [
     issuer: "New Horizon College Marathahalli",
     issueDate: "Jan 2023",
     logo: "/company-logos/nhcm-logo.jpeg",
-    verificationLink: "",
     order: 5,
   },
   {
@@ -48,7 +39,6 @@ export const certificates = [
     issuer: "New Horizon College Marathahalli",
     issueDate: "Aug 2023",
     logo: "/company-logos/nhcm-logo.jpeg",
-    verificationLink: "",
     order: 6,
   },
   {
@@ -56,7 +46,6 @@ export const certificates = [
     issuer: "New Horizon College Marathahalli",
     issueDate: "Nov 2020",
     logo: "/company-logos/nhcm-logo.jpeg",
-    verificationLink: "",
     order: 7,
   },
   {
@@ -64,7 +53,6 @@ export const certificates = [
     issuer: "New Horizon College Marathahalli",
     issueDate: "Jan 2022",
     logo: "/company-logos/nhcm-logo.jpeg",
-    verificationLink: "",
     order: 8,
   },
 ];

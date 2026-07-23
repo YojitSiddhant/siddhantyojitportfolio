@@ -7,7 +7,6 @@ export const profile = {
   snapshotTitle: "Full Stack Developer",
   whatICareAbout:
     "Clear interfaces, reusable components, reliable workflows, and small details that make the final product easier to use.",
-  currentRole: "UI Developer Intern at TechVanta Labs Pvt. Ltd. (completed)",
   openToOpportunitiesBadge: "Open to opportunities",
   quickNotes: [
     {

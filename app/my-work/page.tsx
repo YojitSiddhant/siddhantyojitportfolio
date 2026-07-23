@@ -101,27 +101,6 @@ export default function MyWorkPage() {
                   </div>
                 </div>
 
-                {item.summary ? <p className="text-sm leading-7 text-muted">{item.summary}</p> : null}
-
-                {Array.isArray(item.screenshots) && item.screenshots.length > 0 ? (
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {(item.screenshots as string[]).map((screenshot) => (
-                      <div
-                        key={screenshot}
-                        className="relative h-44 overflow-hidden rounded-lg border border-border bg-background"
-                      >
-                        <Image
-                          src={screenshot}
-                          alt={`${item.title} screenshot`}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          className="object-cover"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                ) : null}
-
                 {Array.isArray(item.links) && item.links.length > 1 ? (
                   <div className="mt-auto flex w-full flex-wrap justify-center gap-2 pt-1">
                     {(item.links as Array<{ label: string; url: string }>).slice(1).map((link) => (
