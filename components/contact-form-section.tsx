@@ -256,17 +256,17 @@ function SendIcon({ className }: { className?: string }) {
 }
 
 const iconToneClassName: Record<CardTone, string> = {
-  whatsapp: "text-[var(--foreground)]",
-  phone: "text-[var(--foreground)]",
-  linkedin: "text-[var(--foreground)]",
-  github: "text-[var(--foreground)]",
+  whatsapp: "text-foreground",
+  phone: "text-foreground",
+  linkedin: "text-foreground",
+  github: "text-foreground",
 };
 
 const buttonToneClassName: Record<CardTone, string> = {
-  whatsapp: "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]",
-  phone: "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]",
-  linkedin: "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]",
-  github: "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]",
+  whatsapp: "border-border bg-surface text-foreground hover:border-accent hover:bg-accent-soft",
+  phone: "border-border bg-surface text-foreground hover:border-accent hover:bg-accent-soft",
+  linkedin: "border-border bg-surface text-foreground hover:border-accent hover:bg-accent-soft",
+  github: "border-border bg-surface text-foreground hover:border-accent hover:bg-accent-soft",
 };
 
 type QuickAction = {
@@ -530,7 +530,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
     <>
       {isPopupOpen ? (
         <div
-          className="fixed inset-0 z-[120] flex items-center justify-center bg-black/40 px-4 py-6 backdrop-blur-[2px]"
+          className="fixed inset-0 z-120 flex items-center justify-center bg-black/40 px-4 py-6 backdrop-blur-[2px]"
           role="dialog"
           aria-modal="true"
           aria-labelledby="contact-validation-title"
@@ -538,25 +538,25 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
           onClick={() => setIsPopupOpen(false)}
         >
           <div
-            className="w-full max-w-md rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] p-5 shadow-2xl"
+            className="w-full max-w-md rounded-3xl border border-border bg-surface-strong p-5 shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p
                   id="contact-validation-title"
-                  className="text-sm font-black uppercase tracking-[0.22em] text-[var(--accent)]"
+                  className="text-sm font-black uppercase tracking-[0.22em] text-accent"
                 >
                   Validation error
                 </p>
-                <p id="contact-validation-description" className="mt-2 text-sm text-[var(--muted)]">
+                <p id="contact-validation-description" className="mt-2 text-sm text-muted">
                   Please fix the following fields before sending the message.
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setIsPopupOpen(false)}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] text-[var(--foreground)] transition-colors hover:bg-[var(--accent-soft)]"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-accent-soft"
                 aria-label="Close validation popup"
               >
                 <span aria-hidden="true">×</span>
@@ -567,7 +567,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
               {popupErrors.map((error) => (
                 <li
                   key={error.field}
-                  className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--accent)]"
+                  className="rounded-2xl border border-border bg-surface px-4 py-3 text-sm text-accent"
                 >
                   {error.field}: {error.message}
                 </li>
@@ -578,7 +578,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
               <button
                 type="button"
                 onClick={() => setIsPopupOpen(false)}
-                className="rounded-full bg-[var(--accent)] px-4 py-2 text-sm font-black uppercase tracking-[0.18em] text-white transition-colors hover:bg-[var(--accent-strong)]"
+                className="rounded-full bg-accent px-4 py-2 text-sm font-black uppercase tracking-[0.18em] text-white transition-colors hover:bg-accent-strong"
               >
                 Ok
               </button>
@@ -589,7 +589,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
 
       {isSuccessOpen ? (
         <div
-          className="fixed inset-0 z-[120] flex items-center justify-center bg-black/40 px-4 py-6 backdrop-blur-[2px]"
+          className="fixed inset-0 z-120 flex items-center justify-center bg-black/40 px-4 py-6 backdrop-blur-[2px]"
           role="dialog"
           aria-modal="true"
           aria-labelledby="contact-success-title"
@@ -600,18 +600,18 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
           }}
         >
           <div
-            className="w-full max-w-md rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] p-5 shadow-2xl"
+            className="w-full max-w-md rounded-3xl border border-border bg-surface-strong p-5 shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p
                   id="contact-success-title"
-                  className="text-sm font-black uppercase tracking-[0.22em] text-[var(--accent)]"
+                  className="text-sm font-black uppercase tracking-[0.22em] text-accent"
                 >
                   Message sent successfully
                 </p>
-                <p id="contact-success-description" className="mt-2 text-sm text-[var(--muted)]">
+                <p id="contact-success-description" className="mt-2 text-sm text-muted">
                   The form has been reset and is ready for a new message.
                 </p>
               </div>
@@ -621,7 +621,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                   setIsSuccessOpen(false);
                   setStatus("idle");
                 }}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border)] text-[var(--foreground)] transition-colors hover:bg-[var(--accent-soft)]"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-accent-soft"
                 aria-label="Close success popup"
               >
                 <span aria-hidden="true">×</span>
@@ -635,7 +635,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                   setIsSuccessOpen(false);
                   setStatus("idle");
                 }}
-                className="rounded-full bg-[var(--accent)] px-4 py-2 text-sm font-black uppercase tracking-[0.18em] text-white transition-colors hover:bg-[var(--accent-strong)]"
+                className="rounded-full bg-accent px-4 py-2 text-sm font-black uppercase tracking-[0.18em] text-white transition-colors hover:bg-accent-strong"
               >
                 Ok
               </button>
@@ -646,9 +646,9 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
 
       <section className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr] motion-reveal">
         <div className="px-1 py-2 motion-reveal" style={{ animationDelay: "80ms" }}>
-          <div className="border-b border-[var(--border)] pb-4">
-            <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-              <FormIcon className="h-4 w-4 text-[var(--accent)]" />
+          <div className="border-b border-border pb-4">
+            <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+              <FormIcon className="h-4 w-4 text-accent" />
               Send a message
             </p>
           </div>
@@ -660,8 +660,8 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
 
               return (
                 <label key={field.name} className="grid gap-1.5">
-                  <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
-                    <field.icon className="h-4 w-4 text-[var(--accent)]" />
+                  <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-foreground">
+                    <field.icon className="h-4 w-4 text-accent" />
                     {field.label}
                   </span>
                   <input
@@ -678,8 +678,8 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                     maxLength={field.maxLength}
                     pattern={field.pattern}
                     aria-invalid={isInvalid}
-                    className={`w-full rounded-2xl border bg-[var(--surface-strong)] px-4 py-2.5 text-sm text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)] ${
-                      isInvalid ? "border-[var(--accent)] focus:border-[var(--accent-strong)]" : "border-[var(--border)]"
+                    className={`w-full rounded-2xl border bg-surface-strong px-4 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted focus:border-accent ${
+                      isInvalid ? "border-accent focus:border-accent-strong" : "border-border"
                     }`}
                   />
                 </label>
@@ -687,8 +687,8 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
             })}
 
             <label className="grid gap-1.5">
-              <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
-                <ReactAtomIcon className="h-4 w-4 text-[var(--accent)]" />
+              <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-foreground">
+                <ReactAtomIcon className="h-4 w-4 text-accent" />
                 Message
               </span>
               <textarea
@@ -702,8 +702,8 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                 maxLength={1000}
                 rows={5}
                 aria-invalid={Boolean(errors.message && touched.message)}
-                className={`w-full resize-y rounded-2xl border bg-[var(--surface-strong)] px-4 py-2.5 text-sm text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)] ${
-                  errors.message && touched.message ? "border-[var(--accent)] focus:border-[var(--accent-strong)]" : "border-[var(--border)]"
+                className={`w-full resize-y rounded-2xl border bg-surface-strong px-4 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted focus:border-accent ${
+                  errors.message && touched.message ? "border-accent focus:border-accent-strong" : "border-border"
                 }`}
               />
             </label>
@@ -737,13 +737,13 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
               </button>
 
               {submissionError ? (
-                <p className="text-sm text-[var(--accent)]" role="alert">
+                <p className="text-sm text-accent" role="alert">
                   {submissionError}
                 </p>
               ) : null}
 
               {status === "submitted" ? (
-                <p className="text-sm text-[var(--muted)]">
+                <p className="text-sm text-muted">
                   Message sent successfully. I’ll get back to you as soon as I can.
                 </p>
               ) : null}
@@ -774,37 +774,37 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
               </div>
 
               <div
-                className="mx-auto mt-5 w-full max-w-full rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 shadow-sm motion-reveal sm:max-w-[380px]"
+                className="mx-auto mt-5 w-full max-w-full rounded-3xl border border-border bg-surface-strong px-4 py-3 shadow-sm motion-reveal sm:max-w-[380px]"
                 style={{ animationDelay: "420ms" }}
               >
-                <p className="text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
+                <p className="text-sm font-black uppercase tracking-[0.24em] text-foreground">
                   Quick details
                 </p>
-                <p className="mt-1.5 text-xs leading-5 text-[var(--muted)]">
+                <p className="mt-1.5 text-xs leading-5 text-muted">
                   Share these details in your message so I can reply quickly and clearly.
                 </p>
                 <div className="mt-3 grid gap-2.5">
-                  <div className="flex flex-col gap-1 border-b border-[var(--border)] pb-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
-                    <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--foreground)]">
+                  <div className="flex flex-col gap-1 border-b border-border pb-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
+                    <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-foreground">
                       Project type
                     </p>
-                    <p className="max-w-none text-left text-xs text-[var(--muted)] sm:max-w-[13rem] sm:text-right">
+                    <p className="max-w-none text-left text-xs text-muted sm:max-w-[13rem] sm:text-right">
                       Website, UI redesign, portfolio, or freelance work.
                     </p>
                   </div>
-                  <div className="flex flex-col gap-1 border-b border-[var(--border)] pb-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
-                    <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--foreground)]">
+                  <div className="flex flex-col gap-1 border-b border-border pb-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
+                    <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-foreground">
                       Timeline
                     </p>
-                    <p className="max-w-none text-left text-xs text-[var(--muted)] sm:max-w-[13rem] sm:text-right">
+                    <p className="max-w-none text-left text-xs text-muted sm:max-w-[13rem] sm:text-right">
                       Let me know your expected deadline or urgency.
                     </p>
                   </div>
                   <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
-                    <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--foreground)]">
+                    <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-foreground">
                       Best contact time
                     </p>
-                    <p className="max-w-none text-left text-xs text-[var(--muted)] sm:max-w-[13rem] sm:text-right">
+                    <p className="max-w-none text-left text-xs text-muted sm:max-w-[13rem] sm:text-right">
                       Mention the time window that works for you.
                     </p>
                   </div>
@@ -813,17 +813,17 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
 
               <div className="mt-auto pt-4">
                 <div
-                  className="mx-auto flex w-full max-w-full flex-col gap-3 rounded-3xl border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 shadow-sm motion-reveal sm:max-w-[380px] sm:flex-row sm:items-center sm:justify-between"
+                  className="mx-auto flex w-full max-w-full flex-col gap-3 rounded-3xl border border-border bg-surface-strong px-4 py-3 shadow-sm motion-reveal sm:max-w-[380px] sm:flex-row sm:items-center sm:justify-between"
                   style={{ animationDelay: "500ms" }}
                 >
-                  <div className="rounded-2xl bg-[var(--accent-soft)] px-3 py-2 text-[0.65rem] font-black uppercase tracking-[0.2em] text-[var(--accent)]">
+                  <div className="rounded-2xl bg-accent-soft px-3 py-2 text-[0.65rem] font-black uppercase tracking-[0.2em] text-accent">
                     Reply fast
                   </div>
                   <div className="flex-1 text-left sm:text-right">
-                    <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+                    <p className="text-xs font-black uppercase tracking-[0.22em] text-foreground">
                       Quick reply
                     </p>
-                    <p className="mt-1 text-xs leading-5 text-[var(--muted)]">
+                    <p className="mt-1 text-xs leading-5 text-muted">
                       Usually within 1 business day.
                     </p>
                   </div>
