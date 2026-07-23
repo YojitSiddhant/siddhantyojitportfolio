@@ -106,8 +106,17 @@ export default function MyWorkPage() {
                 {Array.isArray(item.screenshots) && item.screenshots.length > 0 ? (
                   <div className="grid gap-3 sm:grid-cols-2">
                     {(item.screenshots as string[]).map((screenshot) => (
-                      <div key={screenshot} className="overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--background)]">
-                        <img src={screenshot} alt={`${item.title} screenshot`} className="h-44 w-full object-cover" loading="lazy" />
+                      <div
+                        key={screenshot}
+                        className="relative h-44 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--background)]"
+                      >
+                        <Image
+                          src={screenshot}
+                          alt={`${item.title} screenshot`}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover"
+                        />
                       </div>
                     ))}
                   </div>
