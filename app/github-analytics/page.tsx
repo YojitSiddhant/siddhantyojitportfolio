@@ -161,7 +161,7 @@ export default async function GitHubAnalyticsPage() {
                 @{username}
               </p>
               <p className="mt-3 text-sm font-medium tracking-normal text-foreground">
-                FRONTEND_DEVELOPMENT/FULL STACK DEVELOPER
+                FULL STACK DEVELOPER
               </p>
               <p className="mt-4 max-w-2xl text-base leading-7 text-muted text-pretty sm:text-lg">{bio}</p>
             </div>
