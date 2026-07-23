@@ -14,6 +14,7 @@ const navItems = [
   { label: "My Work", href: "/my-work", icon: WorkIcon },
   { label: "Certificate", href: "/certificate", icon: CertificateIcon },
   { label: "Experience", href: "/experience", icon: TimelineIcon },
+  { label: "GitHub Analytics", href: "/github-analytics", icon: GitHubAnalyticsIcon },
   { label: "Contact", href: "/contact", icon: MailIcon },
 ];
 
@@ -163,6 +164,19 @@ function MailIcon({ className }: IconProps) {
         stroke="currentColor"
         strokeWidth="1.7"
         strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function GitHubAnalyticsIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={`h-4 w-4 ${className ?? ""}`} fill="none">
+      <path
+        d="M12 4.2c-4.3 0-7.8 3.5-7.8 7.8 0 3.4 2.2 6.3 5.3 7.4.4.1.5-.1.5-.3v-1.3c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8 0 1.2.8 1.2.8.7 1.2 1.8.8 2.3.6.1-.5.3-.8.5-1-1.8-.2-3.7-.9-3.7-4 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8.6-.2 1.3-.3 2-.3s1.4.1 2 .3c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.2.8 2.1 0 3.1-1.9 3.8-3.7 4 .3.3.5.7.5 1.4v2.1c0 .2.1.4.5.3 3.1-1.1 5.3-4 5.3-7.4 0-4.3-3.5-7.8-7.8-7.8Z"
+        stroke="currentColor"
+        strokeWidth="1.4"
         strokeLinejoin="round"
       />
     </svg>
