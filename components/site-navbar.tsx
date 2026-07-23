@@ -203,7 +203,7 @@ export function SiteNavbar() {
         <div className="portfolio-navbar-shell mx-auto flex w-full max-w-7xl items-center justify-between px-3 py-3 sm:px-6 sm:py-4 lg:px-8 motion-reveal">
           <Link
             href="/"
-            className="portfolio-navbar-logo relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full shadow-[0_6px_16px_rgba(0,0,0,0.08)]"
+            className="portfolio-navbar-logo relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full shadow-md"
             aria-label="Go to home"
           >
             <Image src="/favicon.png" alt="" fill sizes="36px" className="object-cover" priority={false} />
@@ -220,7 +220,7 @@ export function SiteNavbar() {
 
             <button
               type="button"
-            className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-surface-strong text-foreground shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-colors hover:bg-accent-soft"
+            className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-surface-strong text-foreground shadow-lg transition-colors hover:bg-accent-soft"
               onClick={() => setIsOpen((current) => !current)}
               aria-expanded={isOpen}
               aria-controls="desktop-navigation-menu"
@@ -240,7 +240,7 @@ export function SiteNavbar() {
       {isOpen
         ? createPortal(
             <div
-              className="fixed inset-0 z-60 flex items-center justify-center bg-[rgba(15,23,42,0.18)] px-4 py-6 backdrop-blur-[1.5px] motion-reveal-fade sm:py-8"
+              className="fixed inset-0 z-60 flex items-center justify-center bg-slate-950/20 px-4 py-6 backdrop-blur-sm motion-reveal-fade sm:py-8"
               onClick={() => setIsOpen(false)}
             >
               <div
@@ -248,7 +248,7 @@ export function SiteNavbar() {
                 role="dialog"
                 aria-modal="true"
                 aria-label="Site navigation"
-                className="w-full max-w-104 max-h-[calc(100dvh-4rem)] overflow-hidden rounded-[1.75rem] border border-border bg-surface-strong p-4 shadow-[0_28px_90px_rgba(0,0,0,0.16)] backdrop-blur-xl sm:max-h-[calc(100dvh-5rem)] sm:p-5"
+                className="w-full max-w-104 max-h-[calc(100dvh-4rem)] overflow-hidden rounded-3xl border border-border bg-surface-strong p-4 shadow-2xl backdrop-blur-xl sm:max-h-[calc(100dvh-5rem)] sm:p-5"
                 onClick={(event) => event.stopPropagation()}
               >
                 <div className="mb-4 flex items-center justify-between gap-4">

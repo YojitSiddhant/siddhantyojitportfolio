@@ -530,7 +530,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
     <>
       {isPopupOpen ? (
         <div
-          className="fixed inset-0 z-120 flex items-center justify-center bg-black/40 px-4 py-6 backdrop-blur-[2px]"
+          className="fixed inset-0 z-120 flex items-center justify-center bg-black/40 px-4 py-6 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
           aria-labelledby="contact-validation-title"
@@ -589,7 +589,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
 
       {isSuccessOpen ? (
         <div
-          className="fixed inset-0 z-120 flex items-center justify-center bg-black/40 px-4 py-6 backdrop-blur-[2px]"
+          className="fixed inset-0 z-120 flex items-center justify-center bg-black/40 px-4 py-6 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
           aria-labelledby="contact-success-title"
@@ -644,7 +644,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
         </div>
       ) : null}
 
-      <section className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr] motion-reveal">
+      <section className="grid gap-5 lg:grid-cols-2 motion-reveal">
         <div className="px-1 py-2 motion-reveal" style={{ animationDelay: "80ms" }}>
           <div className="border-b border-border pb-4">
             <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
@@ -753,7 +753,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
 
         <div className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
           <div className="flex justify-end xl:translate-x-10 xl:translate-y-2">
-            <div className="flex h-full w-full max-w-full flex-col xl:max-w-[420px]">
+            <div className="flex h-full w-full max-w-full flex-col xl:max-w-105">
               <div className="flex flex-wrap items-center justify-center gap-3">
                 {quickActions.map(({ label, href, Icon, iconClassName, tone }, index) => {
                   const isExternal = href.startsWith("http");
@@ -764,7 +764,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                       target={isExternal ? "_blank" : undefined}
                       rel={isExternal ? "noreferrer" : undefined}
                       aria-label={label}
-                      className={`group inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-all duration-200 ease-out hover:scale-105 hover:shadow-[0_14px_30px_rgba(0,0,0,0.12)] motion-reveal sm:h-14 sm:w-14 ${buttonToneClassName[tone]}`}
+                      className={`group inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border shadow-lg transition-all duration-200 ease-out hover:scale-105 hover:shadow-xl motion-reveal sm:h-14 sm:w-14 ${buttonToneClassName[tone]}`}
                       style={{ animationDelay: `${220 + index * 90}ms` }}
                     >
                       <Icon className={`h-6 w-6 transition-transform duration-200 group-hover:scale-110 sm:h-7 sm:w-7 ${iconClassName}`} />
@@ -774,7 +774,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
               </div>
 
               <div
-                className="mx-auto mt-5 w-full max-w-full rounded-3xl border border-border bg-surface-strong px-4 py-3 shadow-sm motion-reveal sm:max-w-[380px]"
+                className="mx-auto mt-5 w-full max-w-full rounded-3xl border border-border bg-surface-strong px-4 py-3 shadow-sm motion-reveal sm:max-w-95"
                 style={{ animationDelay: "420ms" }}
               >
                 <p className="text-sm font-black uppercase tracking-[0.24em] text-foreground">
@@ -788,7 +788,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                     <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-foreground">
                       Project type
                     </p>
-                    <p className="max-w-none text-left text-xs text-muted sm:max-w-[13rem] sm:text-right">
+                    <p className="max-w-none text-left text-xs text-muted sm:max-w-52 sm:text-right">
                       Website, UI redesign, portfolio, or freelance work.
                     </p>
                   </div>
@@ -796,7 +796,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                     <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-foreground">
                       Timeline
                     </p>
-                    <p className="max-w-none text-left text-xs text-muted sm:max-w-[13rem] sm:text-right">
+                    <p className="max-w-none text-left text-xs text-muted sm:max-w-52 sm:text-right">
                       Let me know your expected deadline or urgency.
                     </p>
                   </div>
@@ -804,7 +804,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                     <p className="text-[0.65rem] font-black uppercase tracking-[0.2em] text-foreground">
                       Best contact time
                     </p>
-                    <p className="max-w-none text-left text-xs text-muted sm:max-w-[13rem] sm:text-right">
+                    <p className="max-w-none text-left text-xs text-muted sm:max-w-52 sm:text-right">
                       Mention the time window that works for you.
                     </p>
                   </div>
@@ -813,7 +813,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
 
               <div className="mt-auto pt-4">
                 <div
-                  className="mx-auto flex w-full max-w-full flex-col gap-3 rounded-3xl border border-border bg-surface-strong px-4 py-3 shadow-sm motion-reveal sm:max-w-[380px] sm:flex-row sm:items-center sm:justify-between"
+                  className="mx-auto flex w-full max-w-full flex-col gap-3 rounded-3xl border border-border bg-surface-strong px-4 py-3 shadow-sm motion-reveal sm:max-w-95 sm:flex-row sm:items-center sm:justify-between"
                   style={{ animationDelay: "500ms" }}
                 >
                   <div className="rounded-2xl bg-accent-soft px-3 py-2 text-[0.65rem] font-black uppercase tracking-[0.2em] text-accent">

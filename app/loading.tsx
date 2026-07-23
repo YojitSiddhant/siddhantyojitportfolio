@@ -10,7 +10,7 @@ export default function Loading() {
           <div className="h-4 w-40 animate-pulse rounded-full bg-accent-soft" />
         </div>
 
-        <section className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+        <section className="grid gap-5 lg:grid-cols-2">
           <div className="space-y-5 px-1 py-2">
             <div className="h-20 w-full max-w-4xl animate-pulse rounded-4xl bg-accent-soft sm:h-28" />
             <div className="h-6 w-full max-w-2xl animate-pulse rounded-full bg-accent-soft" />

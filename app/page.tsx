@@ -167,7 +167,7 @@ export default function Home() {
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-background" />
 
       <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
-        <div className="grid items-start gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid items-start gap-5 lg:grid-cols-2">
           <article
             className="flex flex-col gap-5 border-t border-border px-1 py-4 text-left motion-reveal"
             style={{ animationDelay: "80ms" }}
@@ -190,7 +190,7 @@ export default function Home() {
                     </span>
                   ))}
                 </h1>
-                <p className="max-w-2xl text-[1rem] leading-7 text-muted text-pretty sm:text-[1.05rem]">
+                <p className="max-w-2xl text-base leading-7 text-muted text-pretty sm:text-lg">
                   {profile.introText}
                 </p>
               </div>

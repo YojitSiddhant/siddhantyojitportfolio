@@ -59,7 +59,7 @@ export default function ProjectsPage() {
             {projects.map((project, index) => (
               <article
                 key={project.title}
-                className="grid gap-4 border-b border-border pb-5 motion-reveal lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] lg:items-start lg:gap-8"
+                className="grid gap-4 border-b border-border pb-5 motion-reveal lg:grid-cols-2 lg:items-start lg:gap-8"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
                 <div className="min-w-0 flex-1">
