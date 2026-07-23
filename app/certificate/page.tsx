@@ -48,16 +48,16 @@ const orderedCertificates = [...certificates].sort((a, b) => a.order - b.order);
 export default function CertificatePage() {
   return (
     <main className="relative isolate overflow-x-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[var(--background)]" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[18rem] bg-[var(--background)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-background" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-background" />
 
       <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border)] px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
-          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-            <CertificateBadgeIcon className="h-4 w-4 text-[var(--accent)]" />
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
+          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+            <CertificateBadgeIcon className="h-4 w-4 text-accent" />
             Certificates
           </div>
-          <div className="text-sm font-black text-[var(--foreground)]">Completed learning</div>
+          <div className="text-sm font-black text-foreground">Completed learning</div>
         </div>
 
         <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
@@ -65,18 +65,18 @@ export default function CertificatePage() {
             {orderedCertificates.map((certificate, index) => (
               <article
                 key={certificate.title}
-                className="flex flex-col gap-4 border-b border-[var(--border)] pb-5 motion-reveal"
+                className="flex flex-col gap-4 border-b border-border pb-5 motion-reveal"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
                 <div className="min-w-0">
-                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-                    <DocumentIcon className="h-4 w-4 text-[var(--accent)]" />
+                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.24em] text-foreground">
+                    <DocumentIcon className="h-4 w-4 text-accent" />
                     Certificate
                   </div>
 
                   <div className="mt-2 flex flex-wrap items-center gap-3">
                     {certificate.logo ? (
-                      <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-sm">
+                      <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
                         <Image
                           src={certificate.logo}
                           alt={`${certificate.issuer} logo`}
@@ -87,14 +87,14 @@ export default function CertificatePage() {
                       </div>
                     ) : null}
                     <div className="min-w-0">
-                      <h2 className="text-xl font-bold tracking-normal text-[var(--foreground)]">
+                      <h2 className="text-xl font-bold tracking-normal text-foreground">
                         {certificate.title}
                       </h2>
-                      <p className="mt-1 text-sm font-black text-[var(--foreground)]">{certificate.issuer}</p>
+                      <p className="mt-1 text-sm font-black text-foreground">{certificate.issuer}</p>
                     </div>
                   </div>
 
-                  <div className="mt-3 flex flex-col gap-1 text-sm text-[var(--foreground)]">
+                  <div className="mt-3 flex flex-col gap-1 text-sm text-foreground">
                     <p>{certificate.issueDate}</p>
                   </div>
                 </div>
