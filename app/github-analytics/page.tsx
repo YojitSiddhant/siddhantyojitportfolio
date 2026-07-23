@@ -160,6 +160,7 @@ export default async function GitHubAnalyticsPage() {
               <p className="mt-3 text-sm font-black uppercase tracking-wider text-accent-strong">
                 @{username}
               </p>
+              {/* Keep this label explicit so the deployed page always shows the intended role text. */}
               <p className="mt-3 text-sm font-medium tracking-normal text-foreground">
                 FULL STACK DEVELOPER
               </p>
