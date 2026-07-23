@@ -135,7 +135,7 @@ function SnapshotIcon({ className }: { className?: string }) {
 
 function GitHubAvatar({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-3xl border border-border bg-surface shadow-sm sm:h-28 sm:w-28">
+    <div className="flex h-32 w-32 items-center justify-center overflow-hidden rounded-3xl border border-border bg-surface shadow-sm sm:h-36 sm:w-36">
       <img src={src} alt={alt} className="h-full w-full object-cover" loading="eager" referrerPolicy="no-referrer" />
     </div>
   );
@@ -453,6 +453,42 @@ export default async function GitHubAnalyticsPage() {
               <p className="text-sm leading-6 text-muted">{analytics.warningMessage}</p>
             ) : null}
           </div>
+
+          <div className="border-t border-border pt-4">
+            {sectionTitle(<SnapshotIcon className="h-4 w-4 text-accent" />, "GitHub Snapshot", "Public repository and profile highlights.")}
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              <StatCard
+                label="Public repositories"
+                value={(analytics.user?.public_repos ?? analytics.repos.length).toLocaleString("en-IN")}
+                description="Public repositories available through the GitHub REST API."
+              />
+              <StatCard
+                label="Followers"
+                value={(analytics.user?.followers ?? 0).toLocaleString("en-IN")}
+                description="People following this profile on GitHub."
+              />
+              <StatCard
+                label="Following"
+                value={(analytics.user?.following ?? 0).toLocaleString("en-IN")}
+                description="Accounts this profile follows on GitHub."
+              />
+              <StatCard
+                label="Stars"
+                value={analytics.repos.reduce((sum, repo) => sum + repo.stargazers_count, 0).toLocaleString("en-IN")}
+                description="Combined stars across the repositories in the portfolio."
+              />
+              <StatCard
+                label="Forks"
+                value={analytics.repos.reduce((sum, repo) => sum + repo.forks_count, 0).toLocaleString("en-IN")}
+                description="Combined forks across the repositories in the portfolio."
+              />
+              <StatCard
+                label="Contributions"
+                value={analytics.totalContributions.toLocaleString("en-IN")}
+                description="Public commit activity used to power the calendar and streaks."
+              />
+            </div>
+          </div>
         </article>
 
         <article className="flex flex-col gap-5 border-t border-border px-1 py-4 motion-reveal" style={{ animationDelay: "220ms" }}>
@@ -518,41 +554,6 @@ export default async function GitHubAnalyticsPage() {
             />
           </div>
         </article>
-      </section>
-
-      <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "300ms" }}>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <StatCard
-            label="Public repositories"
-            value={(analytics.user?.public_repos ?? analytics.repos.length).toLocaleString("en-IN")}
-            description="Public repositories available through the GitHub REST API."
-          />
-          <StatCard
-            label="Followers"
-            value={(analytics.user?.followers ?? 0).toLocaleString("en-IN")}
-            description="People following this profile on GitHub."
-          />
-          <StatCard
-            label="Following"
-            value={(analytics.user?.following ?? 0).toLocaleString("en-IN")}
-            description="Accounts this profile follows on GitHub."
-          />
-          <StatCard
-            label="Stars"
-            value={analytics.repos.reduce((sum, repo) => sum + repo.stargazers_count, 0).toLocaleString("en-IN")}
-            description="Combined stars across the repositories in the portfolio."
-          />
-          <StatCard
-            label="Forks"
-            value={analytics.repos.reduce((sum, repo) => sum + repo.forks_count, 0).toLocaleString("en-IN")}
-            description="Combined forks across the repositories in the portfolio."
-          />
-          <StatCard
-            label="Contributions"
-            value={analytics.totalContributions.toLocaleString("en-IN")}
-            description="Public commit activity used to power the calendar and streaks."
-          />
-        </div>
       </section>
 
       <section className="space-y-5 px-1 py-2 motion-reveal" style={{ animationDelay: "380ms" }}>
