@@ -199,7 +199,7 @@ export function SiteNavbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-[var(--surface-strong)] backdrop-blur-md supports-[backdrop-filter]:bg-[var(--surface-strong)]">
+      <header className="sticky top-0 z-50 bg-surface-strong backdrop-blur-md supports-backdrop-filter:bg-surface-strong">
         <div className="portfolio-navbar-shell mx-auto flex w-full max-w-7xl items-center justify-between px-3 py-3 sm:px-6 sm:py-4 lg:px-8 motion-reveal">
           <Link
             href="/"
@@ -212,7 +212,7 @@ export function SiteNavbar() {
           <div className="flex items-center gap-3">
             <Link
               href="/"
-              className="hidden text-sm font-black uppercase tracking-[0.14em] text-[var(--foreground)] sm:block sm:text-base"
+            className="hidden text-sm font-black uppercase tracking-[0.14em] text-foreground sm:block sm:text-base"
               aria-label="Go to home"
             >
               Siddhant Yojit
@@ -220,7 +220,7 @@ export function SiteNavbar() {
 
             <button
               type="button"
-              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-strong)] text-[var(--foreground)] shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-colors hover:bg-[var(--accent-soft)]"
+            className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-surface-strong text-foreground shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-colors hover:bg-accent-soft"
               onClick={() => setIsOpen((current) => !current)}
               aria-expanded={isOpen}
               aria-controls="desktop-navigation-menu"
@@ -240,7 +240,7 @@ export function SiteNavbar() {
       {isOpen
         ? createPortal(
             <div
-              className="fixed inset-0 z-[60] flex items-center justify-center bg-[rgba(15,23,42,0.18)] px-4 py-6 backdrop-blur-[1.5px] motion-reveal-fade sm:py-8"
+              className="fixed inset-0 z-60 flex items-center justify-center bg-[rgba(15,23,42,0.18)] px-4 py-6 backdrop-blur-[1.5px] motion-reveal-fade sm:py-8"
               onClick={() => setIsOpen(false)}
             >
               <div
@@ -248,17 +248,17 @@ export function SiteNavbar() {
                 role="dialog"
                 aria-modal="true"
                 aria-label="Site navigation"
-                className="w-full max-w-[26rem] max-h-[calc(100dvh-4rem)] overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[rgba(255,255,255,0.98)] p-4 shadow-[0_28px_90px_rgba(0,0,0,0.16)] backdrop-blur-xl sm:max-h-[calc(100dvh-5rem)] sm:p-5"
+                className="w-full max-w-104 max-h-[calc(100dvh-4rem)] overflow-hidden rounded-[1.75rem] border border-border bg-[rgba(255,255,255,0.98)] p-4 shadow-[0_28px_90px_rgba(0,0,0,0.16)] backdrop-blur-xl sm:max-h-[calc(100dvh-5rem)] sm:p-5"
                 onClick={(event) => event.stopPropagation()}
               >
                 <div className="mb-4 flex items-center justify-between gap-4">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--muted)]">Navigation</p>
-                    <p className="mt-1 text-sm text-[var(--muted)]">Choose a section to jump to.</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted">Navigation</p>
+                    <p className="mt-1 text-sm text-muted">Choose a section to jump to.</p>
                   </div>
                   <button
                     type="button"
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] transition-colors hover:bg-[var(--accent-soft)]"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface text-foreground transition-colors hover:bg-accent-soft"
                     onClick={() => setIsOpen(false)}
                     aria-label="Close navigation menu"
                   >
@@ -277,14 +277,14 @@ export function SiteNavbar() {
                       }}
                       className={`group inline-flex w-full items-center justify-center gap-2.5 rounded-2xl border px-4 py-2.5 text-center text-sm transition duration-300 motion-reveal ${
                         isActive(item.href)
-                          ? "!border-[var(--accent)] !bg-[var(--accent)] !font-bold !text-white"
-                          : "border-[var(--border)] font-normal text-[var(--muted)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)] hover:font-bold hover:text-[var(--foreground)]"
+                          ? "border-accent! bg-accent! font-bold! text-white!"
+                          : "border-border font-normal text-muted hover:border-accent hover:bg-accent-soft hover:font-bold hover:text-foreground"
                       }`}
                       style={{ animationDelay: `${index * 70}ms` }}
                     >
                       <span
                         className={`transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-110 group-hover:rotate-12 ${
-                          isActive(item.href) ? "text-white" : "text-[var(--accent)]"
+                          isActive(item.href) ? "text-white" : "text-accent"
                         }`}
                       >
                         <item.icon />
