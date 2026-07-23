@@ -545,7 +545,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
               <div>
                 <p
                   id="contact-validation-title"
-                  className="text-sm font-black uppercase tracking-[0.22em] text-accent"
+                  className="text-sm font-black uppercase tracking-wider text-accent"
                 >
                   Validation error
                 </p>
@@ -578,7 +578,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
               <button
                 type="button"
                 onClick={() => setIsPopupOpen(false)}
-                className="rounded-full bg-accent px-4 py-2 text-sm font-black uppercase tracking-[0.18em] text-white transition-colors hover:bg-accent-strong"
+                className="rounded-full bg-accent px-4 py-2 text-sm font-black uppercase tracking-wide text-white transition-colors hover:bg-accent-strong"
               >
                 Ok
               </button>
@@ -607,7 +607,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
               <div>
                 <p
                   id="contact-success-title"
-                  className="text-sm font-black uppercase tracking-[0.22em] text-accent"
+                  className="text-sm font-black uppercase tracking-wider text-accent"
                 >
                   Message sent successfully
                 </p>
@@ -635,7 +635,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                   setIsSuccessOpen(false);
                   setStatus("idle");
                 }}
-                className="rounded-full bg-accent px-4 py-2 text-sm font-black uppercase tracking-[0.18em] text-white transition-colors hover:bg-accent-strong"
+                className="rounded-full bg-accent px-4 py-2 text-sm font-black uppercase tracking-wide text-white transition-colors hover:bg-accent-strong"
               >
                 Ok
               </button>
@@ -647,7 +647,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
       <section className="grid gap-5 lg:grid-cols-2 motion-reveal">
         <div className="px-1 py-2 motion-reveal" style={{ animationDelay: "80ms" }}>
           <div className="border-b border-border pb-4">
-            <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+            <p className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
               <FormIcon className="h-4 w-4 text-accent" />
               Send a message
             </p>
@@ -660,7 +660,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
 
               return (
                 <label key={field.name} className="grid gap-1.5">
-                  <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-foreground">
+                  <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-foreground">
                     <field.icon className="h-4 w-4 text-accent" />
                     {field.label}
                   </span>
@@ -687,7 +687,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
             })}
 
             <label className="grid gap-1.5">
-              <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-foreground">
+              <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-foreground">
                 <ReactAtomIcon className="h-4 w-4 text-accent" />
                 Message
               </span>
@@ -777,7 +777,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                 className="mx-auto mt-5 w-full max-w-full rounded-3xl border border-border bg-surface-strong px-4 py-3 shadow-sm motion-reveal sm:max-w-95"
                 style={{ animationDelay: "420ms" }}
               >
-                <p className="text-sm font-black uppercase tracking-[0.24em] text-foreground">
+                <p className="text-sm font-black uppercase tracking-wider text-foreground">
                   Quick details
                 </p>
                 <p className="mt-1.5 text-xs leading-5 text-muted">
@@ -785,7 +785,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                 </p>
                 <div className="mt-3 grid gap-2.5">
                   <div className="flex flex-col gap-1 border-b border-border pb-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
-                    <p className="text-xs font-black uppercase tracking-[0.2em] text-foreground">
+                    <p className="text-xs font-black uppercase tracking-wider text-foreground">
                       Project type
                     </p>
                     <p className="max-w-none text-left text-xs text-muted sm:max-w-52 sm:text-right">
@@ -793,7 +793,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                     </p>
                   </div>
                   <div className="flex flex-col gap-1 border-b border-border pb-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
-                    <p className="text-xs font-black uppercase tracking-[0.2em] text-foreground">
+                    <p className="text-xs font-black uppercase tracking-wider text-foreground">
                       Timeline
                     </p>
                     <p className="max-w-none text-left text-xs text-muted sm:max-w-52 sm:text-right">
@@ -801,7 +801,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                     </p>
                   </div>
                   <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
-                    <p className="text-xs font-black uppercase tracking-[0.2em] text-foreground">
+                    <p className="text-xs font-black uppercase tracking-wider text-foreground">
                       Best contact time
                     </p>
                     <p className="max-w-none text-left text-xs text-muted sm:max-w-52 sm:text-right">
@@ -816,11 +816,11 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
                   className="mx-auto flex w-full max-w-full flex-col gap-3 rounded-3xl border border-border bg-surface-strong px-4 py-3 shadow-sm motion-reveal sm:max-w-95 sm:flex-row sm:items-center sm:justify-between"
                   style={{ animationDelay: "500ms" }}
                 >
-                  <div className="rounded-2xl bg-accent-soft px-3 py-2 text-xs font-black uppercase tracking-[0.2em] text-accent">
+                  <div className="rounded-2xl bg-accent-soft px-3 py-2 text-xs font-black uppercase tracking-wider text-accent">
                     Reply fast
                   </div>
                   <div className="flex-1 text-left sm:text-right">
-                    <p className="text-xs font-black uppercase tracking-[0.22em] text-foreground">
+                    <p className="text-xs font-black uppercase tracking-wider text-foreground">
                       Quick reply
                     </p>
                     <p className="mt-1 text-xs leading-5 text-muted">

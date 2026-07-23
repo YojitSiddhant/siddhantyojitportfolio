@@ -53,7 +53,7 @@ export default function CertificatePage() {
 
       <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
-          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground">
             <CertificateBadgeIcon className="h-4 w-4 text-accent" />
             Certificates
           </div>
@@ -69,7 +69,7 @@ export default function CertificatePage() {
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
                 <div className="min-w-0">
-                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.24em] text-foreground">
+                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-foreground">
                     <DocumentIcon className="h-4 w-4 text-accent" />
                     Certificate
                   </div>

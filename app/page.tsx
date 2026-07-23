@@ -126,7 +126,7 @@ function FocusCard({
 }) {
   return (
     <div className="flex flex-col gap-2 border-t border-border pt-4">
-      <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-foreground">
+      <div className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-foreground">
         {renderIconStatic(icon, "h-4 w-4 text-accent")}
         {title}
       </div>
@@ -172,7 +172,7 @@ export default function Home() {
             className="flex flex-col gap-5 border-t border-border px-1 py-4 text-left motion-reveal"
             style={{ animationDelay: "80ms" }}
           >
-            <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+            <div className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
               <SparkleIcon className="h-4 w-4 text-accent" />
               About me
             </div>
@@ -199,21 +199,21 @@ export default function Home() {
                 <div className="flex items-center gap-3 border-t border-border py-4 motion-reveal" style={{ animationDelay: "420ms" }}>
                   <MapPinIcon className="h-5 w-5 shrink-0 text-accent" />
                   <div>
-                    <p className="text-xs font-black uppercase tracking-[0.24em] text-foreground">Location</p>
+                    <p className="text-xs font-black uppercase tracking-wider text-foreground">Location</p>
                     <p className="mt-1 text-sm font-medium text-foreground">{profile.location}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 border-t border-border py-4 motion-reveal" style={{ animationDelay: "500ms" }}>
                   <CodeIcon className="h-5 w-5 shrink-0 text-accent" />
                   <div>
-                    <p className="text-xs font-black uppercase tracking-[0.24em] text-foreground">Core focus</p>
+                    <p className="text-xs font-black uppercase tracking-wider text-foreground">Core focus</p>
                     <p className="mt-1 text-sm font-medium text-foreground">{profile.coreFocus}</p>
                   </div>
                 </div>
               </div>
 
               <div className="border-t border-border pt-4">
-                <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+                <p className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
                   <SparkleIcon className="h-4 w-4 text-accent" />
                   Quick notes
                 </p>
@@ -226,7 +226,7 @@ export default function Home() {
                     >
                       {renderIcon(item.icon, "mt-0.5 h-4 w-4 shrink-0 text-accent")}
                       <div className="min-w-0">
-                        <p className="text-xs font-black uppercase tracking-[0.22em] text-foreground">
+                        <p className="text-xs font-black uppercase tracking-wider text-foreground">
                           {item.label}
                         </p>
                         <p className="mt-1 text-sm leading-6 text-foreground">{item.value}</p>
@@ -237,7 +237,7 @@ export default function Home() {
               </div>
 
               <div className="border-t border-border pt-4">
-                <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+                <p className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
                   <LayersIcon className="h-4 w-4 text-accent" />
                   Focus areas
                 </p>
@@ -284,7 +284,7 @@ export default function Home() {
           >
             <div className="flex items-center justify-between gap-3">
               <div>
-                <p className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.3em] text-foreground">
+                <p className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-foreground">
                   <BriefcaseIcon className="h-4 w-4 text-accent" />
                   Snapshot
                 </p>
@@ -304,7 +304,7 @@ export default function Home() {
                   className="border-b border-border py-4 last:border-b-0 motion-reveal"
                   style={{ animationDelay: `${320 + index * 120}ms` }}
                 >
-                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-foreground">
+                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-foreground">
                     {renderIcon(item.icon, "h-4 w-4 text-accent")}
                     {item.title}
                   </div>
@@ -314,7 +314,7 @@ export default function Home() {
             </div>
 
             <div className="border-t border-border pt-4">
-              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.22em] text-foreground">
+              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
                 <ShieldIcon className="h-4 w-4 text-accent" />
                 What I care about
               </p>
@@ -324,7 +324,7 @@ export default function Home() {
             </div>
 
             <div className="border-t border-border pt-4">
-              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
                 <SparkleIcon className="h-4 w-4 text-accent" />
                 Header notes
               </p>
@@ -333,7 +333,7 @@ export default function Home() {
                   <div key={item.label} className="flex gap-3 border-b border-border py-4 last:border-b-0">
                     {renderIcon(item.icon, "mt-0.5 h-4 w-4 shrink-0 text-accent")}
                     <div className="min-w-0">
-                      <p className="text-xs font-black uppercase tracking-[0.22em] text-foreground">
+                      <p className="text-xs font-black uppercase tracking-wider text-foreground">
                         {item.label}
                       </p>
                       <p className="mt-1 text-sm leading-6 text-foreground">{item.value}</p>
@@ -344,7 +344,7 @@ export default function Home() {
             </div>
 
             <div className="border-t border-border pt-4">
-              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
                 <LayersIcon className="h-4 w-4 text-accent" />
                 Working approach
               </p>
@@ -352,7 +352,7 @@ export default function Home() {
                 <div className="flex gap-3 border-b border-border pb-4">
                   <SparkleIcon className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                   <div>
-                    <p className="text-xs font-black uppercase tracking-[0.22em] text-foreground">
+                    <p className="text-xs font-black uppercase tracking-wider text-foreground">
                       Build clearly
                     </p>
                     <p className="mt-1 text-sm leading-6 text-foreground">
@@ -363,7 +363,7 @@ export default function Home() {
                 <div className="flex gap-3 border-b border-border pb-4">
                   <ShieldIcon className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                   <div>
-                    <p className="text-xs font-black uppercase tracking-[0.22em] text-foreground">
+                    <p className="text-xs font-black uppercase tracking-wider text-foreground">
                       Validate carefully
                     </p>
                     <p className="mt-1 text-sm leading-6 text-foreground">
@@ -374,7 +374,7 @@ export default function Home() {
                 <div className="flex gap-3">
                   <BriefcaseIcon className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                   <div>
-                    <p className="text-xs font-black uppercase tracking-[0.22em] text-foreground">
+                    <p className="text-xs font-black uppercase tracking-wider text-foreground">
                       Deliver maintainably
                     </p>
                     <p className="mt-1 text-sm leading-6 text-foreground">
@@ -395,7 +395,7 @@ export default function Home() {
               className="flex flex-col items-start border-t border-border px-1 py-4 text-left motion-reveal"
               style={{ animationDelay: `${220 + index * 120}ms` }}
             >
-              <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+              <div className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
                 {renderIcon(item.icon, "h-4 w-4 text-accent")}
                 Value
               </div>
@@ -408,7 +408,7 @@ export default function Home() {
         </section>
 
         <section className="px-1 py-2">
-          <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.28em] text-foreground">
+          <p className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground">
             <CodeIcon className="h-4 w-4 text-accent" />
             How I work
           </p>

@@ -50,7 +50,7 @@ export default function MyWorkPage() {
 
       <section className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
-          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground">
             <WorkIcon className="h-4 w-4 text-accent" />
             My Work
           </div>
@@ -78,7 +78,7 @@ export default function MyWorkPage() {
                       />
                     </div>
                   ) : (
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-dashed border-border bg-surface text-[10px] font-black uppercase tracking-[0.18em] text-muted shadow-sm">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-dashed border-border bg-surface text-xs font-black uppercase tracking-widest text-muted shadow-sm">
                       Photo
                     </div>
                   )}
@@ -130,7 +130,7 @@ export default function MyWorkPage() {
                         href={link.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-foreground transition-colors hover:border-accent hover:text-accent"
+                        className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:text-accent"
                       >
                         <ReactIcon className="h-3.5 w-3.5" />
                         {link.label}

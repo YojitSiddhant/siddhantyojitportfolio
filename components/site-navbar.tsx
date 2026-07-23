@@ -212,7 +212,7 @@ export function SiteNavbar() {
           <div className="flex items-center gap-3">
             <Link
               href="/"
-            className="hidden text-sm font-black uppercase tracking-[0.14em] text-foreground sm:block sm:text-base"
+              className="hidden text-sm font-black uppercase tracking-wide text-foreground sm:block sm:text-base"
               aria-label="Go to home"
             >
               Siddhant Yojit
@@ -253,7 +253,7 @@ export function SiteNavbar() {
               >
                 <div className="mb-4 flex items-center justify-between gap-4">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted">Navigation</p>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-muted">Navigation</p>
                     <p className="mt-1 text-sm text-muted">Choose a section to jump to.</p>
                   </div>
                   <button

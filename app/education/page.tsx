@@ -34,7 +34,7 @@ export default function EducationPage() {
 
       <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
-          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground">
             <BookIcon className="text-accent" />
             Education
           </div>
@@ -50,7 +50,7 @@ export default function EducationPage() {
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
                 <div className="min-w-0 flex-1">
-                  <p className="text-xs font-black uppercase tracking-[0.24em] text-foreground">
+                  <p className="text-xs font-black uppercase tracking-widest text-foreground">
                     {item.degree}
                   </p>
                   <div className="mt-2 flex flex-wrap items-center gap-3">

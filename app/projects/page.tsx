@@ -47,7 +47,7 @@ export default function ProjectsPage() {
 
       <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
-          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground">
             <ProjectsIcon className="h-4 w-4 text-accent" />
             Projects
           </div>
@@ -68,7 +68,7 @@ export default function ProjectsPage() {
                       {project.title}
                     </h2>
                     {project.featured ? (
-                      <span className="rounded-full border border-border bg-accent-soft px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-accent-strong">
+                      <span className="rounded-full border border-border bg-accent-soft px-3 py-1 text-xs font-black uppercase tracking-widest text-accent-strong">
                         Featured
                       </span>
                     ) : null}
@@ -77,7 +77,7 @@ export default function ProjectsPage() {
                     {(project.stack as Array<{ name: string; src: string; iconClassName?: string }>).map(({ name, src, iconClassName }) => (
                       <span
                         key={name}
-                        className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-foreground"
+                        className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground"
                       >
                         <TechIcon src={src} name={name} className={iconClassName} />
                         <span>{name}</span>
@@ -94,7 +94,7 @@ export default function ProjectsPage() {
                         href={project.github}
                         target="_blank"
                         rel="noreferrer"
-                        className="rounded-full border border-border px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-foreground transition-colors hover:border-accent hover:text-accent"
+                        className="rounded-full border border-border px-3 py-1 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:text-accent"
                       >
                         GitHub
                       </a>
@@ -104,7 +104,7 @@ export default function ProjectsPage() {
                         href={project.liveLink}
                         target="_blank"
                         rel="noreferrer"
-                        className="rounded-full border border-border px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-foreground transition-colors hover:border-accent hover:text-accent"
+                        className="rounded-full border border-border px-3 py-1 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:text-accent"
                       >
                         Live
                       </a>

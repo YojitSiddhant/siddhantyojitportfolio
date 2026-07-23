@@ -66,7 +66,7 @@ export default function ExperiencePage() {
 
       <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
-          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground">
             <TimelineIcon className="h-4 w-4 text-accent" />
             Experience
           </div>
@@ -83,7 +83,7 @@ export default function ExperiencePage() {
               >
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                   <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.24em] text-foreground">
+                    <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-foreground">
                       <BriefcaseIcon className="h-4 w-4 text-accent" />
                       {item.role}
                     </div>
@@ -131,7 +131,7 @@ export default function ExperiencePage() {
                       {(item.technologies as string[]).map((technology) => (
                         <span
                           key={`${item.company}-${technology}`}
-                          className="rounded-full border border-border bg-surface px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-foreground"
+                          className="rounded-full border border-border bg-surface px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground"
                         >
                           {technology}
                         </span>

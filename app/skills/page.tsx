@@ -60,7 +60,7 @@ export default function SkillsPage() {
 
       <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
-          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground">
             <TechBadgeIcon className="h-4 w-4 text-accent" />
             Frontend Skills
           </div>
@@ -75,7 +75,7 @@ export default function SkillsPage() {
             {skills.map((skill, index) => (
               <article
                 key={skill.name}
-              className="flex flex-col items-center justify-center gap-3 rounded-3xl border border-border bg-surface px-4 py-6 text-center motion-reveal"
+                className="flex flex-col items-center justify-center gap-3 rounded-3xl border border-border bg-surface px-4 py-6 text-center motion-reveal"
                 style={{ animationDelay: `${220 + index * 100}ms` }}
               >
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center">
@@ -85,7 +85,7 @@ export default function SkillsPage() {
                   href={skill.href ?? "#"}
                   target="_blank"
                   rel="noreferrer"
-                  className="min-w-0 text-base font-black uppercase tracking-[0.24em] text-foreground transition-colors hover:text-accent"
+                  className="min-w-0 text-base font-black uppercase tracking-widest text-foreground transition-colors hover:text-accent"
                 >
                   {skill.name}
                 </a>
