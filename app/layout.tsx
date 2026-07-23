@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="relative isolate min-h-full bg-[var(--background)] text-[var(--foreground)]">
+      <body className="relative isolate min-h-full bg-background text-foreground">
         <div className="relative z-10">
           <SiteNavbar />
           {children}
