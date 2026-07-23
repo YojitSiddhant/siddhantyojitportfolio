@@ -28,7 +28,7 @@ function BookIcon({ className }: { className?: string }) {
 
 export default function EducationPage() {
   return (
-    <main className="relative isolate overflow-hidden">
+    <main className="relative isolate overflow-x-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[var(--background)]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[18rem] bg-[var(--background)]" />
 
