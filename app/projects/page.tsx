@@ -59,7 +59,7 @@ export default function ProjectsPage() {
             {projects.map((project, index) => (
               <article
                 key={project.title}
-                className="flex flex-col gap-2 border-b border-[var(--border)] pb-5 sm:flex-row sm:items-center sm:justify-between motion-reveal"
+                className="grid gap-4 border-b border-[var(--border)] pb-5 motion-reveal lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] lg:items-start lg:gap-8"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
                 <div className="min-w-0 flex-1">
@@ -86,7 +86,7 @@ export default function ProjectsPage() {
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-1 text-sm text-[var(--foreground)] sm:max-w-2xl sm:text-right">
+                <div className="flex min-w-0 flex-col gap-1 text-sm text-[var(--foreground)] lg:justify-self-end lg:text-right">
                   <p>{project.description}</p>
                   <div className="mt-3 flex flex-wrap gap-2 sm:justify-end">
                     {project.github ? (
