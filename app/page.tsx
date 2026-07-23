@@ -125,12 +125,12 @@ function FocusCard({
   icon: keyof typeof iconMap;
 }) {
   return (
-    <div className="flex flex-col gap-2 border-t border-[var(--border)] pt-4">
-      <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
-        {renderIconStatic(icon, "h-4 w-4 text-[var(--accent)]")}
+    <div className="flex flex-col gap-2 border-t border-border pt-4">
+      <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-foreground">
+        {renderIconStatic(icon, "h-4 w-4 text-accent")}
         {title}
       </div>
-      <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{description}</p>
+      <p className="mt-2 text-sm leading-6 text-muted">{description}</p>
     </div>
   );
 }
@@ -163,82 +163,82 @@ export default function Home() {
 
   return (
     <main className="relative isolate overflow-x-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[var(--background)]" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[18rem] bg-[var(--background)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-background" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-background" />
 
       <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
         <div className="grid items-start gap-5 lg:grid-cols-[1.1fr_0.9fr]">
           <article
-            className="flex flex-col gap-5 border-t border-[var(--border)] px-1 py-4 text-left motion-reveal"
+            className="flex flex-col gap-5 border-t border-border px-1 py-4 text-left motion-reveal"
             style={{ animationDelay: "80ms" }}
           >
-            <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-              <SparkleIcon className="h-4 w-4 text-[var(--accent)]" />
+            <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+              <SparkleIcon className="h-4 w-4 text-accent" />
               About me
             </div>
 
             <div className="space-y-5">
               <div className="space-y-4">
-                <h1 className="max-w-4xl text-3xl font-semibold leading-none tracking-normal text-[var(--foreground)] text-balance sm:text-5xl lg:text-7xl">
+                <h1 className="max-w-4xl text-3xl font-semibold leading-none tracking-normal text-foreground text-balance sm:text-5xl lg:text-7xl">
                   {heroNameWords.map((word, index) => (
                     <span
                       key={word}
-                      className="mr-2 inline-block transition duration-200 ease-out last:mr-0 hover:text-[var(--accent)] motion-reveal"
+                      className="mr-2 inline-block transition duration-200 ease-out last:mr-0 hover:text-accent motion-reveal"
                       style={{ animationDelay: `${160 + index * 110}ms` }}
                     >
                       {word}
                     </span>
                   ))}
                 </h1>
-                <p className="max-w-2xl text-[1rem] leading-7 text-[var(--muted)] text-pretty sm:text-[1.05rem]">
+                <p className="max-w-2xl text-[1rem] leading-7 text-muted text-pretty sm:text-[1.05rem]">
                   {profile.introText}
                 </p>
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2">
-                <div className="flex items-center gap-3 border-t border-[var(--border)] py-4 motion-reveal" style={{ animationDelay: "420ms" }}>
-                  <MapPinIcon className="h-5 w-5 shrink-0 text-[var(--accent)]" />
+                <div className="flex items-center gap-3 border-t border-border py-4 motion-reveal" style={{ animationDelay: "420ms" }}>
+                  <MapPinIcon className="h-5 w-5 shrink-0 text-accent" />
                   <div>
-                    <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">Location</p>
-                    <p className="mt-1 text-sm font-medium text-[var(--foreground)]">{profile.location}</p>
+                    <p className="text-xs font-black uppercase tracking-[0.24em] text-foreground">Location</p>
+                    <p className="mt-1 text-sm font-medium text-foreground">{profile.location}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 border-t border-[var(--border)] py-4 motion-reveal" style={{ animationDelay: "500ms" }}>
-                  <CodeIcon className="h-5 w-5 shrink-0 text-[var(--accent)]" />
+                <div className="flex items-center gap-3 border-t border-border py-4 motion-reveal" style={{ animationDelay: "500ms" }}>
+                  <CodeIcon className="h-5 w-5 shrink-0 text-accent" />
                   <div>
-                    <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--foreground)]">Core focus</p>
-                    <p className="mt-1 text-sm font-medium text-[var(--foreground)]">{profile.coreFocus}</p>
+                    <p className="text-xs font-black uppercase tracking-[0.24em] text-foreground">Core focus</p>
+                    <p className="mt-1 text-sm font-medium text-foreground">{profile.coreFocus}</p>
                   </div>
                 </div>
               </div>
 
-              <div className="border-t border-[var(--border)] pt-4">
-                <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-                  <SparkleIcon className="h-4 w-4 text-[var(--accent)]" />
+              <div className="border-t border-border pt-4">
+                <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+                  <SparkleIcon className="h-4 w-4 text-accent" />
                   Quick notes
                 </p>
                 <div className="mt-4 grid gap-0">
                   {quickNotes.map((item, index) => (
                     <div
                       key={item.label}
-                      className="flex gap-3 border-b border-[var(--border)] py-4 last:border-b-0 motion-reveal"
+                      className="flex gap-3 border-b border-border py-4 last:border-b-0 motion-reveal"
                       style={{ animationDelay: `${560 + index * 120}ms` }}
                     >
-                      {renderIcon(item.icon, "mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]")}
+                      {renderIcon(item.icon, "mt-0.5 h-4 w-4 shrink-0 text-accent")}
                       <div className="min-w-0">
-                        <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+                        <p className="text-xs font-black uppercase tracking-[0.22em] text-foreground">
                           {item.label}
                         </p>
-                        <p className="mt-1 text-sm leading-6 text-[var(--foreground)]">{item.value}</p>
+                        <p className="mt-1 text-sm leading-6 text-foreground">{item.value}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="border-t border-[var(--border)] pt-4">
-                <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-                  <LayersIcon className="h-4 w-4 text-[var(--accent)]" />
+              <div className="border-t border-border pt-4">
+                <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+                  <LayersIcon className="h-4 w-4 text-accent" />
                   Focus areas
                 </p>
                 <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -279,20 +279,20 @@ export default function Home() {
           </article>
 
           <article
-            className="flex flex-col gap-5 border-t border-[var(--border)] px-1 py-4 text-left motion-reveal"
+            className="flex flex-col gap-5 border-t border-border px-1 py-4 text-left motion-reveal"
             style={{ animationDelay: "180ms" }}
           >
             <div className="flex items-center justify-between gap-3">
               <div>
-                <p className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.3em] text-[var(--foreground)]">
-                  <BriefcaseIcon className="h-4 w-4 text-[var(--accent)]" />
+                <p className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.3em] text-foreground">
+                  <BriefcaseIcon className="h-4 w-4 text-accent" />
                   Snapshot
                 </p>
-                <h2 className="mt-2 text-2xl font-bold tracking-normal text-[var(--foreground)]">
+                <h2 className="mt-2 text-2xl font-bold tracking-normal text-foreground">
                   {profile.snapshotTitle}
                 </h2>
               </div>
-              <div className="rounded-full border border-[var(--border)] px-3 py-1 text-xs font-medium text-[var(--accent-strong)]">
+              <div className="rounded-full border border-border px-3 py-1 text-xs font-medium text-accent-strong">
                 {profile.openToOpportunitiesBadge}
               </div>
             </div>
@@ -301,83 +301,83 @@ export default function Home() {
               {values.map((item, index) => (
                 <div
                   key={item.title}
-                  className="border-b border-[var(--border)] py-4 last:border-b-0 motion-reveal"
+                  className="border-b border-border py-4 last:border-b-0 motion-reveal"
                   style={{ animationDelay: `${320 + index * 120}ms` }}
                 >
-                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
-                    {renderIcon(item.icon, "h-4 w-4 text-[var(--accent)]")}
+                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-foreground">
+                    {renderIcon(item.icon, "h-4 w-4 text-accent")}
                     {item.title}
                   </div>
-                  <p className="mt-2 text-sm leading-7 text-[var(--muted)]">{item.description}</p>
+                  <p className="mt-2 text-sm leading-7 text-muted">{item.description}</p>
                 </div>
               ))}
             </div>
 
-            <div className="border-t border-[var(--border)] pt-4">
-              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
-                <ShieldIcon className="h-4 w-4 text-[var(--accent)]" />
+            <div className="border-t border-border pt-4">
+              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.22em] text-foreground">
+                <ShieldIcon className="h-4 w-4 text-accent" />
                 What I care about
               </p>
-              <p className="mt-2 text-sm leading-7 text-[var(--foreground)]">
+              <p className="mt-2 text-sm leading-7 text-foreground">
                 {profile.whatICareAbout}
               </p>
             </div>
 
-            <div className="border-t border-[var(--border)] pt-4">
-              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-                <SparkleIcon className="h-4 w-4 text-[var(--accent)]" />
+            <div className="border-t border-border pt-4">
+              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+                <SparkleIcon className="h-4 w-4 text-accent" />
                 Header notes
               </p>
               <div className="mt-4 grid gap-0">
                 {headerNotes.map((item) => (
-                  <div key={item.label} className="flex gap-3 border-b border-[var(--border)] py-4 last:border-b-0">
-                    {renderIcon(item.icon, "mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]")}
+                  <div key={item.label} className="flex gap-3 border-b border-border py-4 last:border-b-0">
+                    {renderIcon(item.icon, "mt-0.5 h-4 w-4 shrink-0 text-accent")}
                     <div className="min-w-0">
-                      <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+                      <p className="text-xs font-black uppercase tracking-[0.22em] text-foreground">
                         {item.label}
                       </p>
-                      <p className="mt-1 text-sm leading-6 text-[var(--foreground)]">{item.value}</p>
+                      <p className="mt-1 text-sm leading-6 text-foreground">{item.value}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="border-t border-[var(--border)] pt-4">
-              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-                <LayersIcon className="h-4 w-4 text-[var(--accent)]" />
+            <div className="border-t border-border pt-4">
+              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+                <LayersIcon className="h-4 w-4 text-accent" />
                 Working approach
               </p>
               <div className="mt-4 grid gap-3">
-                <div className="flex gap-3 border-b border-[var(--border)] pb-4">
-                  <SparkleIcon className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" />
+                <div className="flex gap-3 border-b border-border pb-4">
+                  <SparkleIcon className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                   <div>
-                    <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+                    <p className="text-xs font-black uppercase tracking-[0.22em] text-foreground">
                       Build clearly
                     </p>
-                    <p className="mt-1 text-sm leading-6 text-[var(--foreground)]">
+                    <p className="mt-1 text-sm leading-6 text-foreground">
                       I turn requirements into clean screens and reusable interface sections.
                     </p>
                   </div>
                 </div>
-                <div className="flex gap-3 border-b border-[var(--border)] pb-4">
-                  <ShieldIcon className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" />
+                <div className="flex gap-3 border-b border-border pb-4">
+                  <ShieldIcon className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                   <div>
-                    <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+                    <p className="text-xs font-black uppercase tracking-[0.22em] text-foreground">
                       Validate carefully
                     </p>
-                    <p className="mt-1 text-sm leading-6 text-[var(--foreground)]">
+                    <p className="mt-1 text-sm leading-6 text-foreground">
                       I watch responsiveness, edge cases, and flow behavior as content changes.
                     </p>
                   </div>
                 </div>
                 <div className="flex gap-3">
-                  <BriefcaseIcon className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" />
+                  <BriefcaseIcon className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                   <div>
-                    <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--foreground)]">
+                    <p className="text-xs font-black uppercase tracking-[0.22em] text-foreground">
                       Deliver maintainably
                     </p>
-                    <p className="mt-1 text-sm leading-6 text-[var(--foreground)]">
+                    <p className="mt-1 text-sm leading-6 text-foreground">
                       I prefer small, well-structured decisions that stay easy to grow over time.
                     </p>
                   </div>
@@ -392,38 +392,38 @@ export default function Home() {
           {values.map((item, index) => (
             <article
               key={item.title}
-              className="flex flex-col items-start border-t border-[var(--border)] px-1 py-4 text-left motion-reveal"
+              className="flex flex-col items-start border-t border-border px-1 py-4 text-left motion-reveal"
               style={{ animationDelay: `${220 + index * 120}ms` }}
             >
-              <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-[var(--foreground)]">
-                {renderIcon(item.icon, "h-4 w-4 text-[var(--accent)]")}
+              <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.24em] text-foreground">
+                {renderIcon(item.icon, "h-4 w-4 text-accent")}
                 Value
               </div>
-              <h3 className="mt-3 text-xl font-bold tracking-normal text-[var(--foreground)]">
+              <h3 className="mt-3 text-xl font-bold tracking-normal text-foreground">
                 {item.title}
               </h3>
-              <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{item.description}</p>
+              <p className="mt-3 text-sm leading-7 text-muted">{item.description}</p>
             </article>
           ))}
         </section>
 
         <section className="px-1 py-2">
-          <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.28em] text-[var(--foreground)]">
-            <CodeIcon className="h-4 w-4 text-[var(--accent)]" />
+          <p className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.28em] text-foreground">
+            <CodeIcon className="h-4 w-4 text-accent" />
             How I work
           </p>
           <div className="mt-4 grid items-stretch gap-0 lg:grid-cols-3 lg:gap-x-6">
             {workingStyle.map((item, index) => (
               <div
                 key={item.title}
-                className="flex flex-col items-start border-t border-[var(--border)] pt-4 text-left motion-reveal lg:pt-4"
+                className="flex flex-col items-start border-t border-border pt-4 text-left motion-reveal lg:pt-4"
                 style={{ animationDelay: `${220 + index * 120}ms` }}
               >
-                <div className="flex items-center gap-2 text-sm font-black text-[var(--foreground)]">
-                  {renderIcon(item.icon, "h-4 w-4 text-[var(--accent)]")}
+                <div className="flex items-center gap-2 text-sm font-black text-foreground">
+                  {renderIcon(item.icon, "h-4 w-4 text-accent")}
                   Approach
                 </div>
-                <p className="mt-2 text-sm leading-7 text-[var(--muted)]">{item.title}</p>
+                <p className="mt-2 text-sm leading-7 text-muted">{item.title}</p>
               </div>
             ))}
           </div>
