@@ -2,14 +2,11 @@
 import type { Metadata } from "next";
 import { PageSectionHeader } from "@/components/page-section-header";
 import { PageShell } from "@/components/page-shell";
-import { GitHubRepositoryCard } from "@/components/github-analytics/github-repository-card";
 import { githubProfile } from "@/data/github-profile";
 import {
   buildContributionCalendar,
   getGitHubEvents,
-  getGitHubRepos,
   getGitHubUser,
-  type GitHubRepo,
 } from "@/lib/github";
 import type { ReactNode } from "react";
 
@@ -22,8 +19,6 @@ export const dynamic = "force-dynamic";
 
 type AnalyticsState = {
   user: Awaited<ReturnType<typeof getGitHubUser>> | null;
-  repos: GitHubRepo[];
-  featuredRepos: GitHubRepo[];
   contributionWeeks: ReturnType<typeof buildContributionCalendar>["weeks"];
   warningMessage: string | null;
 };
@@ -60,20 +55,6 @@ function CalendarIcon({ className }: { className?: string }) {
   );
 }
 
-function RepoIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <path
-        d="M8 4.5h8A2.5 2.5 0 0 1 18.5 7v10A2.5 2.5 0 0 1 16 19.5H8A2.5 2.5 0 0 1 5.5 17V7A2.5 2.5 0 0 1 8 4.5Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <path d="M8.5 8h7M8.5 11.5h7M8.5 15h4.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 function GitHubAvatar({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="flex h-36 w-36 items-center justify-center overflow-hidden rounded-3xl border border-border bg-surface shadow-sm sm:h-40 sm:w-40">
@@ -85,9 +66,8 @@ function GitHubAvatar({ src, alt }: { src: string; alt: string }) {
 async function loadAnalytics(): Promise<AnalyticsState> {
   const username = githubProfile.username;
 
-  const [userResult, reposResult, eventsResult] = await Promise.allSettled([
+  const [userResult, eventsResult] = await Promise.allSettled([
     getGitHubUser(username),
-    getGitHubRepos(username),
     getGitHubEvents(username),
   ]);
 
@@ -98,29 +78,10 @@ async function loadAnalytics(): Promise<AnalyticsState> {
     warningParts.push("GitHub profile data is temporarily unavailable.");
   }
 
-  const repos = reposResult.status === "fulfilled" ? reposResult.value : [];
-  if (reposResult.status === "rejected") {
-    warningParts.push("Repository data is temporarily unavailable.");
-  }
-
   const events = eventsResult.status === "fulfilled" ? eventsResult.value : [];
   if (eventsResult.status === "rejected") {
     warningParts.push("Recent activity data is temporarily unavailable.");
   }
-
-  const orderedRepos = [...repos].sort((left, right) => {
-    const rightUpdated = new Date(right.pushed_at || right.updated_at).getTime();
-    const leftUpdated = new Date(left.pushed_at || left.updated_at).getTime();
-    return rightUpdated - leftUpdated;
-  });
-
-  const featuredRepos = [...orderedRepos]
-    .sort((left, right) => {
-      const leftScore = left.stargazers_count * 2 + left.forks_count + new Date(left.pushed_at).getTime() / 1e12;
-      const rightScore = right.stargazers_count * 2 + right.forks_count + new Date(right.pushed_at).getTime() / 1e12;
-      return rightScore - leftScore;
-    })
-    .slice(0, 4);
   const contributionDates: string[] = [];
 
   if (contributionDates.length === 0) {
@@ -137,8 +98,6 @@ async function loadAnalytics(): Promise<AnalyticsState> {
 
   return {
     user,
-    repos: orderedRepos,
-    featuredRepos,
     contributionWeeks: contributionCalendar.weeks,
     warningMessage,
   };
@@ -268,21 +227,6 @@ export default async function GitHubAnalyticsPage() {
         </article>
       </section>
 
-      <section className="space-y-5 px-1 py-2 motion-reveal" style={{ animationDelay: "380ms" }}>
-        <div className="flex items-center justify-between gap-3 border-t border-border pt-4">
-          {sectionTitle(<RepoIcon className="h-4 w-4 text-accent" />, "Featured Repositories", "A small set of the strongest public repositories from GitHub.")}
-        </div>
-
-        <div className="grid gap-0">
-          {analytics.featuredRepos.length > 0 ? (
-            analytics.featuredRepos.map((repo) => <GitHubRepositoryCard key={repo.id} repo={repo} />)
-          ) : (
-            <div className="border-t border-border pt-4 text-sm text-muted">
-              No featured repositories could be loaded right now.
-            </div>
-          )}
-        </div>
-      </section>
     </PageShell>
   );
 }
