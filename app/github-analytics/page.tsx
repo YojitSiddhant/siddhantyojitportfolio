@@ -2,15 +2,11 @@
 import type { Metadata } from "next";
 import { PageSectionHeader } from "@/components/page-section-header";
 import { PageShell } from "@/components/page-shell";
-import { GitHubRepoExplorer } from "@/components/github-analytics/github-repo-explorer";
 import { GitHubRepositoryCard } from "@/components/github-analytics/github-repository-card";
-import { developerJourney, githubProfile } from "@/data/github-profile";
+import { githubProfile } from "@/data/github-profile";
 import {
   buildContributionCalendar,
-  formatRelativeGitHubDate,
   getGitHubEvents,
-  getGitHubRepoCommits,
-  getGitHubRepoLanguages,
   getGitHubRepos,
   getGitHubUser,
   type GitHubRepo,
@@ -28,22 +24,7 @@ type AnalyticsState = {
   user: Awaited<ReturnType<typeof getGitHubUser>> | null;
   repos: GitHubRepo[];
   featuredRepos: GitHubRepo[];
-  languageUsage: Array<{
-    name: string;
-    bytes: number;
-    percentage: number;
-  }>;
-  technologyOptions: string[];
   contributionWeeks: ReturnType<typeof buildContributionCalendar>["weeks"];
-  totalContributions: number;
-  recentActivity: Array<{
-    title: string;
-    description: string;
-    date: string;
-    repoName: string;
-    kind: "commit" | "update" | "release" | "create";
-  }>;
-  frameworkHighlights: string[];
   warningMessage: string | null;
 };
 
@@ -93,43 +74,6 @@ function RepoIcon({ className }: { className?: string }) {
   );
 }
 
-function ActivityIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <path d="M4 13h4l2-5 4 10 2.2-5H20" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function JourneyIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <path d="M5 6h14M5 12h9M5 18h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-      <circle cx="18" cy="12" r="1.4" fill="currentColor" />
-    </svg>
-  );
-}
-
-function SnapshotIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <path
-        d="M9 7V6a3 3 0 0 1 3-3h0a3 3 0 0 1 3 3v1"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <path
-        d="M4 9.5A1.5 1.5 0 0 1 5.5 8h13A1.5 1.5 0 0 1 20 9.5v8A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5v-8Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <path d="M4 13h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 function GitHubAvatar({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="flex h-36 w-36 items-center justify-center overflow-hidden rounded-3xl border border-border bg-surface shadow-sm sm:h-40 sm:w-40">
@@ -138,68 +82,8 @@ function GitHubAvatar({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-function buildFrameworkHighlights(repos: GitHubRepo[]) {
-  const keywords = [
-    "React",
-    "Next.js",
-    "Flutter",
-    "Node.js",
-    "Spring Boot",
-    "Flask",
-    "MongoDB",
-    "MySQL",
-    "Python",
-    "Java",
-    "JavaScript",
-    "TypeScript",
-    "Angular",
-  ];
-
-  const discovered = new Set<string>();
-  const haystack = repos
-    .map((repo) => [repo.name, repo.description ?? "", repo.language ?? "", ...repo.topics].join(" "))
-    .join(" ")
-    .toLowerCase();
-
-  for (const keyword of keywords) {
-    if (haystack.includes(keyword.toLowerCase())) {
-      discovered.add(keyword);
-    }
-  }
-
-  for (const repo of repos) {
-    for (const topic of repo.topics) {
-      if (topic && topic.length <= 20) {
-        discovered.add(topic);
-      }
-    }
-  }
-
-  return Array.from(discovered).slice(0, 10);
-}
-
-function buildTechnologyOptions(repos: GitHubRepo[]) {
-  const values = new Set<string>();
-
-  for (const repo of repos) {
-    if (repo.language) {
-      values.add(repo.language);
-    }
-    for (const topic of repo.topics) {
-      if (topic) {
-        values.add(topic);
-      }
-    }
-  }
-
-  return Array.from(values).sort((left, right) => left.localeCompare(right));
-}
-
 async function loadAnalytics(): Promise<AnalyticsState> {
   const username = githubProfile.username;
-  const oneYearAgo = new Date();
-  oneYearAgo.setUTCFullYear(oneYearAgo.getUTCFullYear() - 1);
-  const sinceISO = oneYearAgo.toISOString();
 
   const [userResult, reposResult, eventsResult] = await Promise.allSettled([
     getGitHubUser(username),
@@ -237,62 +121,7 @@ async function loadAnalytics(): Promise<AnalyticsState> {
       return rightScore - leftScore;
     })
     .slice(0, 4);
-
-  const technologyOptions = buildTechnologyOptions(repos);
-  const frameworkHighlights = buildFrameworkHighlights(featuredRepos.length > 0 ? featuredRepos : repos);
-
-  const repositoriesForAnalytics = orderedRepos.slice(0, 6);
-
-  const languageSettled = await Promise.allSettled(
-    repositoriesForAnalytics.map((repo) => getGitHubRepoLanguages(repo.owner.login, repo.name)),
-  );
-  const languageCounts = new Map<string, number>();
-
-  for (const settled of languageSettled) {
-    if (settled.status !== "fulfilled") {
-      continue;
-    }
-
-    for (const [language, bytes] of Object.entries(settled.value)) {
-      languageCounts.set(language, (languageCounts.get(language) ?? 0) + bytes);
-    }
-  }
-
-  if (languageCounts.size === 0) {
-    for (const repo of repositoriesForAnalytics) {
-      if (repo.language) {
-        languageCounts.set(repo.language, (languageCounts.get(repo.language) ?? 0) + 1);
-      }
-    }
-  }
-
-  const languageUsage = Array.from(languageCounts.entries())
-    .sort((left, right) => right[1] - left[1])
-    .slice(0, 6)
-    .map(([name, bytes]) => ({ name, bytes, percentage: 0 }));
-
-  const totalLanguageBytes = languageUsage.reduce((sum, item) => sum + item.bytes, 0);
-  for (const item of languageUsage) {
-    item.percentage = totalLanguageBytes ? Math.round((item.bytes / totalLanguageBytes) * 100) : 0;
-  }
-
-  const commitSettled = await Promise.allSettled(
-    repositoriesForAnalytics.map((repo) => getGitHubRepoCommits(repo.owner.login, repo.name, username, sinceISO)),
-  );
   const contributionDates: string[] = [];
-
-  for (const settled of commitSettled) {
-    if (settled.status !== "fulfilled") {
-      continue;
-    }
-
-    for (const commit of settled.value) {
-      const date = commit.commit.author?.date ?? commit.commit.committer?.date;
-      if (date) {
-        contributionDates.push(date);
-      }
-    }
-  }
 
   if (contributionDates.length === 0) {
     for (const event of events) {
@@ -304,53 +133,13 @@ async function loadAnalytics(): Promise<AnalyticsState> {
 
   const contributionCalendar = buildContributionCalendar(contributionDates, 365);
 
-  const recentActivity = [
-    ...events
-      .filter((event) => ["PushEvent", "ReleaseEvent", "CreateEvent"].includes(event.type))
-      .slice(0, 8)
-      .map((event) => {
-        const commitCount = event.payload.commits?.length ?? 0;
-        if (event.type === "PushEvent") {
-          return {
-            title: commitCount > 0 ? `${commitCount} commit${commitCount === 1 ? "" : "s"} pushed` : "Repository updated",
-            description: event.payload.commits?.[0]?.message || "Recent push activity on GitHub.",
-            date: event.created_at,
-            repoName: event.repo.name.split("/")[1] ?? event.repo.name,
-            kind: "commit" as const,
-          };
-        }
-
-        return {
-          title: event.type === "ReleaseEvent" ? "Release published" : "Repository created",
-          description: event.repo.name,
-          date: event.created_at,
-          repoName: event.repo.name.split("/")[1] ?? event.repo.name,
-          kind: event.type === "ReleaseEvent" ? ("release" as const) : ("create" as const),
-        };
-      }),
-    ...orderedRepos.slice(0, 4).map((repo) => ({
-      title: "Repository updated",
-      description: repo.description || "Repository metadata updated on GitHub.",
-      date: repo.updated_at,
-      repoName: repo.name,
-      kind: "update" as const,
-    })),
-  ]
-    .sort((left, right) => new Date(right.date).getTime() - new Date(left.date).getTime())
-    .slice(0, 8);
-
   const warningMessage = warningParts.length > 0 ? warningParts.join(" ") : null;
 
   return {
     user,
     repos: orderedRepos,
     featuredRepos,
-    languageUsage,
-    technologyOptions,
     contributionWeeks: contributionCalendar.weeks,
-    totalContributions: contributionCalendar.totalContributions,
-    recentActivity,
-    frameworkHighlights,
     warningMessage,
   };
 }
@@ -492,115 +281,6 @@ export default async function GitHubAnalyticsPage() {
               No featured repositories could be loaded right now.
             </div>
           )}
-        </div>
-      </section>
-
-      <section className="space-y-5 px-1 py-2 motion-reveal" style={{ animationDelay: "460ms" }}>
-        <div className="flex items-center justify-between gap-3 border-t border-border pt-4">
-          {sectionTitle(<ActivityIcon className="h-4 w-4 text-accent" />, "Repository Explorer", "Search, filter, and sort the public repository list.")}
-        </div>
-
-        <GitHubRepoExplorer repos={analytics.repos} technologyOptions={analytics.technologyOptions} />
-      </section>
-
-      <section className="space-y-5 px-1 py-2 motion-reveal" style={{ animationDelay: "540ms" }}>
-        <div className="flex items-center justify-between gap-3 border-t border-border pt-4">
-          {sectionTitle(<SnapshotIcon className="h-4 w-4 text-accent" />, "Technology Usage", "Language share and framework highlights from public repositories.")}
-        </div>
-
-        <div className="grid gap-5 lg:grid-cols-2">
-          <article className="flex flex-col gap-4 border-t border-border pt-4">
-            <p className="text-xs font-black uppercase tracking-widest text-foreground">Languages</p>
-            <div className="grid gap-4">
-              {analytics.languageUsage.length > 0 ? (
-                analytics.languageUsage.map((language) => (
-                  <div key={language.name} className="grid gap-2">
-                    <div className="flex items-center justify-between gap-3 text-sm">
-                      <span className="font-medium text-foreground">{language.name}</span>
-                      <span className="font-black text-foreground">{language.percentage}%</span>
-                    </div>
-                    <div className="h-2 rounded-full bg-accent-soft">
-                      <div
-                        className="h-2 rounded-full bg-accent transition-all duration-300"
-                        style={{ width: `${Math.max(language.percentage, 6)}%` }}
-                        aria-hidden="true"
-                      />
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p className="text-sm text-muted">Language data is unavailable right now.</p>
-              )}
-            </div>
-          </article>
-
-          <article className="flex flex-col gap-4 border-t border-border pt-4">
-            <p className="text-xs font-black uppercase tracking-widest text-foreground">Frameworks and tools</p>
-            <div className="flex flex-wrap gap-2">
-              {analytics.frameworkHighlights.length > 0 ? (
-                analytics.frameworkHighlights.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-border bg-surface-strong px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground"
-                  >
-                    {item}
-                  </span>
-                ))
-              ) : (
-                <p className="text-sm text-muted">Framework highlights are unavailable right now.</p>
-              )}
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section className="space-y-5 px-1 py-2 motion-reveal" style={{ animationDelay: "620ms" }}>
-        <div className="flex items-center justify-between gap-3 border-t border-border pt-4">
-          {sectionTitle(<ActivityIcon className="h-4 w-4 text-accent" />, "Recent GitHub Activity", "Recent commits and repository updates in a clean timeline.")}
-        </div>
-
-        <div className="grid gap-0">
-          {analytics.recentActivity.length > 0 ? (
-            analytics.recentActivity.map((item) => (
-              <article key={`${item.title}-${item.date}-${item.repoName}`} className="flex gap-3 border-b border-border py-4 last:border-b-0">
-                <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-border bg-surface-strong text-[10px] font-black uppercase tracking-widest text-accent">
-                  {item.kind === "commit" ? "C" : item.kind === "release" ? "R" : item.kind === "create" ? "N" : "U"}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <p className="text-xs font-black uppercase tracking-widest text-foreground">{item.title}</p>
-                    <p className="text-xs text-muted">{formatRelativeGitHubDate(item.date)}</p>
-                  </div>
-                  <p className="mt-2 text-sm leading-6 text-foreground">{item.description}</p>
-                  <p className="mt-1 text-xs font-black uppercase tracking-wider text-muted">{item.repoName}</p>
-                </div>
-              </article>
-            ))
-          ) : (
-            <div className="rounded-3xl border border-border bg-surface px-4 py-6 text-sm text-muted">
-              Recent GitHub activity could not be loaded right now.
-            </div>
-          )}
-        </div>
-      </section>
-
-      <section className="space-y-5 px-1 py-2 motion-reveal" style={{ animationDelay: "700ms" }}>
-        <div className="flex items-center justify-between gap-3 border-t border-border pt-4">
-          {sectionTitle(<JourneyIcon className="h-4 w-4 text-accent" />, "Developer Journey", "A timeline that matches the portfolio's experience section.")}
-        </div>
-
-        <div className="grid gap-0">
-          {developerJourney.map((step, index) => (
-            <article key={step.title} className="flex gap-3 border-b border-border py-4 last:border-b-0">
-              <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-border bg-surface-strong text-[10px] font-black uppercase tracking-widest text-accent">
-                {index + 1}
-              </div>
-              <div className="min-w-0">
-                <p className="text-xs font-black uppercase tracking-widest text-foreground">{step.title}</p>
-                <p className="mt-2 text-sm leading-7 text-muted">{step.description}</p>
-              </div>
-            </article>
-          ))}
         </div>
       </section>
     </PageShell>
