@@ -13,7 +13,6 @@ import {
   getGitHubRepoLanguages,
   getGitHubRepos,
   getGitHubUser,
-  getStreaks,
   type GitHubRepo,
 } from "@/lib/github";
 import type { ReactNode } from "react";
@@ -37,8 +36,6 @@ type AnalyticsState = {
   technologyOptions: string[];
   contributionWeeks: ReturnType<typeof buildContributionCalendar>["weeks"];
   totalContributions: number;
-  currentStreak: number;
-  longestStreak: number;
   recentActivity: Array<{
     title: string;
     description: string;
@@ -306,7 +303,6 @@ async function loadAnalytics(): Promise<AnalyticsState> {
   }
 
   const contributionCalendar = buildContributionCalendar(contributionDates, 365);
-  const streaks = getStreaks(contributionDates);
 
   const recentActivity = [
     ...events
@@ -353,30 +349,10 @@ async function loadAnalytics(): Promise<AnalyticsState> {
     technologyOptions,
     contributionWeeks: contributionCalendar.weeks,
     totalContributions: contributionCalendar.totalContributions,
-    currentStreak: streaks.currentStreak,
-    longestStreak: streaks.longestStreak,
     recentActivity,
     frameworkHighlights,
     warningMessage,
   };
-}
-
-function StatCard({
-  label,
-  value,
-  description,
-}: {
-  label: string;
-  value: string;
-  description: string;
-}) {
-  return (
-    <article className="flex flex-col gap-2 border-t border-border pt-4 motion-reveal">
-      <p className="text-xs font-black uppercase tracking-widest text-foreground">{label}</p>
-      <p className="text-xl font-bold tracking-normal text-foreground sm:text-2xl">{value}</p>
-      <p className="text-sm leading-6 text-muted">{description}</p>
-    </article>
-  );
 }
 
 function sectionTitle(icon: ReactNode, title: string, subtitle?: string) {
@@ -454,41 +430,6 @@ export default async function GitHubAnalyticsPage() {
             ) : null}
           </div>
 
-          <div className="border-t border-border pt-4">
-            {sectionTitle(<SnapshotIcon className="h-4 w-4 text-accent" />, "GitHub Snapshot", "Public repository and profile highlights.")}
-            <div className="mt-4 grid gap-x-6 gap-y-4 sm:grid-cols-2">
-              <StatCard
-                label="Public repositories"
-                value={(analytics.user?.public_repos ?? analytics.repos.length).toLocaleString("en-IN")}
-                description="Public repositories available through the GitHub REST API."
-              />
-              <StatCard
-                label="Followers"
-                value={(analytics.user?.followers ?? 0).toLocaleString("en-IN")}
-                description="People following this profile on GitHub."
-              />
-              <StatCard
-                label="Following"
-                value={(analytics.user?.following ?? 0).toLocaleString("en-IN")}
-                description="Accounts this profile follows on GitHub."
-              />
-              <StatCard
-                label="Stars"
-                value={analytics.repos.reduce((sum, repo) => sum + repo.stargazers_count, 0).toLocaleString("en-IN")}
-                description="Combined stars across the repositories in the portfolio."
-              />
-              <StatCard
-                label="Forks"
-                value={analytics.repos.reduce((sum, repo) => sum + repo.forks_count, 0).toLocaleString("en-IN")}
-                description="Combined forks across the repositories in the portfolio."
-              />
-              <StatCard
-                label="Contributions"
-                value={analytics.totalContributions.toLocaleString("en-IN")}
-                description="Public commit activity used to power the calendar and streaks."
-              />
-            </div>
-          </div>
         </article>
 
         <article className="flex flex-col gap-5 border-t border-border px-1 py-4 motion-reveal" style={{ animationDelay: "220ms" }}>
@@ -534,24 +475,6 @@ export default async function GitHubAnalyticsPage() {
                 )}
               </div>
             </div>
-          </div>
-
-          <div className="grid gap-x-6 gap-y-4 sm:grid-cols-3">
-            <StatCard
-              label="Total contributions"
-              value={analytics.totalContributions.toLocaleString("en-IN")}
-              description="Public commits counted across the repositories loaded for this profile."
-            />
-            <StatCard
-              label="Current streak"
-              value={`${analytics.currentStreak} day${analytics.currentStreak === 1 ? "" : "s"}`}
-              description="Consecutive active days tracked from the latest commit activity."
-            />
-            <StatCard
-              label="Longest streak"
-              value={`${analytics.longestStreak} day${analytics.longestStreak === 1 ? "" : "s"}`}
-              description="The longest uninterrupted commit run in the tracked window."
-            />
           </div>
         </article>
       </section>
