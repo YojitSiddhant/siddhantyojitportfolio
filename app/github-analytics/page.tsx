@@ -3,11 +3,7 @@ import type { Metadata } from "next";
 import { PageSectionHeader } from "@/components/page-section-header";
 import { PageShell } from "@/components/page-shell";
 import { githubProfile } from "@/data/github-profile";
-import {
-  buildContributionCalendar,
-  getGitHubEvents,
-  getGitHubUser,
-} from "@/lib/github";
+import { buildContributionCalendar, getGitHubEvents, getGitHubUser } from "@/lib/github";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
@@ -39,12 +35,7 @@ function GitHubBadgeIcon({ className }: { className?: string }) {
 function CalendarIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <path
-        d="M7 4.5v3M17 4.5v3M4.5 9h15"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
+      <path d="M7 4.5v3M17 4.5v3M4.5 9h15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
       <path
         d="M6.5 7.5h11A2 2 0 0 1 19.5 9.5v9A2 2 0 0 1 17.5 20h-11A2 2 0 0 1 4.5 18.5v-9a2 2 0 0 1 2-2Z"
         stroke="currentColor"
@@ -66,10 +57,7 @@ function GitHubAvatar({ src, alt }: { src: string; alt: string }) {
 async function loadAnalytics(): Promise<AnalyticsState> {
   const username = githubProfile.username;
 
-  const [userResult, eventsResult] = await Promise.allSettled([
-    getGitHubUser(username),
-    getGitHubEvents(username),
-  ]);
+  const [userResult, eventsResult] = await Promise.allSettled([getGitHubUser(username), getGitHubEvents(username)]);
 
   const warningParts: string[] = [];
 
@@ -82,24 +70,20 @@ async function loadAnalytics(): Promise<AnalyticsState> {
   if (eventsResult.status === "rejected") {
     warningParts.push("Recent activity data is temporarily unavailable.");
   }
-  const contributionDates: string[] = [];
 
-  if (contributionDates.length === 0) {
-    for (const event of events) {
-      if (event.type === "PushEvent") {
-        contributionDates.push(event.created_at);
-      }
+  const contributionDates: string[] = [];
+  for (const event of events) {
+    if (event.type === "PushEvent") {
+      contributionDates.push(event.created_at);
     }
   }
 
   const contributionCalendar = buildContributionCalendar(contributionDates, 365);
 
-  const warningMessage = warningParts.length > 0 ? warningParts.join(" ") : null;
-
   return {
     user,
     contributionWeeks: contributionCalendar.weeks,
-    warningMessage,
+    warningMessage: warningParts.length > 0 ? warningParts.join(" ") : null,
   };
 }
 
@@ -160,7 +144,6 @@ export default async function GitHubAnalyticsPage() {
               <p className="mt-3 text-sm font-black uppercase tracking-wider text-accent-strong">
                 @{username}
               </p>
-              {/* Keep this label explicit so the deployed page always shows the intended role text. */}
               <p className="mt-3 text-sm font-medium tracking-normal text-foreground">
                 FULL STACK DEVELOPER
               </p>
@@ -181,7 +164,6 @@ export default async function GitHubAnalyticsPage() {
               <p className="text-sm leading-6 text-muted">{analytics.warningMessage}</p>
             ) : null}
           </div>
-
         </article>
 
         <article className="flex flex-col gap-5 border-t border-border px-1 py-4 motion-reveal" style={{ animationDelay: "220ms" }}>
@@ -230,7 +212,6 @@ export default async function GitHubAnalyticsPage() {
           </div>
         </article>
       </section>
-
     </PageShell>
   );
 }
