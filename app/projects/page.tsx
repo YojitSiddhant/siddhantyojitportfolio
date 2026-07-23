@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
+import { PageSectionHeader } from "@/components/page-section-header";
+import { PageShell } from "@/components/page-shell";
 import { projects } from "@/data/projects";
 
 export const metadata: Metadata = {
@@ -41,81 +43,80 @@ function TechIcon({ src, name, className }: { src: string; name: string; classNa
 
 export default function ProjectsPage() {
   return (
-    <main className="relative isolate overflow-x-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-background" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-background" />
-
-      <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
+    <PageShell>
+      <PageSectionHeader
+        className="motion-reveal"
+        style={{ animationDelay: "80ms" }}
+        left={
           <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground">
             <ProjectsIcon className="h-4 w-4 text-accent" />
             Projects
           </div>
-          <div className="text-sm font-black text-foreground">Resume projects</div>
+        }
+        right={<div className="text-sm font-black text-foreground">Resume projects</div>}
+      />
+
+      <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
+        <div className="grid gap-5">
+          {projects.map((project, index) => (
+            <article
+              key={project.title}
+              className="grid gap-4 border-b border-border pb-5 motion-reveal lg:grid-cols-2 lg:items-start lg:gap-8"
+              style={{ animationDelay: `${220 + index * 120}ms` }}
+            >
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h2 className="mt-1 text-xl font-bold tracking-normal text-foreground">
+                    {project.title}
+                  </h2>
+                  {project.featured ? (
+                    <span className="rounded-full border border-border bg-accent-soft px-3 py-1 text-xs font-black uppercase tracking-widest text-accent-strong">
+                      Featured
+                    </span>
+                  ) : null}
+                </div>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {(project.stack as Array<{ name: string; src: string; iconClassName?: string }>).map(({ name, src, iconClassName }) => (
+                    <span
+                      key={name}
+                      className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground"
+                    >
+                      <TechIcon src={src} name={name} className={iconClassName} />
+                      <span>{name}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex min-w-0 flex-col gap-1 text-sm text-foreground lg:justify-self-end lg:text-right">
+                <p>{project.description}</p>
+                <div className="mt-3 flex flex-wrap gap-2 sm:justify-end">
+                  {project.github ? (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="rounded-full border border-border px-3 py-1 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:text-accent"
+                    >
+                      GitHub
+                    </a>
+                  ) : null}
+                  {project.liveLink ? (
+                    <a
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="rounded-full border border-border px-3 py-1 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:text-accent"
+                    >
+                      Live
+                    </a>
+                  ) : null}
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
-
-        <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
-          <div className="grid gap-5">
-            {projects.map((project, index) => (
-              <article
-                key={project.title}
-                className="grid gap-4 border-b border-border pb-5 motion-reveal lg:grid-cols-2 lg:items-start lg:gap-8"
-                style={{ animationDelay: `${220 + index * 120}ms` }}
-              >
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h2 className="mt-1 text-xl font-bold tracking-normal text-foreground">
-                      {project.title}
-                    </h2>
-                    {project.featured ? (
-                      <span className="rounded-full border border-border bg-accent-soft px-3 py-1 text-xs font-black uppercase tracking-widest text-accent-strong">
-                        Featured
-                      </span>
-                    ) : null}
-                  </div>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {(project.stack as Array<{ name: string; src: string; iconClassName?: string }>).map(({ name, src, iconClassName }) => (
-                      <span
-                        key={name}
-                        className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground"
-                      >
-                        <TechIcon src={src} name={name} className={iconClassName} />
-                        <span>{name}</span>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex min-w-0 flex-col gap-1 text-sm text-foreground lg:justify-self-end lg:text-right">
-                  <p>{project.description}</p>
-                  <div className="mt-3 flex flex-wrap gap-2 sm:justify-end">
-                    {project.github ? (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="rounded-full border border-border px-3 py-1 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:text-accent"
-                      >
-                        GitHub
-                      </a>
-                    ) : null}
-                    {project.liveLink ? (
-                      <a
-                        href={project.liveLink}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="rounded-full border border-border px-3 py-1 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:text-accent"
-                      >
-                        Live
-                      </a>
-                    ) : null}
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
       </section>
-    </main>
+    </PageShell>
   );
 }

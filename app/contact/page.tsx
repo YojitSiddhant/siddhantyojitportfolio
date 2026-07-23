@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { ContactFormSection } from "@/components/contact-form-section";
+import { PageSectionHeader } from "@/components/page-section-header";
+import { PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
   title: "Contact | Siddhant Yojit",
@@ -16,12 +18,11 @@ const contactLinks = {
 
 export default function ContactPage() {
   return (
-    <main className="relative isolate overflow-x-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-background" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-background" />
-
-      <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 pb-8 pt-4 sm:px-6 sm:pb-10 sm:pt-5 lg:px-8 lg:pt-6 motion-reveal">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-1 py-3 motion-reveal" style={{ animationDelay: "80ms" }}>
+    <PageShell sectionClassName="gap-4 pb-8 pt-4 sm:pb-10 sm:pt-5 lg:pt-6">
+      <PageSectionHeader
+        className="motion-reveal"
+        style={{ animationDelay: "80ms" }}
+        left={
           <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground">
             <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 text-accent" fill="none">
               <path
@@ -40,13 +41,13 @@ export default function ContactPage() {
             </svg>
             Contact
           </div>
-          <div className="text-sm font-black text-foreground">Form and options</div>
-        </div>
+        }
+        right={<div className="text-sm font-black text-foreground">Form and options</div>}
+      />
 
-        <div className="motion-reveal" style={{ animationDelay: "160ms" }}>
-          <ContactFormSection links={contactLinks} />
-        </div>
-      </section>
-    </main>
+      <div className="motion-reveal" style={{ animationDelay: "160ms" }}>
+        <ContactFormSection links={contactLinks} />
+      </div>
+    </PageShell>
   );
 }

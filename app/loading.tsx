@@ -1,10 +1,8 @@
+import { PageShell } from "@/components/page-shell";
+
 export default function Loading() {
   return (
-    <main className="relative isolate overflow-x-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-background" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-background" />
-
-      <section className="mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8">
+    <PageShell animated={false}>
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border px-1 py-4">
           <div className="h-4 w-28 animate-pulse rounded-full bg-accent-soft" />
           <div className="h-4 w-40 animate-pulse rounded-full bg-accent-soft" />
@@ -33,7 +31,6 @@ export default function Loading() {
             <div className="h-128 animate-pulse rounded-4xl border border-border bg-surface" />
           </div>
         </section>
-      </section>
-    </main>
+    </PageShell>
   );
 }

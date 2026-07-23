@@ -1,5 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
+import { PageSectionHeader } from "@/components/page-section-header";
+import { PageShell } from "@/components/page-shell";
 import { experience } from "@/data/experience";
 
 export const metadata: Metadata = {
@@ -60,90 +62,89 @@ function BulletIcon({ className }: { className?: string }) {
 
 export default function ExperiencePage() {
   return (
-    <main className="relative isolate overflow-x-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-background" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-background" />
-
-      <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
+    <PageShell>
+      <PageSectionHeader
+        className="motion-reveal"
+        style={{ animationDelay: "80ms" }}
+        left={
           <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground">
             <TimelineIcon className="h-4 w-4 text-accent" />
             Experience
           </div>
-          <div className="text-sm font-black text-foreground">Work history</div>
+        }
+        right={<div className="text-sm font-black text-foreground">Work history</div>}
+      />
+
+      <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
+        <div className="grid gap-5">
+          {experience.map((item, index) => (
+            <article
+              key={`${item.role}-${item.company}`}
+              className="flex flex-col gap-4 border-b border-border pb-5 motion-reveal"
+              style={{ animationDelay: `${220 + index * 120}ms` }}
+            >
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-foreground">
+                    <BriefcaseIcon className="h-4 w-4 text-accent" />
+                    {item.role}
+                  </div>
+                  <div className="mt-2 flex flex-wrap items-center gap-3">
+                    {item.logo ? (
+                      <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
+                        <Image
+                          src={item.logo}
+                          alt={`${item.company} logo`}
+                          width={48}
+                          height={48}
+                          className="h-full w-full object-cover"
+                          priority
+                        />
+                      </div>
+                    ) : null}
+                    <h2 className="text-xl font-bold tracking-normal text-foreground">
+                      {item.company}
+                    </h2>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-1 text-sm text-foreground sm:min-w-[10rem] sm:text-right">
+                  <p>{item.duration}</p>
+                  <p className="inline-flex items-center gap-2 font-black text-foreground sm:justify-end">
+                    <MapPinIcon className="h-4 w-4 text-accent" />
+                    Bengaluru, India
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid gap-3 border-t border-border pt-4">
+                {item.description
+                  .split(/\r?\n/)
+                  .map((highlight) => highlight.trim())
+                  .filter(Boolean)
+                  .map((highlight) => (
+                  <div key={highlight} className="flex gap-3">
+                    <BulletIcon className="mt-1 h-4 w-4 shrink-0 text-accent" />
+                    <p className="text-sm leading-7 text-foreground">{highlight}</p>
+                  </div>
+                ))}
+                {Array.isArray(item.technologies) && item.technologies.length > 0 ? (
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {(item.technologies as string[]).map((technology) => (
+                      <span
+                        key={`${item.company}-${technology}`}
+                        className="rounded-full border border-border bg-surface px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground"
+                      >
+                        {technology}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            </article>
+          ))}
         </div>
-
-        <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
-          <div className="grid gap-5">
-            {experience.map((item, index) => (
-              <article
-                key={`${item.role}-${item.company}`}
-                className="flex flex-col gap-4 border-b border-border pb-5 motion-reveal"
-                style={{ animationDelay: `${220 + index * 120}ms` }}
-              >
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-foreground">
-                      <BriefcaseIcon className="h-4 w-4 text-accent" />
-                      {item.role}
-                    </div>
-                    <div className="mt-2 flex flex-wrap items-center gap-3">
-                      {item.logo ? (
-                        <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
-                          <Image
-                            src={item.logo}
-                            alt={`${item.company} logo`}
-                            width={48}
-                            height={48}
-                            className="h-full w-full object-cover"
-                            priority
-                          />
-                        </div>
-                      ) : null}
-                      <h2 className="text-xl font-bold tracking-normal text-foreground">
-                        {item.company}
-                      </h2>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-1 text-sm text-foreground sm:min-w-[10rem] sm:text-right">
-                    <p>{item.duration}</p>
-                    <p className="inline-flex items-center gap-2 font-black text-foreground sm:justify-end">
-                      <MapPinIcon className="h-4 w-4 text-accent" />
-                      Bengaluru, India
-                    </p>
-                  </div>
-                </div>
-
-                <div className="grid gap-3 border-t border-border pt-4">
-                  {item.description
-                    .split(/\r?\n/)
-                    .map((highlight) => highlight.trim())
-                    .filter(Boolean)
-                    .map((highlight) => (
-                    <div key={highlight} className="flex gap-3">
-                      <BulletIcon className="mt-1 h-4 w-4 shrink-0 text-accent" />
-                      <p className="text-sm leading-7 text-foreground">{highlight}</p>
-                    </div>
-                  ))}
-                  {Array.isArray(item.technologies) && item.technologies.length > 0 ? (
-                    <div className="mt-2 flex flex-wrap gap-2">
-                      {(item.technologies as string[]).map((technology) => (
-                        <span
-                          key={`${item.company}-${technology}`}
-                          className="rounded-full border border-border bg-surface px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground"
-                        >
-                          {technology}
-                        </span>
-                      ))}
-                    </div>
-                  ) : null}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
       </section>
-    </main>
+    </PageShell>
   );
 }

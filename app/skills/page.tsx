@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
+import { PageSectionHeader } from "@/components/page-section-header";
+import { PageShell } from "@/components/page-shell";
 import { skills } from "@/data/skills";
 
 export const metadata: Metadata = {
@@ -54,46 +56,47 @@ function BriefcaseIcon({ className }: LogoProps) {
 
 export default function SkillsPage() {
   return (
-    <main className="relative isolate overflow-x-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-background" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-background" />
-
-      <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border px-1 py-4 motion-reveal" style={{ animationDelay: "80ms" }}>
+    <PageShell>
+      <PageSectionHeader
+        className="motion-reveal"
+        style={{ animationDelay: "80ms" }}
+        left={
           <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground">
             <TechBadgeIcon className="h-4 w-4 text-accent" />
             Frontend Skills
           </div>
+        }
+        right={
           <div className="flex items-center gap-2 text-sm text-muted">
             <BriefcaseIcon className="h-4 w-4 text-accent" />
             Frontend, UI
           </div>
-        </div>
+        }
+      />
 
-        <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
-          <div className="mx-auto grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {skills.map((skill, index) => (
-              <article
-                key={skill.name}
-                className="flex flex-col items-center justify-center gap-3 rounded-3xl border border-border bg-surface px-4 py-6 text-center motion-reveal"
-                style={{ animationDelay: `${220 + index * 100}ms` }}
+      <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
+        <div className="mx-auto grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {skills.map((skill, index) => (
+            <article
+              key={skill.name}
+              className="flex flex-col items-center justify-center gap-3 rounded-3xl border border-border bg-surface px-4 py-6 text-center motion-reveal"
+              style={{ animationDelay: `${220 + index * 100}ms` }}
+            >
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center">
+                <img src={skill.icon} alt={`${skill.name} logo`} className="h-14 w-14 object-contain" loading="lazy" />
+              </div>
+              <a
+                href={skill.href ?? "#"}
+                target="_blank"
+                rel="noreferrer"
+                className="min-w-0 text-base font-black uppercase tracking-widest text-foreground transition-colors hover:text-accent"
               >
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center">
-                  <img src={skill.icon} alt={`${skill.name} logo`} className="h-14 w-14 object-contain" loading="lazy" />
-                </div>
-                <a
-                  href={skill.href ?? "#"}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="min-w-0 text-base font-black uppercase tracking-widest text-foreground transition-colors hover:text-accent"
-                >
-                  {skill.name}
-                </a>
-              </article>
-            ))}
-          </div>
-        </section>
+                {skill.name}
+              </a>
+            </article>
+          ))}
+        </div>
       </section>
-    </main>
+    </PageShell>
   );
 }
