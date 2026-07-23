@@ -19,7 +19,7 @@ export function ContactFormDialogs({
     <>
       {isPopupOpen ? (
         <div
-          className="fixed inset-0 z-120 flex items-center justify-center bg-black/40 px-4 py-6 backdrop-blur-sm"
+          className="fixed inset-0 z-60 flex items-center justify-center bg-black/20 px-4 py-6 backdrop-blur-sm motion-reveal-fade sm:py-8"
           role="dialog"
           aria-modal="true"
           aria-labelledby="contact-validation-title"
@@ -27,7 +27,7 @@ export function ContactFormDialogs({
           onClick={onClosePopup}
         >
           <div
-            className="w-full max-w-md rounded-3xl border border-border bg-surface-strong p-5 shadow-2xl"
+            className="w-full max-w-104 max-h-screen overflow-hidden rounded-3xl border border-border bg-surface-strong p-4 shadow-2xl backdrop-blur-xl sm:max-h-screen sm:p-5"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">
@@ -78,7 +78,7 @@ export function ContactFormDialogs({
 
       {isSuccessOpen ? (
         <div
-          className="fixed inset-0 z-120 flex items-center justify-center bg-black/40 px-4 py-6 backdrop-blur-sm"
+          className="fixed inset-0 z-60 flex items-center justify-center bg-black/20 px-4 py-6 backdrop-blur-sm motion-reveal-fade sm:py-8"
           role="dialog"
           aria-modal="true"
           aria-labelledby="contact-success-title"
@@ -86,7 +86,7 @@ export function ContactFormDialogs({
           onClick={onCloseSuccess}
         >
           <div
-            className="w-full max-w-md rounded-3xl border border-border bg-surface-strong p-5 shadow-2xl"
+            className="w-full max-w-104 max-h-screen overflow-hidden rounded-3xl border border-border bg-surface-strong p-4 shadow-2xl backdrop-blur-xl sm:max-h-screen sm:p-5"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">
