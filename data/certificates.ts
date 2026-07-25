@@ -3,6 +3,7 @@ export const certificates = [
     title: "Software Testing",
     issuer: "Alpha Tech Academy",
     issueDate: "2022-23",
+    logo: "/company-logos/atlas-logo.png",
     order: 1,
   },
   {
