@@ -15,10 +15,6 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "devicons.railway.com",
       },
-      {
-        protocol: "https",
-        hostname: "console.groq.com",
-      },
     ],
   },
 };

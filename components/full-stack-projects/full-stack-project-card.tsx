@@ -43,9 +43,20 @@ const techBadgeAssets: Record<string, TechBadgeAsset> = {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
   },
   "Groq AI API": {
-    kind: "image",
-    src: "https://console.groq.com/powered-by-groq-dark.svg",
-    className: "h-5 w-auto",
+    kind: "icon",
+    node: (
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 shrink-0" fill="none">
+        <circle cx="12" cy="12" r="10" fill="#ff6a00" />
+        <path
+          d="M14.8 8.8a3.7 3.7 0 1 0 0 6.4"
+          stroke="#ffffff"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path d="M15.3 12h-2.1" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" />
+      </svg>
+    ),
   },
   "Next.js": {
     kind: "image",
