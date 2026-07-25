@@ -2,11 +2,11 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #17315f;
-  --muted: #4a6795;
+  --foreground: #111111;
+  --muted: #111111;
   --surface: #ffffff;
   --surface-strong: #ffffff;
-  --border: rgba(23, 49, 95, 0.12);
+  --border: rgba(17, 17, 17, 0.12);
   --accent: #2563eb;
   --accent-strong: #1d4ed8;
   --accent-soft: rgba(37, 99, 235, 0.12);
@@ -95,6 +95,7 @@ h5,
 h6,
 .font-display {
   font-family: "Inter", "Segoe UI", Arial, Helvetica, sans-serif;
+  font-weight: 700;
   letter-spacing: 0;
   text-wrap: balance;
   overflow-wrap: anywhere;
