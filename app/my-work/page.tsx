@@ -56,15 +56,15 @@ export default function MyWorkPage() {
             My Work
           </div>
         }
-        right={<div className="text-sm font-black text-foreground">Featured work</div>}
+        right={<div className="text-sm font-black text-foreground sm:text-right">Featured work</div>}
       />
 
       <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
-        <div className="grid justify-items-center gap-10 md:grid-cols-2 md:gap-12 xl:grid-cols-3 xl:gap-14">
+        <div className="grid justify-items-stretch gap-10 md:grid-cols-2 md:gap-12 xl:grid-cols-3 xl:gap-14">
           {sortedWorkItems.map((item, index) => (
             <article
               key={item.title}
-              className="flex h-full w-full max-w-80 flex-col items-center gap-6 motion-reveal md:max-w-88 xl:max-w-96"
+              className="flex h-full w-full max-w-none flex-col items-center gap-6 motion-reveal md:max-w-88 xl:max-w-96"
               style={{ animationDelay: `${220 + index * 120}ms` }}
             >
               <div className="flex w-full flex-col items-center gap-4 text-center">

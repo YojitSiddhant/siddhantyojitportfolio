@@ -11,7 +11,7 @@ export function PageSectionHeader({ left, right, className = "", style }: PageSe
   return (
     <div
       className={[
-        "flex flex-wrap items-center justify-between gap-4 border-b border-border px-1 py-4",
+        "flex flex-col gap-3 border-b border-border px-1 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4",
         className,
       ]
         .filter(Boolean)
