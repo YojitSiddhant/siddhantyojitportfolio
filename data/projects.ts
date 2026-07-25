@@ -19,7 +19,6 @@ export const projects = [
     ],
     github: "",
     liveLink: "",
-    featured: true,
     order: 1,
   },
   {
@@ -50,7 +49,6 @@ export const projects = [
     ],
     github: "",
     liveLink: "",
-    featured: false,
     order: 2,
   },
   {
@@ -83,7 +81,6 @@ export const projects = [
     ],
     github: "",
     liveLink: "",
-    featured: false,
     order: 3,
   },
   {
@@ -114,7 +111,6 @@ export const projects = [
     ],
     github: "",
     liveLink: "",
-    featured: false,
     order: 4,
   },
 ];

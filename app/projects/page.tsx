@@ -69,11 +69,6 @@ export default function ProjectsPage() {
                   <h2 className="mt-1 text-xl font-bold tracking-normal text-foreground">
                     {project.title}
                   </h2>
-                  {project.featured ? (
-                    <span className="rounded-full border border-border bg-accent-soft px-3 py-1 text-xs font-black uppercase tracking-widest text-accent-strong">
-                      Featured
-                    </span>
-                  ) : null}
                 </div>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {(project.stack as Array<{ name: string; src: string; iconClassName?: string }>).map(({ name, src, iconClassName }) => (
