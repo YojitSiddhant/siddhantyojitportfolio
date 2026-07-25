@@ -72,16 +72,8 @@ const techBadgeAssets: Record<string, TechBadgeAsset> = {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/axios/axios-plain.svg",
   },
   Railway: {
-    kind: "icon",
-    node: (
-      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 shrink-0 text-foreground" fill="none">
-        <path d="M5 16c2.2-4.8 4.3-7.2 6.9-7.2 1.9 0 3.2 1.1 4.5 2.7 1.1 1.4 2.2 2.5 3.6 2.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-        <path d="M6.2 9.2h3.4M14.8 9.2h3.1" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-        <circle cx="5.6" cy="16.2" r="1.1" fill="currentColor" />
-        <circle cx="13.8" cy="12.1" r="1.1" fill="currentColor" />
-        <circle cx="18.2" cy="14.9" r="1.1" fill="currentColor" />
-      </svg>
-    ),
+    kind: "image",
+    src: "https://devicons.railway.com/railway?variant=dark",
   },
   Vercel: {
     kind: "image",

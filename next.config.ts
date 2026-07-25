@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "assets.vercel.com",
       },
+      {
+        protocol: "https",
+        hostname: "devicons.railway.com",
+      },
     ],
   },
 };
