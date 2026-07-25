@@ -24,7 +24,7 @@ export const education = [
     institute: "Narayana e-Techno School",
     degree: "Class X",
     duration: "2016 - 2017",
-    description: "CGPA: 10/10",
+    description: "CGPA: 9.5 c.g.p.a",
     logo: "/company-logos/narayana-e-techno-school.jpeg",
   },
 ];
