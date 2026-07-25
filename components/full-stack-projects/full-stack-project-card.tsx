@@ -79,40 +79,42 @@ export function FullStackProjectCard({ project, index }: FullStackProjectCardPro
 
   return (
     <article
-      className="flex h-full flex-col rounded-3xl border border-border bg-surface px-5 py-5 shadow-sm motion-reveal"
+      className="grid gap-4 border-b border-border pb-5 motion-reveal lg:grid-cols-2 lg:items-start lg:gap-8"
       style={{ animationDelay: `${220 + index * 120}ms` }}
     >
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-foreground">
-            <span className="inline-flex h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
-            {project.category}
-          </div>
-          <h2 className="mt-2 text-xl font-bold tracking-normal text-foreground">{project.title}</h2>
+      <div className="min-w-0 flex-1">
+        <div className="flex flex-wrap items-center gap-2">
+          <h2 className="mt-1 text-xl font-bold tracking-normal text-foreground">{project.title}</h2>
+          <Badge className="bg-accent-soft text-accent-strong">{project.category}</Badge>
+          <Badge className="bg-surface text-foreground">{project.status}</Badge>
         </div>
-
-        <Badge className="bg-accent-soft text-accent-strong">{project.status}</Badge>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {project.techStack.map((technology) => (
+            <Badge key={`${project.title}-${technology}`}>{technology}</Badge>
+          ))}
+        </div>
       </div>
 
-      <p className="mt-4 text-sm leading-7 text-foreground">{project.summary}</p>
-
-      <div className="mt-5 flex flex-wrap gap-2">
-        {project.techStack.map((technology) => (
-          <Badge key={`${project.title}-${technology}`}>{technology}</Badge>
-        ))}
+      <div className="flex min-w-0 flex-col gap-1 text-sm text-foreground lg:justify-self-end lg:text-right">
+        <p>{project.summary}</p>
+        <div className="mt-3 flex flex-wrap gap-2 lg:justify-end">
+          <button
+            type="button"
+            className="rounded-full border border-border px-3 py-1 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:text-accent"
+            aria-expanded={isExpanded}
+            aria-controls={detailsId}
+            onClick={() => setIsExpanded((current) => !current)}
+          >
+            {isExpanded ? "Hide Details" : "View Details"}
+          </button>
+          {project.githubUrl ? (
+            <ActionButton href={project.githubUrl}>GitHub</ActionButton>
+          ) : null}
+          {project.liveDemoUrl ? <ActionButton href={project.liveDemoUrl}>Live</ActionButton> : null}
+        </div>
       </div>
 
-      <div className="mt-5 border-t border-border pt-4">
-        <button
-          type="button"
-          className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:bg-accent-soft"
-          aria-expanded={isExpanded}
-          aria-controls={detailsId}
-          onClick={() => setIsExpanded((current) => !current)}
-        >
-          {isExpanded ? "Hide Details" : "View Details"}
-        </button>
-
+      <div className="lg:col-span-2">
         <div
           id={detailsId}
           className="grid overflow-hidden transition-[grid-template-rows,opacity] duration-300 ease-out"
@@ -122,8 +124,8 @@ export function FullStackProjectCard({ project, index }: FullStackProjectCardPro
           }}
           aria-hidden={!isExpanded}
         >
-          <div className="min-h-0 overflow-hidden">
-            <div className="mt-5 grid gap-5 motion-reveal-fade">
+          <div className="min-h-0 overflow-hidden border-t border-border pt-4">
+            <div className="grid gap-5 motion-reveal-fade md:grid-cols-2">
               <div>
                 <SectionHeader>Key Features</SectionHeader>
                 <DetailList items={project.keyFeatures} />
@@ -136,11 +138,6 @@ export function FullStackProjectCard({ project, index }: FullStackProjectCardPro
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="mt-auto flex flex-wrap gap-2 pt-5">
-        <ActionButton disabled>GitHub</ActionButton>
-        {project.liveDemoUrl ? <ActionButton href={project.liveDemoUrl}>Live Demo</ActionButton> : null}
       </div>
     </article>
   );

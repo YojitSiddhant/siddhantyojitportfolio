@@ -31,7 +31,7 @@ function ProjectsIcon({ className }: { className?: string }) {
 
 export default function FullStackProjectsPage() {
   return (
-    <PageShell maxWidthClassName="max-w-7xl">
+    <PageShell>
       <PageSectionHeader
         className="motion-reveal"
         style={{ animationDelay: "80ms" }}
@@ -48,4 +48,3 @@ export default function FullStackProjectsPage() {
     </PageShell>
   );
 }
-
