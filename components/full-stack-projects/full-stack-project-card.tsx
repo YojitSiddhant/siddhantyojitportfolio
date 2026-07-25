@@ -62,21 +62,6 @@ const techLogos: Record<string, TechLogo> = {
   },
 };
 
-function Badge({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return (
-    <span
-      className={[
-        "inline-flex items-center gap-2 rounded-full border border-border px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground",
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
-    >
-      {children}
-    </span>
-  );
-}
-
 function TechBadge({ name }: { name: string }) {
   const logo = techLogos[name];
 
@@ -183,10 +168,6 @@ export function FullStackProjectCard({ project, index }: FullStackProjectCardPro
       >
         <div className="min-w-0 flex-1">
           <h2 className="mt-1 text-xl font-bold tracking-normal text-foreground">{project.title}</h2>
-          <div className="mt-2 flex flex-wrap gap-2">
-            <Badge className="bg-accent-soft text-accent-strong">{project.category}</Badge>
-            <Badge className="bg-surface text-foreground">{project.status}</Badge>
-          </div>
           <div className="mt-4 flex flex-wrap gap-2">
             {project.techStack.map((technology) => (
               <TechBadge key={`${project.title}-${technology}`} name={technology} />
@@ -227,7 +208,7 @@ export function FullStackProjectCard({ project, index }: FullStackProjectCardPro
               onClick={() => setIsModalOpen(false)}
             >
               <div
-                className="w-full max-w-104 max-h-screen overflow-hidden rounded-3xl border border-border bg-surface-strong p-4 shadow-2xl backdrop-blur-xl sm:max-h-screen sm:p-5"
+                className="w-full max-w-104 max-h-screen overflow-hidden rounded-3xl border border-border bg-surface-strong p-4 shadow-2xl backdrop-blur-xl sm:max-h-screen sm:p-5 lg:h-[72vh] lg:max-h-[72vh] lg:max-w-5xl lg:rounded-2xl"
                 onClick={(event) => event.stopPropagation()}
               >
                 <div className="flex items-start justify-between gap-4">
@@ -250,7 +231,7 @@ export function FullStackProjectCard({ project, index }: FullStackProjectCardPro
                   </button>
                 </div>
 
-                <div className="mt-5 grid gap-4 overflow-y-auto pr-1 sm:max-h-[60vh]">
+                <div className="mt-5 grid gap-4 overflow-y-auto pr-1 sm:max-h-[60vh] lg:flex-1 lg:max-h-none lg:grid-cols-2 lg:gap-6">
                   <div>
                     <SectionHeader>Technology Stack</SectionHeader>
                     <div className="mt-3 flex flex-wrap gap-2">
@@ -270,7 +251,7 @@ export function FullStackProjectCard({ project, index }: FullStackProjectCardPro
                     <DetailList items={project.architectureHighlights} />
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 lg:col-span-2">
                     {project.githubUrl ? (
                       <ActionButton href={project.githubUrl}>GitHub</ActionButton>
                     ) : (
