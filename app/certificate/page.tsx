@@ -100,6 +100,20 @@ export default function CertificatePage() {
                   <p>{certificate.issueDate}</p>
                 </div>
               </div>
+
+              {certificate.image ? (
+                <div className="mt-2 overflow-hidden rounded-3xl border border-border bg-surface shadow-sm">
+                  <div className="relative aspect-[9/16] w-full">
+                    <Image
+                      src={certificate.image}
+                      alt={`${certificate.title} certificate`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 480px"
+                      className="object-contain p-2"
+                    />
+                  </div>
+                </div>
+              ) : null}
             </article>
           ))}
         </div>
