@@ -44,8 +44,8 @@ const techBadgeAssets: Record<string, TechBadgeAsset> = {
   },
   "Groq AI API": {
     kind: "image",
-    src: "/favicon.png",
-    className: "h-5 w-5 rounded-full",
+    src: "https://console.groq.com/powered-by-groq-dark.svg",
+    className: "h-5 w-auto",
   },
   "Next.js": {
     kind: "image",
