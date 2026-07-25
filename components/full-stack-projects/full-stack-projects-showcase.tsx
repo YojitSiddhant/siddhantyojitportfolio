@@ -19,7 +19,7 @@ export function FullStackProjectsShowcase({ projects }: FullStackProjectsShowcas
   return (
     <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
       {sortedProjects.length > 0 ? (
-        <div className="grid items-stretch gap-5 md:grid-cols-2">
+        <div className="grid gap-5">
           {sortedProjects.map((project, index) => (
             <FullStackProjectCard key={project.title} project={project} index={index} />
           ))}

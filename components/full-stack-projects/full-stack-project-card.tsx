@@ -83,11 +83,14 @@ export function FullStackProjectCard({ project, index }: FullStackProjectCardPro
       style={{ animationDelay: `${220 + index * 120}ms` }}
     >
       <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap items-center gap-2">
-          <h2 className="mt-1 text-xl font-bold tracking-normal text-foreground">{project.title}</h2>
-          <Badge className="bg-accent-soft text-accent-strong">{project.category}</Badge>
-          <Badge className="bg-surface text-foreground">{project.status}</Badge>
-        </div>
+        <h2 className="mt-1 text-xl font-bold tracking-normal text-foreground">{project.title}</h2>
+        <p className="mt-2 text-xs font-black uppercase tracking-widest text-foreground">
+          {project.category}
+          <span className="mx-2 text-muted" aria-hidden="true">
+            ·
+          </span>
+          {project.status}
+        </p>
         <div className="mt-4 flex flex-wrap gap-2">
           {project.techStack.map((technology) => (
             <Badge key={`${project.title}-${technology}`}>{technology}</Badge>
@@ -97,7 +100,7 @@ export function FullStackProjectCard({ project, index }: FullStackProjectCardPro
 
       <div className="flex min-w-0 flex-col gap-1 text-sm text-foreground lg:justify-self-end lg:text-right">
         <p>{project.summary}</p>
-        <div className="mt-3 flex flex-wrap gap-2 lg:justify-end">
+        <div className="mt-3 flex flex-wrap gap-2 sm:justify-end">
           <button
             type="button"
             className="rounded-full border border-border px-3 py-1 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:text-accent"
@@ -105,11 +108,13 @@ export function FullStackProjectCard({ project, index }: FullStackProjectCardPro
             aria-controls={detailsId}
             onClick={() => setIsExpanded((current) => !current)}
           >
-            {isExpanded ? "Hide Details" : "View Details"}
+            {isExpanded ? "Hide" : "More"}
           </button>
           {project.githubUrl ? (
             <ActionButton href={project.githubUrl}>GitHub</ActionButton>
-          ) : null}
+          ) : (
+            <ActionButton disabled>GitHub</ActionButton>
+          )}
           {project.liveDemoUrl ? <ActionButton href={project.liveDemoUrl}>Live</ActionButton> : null}
         </div>
       </div>
