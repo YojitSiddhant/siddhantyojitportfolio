@@ -41,31 +41,6 @@ export const fullStackProjects = [
     order: 1,
   },
   {
-    title: "AI Resume Maker",
-    category: "Full Stack",
-    summary:
-      "An AI-powered resume builder that allows users to securely create, manage, and organize professional resumes through a modern dashboard. The application features authentication, resume management, and an architecture designed for future AI-assisted resume analysis.",
-    techStack: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
-    keyFeatures: [
-      "User Authentication",
-      "Resume Dashboard",
-      "Resume Management",
-      "Protected Routes",
-      "Session Management",
-      "Responsive Design",
-      "Database Integration",
-    ],
-    architectureHighlights: [
-      "Next.js App Router",
-      "Prisma ORM",
-      "PostgreSQL",
-      "Modular architecture",
-      "Scalable folder structure",
-    ],
-    status: "Completed",
-    order: 2,
-  },
-  {
     title: "User Submission System",
     category: "Full Stack",
     summary:
@@ -89,7 +64,7 @@ export const fullStackProjects = [
       "REST API architecture",
     ],
     status: "Completed",
-    order: 3,
+    order: 2,
   },
   {
     title: "Priority Notes App",
@@ -112,7 +87,7 @@ export const fullStackProjects = [
       "RESTful API design",
     ],
     status: "Completed",
-    order: 4,
+    order: 3,
   },
   {
     title: "Lead Management System",
@@ -136,6 +111,6 @@ export const fullStackProjects = [
       "Clean modular architecture",
     ],
     status: "Completed",
-    order: 5,
+    order: 4,
   },
 ] satisfies FullStackProject[];
