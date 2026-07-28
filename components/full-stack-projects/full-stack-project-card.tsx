@@ -83,12 +83,53 @@ const techBadgeAssets: Record<string, TechBadgeAsset> = {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
   },
   "React Router": {
-    kind: "text",
-    label: "React Router",
+    kind: "icon",
+    node: (
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 shrink-0" fill="none">
+        <circle cx="12" cy="12" r="8.5" stroke="#f97316" strokeWidth="2" />
+        <path
+          d="M8.5 12.2c1.2-1.4 2.5-2.2 3.8-2.2 1.6 0 2.4 1 3.2 2.4.5.9 1.1 1.6 2 1.9"
+          stroke="#111827"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+        <path
+          d="M15.3 7.8 17.5 10l-2.2 2.2"
+          stroke="#111827"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M8.7 16.2 6.5 14l2.2-2.2"
+          stroke="#111827"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
   },
   "React Query": {
-    kind: "text",
-    label: "React Query",
+    kind: "icon",
+    node: (
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 shrink-0" fill="none">
+        <circle cx="12" cy="12" r="8.5" stroke="#7c3aed" strokeWidth="2" />
+        <path
+          d="M14.8 14.8 17 17"
+          stroke="#7c3aed"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+        <path
+          d="M12 7.5a4.5 4.5 0 1 0 0 9h1.2"
+          stroke="#7c3aed"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
   },
   "Tailwind CSS": {
     kind: "image",
@@ -139,7 +180,10 @@ function TechBadge({ name }: { name: string }) {
             className={`shrink-0 object-contain ${asset.className ?? "h-5 w-5"}`}
           />
         ) : asset.kind === "icon" ? (
-          asset.node
+          <>
+            {asset.node}
+            <span>{name}</span>
+          </>
         ) : (
           <span>{asset.label}</span>
         )
