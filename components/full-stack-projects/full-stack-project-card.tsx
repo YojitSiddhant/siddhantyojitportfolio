@@ -15,6 +15,10 @@ type TechBadgeAsset =
   | {
       kind: "icon";
       node: React.ReactNode;
+    }
+  | {
+      kind: "text";
+      label: string;
     };
 
 const techBadgeAssets: Record<string, TechBadgeAsset> = {
@@ -79,12 +83,12 @@ const techBadgeAssets: Record<string, TechBadgeAsset> = {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
   },
   "React Router": {
-    kind: "image",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react-router/react-router-original.svg",
+    kind: "text",
+    label: "React Router",
   },
   "React Query": {
-    kind: "image",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/reactquery/reactquery-original.svg",
+    kind: "text",
+    label: "React Query",
   },
   "Tailwind CSS": {
     kind: "image",
@@ -134,15 +138,14 @@ function TechBadge({ name }: { name: string }) {
             unoptimized
             className={`shrink-0 object-contain ${asset.className ?? "h-5 w-5"}`}
           />
-        ) : (
+        ) : asset.kind === "icon" ? (
           asset.node
+        ) : (
+          <span>{asset.label}</span>
         )
       ) : (
-        <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-accent-soft text-[10px] font-black text-accent-strong">
-          {name.charAt(0)}
-        </span>
+        <span>{name}</span>
       )}
-      <span>{name}</span>
     </span>
   );
 }
