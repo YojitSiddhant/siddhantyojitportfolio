@@ -85,7 +85,7 @@ const techBadgeAssets: Record<string, TechBadgeAsset> = {
   },
   "React Router": {
     kind: "image",
-    src: "https://reactrouter.com/_brand/react-router-brand-assets/logo/one-color/Dark.svg",
+    src: "https://reactrouter.com/_brand/react-router-brand-assets/logo/one-color/Light.svg",
     className: "h-5 w-5",
     showLabel: false,
   },
