@@ -78,6 +78,22 @@ const techBadgeAssets: Record<string, TechBadgeAsset> = {
     kind: "image",
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
   },
+  "React Router": {
+    kind: "image",
+    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react-router/react-router-original.svg",
+  },
+  "React Query": {
+    kind: "image",
+    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/reactquery/reactquery-original.svg",
+  },
+  "Tailwind CSS": {
+    kind: "image",
+    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+  },
+  "JSON Server": {
+    kind: "image",
+    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/json/json-original.svg",
+  },
   Axios: {
     kind: "image",
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/axios/axios-plain.svg",

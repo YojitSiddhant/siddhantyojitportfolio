@@ -113,4 +113,29 @@ export const fullStackProjects = [
     status: "Completed",
     order: 4,
   },
+  {
+    title: "Collector Hub",
+    category: "Full Stack",
+    summary:
+      "A full-stack collector platform that enables users to discover collectible products, engage with the collector community, and organize personal collections in one unified experience. The application features a Marketplace, Community Feed, and My Collection module with advanced search, filtering, responsive design, and modern React architecture.",
+    techStack: ["React", "TypeScript", "React Router", "Axios", "React Query", "Tailwind CSS", "JSON Server"],
+    keyFeatures: [
+      "Marketplace",
+      "Community Feed",
+      "My Collection",
+      "Advanced Search",
+      "Filtering",
+      "Responsive Design",
+      "Modern React Architecture",
+    ],
+    architectureHighlights: [
+      "React frontend",
+      "TypeScript-based UI",
+      "React Router navigation",
+      "React Query data fetching",
+      "JSON Server backend",
+    ],
+    status: "Completed",
+    order: 5,
+  },
 ] satisfies FullStackProject[];
