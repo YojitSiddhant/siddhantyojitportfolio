@@ -20,6 +20,7 @@ export type FullStackProjectContent = {
   screenshots?: ProjectScreenshot[];
   githubUrl?: string;
   liveDemoUrl?: string;
+  projectDuration?: string;
   futureImprovements?: string[];
 };
 
@@ -233,4 +234,3 @@ export const fullStackProjectContent: FullStackProjectContent[] = fullStackProje
   liveDemoUrl: project.liveDemoUrl || undefined,
   futureImprovements: contentByTitle[project.title]?.futureImprovements,
 }));
-
