@@ -121,24 +121,6 @@ export function ContactFormSidebar({ links }: ContactFormSidebarProps) {
             </div>
           </div>
 
-          <div className="mt-auto pt-4">
-            <div
-              className="mx-auto flex w-full max-w-full flex-col gap-3 rounded-3xl border border-border bg-surface-strong px-4 py-3 shadow-sm motion-reveal sm:max-w-95 sm:flex-row sm:items-center sm:justify-between"
-              style={{ animationDelay: "500ms" }}
-            >
-              <div className="rounded-2xl bg-accent-soft px-3 py-2 text-xs font-black uppercase tracking-wider text-accent">
-                Available for Opportunities
-              </div>
-              <div className="flex-1 text-left sm:text-right">
-                <p className="text-xs font-black uppercase tracking-wider text-foreground">
-                  Quick reply
-                </p>
-                <p className="mt-1 text-xs leading-5 text-muted">
-                  Feel free to connect regarding opportunities, collaborations, or technical discussions.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
