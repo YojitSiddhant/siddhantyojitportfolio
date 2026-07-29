@@ -96,9 +96,6 @@ export default function CertificatePage() {
                   </div>
                 </div>
 
-                <div className="mt-3 flex flex-col gap-1 text-sm text-foreground">
-                  <p>{certificate.issueDate}</p>
-                </div>
               </div>
             </article>
           ))}

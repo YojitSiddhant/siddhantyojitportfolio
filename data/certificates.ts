@@ -1,65 +1,33 @@
-export const certificates = [
+export type CertificateItem = {
+  title: string;
+  issuer: string;
+  logo: string;
+  order: number;
+};
+
+export const certificates: CertificateItem[] = [
   {
-    title: "Software Testing",
-    issuer: "Alpha Tech Academy",
-    issueDate: "2022-23",
-    logo: "/company-logos/atlas-logo.png",
+    title: "Python Programming",
+    issuer: "New Horizon College",
+    logo: "/company-logos/nhcm-logo.jpeg",
     order: 1,
   },
   {
-    title: "ChatGPT for Excel",
-    issuer: "Great Learning Academy",
-    issueDate: "Mar 2024",
-    logo: "/company-logos/great-learning-logo.png",
+    title: "Machine Learning",
+    issuer: "New Horizon College",
+    logo: "/company-logos/nhcm-logo.jpeg",
     order: 2,
   },
   {
-    title: "Data Visualization With Power BI",
-    issuer: "Great Learning Academy",
-    issueDate: "Mar 2024",
-    logo: "/company-logos/great-learning-logo.png",
+    title: "Software Testing",
+    issuer: "Alpha Tech Academy",
+    logo: "/company-logos/atlas-logo.png",
     order: 3,
   },
   {
-    title: "Google Bard for Microsoft Powerpoint",
+    title: "Data Visualization with Power BI",
     issuer: "Great Learning Academy",
-    issueDate: "Mar 2024",
     logo: "/company-logos/great-learning-logo.png",
     order: 4,
-  },
-  {
-    title: "Html In Hindi",
-    issuer: "Great Learning Academy",
-    issueDate: "Mar 2024",
-    logo: "/company-logos/great-learning-logo.png",
-    order: 5,
-  },
-  {
-    title: "Android App Development",
-    issuer: "New Horizon College Marathahalli",
-    issueDate: "Jan 2023",
-    logo: "/company-logos/nhcm-logo.jpeg",
-    order: 6,
-  },
-  {
-    title: "IoT",
-    issuer: "New Horizon College Marathahalli",
-    issueDate: "Aug 2023",
-    logo: "/company-logos/nhcm-logo.jpeg",
-    order: 7,
-  },
-  {
-    title: "Python",
-    issuer: "New Horizon College Marathahalli",
-    issueDate: "Nov 2020",
-    logo: "/company-logos/nhcm-logo.jpeg",
-    order: 8,
-  },
-  {
-    title: "Machine Learning",
-    issuer: "New Horizon College Marathahalli",
-    issueDate: "Jan 2022",
-    logo: "/company-logos/nhcm-logo.jpeg",
-    order: 9,
   },
 ];
