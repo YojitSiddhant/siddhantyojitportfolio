@@ -20,18 +20,13 @@ export function AcademicProjectCard({ project, index, onOpen }: AcademicProjectC
       style={{ animationDelay: `${220 + index * 120}ms` }}
     >
       <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full border border-border bg-surface px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground">
-            {project.badge}
-          </span>
-          <button
-            type="button"
-            onClick={openDetails}
-            className="mt-1 text-left text-xl font-bold tracking-normal text-foreground transition-colors hover:text-accent"
-          >
-            {project.title}
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={openDetails}
+          className="text-left text-xl font-bold tracking-normal text-foreground transition-colors hover:text-accent"
+        >
+          {project.title}
+        </button>
       </div>
 
       <div className="flex min-w-0 flex-col gap-1 text-sm text-foreground lg:justify-self-end lg:text-right">

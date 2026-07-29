@@ -214,6 +214,22 @@ export function AcademicProjectModal({ project, open, onClose }: AcademicProject
               <p className="text-sm leading-7 text-muted">{project.keyLearnings}</p>
             </section>
 
+            {project.futureImprovements && project.futureImprovements.length > 0 ? (
+              <section className="grid gap-2 border-b border-border pb-4">
+                <p className="text-xs font-black uppercase tracking-widest text-foreground">
+                  Future Improvements
+                </p>
+                <div className="grid gap-2">
+                  {project.futureImprovements.map((item) => (
+                    <div key={item} className="flex gap-3">
+                      <BulletIcon className="mt-1 h-4 w-4 shrink-0 text-accent" />
+                      <p className="text-sm leading-7 text-foreground">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
             <section className="grid gap-2 border-b border-border pb-4">
               <p className="text-xs font-black uppercase tracking-widest text-foreground">Challenges Faced</p>
               <div className="grid gap-2">

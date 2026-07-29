@@ -44,9 +44,6 @@ export default function ProjectsPage() {
       />
 
       <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
-        <p className="max-w-3xl text-sm leading-7 text-muted">
-          These projects were developed during my BCA and MCA coursework and helped build my foundation in software development, full-stack development, machine learning, and database systems.
-        </p>
         <AcademicProjectsShowcase />
       </section>
     </PageShell>

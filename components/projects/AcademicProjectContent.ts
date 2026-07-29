@@ -13,7 +13,7 @@ export type ProjectScreenshot = {
 
 export type AcademicProjectContent = {
   title: string;
-  badge: string;
+  badge?: string;
   overview: string;
   problemStatement: string;
   keyFeatures: string[];
@@ -26,9 +26,10 @@ export type AcademicProjectContent = {
   githubUrl?: string;
   liveUrl?: string;
   projectDuration?: string;
+  futureImprovements?: string[];
 };
 
-const contentByTitle: Record<string, Omit<AcademicProjectContent, "title" | "badge" | "technologies" | "githubUrl" | "liveUrl">> = {
+const contentByTitle: Record<string, Omit<AcademicProjectContent, "title" | "technologies" | "githubUrl" | "liveUrl">> = {
   "Smart Civic Grievance Redressal Web Application": {
     overview:
       "A civic workflow platform that helps users submit complaints, lets administrators assign them, and keeps progress visible end to end.",
@@ -52,6 +53,11 @@ const contentByTitle: Record<string, Omit<AcademicProjectContent, "title" | "bad
     ],
     architectureWorkflow:
       "Users submit complaints through the frontend, administrators assign and update cases, and the system keeps each complaint moving through a clear status workflow.",
+    futureImprovements: [
+      "Add analytics dashboards for complaint trends",
+      "Expand workflow automation for faster routing",
+      "Introduce richer attachment handling for case records",
+    ],
   },
   "Smart Note-Taking App": {
     overview:
@@ -76,6 +82,11 @@ const contentByTitle: Record<string, Omit<AcademicProjectContent, "title" | "bad
     ],
     architectureWorkflow:
       "Authenticated users create and manage notes through a CRUD workflow, while search and priority controls help them organize content quickly.",
+    futureImprovements: [
+      "Add collaboration features for shared notes",
+      "Improve filtering and archive management",
+      "Support reminders and recurring notes",
+    ],
   },
   "Fake News Detection System": {
     overview:
@@ -100,6 +111,11 @@ const contentByTitle: Record<string, Omit<AcademicProjectContent, "title" | "bad
     ],
     architectureWorkflow:
       "News text is processed, transformed into model-ready vectors, classified, and then shown back to the user as a prediction result.",
+    futureImprovements: [
+      "Experiment with newer classification models",
+      "Add explanation views for predictions",
+      "Support batch article analysis",
+    ],
   },
   "Fraudulent Seller Detection in Online Marketplaces": {
     overview:
@@ -124,12 +140,17 @@ const contentByTitle: Record<string, Omit<AcademicProjectContent, "title" | "bad
     ],
     architectureWorkflow:
       "Customers submit reports, sellers are reviewed through the workflow, and administrators manage fraud-related actions from a shared system.",
+    futureImprovements: [
+      "Add reporting analytics for admin review",
+      "Extend fraud scoring with more signals",
+      "Include richer audit logs for moderation",
+    ],
   },
 };
 
 export const academicProjectContent: AcademicProjectContent[] = projects.map((project) => ({
   title: project.title,
-  badge: project.badge ?? "Academic Project",
+  badge: "Academic Project",
   overview: contentByTitle[project.title]?.overview ?? project.description,
   problemStatement:
     contentByTitle[project.title]?.problemStatement ??
@@ -147,6 +168,7 @@ export const academicProjectContent: AcademicProjectContent[] = projects.map((pr
   screenshots: [],
   githubUrl: project.github || undefined,
   liveUrl: project.liveLink || undefined,
+  futureImprovements: contentByTitle[project.title]?.futureImprovements,
 }));
 
 export function getAcademicProjectContent(title: string) {
