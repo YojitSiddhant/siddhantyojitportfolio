@@ -1,13 +1,14 @@
 export const profile = {
   heroTitle: "Hi, I'm Siddhant Yojit.",
   introText:
-    "I'm a full stack developer with internship experience building responsive web applications and independent end-to-end solutions. I work across frontend, backend, and databases, with a strong focus on clean UI and dependable user flows.",
-  location: "Bangalore, Karnataka",
-  coreFocus: "Frontend, full stack, databases",
+    "Full Stack Developer with internship experience in React.js, Next.js, Node.js, and Express.js. Skilled in REST API integration, authentication workflows, and database management with PostgreSQL. Focused on building responsive applications, writing clean code, and collaborating effectively in team environments.",
+  location: "Bengaluru, Karnataka",
+  coreFocus:
+    "Frontend Development, Full Stack Applications, REST API Development, Responsive Web Development",
   snapshotTitle: "Full Stack Developer",
   whatICareAbout:
     "Clear interfaces, reusable components, reliable workflows, and small details that make the final product easier to use.",
-  openToOpportunitiesBadge: "Open to opportunities",
+  openToOpportunitiesBadge: "Open to Opportunities",
   quickNotes: [
     {
       icon: "shield",
@@ -17,7 +18,7 @@ export const profile = {
     {
       icon: "code",
       label: "Current stack",
-      value: "JavaScript, Java, React.js, Next.js, Angular, Flutter, Node.js, MongoDB, and MySQL.",
+      value: "HTML, CSS, JavaScript, TypeScript, React.js, Next.js, Node.js, Express.js, PostgreSQL, Prisma ORM, Git, GitHub, and Vercel.",
     },
     {
       icon: "briefcase",
@@ -29,7 +30,7 @@ export const profile = {
     {
       icon: "briefcase",
       label: "Current role",
-      value: "Designed and developed responsive website interfaces at TechVanta Labs Pvt. Ltd.",
+      value: "UI Developer Intern at Tech Vanta Labs Pvt. Ltd. (Jan 2026 - Jul 2026), contributing to responsive React.js and Next.js applications while collaborating on live client projects.",
     },
     {
       icon: "code",
@@ -39,8 +40,7 @@ export const profile = {
     {
       icon: "sparkle",
       label: "Selected projects",
-      value:
-        "Smart Civic Grievance Redressal, Fake News Detection, and Fraudulent Seller Detection.",
+      value: "Collector Hub, Secure Notes App, LeadDesk Mini CRM, and Revenue Reconciliation Dashboard.",
     },
   ],
   valueCards: [
@@ -58,9 +58,9 @@ export const profile = {
     },
     {
       icon: "code",
-      title: "Broad technical exposure",
+      title: "Modern Web Development",
       description:
-        "My project work includes Flutter Web, Spring Boot, Python, Flask, Scikit-learn, JSP, Java, MongoDB, and MySQL.",
+        "Building responsive full-stack applications using React.js, Next.js, Node.js, Express.js, PostgreSQL, and modern development tools.",
     },
   ],
   workingStyle: [
