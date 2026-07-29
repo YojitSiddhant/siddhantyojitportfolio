@@ -112,7 +112,7 @@ export default function ExperiencePage() {
                   <p>{item.duration}</p>
                   <p className="inline-flex items-center gap-2 font-black text-foreground sm:justify-end">
                     <MapPinIcon className="h-4 w-4 text-accent" />
-                    Bengaluru, India
+                    Bengaluru, Karnataka
                   </p>
                 </div>
               </div>

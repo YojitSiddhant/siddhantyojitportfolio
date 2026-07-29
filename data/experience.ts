@@ -2,9 +2,9 @@ export const experience = [
   {
     company: "TechVanta Labs Pvt. Ltd.",
     role: "UI Developer Intern",
-    duration: "Jan 2026 - Present",
+    duration: "Jan 2026 – Jul 2026",
     description:
-      "Develop responsive, client-facing websites and UI flows from business requirements.\nImprove page structure and navigation clarity for better usability.\nWork with manual testing, UI testing, test-case design, and defect reporting.",
+      "Developed responsive UIs using React.js, Next.js, HTML, CSS, and JavaScript for multiple live client projects.\nImproved application usability by implementing UI enhancements, bug fixes, and testing workflows.\nCollaborated with teams using Git and GitHub for version control and streamlined project delivery.\nContributed to client projects including Arjun Industries UI, Nayi Lahar NGO, Taste of India Redesign, Bhagyarekha, and TechVanta Labs Website.",
     technologies: [],
     logo: "/company-logos/techvanta-logo-v3.jpeg",
     order: 1,
