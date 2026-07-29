@@ -11,7 +11,7 @@ export type FullStackProject = {
   order: number;
 };
 
-export const fullStackProjects = [
+export const fullStackProjects: FullStackProject[] = [
   {
     title: "Revenue Reconciliation Dashboard",
     category: "Full Stack",
@@ -138,4 +138,4 @@ export const fullStackProjects = [
     status: "Completed",
     order: 5,
   },
-] satisfies FullStackProject[];
+];
