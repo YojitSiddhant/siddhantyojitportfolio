@@ -5,8 +5,8 @@ import { PageShell } from "@/components/page-shell";
 import { projects } from "@/data/projects";
 
 export const metadata: Metadata = {
-  title: "Projects | Siddhant Yojit",
-  description: "Projects for Siddhant Yojit.",
+  title: "Academic Projects | Siddhant Yojit",
+  description: "Academic projects for Siddhant Yojit.",
 };
 
 function ProjectsIcon({ className }: { className?: string }) {
@@ -50,13 +50,16 @@ export default function ProjectsPage() {
         left={
           <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground">
             <ProjectsIcon className="h-4 w-4 text-accent" />
-            Projects
+            Academic Projects
           </div>
         }
-        right={<div className="text-sm font-black text-foreground">Resume projects</div>}
+        right={<div className="text-sm font-black text-foreground">Academic Portfolio</div>}
       />
 
       <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
+        <p className="max-w-3xl text-sm leading-7 text-muted">
+          These projects were developed during my BCA and MCA coursework and helped build my foundation in software development, full-stack development, machine learning, and database systems.
+        </p>
         <div className="grid gap-5">
           {projects.map((project, index) => (
             <article
@@ -66,6 +69,11 @@ export default function ProjectsPage() {
             >
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
+                  {project.badge ? (
+                    <span className="rounded-full border border-border bg-surface px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground">
+                      {project.badge}
+                    </span>
+                  ) : null}
                   <h2 className="mt-1 text-xl font-bold tracking-normal text-foreground">
                     {project.title}
                   </h2>

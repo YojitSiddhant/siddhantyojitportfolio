@@ -1,5 +1,6 @@
 export const projects = [
   {
+    badge: "Academic Project",
     title: "Smart Civic Grievance Redressal Web Application",
     description:
       "Built a full-stack civic platform with complaint registration, assignment, tracking, role-based access, image uploads, and status updates.",
@@ -22,6 +23,7 @@ export const projects = [
     order: 1,
   },
   {
+    badge: "Academic Project",
     title: "Smart Note-Taking App",
     description:
       "Developed a responsive note-management app with JWT authentication, bcrypt password hashing, CRUD operations, search, and priority organization.",
@@ -52,6 +54,7 @@ export const projects = [
     order: 2,
   },
   {
+    badge: "Academic Project",
     title: "Fake News Detection System",
     description:
       "Built a machine learning web app that classifies news as real or fake using TF-IDF and a Passive Aggressive Classifier, reaching 93.53% accuracy on a 6,335-record dataset.",
@@ -84,6 +87,7 @@ export const projects = [
     order: 3,
   },
   {
+    badge: "Academic Project",
     title: "Fraudulent Seller Detection in Online Marketplaces",
     description:
       "Created a BCA web application with customer, seller, admin, complaint-filing, and fraud-detection workflows backed by MySQL.",
