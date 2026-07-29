@@ -4,17 +4,17 @@ import { useEffect, useRef, useState } from "react";
 import { AcademicProjectCard } from "@/components/projects/AcademicProjectCard";
 import { AcademicProjectModal } from "@/components/projects/AcademicProjectModal";
 import {
-  academicProjectDetails,
-  type AcademicProjectDetail,
-} from "@/components/projects/AcademicProjectDetails";
+  academicProjectContent,
+  type AcademicProjectContent,
+} from "@/components/projects/AcademicProjectContent";
 
 export function AcademicProjectsShowcase() {
-  const [activeProject, setActiveProject] = useState<AcademicProjectDetail | null>(null);
+  const [activeProject, setActiveProject] = useState<AcademicProjectContent | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const returnFocusRef = useRef<HTMLElement | null>(null);
   const closeTimerRef = useRef<number | null>(null);
 
-  const handleOpenProject = (project: AcademicProjectDetail, trigger: HTMLElement) => {
+  const handleOpenProject = (project: AcademicProjectContent, trigger: HTMLElement) => {
     if (closeTimerRef.current !== null) {
       window.clearTimeout(closeTimerRef.current);
       closeTimerRef.current = null;
@@ -50,7 +50,7 @@ export function AcademicProjectsShowcase() {
   return (
     <>
       <div className="grid gap-5">
-        {academicProjectDetails.map((project, index) => (
+        {academicProjectContent.map((project, index) => (
           <AcademicProjectCard key={project.title} project={project} index={index} onOpen={handleOpenProject} />
         ))}
       </div>

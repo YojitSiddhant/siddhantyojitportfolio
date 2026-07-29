@@ -1,24 +1,12 @@
 "use client";
 
 import type { MouseEvent } from "react";
-import type { AcademicProjectDetail } from "@/components/projects/AcademicProjectDetails";
-
-function TechIcon({ src, name, className }: { src: string; name: string; className?: string }) {
-  return (
-    <img
-      src={src}
-      alt={`${name} logo`}
-      className={`shrink-0 object-contain ${className ?? "h-5 w-5"}`}
-      loading="lazy"
-      referrerPolicy="no-referrer"
-    />
-  );
-}
+import type { AcademicProjectContent } from "@/components/projects/AcademicProjectContent";
 
 type AcademicProjectCardProps = {
-  project: AcademicProjectDetail;
+  project: AcademicProjectContent;
   index: number;
-  onOpen: (project: AcademicProjectDetail, trigger: HTMLElement) => void;
+  onOpen: (project: AcademicProjectContent, trigger: HTMLElement) => void;
 };
 
 export function AcademicProjectCard({ project, index, onOpen }: AcademicProjectCardProps) {
@@ -43,18 +31,6 @@ export function AcademicProjectCard({ project, index, onOpen }: AcademicProjectC
           >
             {project.title}
           </button>
-        </div>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          {project.technologies.map(({ name, src, iconClassName }) => (
-            <span
-              key={name}
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground"
-            >
-              <TechIcon src={src} name={name} className={iconClassName} />
-              <span>{name}</span>
-            </span>
-          ))}
         </div>
       </div>
 

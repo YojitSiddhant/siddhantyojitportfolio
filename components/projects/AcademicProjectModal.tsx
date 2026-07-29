@@ -2,7 +2,7 @@
 
 import { createPortal } from "react-dom";
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { AcademicProjectDetail } from "@/components/projects/AcademicProjectDetails";
+import type { AcademicProjectContent } from "@/components/projects/AcademicProjectContent";
 
 const FOCUSABLE_SELECTOR = [
   "a[href]",
@@ -42,15 +42,13 @@ function BulletIcon({ className }: { className?: string }) {
 }
 
 type AcademicProjectModalProps = {
-  project: AcademicProjectDetail | null;
+  project: AcademicProjectContent | null;
   open: boolean;
   onClose: () => void;
 };
 
 export function AcademicProjectModal({ project, open, onClose }: AcademicProjectModalProps) {
-  const [portalTarget] = useState<HTMLElement | null>(() =>
-    typeof document === "undefined" ? null : document.body,
-  );
+  const [portalTarget] = useState<HTMLElement | null>(() => (typeof document === "undefined" ? null : document.body));
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -216,6 +214,27 @@ export function AcademicProjectModal({ project, open, onClose }: AcademicProject
               <p className="text-sm leading-7 text-muted">{project.keyLearnings}</p>
             </section>
 
+            <section className="grid gap-2 border-b border-border pb-4">
+              <p className="text-xs font-black uppercase tracking-widest text-foreground">Challenges Faced</p>
+              <div className="grid gap-2">
+                {project.challengesFaced.map((challenge) => (
+                  <div key={challenge} className="flex gap-3">
+                    <BulletIcon className="mt-1 h-4 w-4 shrink-0 text-accent" />
+                    <p className="text-sm leading-7 text-foreground">{challenge}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {project.architectureWorkflow ? (
+              <section className="grid gap-2 border-b border-border pb-4">
+                <p className="text-xs font-black uppercase tracking-widest text-foreground">
+                  Architecture / Workflow
+                </p>
+                <p className="text-sm leading-7 text-muted">{project.architectureWorkflow}</p>
+              </section>
+            ) : null}
+
             {project.githubUrl ? (
               <section className="grid gap-2 border-b border-border pb-4">
                 <p className="text-xs font-black uppercase tracking-widest text-foreground">GitHub Repository</p>
@@ -230,11 +249,18 @@ export function AcademicProjectModal({ project, open, onClose }: AcademicProject
               </section>
             ) : null}
 
-            {project.images && project.images.length > 0 ? (
+            {project.projectDuration ? (
+              <section className="grid gap-2 border-b border-border pb-4">
+                <p className="text-xs font-black uppercase tracking-widest text-foreground">Project Duration</p>
+                <p className="text-sm leading-7 text-muted">{project.projectDuration}</p>
+              </section>
+            ) : null}
+
+            {project.screenshots && project.screenshots.length > 0 ? (
               <section className="grid gap-3 border-b border-border pb-4">
-                <p className="text-xs font-black uppercase tracking-widest text-foreground">Project Images</p>
+                <p className="text-xs font-black uppercase tracking-widest text-foreground">Screenshots</p>
                 <div className="grid gap-3 sm:grid-cols-2">
-                  {project.images.map((image) => (
+                  {project.screenshots.map((image) => (
                     <figure key={image.src} className="overflow-hidden rounded-2xl border border-border bg-surface">
                       <img src={image.src} alt={image.alt} className="h-full w-full object-cover" loading="lazy" />
                     </figure>
