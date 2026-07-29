@@ -1,32 +1,61 @@
-import type { FullStackProject } from "@/data/full-stack-projects";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { FullStackProjectCard } from "@/components/full-stack-projects/full-stack-project-card";
+import { FullStackProjectModal } from "@/components/full-stack-projects/FullStackProjectModal";
+import {
+  fullStackProjectContent,
+  type FullStackProjectContent,
+} from "@/components/full-stack-projects/FullStackProjectContent";
 
-type FullStackProjectsShowcaseProps = {
-  projects: FullStackProject[];
-};
+export function FullStackProjectsShowcase() {
+  const [activeProject, setActiveProject] = useState<FullStackProjectContent | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const returnFocusRef = useRef<HTMLElement | null>(null);
+  const closeTimerRef = useRef<number | null>(null);
 
-function EmptyState() {
+  const handleOpenProject = (project: FullStackProjectContent, trigger: HTMLElement) => {
+    if (closeTimerRef.current !== null) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+
+    returnFocusRef.current = trigger;
+    setActiveProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseProject = () => {
+    setIsModalOpen(false);
+
+    if (closeTimerRef.current !== null) {
+      window.clearTimeout(closeTimerRef.current);
+    }
+
+    closeTimerRef.current = window.setTimeout(() => {
+      setActiveProject(null);
+      returnFocusRef.current?.focus();
+      closeTimerRef.current = null;
+    }, 180);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current !== null) {
+        window.clearTimeout(closeTimerRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <div className="rounded-3xl border border-border bg-surface px-5 py-6 text-sm leading-7 text-foreground shadow-sm">
-      No full stack projects have been added yet.
-    </div>
-  );
-}
+    <>
+      <div className="grid gap-5">
+        {fullStackProjectContent.map((project, index) => (
+          <FullStackProjectCard key={project.title} project={project} index={index} onOpen={handleOpenProject} />
+        ))}
+      </div>
 
-export function FullStackProjectsShowcase({ projects }: FullStackProjectsShowcaseProps) {
-  const sortedProjects = [...projects].sort((a, b) => a.order - b.order);
-
-  return (
-    <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
-      {sortedProjects.length > 0 ? (
-        <div className="grid gap-5">
-          {sortedProjects.map((project, index) => (
-            <FullStackProjectCard key={project.title} project={project} index={index} />
-          ))}
-        </div>
-      ) : (
-        <EmptyState />
-      )}
-    </section>
+      <FullStackProjectModal project={activeProject} open={isModalOpen} onClose={handleCloseProject} />
+    </>
   );
 }

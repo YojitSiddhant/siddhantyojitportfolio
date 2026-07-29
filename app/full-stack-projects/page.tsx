@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { PageSectionHeader } from "@/components/page-section-header";
 import { PageShell } from "@/components/page-shell";
 import { FullStackProjectsShowcase } from "@/components/full-stack-projects/full-stack-projects-showcase";
-import { fullStackProjects } from "@/data/full-stack-projects";
 
 export const metadata: Metadata = {
   title: "Full Stack Projects | Siddhant Yojit",
@@ -44,7 +43,7 @@ export default function FullStackProjectsPage() {
         right={<div className="text-sm font-black text-foreground">Completed builds</div>}
       />
 
-      <FullStackProjectsShowcase projects={fullStackProjects} />
+      <FullStackProjectsShowcase />
     </PageShell>
   );
 }
