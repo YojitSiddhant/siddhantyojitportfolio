@@ -42,7 +42,7 @@ export default function ContactPage() {
             Contact
           </div>
         }
-        right={<div className="text-sm font-black text-foreground">Form and options</div>}
+        right={<div className="text-sm font-black text-foreground">Let&apos;s Connect</div>}
       />
 
       <div className="motion-reveal" style={{ animationDelay: "160ms" }}>

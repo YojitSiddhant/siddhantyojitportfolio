@@ -96,26 +96,26 @@ export function ContactFormSidebar({ links }: ContactFormSidebarProps) {
             <div className="mt-3 grid gap-2.5">
               <div className="flex flex-col gap-1 border-b border-border pb-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
                 <p className="text-xs font-black uppercase tracking-wider text-foreground">
-                  Project type
+                  Availability
                 </p>
                 <p className="max-w-none text-left text-xs text-muted sm:max-w-52 sm:text-right">
-                  Website, UI redesign, portfolio, or freelance work.
+                  Open to Full-Time Software Engineer, Frontend Developer, React Developer, Next.js Developer, and Full Stack Developer opportunities.
                 </p>
               </div>
               <div className="flex flex-col gap-1 border-b border-border pb-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
                 <p className="text-xs font-black uppercase tracking-wider text-foreground">
-                  Timeline
+                  Preferred Location
                 </p>
                 <p className="max-w-none text-left text-xs text-muted sm:max-w-52 sm:text-right">
-                  Let me know your expected deadline or urgency.
+                  Bengaluru, Karnataka
                 </p>
               </div>
               <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
                 <p className="text-xs font-black uppercase tracking-wider text-foreground">
-                  Best contact time
+                  Response Time
                 </p>
                 <p className="max-w-none text-left text-xs text-muted sm:max-w-52 sm:text-right">
-                  Mention the time window that works for you.
+                  Usually within 24 hours.
                 </p>
               </div>
             </div>
@@ -127,14 +127,14 @@ export function ContactFormSidebar({ links }: ContactFormSidebarProps) {
               style={{ animationDelay: "500ms" }}
             >
               <div className="rounded-2xl bg-accent-soft px-3 py-2 text-xs font-black uppercase tracking-wider text-accent">
-                Reply fast
+                Available for Opportunities
               </div>
               <div className="flex-1 text-left sm:text-right">
                 <p className="text-xs font-black uppercase tracking-wider text-foreground">
                   Quick reply
                 </p>
                 <p className="mt-1 text-xs leading-5 text-muted">
-                  Usually within 1 business day.
+                  Feel free to connect regarding opportunities, collaborations, or technical discussions.
                 </p>
               </div>
             </div>

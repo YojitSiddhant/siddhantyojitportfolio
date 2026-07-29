@@ -57,7 +57,7 @@ const contactFields: ContactField[] = [
     name: "email",
     icon: MailIcon,
     type: "email",
-    placeholder: "you@example.com",
+    placeholder: "Enter your email address",
     required: true,
     autoComplete: "email",
     inputMode: "email",
@@ -137,7 +137,7 @@ export function ContactFormFields({
           </span>
           <textarea
             name="message"
-            placeholder="Tell me what you need help with..."
+            placeholder="Tell me about the opportunity, project, or how I can help."
             value={values.message}
             onChange={onChange}
             onBlur={onBlur}
