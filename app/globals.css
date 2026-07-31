@@ -336,6 +336,27 @@ p {
   animation: send-text-slide 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+.view-detail-button {
+  width: 150px;
+  height: 60px;
+  border: 3px solid #315cfd;
+  border-radius: 45px;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: white;
+  font-size: 1.2em;
+  font-weight: 550;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-detail-button:hover {
+  background: #315cfd;
+  color: white;
+  font-size: 1.5em;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

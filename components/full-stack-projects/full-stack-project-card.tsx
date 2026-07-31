@@ -33,7 +33,7 @@ export function FullStackProjectCard({ project, index, onOpen }: FullStackProjec
         <button
           type="button"
           onClick={openDetails}
-          className="inline-flex items-center justify-center rounded-full border border-border px-3 py-1 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:text-accent sm:justify-self-end"
+          className="view-detail-button sm:justify-self-end"
         >
           View Details
         </button>
