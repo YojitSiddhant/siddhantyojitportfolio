@@ -2,6 +2,7 @@
 
 import type { MouseEvent } from "react";
 import type { FullStackProjectContent } from "@/components/full-stack-projects/FullStackProjectContent";
+import { GitHubButton } from "@/components/project-github-button";
 
 type FullStackProjectCardProps = {
   project: FullStackProjectContent;
@@ -34,15 +35,7 @@ export function FullStackProjectCard({ project, index, onOpen }: FullStackProjec
       </div>
 
       <div className="flex min-w-0 flex-wrap gap-3 lg:justify-self-end lg:justify-end">
-        <a
-          href={githubHref}
-          target="_blank"
-          rel="noreferrer"
-          className="github-detail-button"
-          aria-label={`Open ${project.title} GitHub repository`}
-        >
-          GitHub
-        </a>
+        <GitHubButton href={githubHref} label={project.title} />
         <button
           type="button"
           onClick={openDetails}
