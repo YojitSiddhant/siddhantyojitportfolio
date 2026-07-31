@@ -4,6 +4,7 @@ export type SkillItem = {
   icon?: string;
   badge?: string;
   textOnly?: boolean;
+  iconKey?: "responsive" | "api" | "crud" | "integration" | "auth" | "security";
 };
 
 export type SkillSection = {
@@ -158,26 +159,32 @@ export const skillSections: SkillSection[] = [
       {
         name: "Responsive Web Development",
         textOnly: true,
+        iconKey: "responsive",
       },
       {
         name: "REST APIs",
         textOnly: true,
+        iconKey: "api",
       },
       {
         name: "CRUD Operations",
         textOnly: true,
+        iconKey: "crud",
       },
       {
         name: "API Integration",
         textOnly: true,
+        iconKey: "integration",
       },
       {
         name: "JWT Authentication",
         textOnly: true,
+        iconKey: "auth",
       },
       {
         name: "Authentication & Authorization",
         textOnly: true,
+        iconKey: "security",
       },
     ],
   },
