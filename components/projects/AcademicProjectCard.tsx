@@ -23,13 +23,13 @@ export function AcademicProjectCard({ project, index, onOpen }: AcademicProjectC
         <button
           type="button"
           onClick={openDetails}
-          className="text-left text-xl font-bold tracking-normal text-foreground transition-colors hover:text-accent"
+          className="w-full text-center text-xl font-bold tracking-normal text-foreground transition-colors hover:text-accent lg:text-left"
         >
           {project.title}
         </button>
       </div>
 
-      <div className="flex min-w-0 justify-end lg:justify-self-end">
+      <div className="flex min-w-0 justify-center lg:justify-self-end lg:justify-end">
         <button type="button" onClick={openDetails} className="view-detail-button sm:justify-self-end">
           View Details
         </button>

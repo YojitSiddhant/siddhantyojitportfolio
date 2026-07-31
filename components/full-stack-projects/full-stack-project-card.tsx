@@ -28,7 +28,7 @@ export function FullStackProjectCard({ project, index, onOpen }: FullStackProjec
         <button
           type="button"
           onClick={openDetails}
-          className="text-left text-xl font-bold tracking-normal text-foreground transition-colors hover:text-accent"
+          className="w-full text-center text-xl font-bold tracking-normal text-foreground transition-colors hover:text-accent lg:text-left"
         >
           {project.title}
         </button>
