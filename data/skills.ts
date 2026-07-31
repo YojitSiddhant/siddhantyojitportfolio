@@ -4,7 +4,6 @@ export type SkillItem = {
   icon?: string;
   badge?: string;
   textOnly?: boolean;
-  iconKey?: "responsive" | "api" | "crud" | "integration" | "auth" | "security";
 };
 
 export type SkillSection = {
@@ -158,33 +157,27 @@ export const skillSections: SkillSection[] = [
     items: [
       {
         name: "Responsive Web Development",
-        textOnly: true,
-        iconKey: "responsive",
+        icon: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/svgs/solid/laptop-code.svg",
       },
       {
         name: "REST APIs",
-        textOnly: true,
-        iconKey: "api",
+        icon: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/svgs/solid/code.svg",
       },
       {
         name: "CRUD Operations",
-        textOnly: true,
-        iconKey: "crud",
+        icon: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/svgs/solid/database.svg",
       },
       {
         name: "API Integration",
-        textOnly: true,
-        iconKey: "integration",
+        icon: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/svgs/solid/plug.svg",
       },
       {
         name: "JWT Authentication",
-        textOnly: true,
-        iconKey: "auth",
+        icon: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/svgs/solid/user-shield.svg",
       },
       {
         name: "Authentication & Authorization",
-        textOnly: true,
-        iconKey: "security",
+        icon: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/svgs/solid/shield-halved.svg",
       },
     ],
   },
