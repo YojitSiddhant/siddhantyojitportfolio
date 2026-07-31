@@ -76,7 +76,7 @@ export default function CertificatePage() {
                   Certificate
                 </div>
 
-                <div className="mt-2 flex flex-wrap items-center gap-3">
+                <div className="mt-2 grid grid-cols-[3rem_minmax(0,1fr)] gap-3 sm:flex sm:items-center">
                   {certificate.logo ? (
                     <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
                       <Image
@@ -88,11 +88,11 @@ export default function CertificatePage() {
                       />
                     </div>
                   ) : null}
-                  <div className="min-w-0">
-                    <h2 className="text-xl font-bold tracking-normal text-foreground">
+                  <div className="min-w-0 self-center">
+                    <h2 className="text-lg font-bold leading-tight tracking-normal text-foreground sm:text-xl">
                       {certificate.title}
                     </h2>
-                    <p className="mt-1 text-sm font-black text-foreground">{certificate.issuer}</p>
+                    <p className="mt-1 text-sm font-black leading-tight text-foreground">{certificate.issuer}</p>
                   </div>
                 </div>
 
