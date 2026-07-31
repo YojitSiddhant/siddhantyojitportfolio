@@ -35,7 +35,7 @@ const technologyIcons: Record<string, { src: string; alt: string }> = {
     alt: "Node.js logo",
   },
   "Express.js": {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg",
+    src: "https://cdn.simpleicons.org/express/0A0A0A",
     alt: "Express.js logo",
   },
   MySQL: {
@@ -99,7 +99,7 @@ const technologyIcons: Record<string, { src: string; alt: string }> = {
     alt: "Database icon",
   },
   Axios: {
-    src: "https://raw.githubusercontent.com/axios/axios/master/assets/logo.svg",
+    src: "https://cdn.simpleicons.org/axios/5A29E4",
     alt: "Axios logo",
   },
 };
