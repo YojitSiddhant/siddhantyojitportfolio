@@ -197,7 +197,7 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
   const overlayClassName = useMemo(
     () =>
       [
-        "fixed inset-0 z-50 flex items-center justify-center px-3 py-4 sm:px-6 sm:py-8",
+        "fixed inset-0 z-50 flex items-start justify-center px-3 py-2 sm:items-center sm:px-6 sm:py-8",
         "bg-background/70 backdrop-blur-sm transition-opacity duration-200 ease-out",
         open ? "opacity-100" : "pointer-events-none opacity-0",
       ].join(" "),
@@ -207,8 +207,8 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
   const panelClassName = useMemo(
     () =>
       [
-        "relative w-[min(100%,72rem)] max-h-[calc(100vh-2rem)] overflow-hidden rounded-3xl border border-border",
-        "bg-background shadow-2xl transition-all duration-200 ease-out sm:w-[min(92vw,72rem)]",
+        "relative mt-0 w-[min(100%,72rem)] max-h-[calc(100dvh-1rem)] overflow-hidden rounded-2xl border border-border",
+        "bg-background shadow-2xl transition-all duration-200 ease-out sm:rounded-3xl sm:w-[min(92vw,72rem)] sm:max-h-[calc(100dvh-3rem)]",
         open ? "scale-100 opacity-100" : "scale-95 opacity-0",
       ].join(" "),
     [open],
@@ -235,11 +235,11 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
         aria-labelledby="full-stack-project-modal-title"
         className={panelClassName}
       >
-        <div className="flex items-start justify-between gap-4 border-b border-border px-4 py-4 sm:px-6">
+        <div className="flex items-start justify-between gap-4 border-b border-border px-3 py-3 sm:px-6 sm:py-4">
           <div className="min-w-0">
             <h2
               id="full-stack-project-modal-title"
-              className="text-2xl font-bold tracking-normal text-foreground sm:text-3xl"
+              className="text-xl font-bold tracking-normal text-foreground sm:text-3xl"
             >
               {project.title}
             </h2>
@@ -256,7 +256,7 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
           </button>
         </div>
 
-        <div className="max-h-[calc(100vh-8rem)] overflow-y-auto px-4 py-5 sm:px-6">
+        <div className="max-h-[calc(100dvh-7rem)] overflow-y-auto px-3 py-4 sm:max-h-[calc(100dvh-9rem)] sm:px-6 sm:py-5">
           <div className="grid gap-5">
             <section className="grid gap-2 border-b border-border pb-4">
               <p className="text-xs font-black uppercase tracking-widest text-foreground">Project Overview</p>
