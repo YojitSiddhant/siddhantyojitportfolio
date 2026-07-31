@@ -29,6 +29,103 @@ function BulletIcon({ className }: { className?: string }) {
   );
 }
 
+const technologyIcons: Record<string, { src: string; alt: string }> = {
+  "Node.js": {
+    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
+    alt: "Node.js logo",
+  },
+  "Express.js": {
+    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg",
+    alt: "Express.js logo",
+  },
+  MySQL: {
+    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+    alt: "MySQL logo",
+  },
+  HTML: {
+    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
+    alt: "HTML logo",
+  },
+  CSS: {
+    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
+    alt: "CSS logo",
+  },
+  JavaScript: {
+    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+    alt: "JavaScript logo",
+  },
+  "Groq AI API": {
+    src: "https://cdn.jsdelivr.net/npm/@tabler/icons@latest/icons/brain.svg",
+    alt: "AI icon",
+  },
+  "Next.js": {
+    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
+    alt: "Next.js logo",
+  },
+  Multer: {
+    src: "https://cdn.jsdelivr.net/npm/@tabler/icons@latest/icons/upload.svg",
+    alt: "Upload icon",
+  },
+  Railway: {
+    src: "https://cdn.simpleicons.org/railway/0B0D0E",
+    alt: "Railway logo",
+  },
+  Vercel: {
+    src: "https://cdn.simpleicons.org/vercel/000000",
+    alt: "Vercel logo",
+  },
+  React: {
+    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+    alt: "React logo",
+  },
+  TypeScript: {
+    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+    alt: "TypeScript logo",
+  },
+  "React Router": {
+    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/reactrouter/reactrouter-original.svg",
+    alt: "React Router logo",
+  },
+  "React Query": {
+    src: "https://cdn.jsdelivr.net/npm/@tabler/icons@latest/icons/search.svg",
+    alt: "Query icon",
+  },
+  "Tailwind CSS": {
+    src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+    alt: "Tailwind CSS logo",
+  },
+  "JSON Server": {
+    src: "https://cdn.jsdelivr.net/npm/@tabler/icons@latest/icons/database.svg",
+    alt: "Database icon",
+  },
+  Axios: {
+    src: "https://raw.githubusercontent.com/axios/axios/master/assets/logo.svg",
+    alt: "Axios logo",
+  },
+};
+
+function TechIcon({ technology }: { technology: string }) {
+  const icon = technologyIcons[technology];
+
+  if (!icon) {
+    return (
+      <span className="inline-flex h-4 w-4 items-center justify-center rounded-full border border-border bg-surface text-[9px] font-black uppercase text-muted">
+        {technology.slice(0, 1)}
+      </span>
+    );
+  }
+
+  return (
+    <img
+      src={icon.src}
+      alt={icon.alt}
+      className="h-4 w-4 shrink-0 object-contain"
+      loading="lazy"
+      referrerPolicy="no-referrer"
+    />
+  );
+}
+
 type FullStackProjectModalProps = {
   project: FullStackProjectContent | null;
   open: boolean;
@@ -177,8 +274,9 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
                 {project.technologies.map((technology) => (
                   <span
                     key={technology}
-                    className="rounded-full border border-border bg-surface px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground"
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground"
                   >
+                    <TechIcon technology={technology} />
                     {technology}
                   </span>
                 ))}
@@ -253,20 +351,6 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
                     </div>
                   ))}
                 </div>
-              </section>
-            ) : null}
-
-            {project.githubUrl ? (
-              <section className="grid gap-2 border-b border-border pb-4">
-                <p className="text-xs font-black uppercase tracking-widest text-foreground">GitHub Repository</p>
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex w-fit items-center rounded-full border border-border px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:text-accent"
-                >
-                  Open Repository
-                </a>
               </section>
             ) : null}
 
