@@ -34,7 +34,7 @@ export function FullStackProjectCard({ project, index, onOpen }: FullStackProjec
         </button>
       </div>
 
-      <div className="flex min-w-0 flex-wrap gap-3 lg:justify-self-end lg:justify-end">
+      <div className="flex min-w-0 w-full flex-wrap justify-center gap-3 lg:w-auto lg:justify-self-end lg:justify-end">
         <GitHubButton href={githubHref} label={project.title} />
         <button
           type="button"
