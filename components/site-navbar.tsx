@@ -236,7 +236,7 @@ export function SiteNavbar() {
 
             <button
               type="button"
-              className={`burger-menu-button inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-surface-strong text-foreground shadow-lg transition-colors hover:bg-accent-soft ${isOpen ? "burger-menu-button--open" : ""}`}
+              className={`burger-menu-button inline-flex items-center justify-center text-foreground transition-colors hover:text-accent ${isOpen ? "burger-menu-button--open" : ""}`}
               onClick={() => setIsOpen((current) => !current)}
               aria-expanded={isOpen}
               aria-controls="desktop-navigation-menu"

@@ -456,12 +456,17 @@ p {
 
 .burger-menu-button {
   position: relative;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .burger-menu-button__lines {
   position: relative;
-  width: 40px;
-  height: 30px;
+  width: 34px;
+  height: 24px;
   background: transparent;
   cursor: pointer;
   display: block;
@@ -518,11 +523,6 @@ p {
   .work-visit-button {
     font-size: 16px;
     padding: 0.65em 1.9em;
-  }
-
-  .burger-menu-button {
-    width: 2.75rem;
-    height: 2.75rem;
   }
 
   .burger-menu-button__lines {
