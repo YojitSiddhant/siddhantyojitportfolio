@@ -236,17 +236,17 @@ export function SiteNavbar() {
 
             <button
               type="button"
-            className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-surface-strong text-foreground shadow-lg transition-colors hover:bg-accent-soft"
+              className={`burger-menu-button inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-surface-strong text-foreground shadow-lg transition-colors hover:bg-accent-soft ${isOpen ? "burger-menu-button--open" : ""}`}
               onClick={() => setIsOpen((current) => !current)}
               aria-expanded={isOpen}
               aria-controls="desktop-navigation-menu"
               aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
             >
               <span className="sr-only">{isOpen ? "Close navigation menu" : "Open navigation menu"}</span>
-              <span className="flex flex-col gap-1.5">
-                <span className={`h-0.5 w-5 rounded-full bg-current transition-transform duration-300 ${isOpen ? "translate-y-2 rotate-45" : ""}`} />
-                <span className={`h-0.5 w-5 rounded-full bg-current transition-opacity duration-300 ${isOpen ? "opacity-0" : "opacity-100"}`} />
-                <span className={`h-0.5 w-5 rounded-full bg-current transition-transform duration-300 ${isOpen ? "-translate-y-2 -rotate-45" : ""}`} />
+              <span className="burger-menu-button__lines" aria-hidden="true">
+                <span className="burger-menu-button__line burger-menu-button__line--top" />
+                <span className="burger-menu-button__line burger-menu-button__line--middle" />
+                <span className="burger-menu-button__line burger-menu-button__line--bottom" />
               </span>
             </button>
           </div>
