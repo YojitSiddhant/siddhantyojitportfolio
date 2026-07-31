@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { Metadata } from "next";
 import { PageSectionHeader } from "@/components/page-section-header";
 import { PageShell } from "@/components/page-shell";
@@ -39,6 +38,21 @@ function ReactIcon({ className }: { className?: string }) {
       <ellipse cx="12" cy="12" rx="8.2" ry="3.2" stroke="currentColor" strokeWidth="1.6" transform="rotate(120 12 12)" />
       <circle cx="12" cy="12" r="1.8" fill="currentColor" />
     </svg>
+  );
+}
+
+function VisitSiteButton({ href }: { href: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="work-visit-button"
+      aria-label="Visit site"
+    >
+      Visit Site
+      <span aria-hidden="true" />
+    </a>
   );
 }
 
@@ -85,22 +99,9 @@ export default function MyWorkPage() {
                   </div>
                 )}
 
-                <div className="min-w-0">
-                  {item.links.length > 0 ? (
-                    <Link
-                      href={item.links[0].url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="group inline-flex items-center gap-2 text-lg font-bold tracking-normal text-foreground sm:text-xl"
-                    >
-                      <span className="text-foreground transition-colors duration-300 group-hover:text-accent">
-                        {item.title}
-                      </span>
-                    </Link>
-                  ) : (
-                    <h2 className="text-xl font-bold tracking-normal text-foreground">{item.title}</h2>
-                  )}
-                </div>
+                <h2 className="sr-only">{item.title}</h2>
+
+                {item.links.length > 0 ? <VisitSiteButton href={item.links[0].url} /> : null}
               </div>
 
               {Array.isArray(item.links) && item.links.length > 1 ? (
