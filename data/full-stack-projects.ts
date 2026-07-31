@@ -38,6 +38,7 @@ export const fullStackProjects: FullStackProject[] = [
       "Scalable reconciliation engine",
     ],
     status: "Completed",
+    githubUrl: "https://github.com/YojitSiddhant/revenue-reconciliation-dashboard",
     order: 1,
   },
   {
@@ -64,6 +65,7 @@ export const fullStackProjects: FullStackProject[] = [
       "REST API architecture",
     ],
     status: "Completed",
+    githubUrl: "https://github.com/YojitSiddhant/user-submission-system",
     order: 2,
   },
   {
@@ -87,6 +89,7 @@ export const fullStackProjects: FullStackProject[] = [
       "RESTful API design",
     ],
     status: "Completed",
+    githubUrl: "https://github.com/YojitSiddhant/secure-notes-app",
     order: 3,
   },
   {
@@ -111,6 +114,7 @@ export const fullStackProjects: FullStackProject[] = [
       "Clean modular architecture",
     ],
     status: "Completed",
+    githubUrl: "https://github.com/YojitSiddhant/leaddesk-mini",
     order: 4,
   },
   {
@@ -136,6 +140,7 @@ export const fullStackProjects: FullStackProject[] = [
       "JSON Server backend",
     ],
     status: "Completed",
+    githubUrl: "https://github.com/YojitSiddhant/collector-hub",
     order: 5,
   },
 ];
