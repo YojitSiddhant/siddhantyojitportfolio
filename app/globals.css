@@ -515,3 +515,90 @@ p {
     font-size: 1.35rem;
   }
 }
+
+@media (max-width: 920px) and (orientation: landscape) {
+  body {
+    font-size: 0.93rem;
+    line-height: 1.55;
+  }
+
+  header .portfolio-navbar-shell {
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+  }
+
+  header .portfolio-navbar-shell .text-sm.font-black.uppercase {
+    font-size: 0.8rem;
+  }
+
+  header .portfolio-navbar-shell button {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  header .portfolio-navbar-mobile {
+    max-width: min(100%, 34rem);
+    max-height: calc(100dvh - 1rem);
+    padding: 0.8rem;
+  }
+
+  header .portfolio-navbar-mobile nav {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  main > section.relative.z-10 {
+    gap: 0.8rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.9rem;
+  }
+
+  main > section.relative.z-10 h1 {
+    font-size: clamp(2.1rem, 4vw, 3.4rem);
+    line-height: 1.02;
+  }
+
+  main > section.relative.z-10 h2 {
+    font-size: 1.15rem;
+    line-height: 1.1;
+  }
+
+  main > section.relative.z-10 .text-sm {
+    line-height: 1.45;
+  }
+
+  main > section.relative.z-10 .text-base {
+    line-height: 1.55;
+  }
+
+  .view-detail-button,
+  .github-detail-button {
+    transform: scale(0.95);
+    transform-origin: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .view-detail-button {
+    width: 118px;
+    height: 42px;
+    font-size: 0.88em;
+  }
+
+  .view-detail-button:hover {
+    font-size: 1em;
+  }
+
+  .github-detail-button {
+    padding: 9px 12px;
+    gap: 10px;
+  }
+
+  .github-detail-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .github-detail-button .github-detail-button__text {
+    font-size: 0.95em;
+  }
+}

@@ -264,7 +264,7 @@ export function SiteNavbar() {
                 role="dialog"
                 aria-modal="true"
                 aria-label="Site navigation"
-                className="w-full max-w-104 max-h-screen overflow-hidden rounded-3xl border border-border bg-surface-strong p-4 shadow-2xl backdrop-blur-xl sm:max-h-screen sm:p-5"
+                className="portfolio-navbar-mobile w-full max-w-104 max-h-screen overflow-hidden rounded-3xl border border-border bg-surface-strong p-4 shadow-2xl backdrop-blur-xl sm:max-h-screen sm:p-5"
                 onClick={(event) => event.stopPropagation()}
               >
                 <div className="mb-4 flex items-center justify-between gap-4">
