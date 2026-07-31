@@ -2,7 +2,6 @@
 
 import type { MouseEvent } from "react";
 import type { AcademicProjectContent } from "@/components/projects/AcademicProjectContent";
-import { GitHubButton } from "@/components/project-github-button";
 
 type AcademicProjectCardProps = {
   project: AcademicProjectContent;
@@ -30,13 +29,8 @@ export function AcademicProjectCard({ project, index, onOpen }: AcademicProjectC
         </button>
       </div>
 
-      <div className="flex min-w-0 flex-wrap gap-3 lg:justify-self-end lg:justify-end">
-        {project.githubUrl?.trim() ? <GitHubButton href={project.githubUrl.trim()} label={project.title} /> : null}
-        <button
-          type="button"
-          onClick={openDetails}
-          className="view-detail-button sm:justify-self-end"
-        >
+      <div className="flex min-w-0 justify-end lg:justify-self-end">
+        <button type="button" onClick={openDetails} className="view-detail-button sm:justify-self-end">
           View Details
         </button>
       </div>
