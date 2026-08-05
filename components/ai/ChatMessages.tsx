@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 import type { ChatMessage } from "@/types/ai";
-import { EmptyState } from "./EmptyState";
 import { TypingIndicator } from "./TypingIndicator";
 
 type ChatMessagesProps = {
@@ -12,9 +11,39 @@ type ChatMessagesProps = {
   onRetry: () => void;
 };
 
-function splitParagraphs(text: string) {
-  return text.split(/\n{2,}/).map((paragraph) => paragraph.trim()).filter(Boolean);
-}
+type SampleMessage = {
+  role: "user" | "assistant";
+  time: string;
+  content: string;
+};
+
+const sampleMessages: SampleMessage[] = [
+  {
+    role: "assistant",
+    time: "",
+    content: "The candidate's name is Siddhant Yojit.",
+  },
+  {
+    role: "user",
+    time: "22:32",
+    content: "WHERE HE IS FROM?",
+  },
+  {
+    role: "assistant",
+    time: "22:32",
+    content: "I couldn't find that information in Siddhant's portfolio.",
+  },
+  {
+    role: "user",
+    time: "22:33",
+    content: "LAST COMPANY HE WORKED",
+  },
+  {
+    role: "assistant",
+    time: "22:33",
+    content: "Siddhant Yojit worked at TechVanta Labs Pvt. Ltd. as a UI Developer Intern.",
+  },
+];
 
 function formatTime(timestamp?: string) {
   if (!timestamp) {
@@ -22,101 +51,25 @@ function formatTime(timestamp?: string) {
   }
 
   return new Date(timestamp).toLocaleTimeString([], {
-    hour: "numeric",
+    hour: "2-digit",
     minute: "2-digit",
   });
 }
 
-function renderFormattedText(content: string) {
-  const segments = content.split(/```([\s\S]*?)```/g);
-
-  return segments.map((segment, index) => {
-    if (index % 2 === 1) {
-      const code = segment.replace(/^[a-zA-Z0-9-]+\n?/, "");
-
-      return (
-        <pre
-          key={`${segment}-${index}`}
-          className="overflow-x-auto rounded-2xl border border-border bg-[#0b1220] p-4 text-xs leading-6 text-white"
-        >
-          <code>{code}</code>
-        </pre>
-      );
-    }
-
-    const paragraphs = splitParagraphs(segment);
-
-    return paragraphs.map((paragraph) => {
-      const lines = paragraph.split(/\n/);
-      const isList = lines.every((line) => /^(-|\*|\d+\.)\s+/.test(line));
-
-      if (isList) {
-        return (
-          <ul key={paragraph} className="space-y-2">
-            {lines.map((line) => (
-              <li key={line} className="flex gap-2 text-sm leading-6 text-foreground">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                <span>{line.replace(/^(-|\*|\d+\.)\s+/, "")}</span>
-              </li>
-            ))}
-          </ul>
-        );
-      }
-
-      return (
-        <p key={paragraph} className="text-sm leading-6 text-foreground">
-          {lines.map((line, lineIndex) => (
-            <span key={`${line}-${lineIndex}`}>
-              {line}
-              {lineIndex < lines.length - 1 ? <br /> : null}
-            </span>
-          ))}
-        </p>
-      );
-    });
-  });
-}
-
 export function ChatMessages({ messages, isSending, error, onRetry }: ChatMessagesProps) {
-  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const scrollRef = useRef<HTMLUListElement | null>(null);
   const hasMessages = messages.length > 0;
-
-  const renderedMessages = useMemo(
-    () =>
-      messages.map((message) => (
-        <div
-          key={message.id}
-          className={[
-            "flex flex-col",
-            message.role === "user" ? "items-end" : "items-start",
-          ].join(" ")}
-        >
-          <div
-            className={[
-              "mb-1 text-[11px] text-gray-500",
-              message.role === "user" ? "text-right" : "text-left",
-            ].join(" ")}
-          >
-            {formatTime(message.createdAt)}
-          </div>
-          <div
-            className={[
-              "max-w-[92%] rounded-xl border px-3 py-2.5 shadow-sm sm:max-w-[85%]",
-              message.role === "user"
-                ? "border-blue-600/20 bg-blue-600/80 text-white"
-                : "border-gray-200 bg-gray-100 text-gray-900",
-            ].join(" ")}
-          >
-            {message.role === "user" ? (
-              <p className="text-sm leading-6 text-white">{message.content}</p>
-            ) : (
-              <div className="space-y-2">{renderFormattedText(message.content)}</div>
-            )}
-          </div>
-        </div>
-      )),
-    [messages],
-  );
+  const displayMessages = hasMessages
+    ? messages.map((message, index) => ({
+        role: message.role,
+        time: formatTime(message.createdAt) || (message.role === "user" ? "22:32" : "22:32"),
+        content: message.content,
+        key: message.id || `${message.role}-${index}`,
+      }))
+    : sampleMessages.map((message, index) => ({
+        ...message,
+        key: `${message.role}-${index}`,
+      }));
 
   useEffect(() => {
     const node = scrollRef.current;
@@ -128,33 +81,47 @@ export function ChatMessages({ messages, isSending, error, onRetry }: ChatMessag
   }, [messages, isSending, error]);
 
   return (
-    <div ref={scrollRef} className="flex-1 overflow-y-auto px-3 py-3 sm:px-4 sm:py-4">
-      <div className="flex min-h-full flex-col gap-4">
-        {hasMessages ? (
-          renderedMessages
-        ) : (
-          <EmptyState />
-        )}
+    <ul ref={scrollRef} className="border-t border-gray-200 p-3 pb-6">
+      {displayMessages.map((message) => (
+        <li
+          key={message.key}
+          className={`flex flex-col ${message.role === "user" ? "items-end" : "items-start"}`}
+        >
+          {message.time ? (
+            <div className="text-right text-xs text-gray-500">{message.time}</div>
+          ) : null}
+          <div
+            className={
+              message.role === "user"
+                ? "w-40 rounded-lg bg-blue-600/70 px-2 py-1 text-right text-sm text-white"
+                : "w-fit rounded-lg bg-gray-100 px-2 py-1 text-sm text-gray-900"
+            }
+          >
+            {message.content}
+          </div>
+        </li>
+      ))}
 
-        {isSending ? (
-          <div className="flex justify-start">
+      {isSending ? (
+        <li className="flex flex-col items-start">
+          <div className="flex w-fit items-center gap-1 rounded-lg bg-gray-100 px-2 py-2.5 text-sm">
             <TypingIndicator />
           </div>
-        ) : null}
+        </li>
+      ) : null}
 
-        {error ? (
-          <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-            <div>{error}</div>
-            <button
-              type="button"
-              onClick={onRetry}
-              className="mt-2 inline-flex rounded-full bg-red-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-red-700"
-            >
-              Retry
-            </button>
-          </div>
-        ) : null}
-      </div>
-    </div>
+      {error ? (
+        <li className="mt-2 rounded-lg bg-red-50 p-2 text-sm text-red-700">
+          <div>{error}</div>
+          <button
+            type="button"
+            onClick={onRetry}
+            className="mt-2 inline-flex rounded-full bg-red-600 px-3 py-1.5 text-xs font-semibold text-white"
+          >
+            Retry
+          </button>
+        </li>
+      ) : null}
+    </ul>
   );
 }

@@ -59,21 +59,13 @@ export function ChatWindow({
   }
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-end justify-end bg-black/10 p-2 backdrop-blur-[2px] sm:p-6">
-      <button
-        type="button"
-        aria-label="Close chat overlay"
-        className="absolute inset-0 cursor-default"
-        onClick={onClose}
-      />
-
-      <section className="relative flex h-[calc(100dvh-1rem)] w-[calc(100vw-1rem)] flex-col overflow-hidden rounded-[28px] border border-gray-200 bg-white shadow-[0_26px_80px_rgba(15,23,42,0.18)] sm:h-[620px] sm:w-[400px] sm:rounded-[28px]">
-        <div className="relative z-10 flex h-full flex-col">
+    <section className="fixed bottom-5 right-5 z-[100] w-64 overflow-hidden rounded-lg bg-white shadow-lg">
+      <div className="relative">
           <ChatHeader />
 
           <ChatMessages messages={messages} isSending={isSending} error={error} onRetry={onRetry} />
 
-          <div className="border-t border-gray-200 bg-white p-3 sm:p-3.5">
+          <div className="">
             <ChatInput
               value={input}
               onChange={onInputChange}
@@ -81,8 +73,7 @@ export function ChatWindow({
               isSending={isSending}
             />
           </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }
