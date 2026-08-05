@@ -11,40 +11,6 @@ type ChatMessagesProps = {
   onRetry: () => void;
 };
 
-type SampleMessage = {
-  role: "user" | "assistant";
-  time: string;
-  content: string;
-};
-
-const sampleMessages: SampleMessage[] = [
-  {
-    role: "assistant",
-    time: "",
-    content: "The candidate's name is Siddhant Yojit.",
-  },
-  {
-    role: "user",
-    time: "22:32",
-    content: "WHERE HE IS FROM?",
-  },
-  {
-    role: "assistant",
-    time: "22:32",
-    content: "I couldn't find that information in Siddhant's portfolio.",
-  },
-  {
-    role: "user",
-    time: "22:33",
-    content: "LAST COMPANY HE WORKED",
-  },
-  {
-    role: "assistant",
-    time: "22:33",
-    content: "Siddhant Yojit worked at TechVanta Labs Pvt. Ltd. as a UI Developer Intern.",
-  },
-];
-
 function formatTime(timestamp?: string) {
   if (!timestamp) {
     return "";
@@ -59,17 +25,12 @@ function formatTime(timestamp?: string) {
 export function ChatMessages({ messages, isSending, error, onRetry }: ChatMessagesProps) {
   const scrollRef = useRef<HTMLUListElement | null>(null);
   const hasMessages = messages.length > 0;
-  const displayMessages = hasMessages
-    ? messages.map((message, index) => ({
-        role: message.role,
-        time: formatTime(message.createdAt) || (message.role === "user" ? "22:32" : "22:32"),
-        content: message.content,
-        key: message.id || `${message.role}-${index}`,
-      }))
-    : sampleMessages.map((message, index) => ({
-        ...message,
-        key: `${message.role}-${index}`,
-      }));
+  const displayMessages = messages.map((message, index) => ({
+    role: message.role,
+    time: formatTime(message.createdAt),
+    content: message.content,
+    key: message.id || `${message.role}-${index}`,
+  }));
 
   useEffect(() => {
     const node = scrollRef.current;
@@ -82,25 +43,27 @@ export function ChatMessages({ messages, isSending, error, onRetry }: ChatMessag
 
   return (
     <ul ref={scrollRef} className="border-t border-gray-200 p-3 pb-6">
-      {displayMessages.map((message) => (
-        <li
-          key={message.key}
-          className={`flex flex-col ${message.role === "user" ? "items-end" : "items-start"}`}
-        >
-          {message.time ? (
-            <div className="text-right text-xs text-gray-500">{message.time}</div>
-          ) : null}
-          <div
-            className={
-              message.role === "user"
-                ? "w-40 rounded-lg bg-blue-600/70 px-2 py-1 text-right text-sm text-white"
-                : "w-fit rounded-lg bg-gray-100 px-2 py-1 text-sm text-gray-900"
-            }
-          >
-            {message.content}
-          </div>
-        </li>
-      ))}
+      {hasMessages
+        ? displayMessages.map((message) => (
+            <li
+              key={message.key}
+              className={`flex flex-col ${message.role === "user" ? "items-end" : "items-start"}`}
+            >
+              {message.time ? (
+                <div className="text-right text-xs text-gray-500">{message.time}</div>
+              ) : null}
+              <div
+                className={
+                  message.role === "user"
+                    ? "w-40 rounded-lg bg-blue-600/70 px-2 py-1 text-right text-sm text-white"
+                    : "w-fit rounded-lg bg-gray-100 px-2 py-1 text-sm text-gray-900"
+                }
+              >
+                {message.content}
+              </div>
+            </li>
+          ))
+        : null}
 
       {isSending ? (
         <li className="flex flex-col items-start">
