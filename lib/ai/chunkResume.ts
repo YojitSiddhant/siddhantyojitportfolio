@@ -197,13 +197,20 @@ export function formatKnowledgeChunks(chunks: KnowledgeChunk[]) {
 
 export async function buildKnowledgeBase(): Promise<KnowledgeBase> {
   const resume = await extractResumeText();
-  const structuredChunks = buildStructuredChunks();
   const resumeChunks = resume.text
     ? chunkLongText("resume/pdf", "Resume PDF", resume.text, 4)
     : [];
 
+  if (resumeChunks.length > 0) {
+    return {
+      chunks: resumeChunks,
+      resumeText: resume.text,
+      resumeSource: resume.source,
+    };
+  }
+
   return {
-    chunks: [...resumeChunks, ...structuredChunks],
+    chunks: buildStructuredChunks(),
     resumeText: resume.text,
     resumeSource: resume.source,
   };
