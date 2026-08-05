@@ -29,8 +29,6 @@ export function ChatButton() {
         onInputChange={chat.setInput}
         onSend={chat.sendMessage}
         onRetry={chat.retryLast}
-        onQuestionSelect={chat.sendSuggestedQuestion}
-        suggestedQuestions={chat.suggestedQuestions}
         isSending={chat.isSending}
         error={chat.error}
       />

@@ -3,17 +3,6 @@
 import { useMemo, useState } from "react";
 import type { ChatMessage } from "@/types/ai";
 
-const initialSuggestions = [
-  "Tell me about Siddhant",
-  "Show React projects",
-  "What technologies does he know?",
-  "Tell me about Collector Hub",
-  "Explain LeadDesk Mini",
-  "What internship experience does he have?",
-  "Is he open for opportunities?",
-  "How can I contact him?",
-];
-
 function createMessage(role: ChatMessage["role"], content: string): ChatMessage {
   return {
     id: `${role}-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
@@ -106,10 +95,6 @@ export function useChat() {
     void submitPrompt(input);
   }
 
-  function sendSuggestedQuestion(question: string) {
-    void submitPrompt(question);
-  }
-
   function retryLast() {
     if (!lastFailedPrompt) {
       return;
@@ -131,8 +116,6 @@ export function useChat() {
     error,
     clearConversation,
     sendMessage,
-    sendSuggestedQuestion,
     retryLast,
-    suggestedQuestions: initialSuggestions,
   };
 }

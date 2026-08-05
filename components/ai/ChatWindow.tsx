@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { ChatHeader } from "./ChatHeader";
 import { ChatInput } from "./ChatInput";
 import { ChatMessages } from "./ChatMessages";
-import { SuggestedQuestions } from "./SuggestedQuestions";
 
 type ChatWindowProps = {
   isOpen: boolean;
@@ -19,8 +18,6 @@ type ChatWindowProps = {
   onInputChange: (value: string) => void;
   onSend: () => void;
   onRetry: () => void;
-  onQuestionSelect: (question: string) => void;
-  suggestedQuestions: string[];
   isSending: boolean;
   error: string | null;
 };
@@ -34,8 +31,6 @@ export function ChatWindow({
   onInputChange,
   onSend,
   onRetry,
-  onQuestionSelect,
-  suggestedQuestions,
   isSending,
   error,
 }: ChatWindowProps) {
@@ -65,7 +60,7 @@ export function ChatWindow({
   }
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-end justify-end bg-black/20 p-2 sm:p-6">
+    <div className="fixed inset-0 z-[100] flex items-end justify-end bg-black/15 p-2 backdrop-blur-[2px] sm:p-6">
       <button
         type="button"
         aria-label="Close chat overlay"
@@ -73,17 +68,13 @@ export function ChatWindow({
         onClick={onClose}
       />
 
-      <section className="relative flex h-[calc(100dvh-1rem)] w-[calc(100vw-1rem)] flex-col overflow-hidden rounded-[28px] border border-border bg-background shadow-[0_24px_80px_rgba(15,23,42,0.18)] sm:h-[650px] sm:w-[420px] sm:rounded-[32px]">
+      <section className="relative flex h-[calc(100dvh-1rem)] w-[calc(100vw-1rem)] flex-col overflow-hidden rounded-[28px] border border-border bg-white shadow-[0_24px_80px_rgba(15,23,42,0.16)] sm:h-[650px] sm:w-[420px] sm:rounded-[32px]">
         <div className="relative z-10 flex h-full flex-col">
           <ChatHeader onClose={onClose} onClear={onClear} hasMessages={messages.length > 0} />
 
-          <div className="border-b border-border px-4 pb-4 sm:px-5">
-            <SuggestedQuestions questions={suggestedQuestions} onSelect={onQuestionSelect} />
-          </div>
-
           <ChatMessages messages={messages} isSending={isSending} error={error} onRetry={onRetry} />
 
-          <div className="border-t border-border p-4 sm:p-5">
+          <div className="border-t border-border/80 bg-white p-4 sm:p-5">
             <ChatInput
               value={input}
               onChange={onInputChange}
