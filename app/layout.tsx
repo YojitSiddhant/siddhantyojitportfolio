@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SiteNavbar } from "@/components/site-navbar";
+import { ChatButton } from "@/components/ai/ChatButton";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default function RootLayout({
         <div className="relative z-10">
           <SiteNavbar />
           {children}
+          <ChatButton />
         </div>
       </body>
     </html>
