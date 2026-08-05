@@ -73,7 +73,7 @@ export function ChatWindow({
 
           <ChatMessages messages={messages} isSending={isSending} error={error} onRetry={onRetry} />
 
-          <div className="relative border-t border-gray-200 bg-gray-50 p-3 sm:p-3.5">
+          <div className="border-t border-gray-200 bg-white p-3 sm:p-3.5">
             <ChatInput
               value={input}
               onChange={onInputChange}

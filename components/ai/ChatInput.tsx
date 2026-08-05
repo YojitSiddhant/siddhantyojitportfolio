@@ -25,7 +25,7 @@ export function ChatInput({ value, onChange, onSend, isSending, placeholder }: C
 
   return (
     <form
-      className="rounded-b-[24px] border-t border-gray-200 bg-gray-100 px-3 py-2.5 shadow-[0_-1px_0_rgba(0,0,0,0.03)]"
+      className="rounded-2xl border border-gray-200 bg-white px-3 py-2.5 shadow-sm"
       onSubmit={(event) => {
         event.preventDefault();
         onSend();
@@ -44,7 +44,7 @@ export function ChatInput({ value, onChange, onSend, isSending, placeholder }: C
           }}
           placeholder={placeholder ?? "Reply"}
           rows={1}
-          className="max-h-40 min-h-10 flex-1 resize-none rounded-xl border border-gray-200 bg-white px-3 py-2.5 pr-12 text-sm leading-6 text-gray-900 outline-none placeholder:text-gray-500 focus:border-blue-300 focus:ring-2 focus:ring-blue-100"
+          className="max-h-40 min-h-10 flex-1 resize-none rounded-xl border-none bg-white px-3 py-2.5 pr-12 text-sm leading-6 text-gray-900 outline-none placeholder:text-gray-500 focus:ring-0"
         />
 
         <button
@@ -57,10 +57,6 @@ export function ChatInput({ value, onChange, onSend, isSending, placeholder }: C
           </svg>
         </button>
       </div>
-
-      <p className="mt-2 px-1 text-[10px] font-medium uppercase tracking-[0.22em] text-gray-500">
-        Enter to send · Shift+Enter for a new line
-      </p>
     </form>
   );
 }
