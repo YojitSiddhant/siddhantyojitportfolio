@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { buildKnowledgeBase, formatKnowledgeChunks, selectRelevantChunks } from "@/lib/ai/chunkResume";
-import { generatePortfolioReply } from "@/lib/ai/groq";
+import { groqClient } from "@/lib/ai/groq";
 import type { ChatRequestBody } from "@/types/ai";
 
 export const runtime = "nodejs";
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const assistantReply = await generatePortfolioReply({
+    const assistantReply = await groqClient.generatePortfolioReply({
       query: lastUserMessage.content,
       context,
       history: messages.slice(0, -1),
@@ -46,11 +46,13 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";
+    const missingKeyMessage =
+      "Missing GROQ_API_KEY environment variable.";
     return NextResponse.json(
       {
         error:
-          message === "GROQ_API_KEY is not configured."
-            ? "Groq is not configured for this deployment."
+          message === missingKeyMessage
+            ? "⚠ Missing GROQ_API_KEY. Create .env.local and add: GROQ_API_KEY=your_groq_api_key"
             : "The portfolio assistant could not respond right now.",
       },
       { status: 500 },
