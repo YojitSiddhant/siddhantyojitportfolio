@@ -8,11 +8,11 @@ import { ChatMessages } from "./ChatMessages";
 type ChatWindowProps = {
   isOpen: boolean;
   onClose: () => void;
-  onClear: () => void;
   messages: {
     id: string;
     role: "user" | "assistant";
     content: string;
+    createdAt?: string;
   }[];
   input: string;
   onInputChange: (value: string) => void;
@@ -25,7 +25,6 @@ type ChatWindowProps = {
 export function ChatWindow({
   isOpen,
   onClose,
-  onClear,
   messages,
   input,
   onInputChange,
@@ -60,7 +59,7 @@ export function ChatWindow({
   }
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-end justify-end bg-black/15 p-2 backdrop-blur-[2px] sm:p-6">
+    <div className="fixed inset-0 z-[100] flex items-end justify-end bg-black/10 p-2 backdrop-blur-[2px] sm:p-6">
       <button
         type="button"
         aria-label="Close chat overlay"
@@ -68,13 +67,13 @@ export function ChatWindow({
         onClick={onClose}
       />
 
-      <section className="relative flex h-[calc(100dvh-1rem)] w-[calc(100vw-1rem)] flex-col overflow-hidden rounded-[28px] border border-border bg-white shadow-[0_24px_80px_rgba(15,23,42,0.16)] sm:h-[650px] sm:w-[420px] sm:rounded-[32px]">
+      <section className="relative flex h-[calc(100dvh-1rem)] w-[calc(100vw-1rem)] flex-col overflow-hidden rounded-[28px] border border-gray-200 bg-white shadow-[0_26px_80px_rgba(15,23,42,0.18)] sm:h-[620px] sm:w-[400px] sm:rounded-[28px]">
         <div className="relative z-10 flex h-full flex-col">
-          <ChatHeader onClose={onClose} onClear={onClear} hasMessages={messages.length > 0} />
+          <ChatHeader />
 
           <ChatMessages messages={messages} isSending={isSending} error={error} onRetry={onRetry} />
 
-          <div className="border-t border-border/80 bg-white p-4 sm:p-5">
+          <div className="relative border-t border-gray-200 bg-gray-50 p-3 sm:p-3.5">
             <ChatInput
               value={input}
               onChange={onInputChange}

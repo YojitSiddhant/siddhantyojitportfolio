@@ -8,6 +8,7 @@ function createMessage(role: ChatMessage["role"], content: string): ChatMessage 
     id: `${role}-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
     role,
     content,
+    createdAt: new Date().toISOString(),
   };
 }
 

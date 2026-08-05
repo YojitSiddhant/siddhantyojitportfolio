@@ -23,7 +23,6 @@ export function ChatButton() {
       <ChatWindow
         isOpen={chat.isOpen}
         onClose={chat.closeChat}
-        onClear={chat.clearConversation}
         messages={chat.messages}
         input={chat.input}
         onInputChange={chat.setInput}

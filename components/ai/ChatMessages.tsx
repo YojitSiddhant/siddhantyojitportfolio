@@ -16,6 +16,17 @@ function splitParagraphs(text: string) {
   return text.split(/\n{2,}/).map((paragraph) => paragraph.trim()).filter(Boolean);
 }
 
+function formatTime(timestamp?: string) {
+  if (!timestamp) {
+    return "";
+  }
+
+  return new Date(timestamp).toLocaleTimeString([], {
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
 function renderFormattedText(content: string) {
   const segments = content.split(/```([\s\S]*?)```/g);
 
@@ -76,22 +87,30 @@ export function ChatMessages({ messages, isSending, error, onRetry }: ChatMessag
         <div
           key={message.id}
           className={[
-            "flex",
-            message.role === "user" ? "justify-end" : "justify-start",
+            "flex flex-col",
+            message.role === "user" ? "items-end" : "items-start",
           ].join(" ")}
         >
           <div
             className={[
-              "max-w-[92%] rounded-3xl border px-4 py-3 shadow-sm sm:max-w-[85%]",
+              "mb-1 text-[11px] text-gray-500",
+              message.role === "user" ? "text-right" : "text-left",
+            ].join(" ")}
+          >
+            {formatTime(message.createdAt)}
+          </div>
+          <div
+            className={[
+              "max-w-[92%] rounded-xl border px-3 py-2.5 shadow-sm sm:max-w-[85%]",
               message.role === "user"
-                ? "border-accent/20 bg-accent text-white"
-                : "border-border bg-surface text-foreground",
+                ? "border-blue-600/20 bg-blue-600/80 text-white"
+                : "border-gray-200 bg-gray-100 text-gray-900",
             ].join(" ")}
           >
             {message.role === "user" ? (
               <p className="text-sm leading-6 text-white">{message.content}</p>
             ) : (
-              <div className="space-y-3">{renderFormattedText(message.content)}</div>
+              <div className="space-y-2">{renderFormattedText(message.content)}</div>
             )}
           </div>
         </div>
@@ -109,8 +128,8 @@ export function ChatMessages({ messages, isSending, error, onRetry }: ChatMessag
   }, [messages, isSending, error]);
 
   return (
-    <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 sm:px-5">
-      <div className="flex min-h-full flex-col gap-3">
+    <div ref={scrollRef} className="flex-1 overflow-y-auto px-3 py-3 sm:px-4 sm:py-4">
+      <div className="flex min-h-full flex-col gap-4">
         {hasMessages ? (
           renderedMessages
         ) : (
@@ -124,7 +143,7 @@ export function ChatMessages({ messages, isSending, error, onRetry }: ChatMessag
         ) : null}
 
         {error ? (
-          <div className="rounded-3xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
             <div>{error}</div>
             <button
               type="button"

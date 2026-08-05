@@ -25,13 +25,13 @@ export function ChatInput({ value, onChange, onSend, isSending, placeholder }: C
 
   return (
     <form
-      className="rounded-3xl border border-border bg-surface p-3 shadow-sm"
+      className="rounded-b-[24px] border-t border-gray-200 bg-gray-100 px-3 py-2.5 shadow-[0_-1px_0_rgba(0,0,0,0.03)]"
       onSubmit={(event) => {
         event.preventDefault();
         onSend();
       }}
     >
-      <div className="flex items-end gap-2">
+      <div className="relative flex items-end gap-2">
         <textarea
           ref={textareaRef}
           value={value}
@@ -42,21 +42,23 @@ export function ChatInput({ value, onChange, onSend, isSending, placeholder }: C
               onSend();
             }
           }}
-          placeholder={placeholder ?? "Ask about Siddhant's portfolio..."}
+          placeholder={placeholder ?? "Reply"}
           rows={1}
-          className="max-h-40 min-h-12 flex-1 resize-none bg-transparent px-2 py-2 text-sm leading-6 text-foreground outline-none placeholder:text-muted"
+          className="max-h-40 min-h-10 flex-1 resize-none rounded-xl border border-gray-200 bg-white px-3 py-2.5 pr-12 text-sm leading-6 text-gray-900 outline-none placeholder:text-gray-500 focus:border-blue-300 focus:ring-2 focus:ring-blue-100"
         />
 
         <button
           type="submit"
           disabled={isSending || !value.trim()}
-          className="inline-flex h-11 items-center justify-center rounded-2xl bg-accent px-4 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-accent-strong hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50"
+          className="absolute right-2 top-1/2 inline-flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-blue-600 transition hover:bg-blue-50 disabled:cursor-not-allowed disabled:opacity-40"
         >
-          Send
+          <svg className="size-4" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" strokeLinejoin="round" strokeLinecap="round" />
+          </svg>
         </button>
       </div>
 
-      <p className="mt-2 px-2 text-[11px] font-medium uppercase tracking-[0.18em] text-muted">
+      <p className="mt-2 px-1 text-[10px] font-medium uppercase tracking-[0.22em] text-gray-500">
         Enter to send · Shift+Enter for a new line
       </p>
     </form>
