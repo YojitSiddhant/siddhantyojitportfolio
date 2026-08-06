@@ -31,8 +31,53 @@ function joinItems(items: string[]) {
   return items.filter(Boolean).join("\n");
 }
 
+function hasAny(query: string, phrases: string[]) {
+  const lowered = query.toLowerCase();
+  return phrases.some((phrase) => lowered.includes(phrase));
+}
+
+function buildWebsiteSummaryChunk(): KnowledgeChunk {
+  const experienceSummary = experience
+    .map(
+      (item) =>
+        `${item.role} at ${item.company} (${item.duration}) - ${item.description.replace(/\n+/g, " ")}`,
+    )
+    .join("\n");
+
+  const projectSummary = [
+    ...projects.map((project) => `${project.title} - ${project.description}`),
+    ...fullStackProjects.map(
+      (project) =>
+        `${project.title} - ${project.summary} Tech stack: ${project.techStack.join(", ")}`,
+    ),
+  ].join("\n");
+
+  return buildSection(
+    "website/summary",
+    "Complete website summary",
+    [
+      `Name: ${profile.heroTitle.replace(/^Hi, I'm /, "").replace(/\.$/, "")}`,
+      `Headline: ${profile.snapshotTitle}`,
+      `Intro: ${profile.introText}`,
+      `Location: ${profile.location}`,
+      `Current role: ${profile.headerNotes.find((note) => note.label === "Current role")?.value ?? "Not listed"}`,
+      `Contact: Email ${contactLinks.email}; Phone ${contactLinks.phone}; WhatsApp ${contactLinks.whatsapp}; LinkedIn ${contactLinks.linkedin}; GitHub ${contactLinks.github}`,
+      `Skills: ${skillSections.map((section) => `${section.title} - ${section.items.map((item) => item.name).join(", ")}`).join(" | ")}`,
+      `Education: ${education.map((item) => `${item.degree} at ${item.institute} (${item.duration})`).join(" | ")}`,
+      `Experience: ${experienceSummary}`,
+      `Projects: ${projectSummary}`,
+      `GitHub profile: ${githubProfile.displayName} (${githubProfile.username}) - ${githubProfile.profileUrl}`,
+      `Work links: ${workItems.map((item) => `${item.title}: ${item.links.map((link) => link.url).join(", ")}`).join(" | ")}`,
+      `Certificates: ${certificates.map((certificate) => `${certificate.title} - ${certificate.issuer}`).join(" | ")}`,
+      `Developer journey: ${developerJourney.map((step) => step.title).join(" | ")}`,
+    ].join("\n"),
+    8,
+  );
+}
+
 function buildWebsiteChunks(): KnowledgeChunk[] {
   return [
+    buildWebsiteSummaryChunk(),
     buildSection(
       "website/home",
       "Home page overview",
@@ -192,12 +237,27 @@ export function scoreChunk(chunk: KnowledgeChunk, query: string) {
     score += 4;
   }
 
-  if (queryLower.includes("intern") && chunk.content.toLowerCase().includes("intern")) {
+  if (
+    hasAny(queryLower, ["working now", "current role", "current job", "last job", "last worked", "where is he working", "where he is working", "where does he work", "company", "role", "job", "intern", "employment"])
+    && chunk.source.includes("experience")
+  ) {
+    score += 6;
+  }
+
+  if (hasAny(queryLower, ["github", "repo", "repository", "link", "code"]) && chunk.source.includes("github")) {
     score += 4;
   }
 
-  if (queryLower.includes("project") && chunk.source.includes("project")) {
+  if (hasAny(queryLower, ["project", "projects", "portfolio", "built", "built by", "academic", "college"]) && chunk.source.includes("project")) {
     score += 2;
+  }
+
+  if (hasAny(queryLower, ["email", "phone", "whatsapp", "contact", "location", "address"]) && chunk.source.includes("contact")) {
+    score += 5;
+  }
+
+  if (hasAny(queryLower, ["skill", "stack", "technology", "technologies", "react", "next", "node", "express", "postgres", "mysql"]) && chunk.source.includes("skills")) {
+    score += 4;
   }
 
   return score;

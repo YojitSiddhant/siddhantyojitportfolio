@@ -25,15 +25,13 @@ export async function POST(request: Request) {
 
     const knowledgeBase = await buildKnowledgeBase();
     const relevantChunks = selectRelevantChunks(knowledgeBase.chunks, lastUserMessage.content, 6);
-    const contextChunks = relevantChunks.length ? relevantChunks : knowledgeBase.chunks.slice(0, 4);
+    const summaryChunk = knowledgeBase.chunks[0];
+    const fallbackChunks = knowledgeBase.chunks.slice(1, 8);
+    const contextChunks = [
+      summaryChunk,
+      ...(relevantChunks.length ? relevantChunks : fallbackChunks),
+    ].filter((chunk, index, all) => all.findIndex((entry) => entry.source === chunk.source) === index);
     const context = formatKnowledgeChunks(contextChunks);
-
-    if (!context.trim()) {
-      return NextResponse.json(
-        { message: "I couldn't find that information in Siddhant's portfolio." },
-        { status: 200 },
-      );
-    }
 
     const assistantReply = await groqClient.generatePortfolioReply({
       query: lastUserMessage.content,
