@@ -310,6 +310,8 @@ export function SiteNavbar() {
                         </span>
                         <span
                           className={`text-center transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-white ${
+                            isActive(item.href) ? "text-white" : "text-foreground"
+                          } ${
                             isFullStackProjects ? "whitespace-nowrap text-[13px] leading-none sm:text-sm" : ""
                           }`}
                         >
