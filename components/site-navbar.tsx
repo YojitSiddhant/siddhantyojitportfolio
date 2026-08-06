@@ -296,20 +296,20 @@ export function SiteNavbar() {
                         }}
                         className={`group inline-flex w-full items-center justify-center gap-2.5 rounded-2xl border px-4 py-2.5 text-center text-sm transition duration-300 motion-reveal ${
                           isActive(item.href)
-                          ? "border-accent! bg-accent! font-bold! text-white!"
+                            ? "border-accent bg-accent font-bold text-white"
                             : "border-border font-normal text-muted hover:border-accent hover:bg-accent hover:font-bold hover:text-white"
                         }`}
                         style={{ animationDelay: `${index * 70}ms` }}
                       >
                         <span
-                          className={`transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-110 group-hover:rotate-12 ${
+                          className={`transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-110 group-hover:rotate-12 group-hover:text-white ${
                             isActive(item.href) ? "text-white" : "text-accent"
                           }`}
                         >
                           <item.icon />
                         </span>
                         <span
-                          className={`text-center transition-transform duration-300 group-hover:translate-x-0.5 ${
+                          className={`text-center transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-white ${
                             isFullStackProjects ? "whitespace-nowrap text-[13px] leading-none sm:text-sm" : ""
                           }`}
                         >
