@@ -11,82 +11,82 @@ type ThemeVars = {
 };
 
 const defaultTheme: ThemeVars = {
-  accent: "#ff0000",
-  accentStrong: "#ff0000",
-  accentSoft: "transparent",
+  accent: "#2563eb",
+  accentStrong: "#1d4ed8",
+  accentSoft: "rgba(37, 99, 235, 0.12)",
 };
 
 const routeThemes: Array<{ match: string; theme: ThemeVars }> = [
   {
     match: "/contact",
     theme: {
-      accent: "#0000ff",
-      accentStrong: "#0000ff",
-      accentSoft: "transparent",
+      accent: "#2563eb",
+      accentStrong: "#1d4ed8",
+      accentSoft: "rgba(37, 99, 235, 0.12)",
     },
   },
   {
     match: "/education",
     theme: {
-      accent: "#00aa00",
-      accentStrong: "#00aa00",
-      accentSoft: "transparent",
+      accent: "#2563eb",
+      accentStrong: "#1d4ed8",
+      accentSoft: "rgba(37, 99, 235, 0.12)",
     },
   },
   {
     match: "/skills",
     theme: {
-      accent: "#ffcc00",
-      accentStrong: "#ffcc00",
-      accentSoft: "transparent",
+      accent: "#2563eb",
+      accentStrong: "#1d4ed8",
+      accentSoft: "rgba(37, 99, 235, 0.12)",
     },
   },
   {
     match: "/projects",
     theme: {
-      accent: "#ff6600",
-      accentStrong: "#ff6600",
-      accentSoft: "transparent",
+      accent: "#2563eb",
+      accentStrong: "#1d4ed8",
+      accentSoft: "rgba(37, 99, 235, 0.12)",
     },
   },
   {
     match: "/full-stack-projects",
     theme: {
-      accent: "#00ffff",
-      accentStrong: "#00ffff",
-      accentSoft: "transparent",
+      accent: "#2563eb",
+      accentStrong: "#1d4ed8",
+      accentSoft: "rgba(37, 99, 235, 0.12)",
     },
   },
   {
     match: "/my-work",
     theme: {
-      accent: "#ff00ff",
-      accentStrong: "#ff00ff",
-      accentSoft: "transparent",
+      accent: "#2563eb",
+      accentStrong: "#1d4ed8",
+      accentSoft: "rgba(37, 99, 235, 0.12)",
     },
   },
   {
     match: "/certificate",
     theme: {
-      accent: "#0000ff",
-      accentStrong: "#0000ff",
-      accentSoft: "transparent",
+      accent: "#2563eb",
+      accentStrong: "#1d4ed8",
+      accentSoft: "rgba(37, 99, 235, 0.12)",
     },
   },
   {
     match: "/experience",
     theme: {
-      accent: "#00ff00",
-      accentStrong: "#00ff00",
-      accentSoft: "transparent",
+      accent: "#2563eb",
+      accentStrong: "#1d4ed8",
+      accentSoft: "rgba(37, 99, 235, 0.12)",
     },
   },
   {
     match: "/",
     theme: {
-      accent: "#ff0000",
-      accentStrong: "#ff0000",
-      accentSoft: "transparent",
+      accent: "#2563eb",
+      accentStrong: "#1d4ed8",
+      accentSoft: "rgba(37, 99, 235, 0.12)",
     },
   },
 ];

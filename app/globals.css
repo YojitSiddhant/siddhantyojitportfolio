@@ -7,9 +7,9 @@
   --surface: rgba(255, 255, 255, 1);
   --surface-strong: rgba(255, 255, 255, 1);
   --border: rgba(72, 49, 93, 0.14);
-  --accent: #ff0000;
-  --accent-strong: #ff0000;
-  --accent-soft: transparent;
+  --accent: #2563eb;
+  --accent-strong: #1d4ed8;
+  --accent-soft: rgba(37, 99, 235, 0.12);
   --page-glow: none;
   color-scheme: light;
 }
