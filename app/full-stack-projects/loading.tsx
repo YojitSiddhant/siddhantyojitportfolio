@@ -1,35 +1,28 @@
 import { PageShell } from "@/components/page-shell";
+import { SectionSkeletons } from "@/components/loading/section-skeletons";
 
 export default function Loading() {
   return (
     <PageShell animated={false}>
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border px-1 py-4">
-        <div className="h-4 w-44 rounded-full bg-accent" />
-        <div className="h-4 w-28 rounded-full bg-accent" />
-      </div>
-
-      <section className="px-1 py-2">
-        <div className="grid gap-5">
-          {Array.from({ length: 2 }).map((_, index) => (
-            <article key={index} className="grid gap-4 border-b border-border pb-5 lg:grid-cols-2 lg:items-start lg:gap-8">
-              <div className="min-w-0 flex-1">
-                <div className="h-4 w-40 rounded-full bg-accent" />
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <div className="h-8 w-20 rounded-full bg-accent" />
-                  <div className="h-8 w-24 rounded-full bg-accent" />
-                  <div className="h-8 w-20 rounded-full bg-accent" />
-                </div>
-              </div>
-
-              <div className="flex min-w-0 flex-col gap-2 text-sm">
-                <div className="h-4 w-full rounded-full bg-accent" />
-                <div className="h-4 w-11/12 rounded-full bg-accent" />
-                <div className="mt-3 h-8 w-28 rounded-full bg-accent" />
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+      <SectionSkeletons
+        headerLeftWidth="w-44 h-4"
+        headerRightWidth="w-28 h-4"
+        columnsClassName="grid gap-5"
+        cards={[
+          {
+            titleWidth: "w-44 h-4",
+            lineWidths: ["w-full h-4", "w-11/12 h-4", "w-10/12 h-4"],
+            chipCount: 3,
+            bodyHeightClassName: "h-44",
+          },
+          {
+            titleWidth: "w-40 h-4",
+            lineWidths: ["w-full h-4", "w-11/12 h-4", "w-10/12 h-4"],
+            chipCount: 4,
+            bodyHeightClassName: "h-44",
+          },
+        ]}
+      />
     </PageShell>
   );
 }
