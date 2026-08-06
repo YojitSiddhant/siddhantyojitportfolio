@@ -1,4 +1,6 @@
+import { contactLinks } from "@/data/contact";
 import { certificates } from "@/data/certificates";
+import { developerJourney, githubProfile } from "@/data/github-profile";
 import { education } from "@/data/education";
 import { experience } from "@/data/experience";
 import { fullStackProjects } from "@/data/full-stack-projects";
@@ -7,7 +9,6 @@ import { projects } from "@/data/projects";
 import { skillSections } from "@/data/skills";
 import { workItems } from "@/data/work";
 import type { KnowledgeBase, KnowledgeChunk } from "@/types/ai";
-import { extractResumeText } from "./pdfExtractor";
 
 function normalizeWhitespace(value: string) {
   return value
@@ -26,33 +27,75 @@ function buildSection(source: string, title: string, content: string, weight = 1
   };
 }
 
-function buildStructuredChunks(): KnowledgeChunk[] {
-  const chunks: KnowledgeChunk[] = [
+function joinItems(items: string[]) {
+  return items.filter(Boolean).join("\n");
+}
+
+function buildWebsiteChunks(): KnowledgeChunk[] {
+  return [
     buildSection(
-      "portfolio/profile",
-      "Profile summary",
+      "website/home",
+      "Home page overview",
       [
         profile.heroTitle,
         profile.introText,
+        `Snapshot: ${profile.snapshotTitle}`,
         `Location: ${profile.location}`,
         `Core focus: ${profile.coreFocus}`,
+        `What I care about: ${profile.whatICareAbout}`,
         `Open to opportunities: ${profile.openToOpportunitiesBadge}`,
+        `Quick notes: ${profile.quickNotes
+          .map((note) => `${note.label}: ${note.value}`)
+          .join(" | ")}`,
+        `Working style: ${profile.workingStyle.map((item) => item.title).join(" | ")}`,
       ].join("\n"),
-      3,
+      4,
     ),
     buildSection(
-      "portfolio/experience",
+      "website/contact",
+      "Contact details",
+      [
+        `Email: ${contactLinks.email}`,
+        `Phone: ${contactLinks.phone}`,
+        `WhatsApp: ${contactLinks.whatsapp}`,
+        `LinkedIn: ${contactLinks.linkedin}`,
+        `GitHub: ${contactLinks.github}`,
+        `Preferred location: ${profile.location}`,
+      ].join("\n"),
+      4,
+    ),
+    buildSection(
+      "website/github",
+      "GitHub profile",
+      [
+        `Display name: ${githubProfile.displayName}`,
+        `Username: ${githubProfile.username}`,
+        `Profile URL: ${githubProfile.profileUrl}`,
+        githubProfile.description,
+      ].join("\n"),
+      2,
+    ),
+    buildSection(
+      "website/journey",
+      "Developer journey",
+      developerJourney
+        .map((step, index) => `${index + 1}. ${step.title} - ${step.description}`)
+        .join("\n"),
+      1,
+    ),
+    buildSection(
+      "website/experience",
       "Work experience",
       experience
         .map(
           (item) =>
-            `${item.role} at ${item.company}\nDuration: ${item.duration}\nDetails: ${item.description}\nTechnologies: ${(item.technologies ?? []).join(", ")}`,
+            `${item.role} at ${item.company}\nDuration: ${item.duration}\nDetails: ${item.description}\nTechnologies: ${(item.technologies ?? []).join(", ") || "Not listed"}`,
         )
         .join("\n\n"),
-      3,
+      4,
     ),
     buildSection(
-      "portfolio/skills",
+      "website/skills",
       "Skills",
       skillSections
         .map(
@@ -62,86 +105,69 @@ function buildStructuredChunks(): KnowledgeChunk[] {
               .join(", ")}`,
         )
         .join("\n"),
-      2,
+      3,
     ),
     buildSection(
-      "portfolio/education",
+      "website/education",
       "Education",
       education.map((item) => `${item.degree} at ${item.institute} (${item.duration})`).join("\n"),
       2,
     ),
     buildSection(
-      "portfolio/projects",
-      "Projects",
-      projects
-        .map((project) => `${project.title}\n${project.description}\nStack: ${(project.stack ?? []).map((item) => item.name).join(", ")}`)
-        .join("\n\n"),
-      3,
+      "website/certificates",
+      "Certificates",
+      certificates.map((certificate) => `${certificate.title} - ${certificate.issuer}`).join("\n"),
+      2,
     ),
     buildSection(
-      "portfolio/full-stack-projects",
-      "Full stack projects",
-      fullStackProjects
+      "website/academic-projects",
+      "Academic projects",
+      projects
         .map(
           (project) =>
-            `${project.title}\nSummary: ${project.summary}\nTech stack: ${project.techStack.join(", ")}\nKey features: ${project.keyFeatures.join(", ")}\nArchitecture: ${project.architectureHighlights.join(", ")}`,
+            `${project.title}\n${project.description}\nStack: ${(project.stack ?? []).map((item) => item.name).join(", ") || "Not listed"}\nGitHub: ${project.github || "Not listed"}`,
         )
         .join("\n\n"),
       3,
     ),
     buildSection(
-      "portfolio/certificates",
-      "Certifications",
-      certificates.map((certificate) => `${certificate.title} - ${certificate.issuer}`).join("\n"),
-      2,
+      "website/full-stack-projects",
+      "Full stack projects",
+      fullStackProjects
+        .map(
+          (project) =>
+            `${project.title}\nSummary: ${project.summary}\nTech stack: ${project.techStack.join(", ")}\nKey features: ${project.keyFeatures.join(", ")}\nArchitecture: ${project.architectureHighlights.join(", ")}\nGitHub: ${project.githubUrl || "Not listed"}`,
+        )
+        .join("\n\n"),
+      4,
     ),
     buildSection(
-      "portfolio/work",
+      "website/work",
       "Client and published work",
-      workItems.map((item) => `${item.title}${item.links.length ? ` - ${item.links.map((link) => link.url).join(", ")}` : ""}`).join("\n"),
+      workItems
+        .map(
+          (item) =>
+            `${item.title}\nLinks: ${item.links.map((link) => `${link.label}: ${link.url}`).join(", ") || "Not listed"}`,
+        )
+        .join("\n\n"),
+      2,
+    ),
+  ];
+}
+
+function buildWebsiteSupplementChunks(): KnowledgeChunk[] {
+  return [
+    buildSection(
+      "website/supplement",
+      "Additional website coverage",
+      joinItems([
+        "The website also reflects that Siddhant is comfortable with MySQL, PostgreSQL, GitHub Copilot, Cursor, and ChatGPT.",
+        "The work and experience sections emphasize UI enhancements, testing workflows, debugging support, Git and GitHub collaboration, and live client delivery.",
+        "For short contact answers, the website exposes the email, phone number, WhatsApp, LinkedIn, GitHub, and location directly in the contact section.",
+      ]),
       1,
     ),
   ];
-
-  return chunks;
-}
-
-function chunkLongText(source: string, title: string, content: string, weight = 1) {
-  const normalized = normalizeWhitespace(content);
-  if (!normalized) {
-    return [];
-  }
-
-  const maxChunkSize = 900;
-  const paragraphs = normalized.split(/\n\n+/);
-  const chunks: KnowledgeChunk[] = [];
-  let current = "";
-
-  const pushCurrent = () => {
-    const trimmed = current.trim();
-    if (trimmed) {
-      chunks.push(buildSection(source, title, trimmed, weight));
-    }
-    current = "";
-  };
-
-  for (const paragraph of paragraphs) {
-    if (!current) {
-      current = paragraph;
-      continue;
-    }
-
-    if (`${current}\n\n${paragraph}`.length <= maxChunkSize) {
-      current = `${current}\n\n${paragraph}`;
-      continue;
-    }
-
-    pushCurrent();
-    current = paragraph;
-  }
-
-  pushCurrent();
-  return chunks;
 }
 
 export function scoreChunk(chunk: KnowledgeChunk, query: string) {
@@ -196,22 +222,11 @@ export function formatKnowledgeChunks(chunks: KnowledgeChunk[]) {
 }
 
 export async function buildKnowledgeBase(): Promise<KnowledgeBase> {
-  const resume = await extractResumeText();
-  const resumeChunks = resume.text
-    ? chunkLongText("resume/pdf", "Resume PDF", resume.text, 4)
-    : [];
-
-  if (resumeChunks.length > 0) {
-    return {
-      chunks: resumeChunks,
-      resumeText: resume.text,
-      resumeSource: resume.source,
-    };
-  }
+  const chunks = [...buildWebsiteChunks(), ...buildWebsiteSupplementChunks()];
 
   return {
-    chunks: buildStructuredChunks(),
-    resumeText: resume.text,
-    resumeSource: resume.source,
+    chunks,
+    resumeText: null,
+    resumeSource: null,
   };
 }

@@ -91,6 +91,11 @@ export const skillSections: SkillSection[] = [
         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
       },
       {
+        name: "MySQL",
+        href: "https://www.mysql.com/",
+        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+      },
+      {
         name: "Prisma ORM",
         href: "https://www.prisma.io/",
         icon: "https://cdn.simpleicons.org/prisma/2D3748",
@@ -134,6 +139,21 @@ export const skillSections: SkillSection[] = [
         name: "npm",
         href: "https://www.npmjs.com/",
         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/npm/npm-original-wordmark.svg",
+      },
+      {
+        name: "GitHub Copilot",
+        href: "https://github.com/features/copilot",
+        icon: "https://cdn.simpleicons.org/githubcopilot/000000",
+      },
+      {
+        name: "Cursor",
+        href: "https://cursor.com/",
+        badge: "AI",
+      },
+      {
+        name: "ChatGPT",
+        href: "https://chatgpt.com/",
+        badge: "AI",
       },
     ],
   },

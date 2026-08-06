@@ -3,7 +3,7 @@ export const githubProfile = {
   displayName: "Siddhant Yojit",
   profileUrl: "https://github.com/YojitSiddhant",
   description:
-    "Live GitHub activity, repository highlights, and public commit trends from my developer profile.",
+    "GitHub profile, repository highlights, and public project links from Siddhant Yojit's portfolio.",
 };
 
 export const developerJourney = [

@@ -2,18 +2,11 @@ import type { Metadata } from "next";
 import { ContactFormSection } from "@/components/contact-form-section";
 import { PageSectionHeader } from "@/components/page-section-header";
 import { PageShell } from "@/components/page-shell";
+import { contactLinks } from "@/data/contact";
 
 export const metadata: Metadata = {
   title: "Contact | Siddhant Yojit",
   description: "Contact page for Siddhant Yojit.",
-};
-
-const contactLinks = {
-  email: "sid.mailconnect@gmail.com",
-  phone: "+91 7899304430",
-  whatsapp: "https://wa.me/917899304430",
-  linkedin: "https://www.linkedin.com/in/siddhant-yojit-ab805327b/",
-  github: "https://github.com/YojitSiddhant",
 };
 
 export default function ContactPage() {

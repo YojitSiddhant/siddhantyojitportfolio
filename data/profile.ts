@@ -1,7 +1,7 @@
 export const profile = {
   heroTitle: "Hi, I'm Siddhant Yojit.",
   introText:
-    "Full Stack Developer with internship experience in React.js, Next.js, Node.js, and Express.js. Skilled in REST API integration, authentication workflows, and database management with PostgreSQL. Focused on building responsive applications, writing clean code, and collaborating effectively in team environments.",
+    "Full Stack Developer with internship experience in React.js, Next.js, Node.js, and Express.js. Skilled in REST API integration, authentication workflows, and database management with PostgreSQL and MySQL. Focused on building responsive applications, writing clean code, testing and debugging interfaces, and collaborating effectively in team environments using Git and GitHub.",
   location: "Bengaluru, Karnataka",
   coreFocus:
     "Frontend Development, Full Stack Applications, REST API Development, Responsive Web Development",
@@ -18,7 +18,7 @@ export const profile = {
     {
       icon: "code",
       label: "Current stack",
-      value: "HTML, CSS, JavaScript, TypeScript, React.js, Next.js, Node.js, Express.js, PostgreSQL, Prisma ORM, Git, GitHub, and Vercel.",
+      value: "HTML, CSS, JavaScript, TypeScript, React.js, Next.js, Node.js, Express.js, PostgreSQL, MySQL, Prisma ORM, Git, GitHub, and Vercel.",
     },
     {
       icon: "briefcase",
