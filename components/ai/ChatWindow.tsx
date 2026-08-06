@@ -59,7 +59,7 @@ export function ChatWindow({
   }
 
   return (
-    <section className="fixed bottom-4 right-4 z-[100] flex h-[calc(100dvh-1rem)] w-[calc(100vw-1rem)] overflow-hidden rounded-lg bg-white shadow-lg sm:bottom-6 sm:right-6 sm:h-[680px] sm:w-[440px]">
+    <section className="fixed bottom-4 right-4 z-[100] flex h-[calc(100dvh-1rem)] w-[calc(100vw-1rem)] overflow-hidden rounded-2xl bg-white shadow-[0_20px_60px_rgba(15,23,42,0.18)] ring-1 ring-black/5 sm:bottom-6 sm:right-6 sm:h-[760px] sm:w-[520px] lg:h-[780px] lg:w-[540px]">
       <div className="flex h-full w-full flex-col">
         <ChatHeader />
 

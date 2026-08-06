@@ -62,19 +62,33 @@ export function useChat() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify({
           messages: nextMessages,
         }),
       });
 
-      const payload = (await response.json()) as { message?: string; error?: string };
+      const responseText = await response.text();
+      let payload: { message?: string; error?: string } = {};
 
-      if (!response.ok) {
-        throw new Error(payload.error || "The portfolio assistant could not respond right now.");
+      if (responseText.trim()) {
+        try {
+          payload = JSON.parse(responseText) as { message?: string; error?: string };
+        } catch {
+          payload = {};
+        }
       }
 
-      const assistantMessage = payload.message || "I couldn't find that information in Siddhant's portfolio.";
+      if (!response.ok) {
+        throw new Error(
+          payload.error ||
+            "The portfolio assistant could not respond right now. Please try again.",
+        );
+      }
+
+      const assistantMessage =
+        payload.message || "I couldn't find that information in Siddhant's portfolio.";
       setMessages((current) => [
         ...current,
         createMessage("assistant", assistantMessage),
