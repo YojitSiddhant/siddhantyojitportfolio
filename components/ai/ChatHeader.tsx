@@ -41,34 +41,34 @@ type ChatHeaderProps = {
 
 export function ChatHeader({ onClose }: ChatHeaderProps) {
   return (
-    <header className="relative border-b border-gray-200 px-3 py-2.5">
+    <header className="relative border-b border-border bg-gradient-to-r from-white via-[#fff7fb] to-[#f4f1ff] px-3 py-2.5">
       <div className="flex items-center justify-between gap-3">
         <div className="flex min-w-0 items-center gap-2">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-600 ring-1 ring-blue-100">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent ring-1 ring-accent/20">
             <span className="text-lg leading-none">✦</span>
           </div>
           <div className="min-w-0">
-            <p className="text-sm font-semibold text-gray-900">Ask Siddhant AI</p>
+            <p className="text-sm font-semibold text-foreground">Ask Siddhant AI</p>
           </div>
         </div>
 
         <div className="flex items-center gap-1">
           <div className="relative">
-          <button
-            type="button"
-            className="peer inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-gray-700 transition hover:bg-gray-100 focus:bg-gray-200"
-            aria-label="Chat settings"
-          >
-            <ChatGearIcon className="size-5 transition-transform duration-200 peer-hover:rotate-90 peer-focus:rotate-90" />
-          </button>
-          <div className="invisible absolute right-0 top-full z-20 mt-2 translate-y-1 rounded-lg bg-gray-800 px-3 py-2 text-white opacity-0 shadow-lg transition-all peer-focus:visible peer-focus:translate-y-0 peer-focus:opacity-100 peer-hover:visible peer-hover:translate-y-0 peer-hover:opacity-100">
-            <div className="text-xs font-medium">Ask Siddhant AI v1.0</div>
-          </div>
+            <button
+              type="button"
+              className="peer inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-foreground transition hover:bg-accent-soft focus:bg-accent-soft"
+              aria-label="Chat settings"
+            >
+              <ChatGearIcon className="size-5 transition-transform duration-200 peer-hover:rotate-90 peer-focus:rotate-90" />
+            </button>
+            <div className="invisible absolute right-0 top-full z-20 mt-2 translate-y-1 rounded-lg bg-foreground px-3 py-2 text-white opacity-0 shadow-lg transition-all peer-focus:visible peer-focus:translate-y-0 peer-focus:opacity-100 peer-hover:visible peer-hover:translate-y-0 peer-hover:opacity-100">
+              <div className="text-xs font-medium">Ask Siddhant AI v1.0</div>
+            </div>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-gray-700 transition hover:bg-gray-100 focus:bg-gray-200"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground transition hover:bg-accent-soft focus:bg-accent-soft"
             aria-label="Close chat"
           >
             <ChatCloseIcon className="size-5" />

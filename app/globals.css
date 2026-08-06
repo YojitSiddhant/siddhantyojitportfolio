@@ -1,16 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #111111;
-  --muted: #111111;
-  --surface: #ffffff;
-  --surface-strong: #ffffff;
-  --border: rgba(17, 17, 17, 0.12);
-  --accent: #2563eb;
-  --accent-strong: #1d4ed8;
-  --accent-soft: rgba(37, 99, 235, 0.12);
-  --page-glow: none;
+  --background: #fff9f4;
+  --foreground: #19111d;
+  --muted: #4b4254;
+  --surface: rgba(255, 255, 255, 0.88);
+  --surface-strong: rgba(255, 255, 255, 0.96);
+  --border: rgba(72, 49, 93, 0.14);
+  --accent: #7c3aed;
+  --accent-strong: #ec4899;
+  --accent-soft: rgba(124, 58, 237, 0.12);
+  --page-glow:
+    radial-gradient(circle at 0% 0%, rgba(236, 72, 153, 0.18), transparent 34%),
+    radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.16), transparent 32%),
+    radial-gradient(circle at 50% 100%, rgba(16, 185, 129, 0.14), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 249, 244, 0.98));
   color-scheme: light;
 }
 
@@ -78,7 +82,7 @@ img {
 }
 
 ::selection {
-  background: rgba(37, 99, 235, 0.18);
+  background: rgba(236, 72, 153, 0.2);
   color: var(--foreground);
 }
 
@@ -339,9 +343,9 @@ p {
 .view-detail-button {
   width: 128px;
   height: 46px;
-  border: 3px solid #315cfd;
+  border: 3px solid var(--accent);
   border-radius: 5px;
-  outline: 3px #315cfd solid;
+  outline: 3px var(--accent) solid;
   outline-offset: -3px;
   transition: all 0.3s;
   cursor: pointer;
@@ -354,7 +358,7 @@ p {
 }
 
 .view-detail-button:hover {
-  background: #315cfd;
+  background: var(--accent);
   color: white;
   font-size: 1.08em;
 }
@@ -408,7 +412,7 @@ p {
   cursor: pointer;
   user-select: none;
   overflow: hidden;
-  color: royalblue;
+  color: var(--accent-strong);
   z-index: 1;
   font-family: inherit;
   font-weight: 500;
@@ -424,7 +428,7 @@ p {
   height: 100%;
   background: transparent;
   z-index: -1;
-  border: 4px solid royalblue;
+  border: 4px solid var(--accent-strong);
 }
 
 .work-visit-button span::before {
@@ -443,7 +447,7 @@ p {
 .work-visit-button:hover span::before {
   transform: translate(-50%, -50%) rotate(-90deg);
   width: 100%;
-  background: royalblue;
+  background: var(--accent-strong);
 }
 
 .work-visit-button:hover {
@@ -451,7 +455,7 @@ p {
 }
 
 .work-visit-button:active span::before {
-  background: #2751cd;
+  background: var(--accent);
 }
 
 .burger-menu-button {

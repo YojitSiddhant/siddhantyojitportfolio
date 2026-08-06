@@ -42,7 +42,7 @@ export function ChatMessages({ messages, isSending, error, onRetry }: ChatMessag
   }, [messages, isSending, error]);
 
   return (
-    <ul ref={scrollRef} className="min-h-0 flex-1 space-y-3 overflow-y-auto border-t border-gray-200 p-4 pb-6">
+    <ul ref={scrollRef} className="min-h-0 flex-1 space-y-3 overflow-y-auto border-t border-border bg-gradient-to-b from-white via-white to-[#fffafc] p-4 pb-6">
       {hasMessages
         ? displayMessages.map((message) => (
             <li
@@ -50,13 +50,13 @@ export function ChatMessages({ messages, isSending, error, onRetry }: ChatMessag
               className={`flex flex-col ${message.role === "user" ? "items-end" : "items-start"}`}
             >
               {message.time ? (
-                <div className="text-right text-xs text-gray-500">{message.time}</div>
+                <div className="text-right text-xs text-muted">{message.time}</div>
               ) : null}
               <div
                 className={
                   message.role === "user"
-                    ? "max-w-[80%] rounded-lg bg-blue-600/70 px-3 py-2 text-right text-sm leading-6 text-white"
-                    : "max-w-[90%] rounded-lg bg-gray-100 px-3 py-2 text-sm leading-6 text-gray-900"
+                    ? "max-w-[80%] rounded-lg bg-gradient-to-r from-accent to-accent-strong px-3 py-2 text-right text-sm leading-6 text-white shadow-sm"
+                    : "max-w-[90%] rounded-lg bg-surface px-3 py-2 text-sm leading-6 text-foreground shadow-sm"
                 }
               >
                 {message.content}
@@ -67,19 +67,19 @@ export function ChatMessages({ messages, isSending, error, onRetry }: ChatMessag
 
       {isSending ? (
         <li className="flex flex-col items-start">
-          <div className="flex w-fit items-center gap-1 rounded-lg bg-gray-100 px-2 py-2.5 text-sm">
+          <div className="flex w-fit items-center gap-1 rounded-lg bg-surface px-2 py-2.5 text-sm shadow-sm">
             <TypingIndicator />
           </div>
         </li>
       ) : null}
 
       {error ? (
-        <li className="mt-2 rounded-lg bg-red-50 p-2 text-sm text-red-700">
+        <li className="mt-2 rounded-lg bg-rose-50 p-2 text-sm text-rose-700">
           <div>{error}</div>
           <button
             type="button"
             onClick={onRetry}
-            className="mt-2 inline-flex rounded-full bg-red-600 px-3 py-1.5 text-xs font-semibold text-white"
+            className="mt-2 inline-flex rounded-full bg-rose-600 px-3 py-1.5 text-xs font-semibold text-white"
           >
             Retry
           </button>
