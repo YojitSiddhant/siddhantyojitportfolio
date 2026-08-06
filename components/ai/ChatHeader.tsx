@@ -20,7 +20,26 @@ function ChatGearIcon({ className }: { className?: string }) {
   );
 }
 
-export function ChatHeader() {
+function ChatCloseIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      stroke="currentColor"
+      strokeWidth="1.8"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M6 6l12 12M18 6 6 18" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+type ChatHeaderProps = {
+  onClose: () => void;
+};
+
+export function ChatHeader({ onClose }: ChatHeaderProps) {
   return (
     <header className="relative border-b border-gray-200 px-3 py-2.5">
       <div className="flex items-center justify-between gap-3">
@@ -33,7 +52,8 @@ export function ChatHeader() {
           </div>
         </div>
 
-        <div className="relative">
+        <div className="flex items-center gap-1">
+          <div className="relative">
           <button
             type="button"
             className="peer inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-gray-700 transition hover:bg-gray-100 focus:bg-gray-200"
@@ -44,6 +64,15 @@ export function ChatHeader() {
           <div className="invisible absolute right-0 top-full z-20 mt-2 translate-y-1 rounded-lg bg-gray-800 px-3 py-2 text-white opacity-0 shadow-lg transition-all peer-focus:visible peer-focus:translate-y-0 peer-focus:opacity-100 peer-hover:visible peer-hover:translate-y-0 peer-hover:opacity-100">
             <div className="text-xs font-medium">Ask Siddhant AI v1.0</div>
           </div>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-gray-700 transition hover:bg-gray-100 focus:bg-gray-200"
+            aria-label="Close chat"
+          >
+            <ChatCloseIcon className="size-5" />
+          </button>
         </div>
       </div>
     </header>
