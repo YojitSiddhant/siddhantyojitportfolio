@@ -55,7 +55,7 @@ export function ChatMessages({ messages, isSending, error, onRetry }: ChatMessag
               <div
                 className={
                   message.role === "user"
-                    ? "max-w-[80%] rounded-lg bg-gradient-to-r from-accent to-accent-strong px-3 py-2 text-right text-sm leading-6 text-white shadow-sm"
+                    ? "max-w-[80%] rounded-lg bg-accent px-3 py-2 text-right text-sm leading-6 text-white shadow-sm"
                     : "max-w-[90%] rounded-lg bg-surface px-3 py-2 text-sm leading-6 text-foreground shadow-sm"
                 }
               >

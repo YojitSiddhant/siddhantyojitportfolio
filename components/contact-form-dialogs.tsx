@@ -52,7 +52,7 @@ export function ContactFormDialogs({
               <button
                 type="button"
                 onClick={onClosePopup}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-accent-soft"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-accent hover:text-white"
                 aria-label="Close validation popup"
               >
                 <span aria-hidden="true">×</span>
@@ -111,7 +111,7 @@ export function ContactFormDialogs({
               <button
                 type="button"
                 onClick={onCloseSuccess}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-accent-soft"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-accent hover:text-white"
                 aria-label="Close success popup"
               >
                 <span aria-hidden="true">×</span>

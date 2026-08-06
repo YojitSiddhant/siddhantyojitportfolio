@@ -72,7 +72,7 @@ export function GitHubRepositoryCard({ repo, compact = false }: GitHubRepository
             href={repo.html_url}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full border border-border px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:bg-accent-soft"
+            className="rounded-full border border-border px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:bg-accent hover:text-white"
           >
             GitHub
           </a>
@@ -81,7 +81,7 @@ export function GitHubRepositoryCard({ repo, compact = false }: GitHubRepository
               href={liveUrl}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-border px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:bg-accent-soft"
+              className="rounded-full border border-border px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:bg-accent hover:text-white"
             >
               Live Demo
             </a>

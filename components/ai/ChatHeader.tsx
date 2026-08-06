@@ -41,10 +41,10 @@ type ChatHeaderProps = {
 
 export function ChatHeader({ onClose }: ChatHeaderProps) {
   return (
-    <header className="relative border-b border-border bg-gradient-to-r from-white via-[#fff7fb] to-[#f4f1ff] px-3 py-2.5">
+    <header className="relative border-b border-border bg-white px-3 py-2.5">
       <div className="flex items-center justify-between gap-3">
         <div className="flex min-w-0 items-center gap-2">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent ring-1 ring-accent/20">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent text-white ring-1 ring-accent">
             <span className="text-lg leading-none">✦</span>
           </div>
           <div className="min-w-0">
@@ -56,7 +56,7 @@ export function ChatHeader({ onClose }: ChatHeaderProps) {
           <div className="relative">
             <button
               type="button"
-              className="peer inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-foreground transition hover:bg-accent-soft focus:bg-accent-soft"
+              className="peer inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-foreground transition hover:bg-accent hover:text-white focus:bg-accent focus:text-white"
               aria-label="Chat settings"
             >
               <ChatGearIcon className="size-5 transition-transform duration-200 peer-hover:rotate-90 peer-focus:rotate-90" />
@@ -68,7 +68,7 @@ export function ChatHeader({ onClose }: ChatHeaderProps) {
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground transition hover:bg-accent-soft focus:bg-accent-soft"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground transition hover:bg-accent hover:text-white focus:bg-accent focus:text-white"
             aria-label="Close chat"
           >
             <ChatCloseIcon className="size-5" />

@@ -11,7 +11,7 @@ export function ChatButton() {
       <button
         type="button"
         onClick={chat.toggleChat}
-        className="group fixed bottom-5 right-5 z-[90] inline-flex items-center gap-2 rounded-full border border-accent/15 bg-gradient-to-r from-accent to-accent-strong px-4 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(124,58,237,0.28)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(236,72,153,0.3)] sm:bottom-6 sm:right-6"
+        className="group fixed bottom-5 right-5 z-[90] inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-4 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(0,0,0,0.12)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent hover:shadow-[0_18px_36px_rgba(0,0,0,0.16)] sm:bottom-6 sm:right-6"
         aria-label="Open portfolio AI assistant"
       >
         <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/18 text-base transition-transform duration-200 group-hover:rotate-12">

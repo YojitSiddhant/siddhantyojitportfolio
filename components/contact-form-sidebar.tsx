@@ -18,10 +18,10 @@ type QuickAction = {
 };
 
 const buttonToneClassName: Record<CardTone, string> = {
-  whatsapp: "border-border bg-surface text-foreground hover:border-accent hover:bg-accent-soft",
-  phone: "border-border bg-surface text-foreground hover:border-accent hover:bg-accent-soft",
-  linkedin: "border-border bg-surface text-foreground hover:border-accent hover:bg-accent-soft",
-  github: "border-border bg-surface text-foreground hover:border-accent hover:bg-accent-soft",
+  whatsapp: "border-border bg-surface text-foreground hover:border-accent hover:bg-accent hover:text-white",
+  phone: "border-border bg-surface text-foreground hover:border-accent hover:bg-accent hover:text-white",
+  linkedin: "border-border bg-surface text-foreground hover:border-accent hover:bg-accent hover:text-white",
+  github: "border-border bg-surface text-foreground hover:border-accent hover:bg-accent hover:text-white",
 };
 
 type ContactFormSidebarProps = {

@@ -92,7 +92,7 @@ export function GitHubRepoExplorer({ repos, technologyOptions }: GitHubRepoExplo
             setTechnology("all");
             setSortBy("updated");
           }}
-          className="rounded-full border border-border px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:bg-accent-soft"
+            className="rounded-full border border-border px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:bg-accent hover:text-white"
         >
           Reset
         </button>

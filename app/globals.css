@@ -7,9 +7,9 @@
   --surface: rgba(255, 255, 255, 1);
   --surface-strong: rgba(255, 255, 255, 1);
   --border: rgba(72, 49, 93, 0.14);
-  --accent: #7c3aed;
-  --accent-strong: #ec4899;
-  --accent-soft: rgba(124, 58, 237, 0.12);
+  --accent: #ff0000;
+  --accent-strong: #ff0000;
+  --accent-soft: transparent;
   --page-glow: none;
   color-scheme: light;
 }
@@ -78,8 +78,8 @@ img {
 }
 
 ::selection {
-  background: var(--accent-soft);
-  color: var(--foreground);
+  background: var(--accent);
+  color: #ffffff;
 }
 
 a {

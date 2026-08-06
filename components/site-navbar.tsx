@@ -274,7 +274,7 @@ export function SiteNavbar() {
                   </div>
                   <button
                     type="button"
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface text-foreground transition-colors hover:bg-accent-soft"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface text-foreground transition-colors hover:bg-accent hover:text-white"
                     onClick={() => setIsOpen(false)}
                     aria-label="Close navigation menu"
                   >
@@ -296,8 +296,8 @@ export function SiteNavbar() {
                         }}
                         className={`group inline-flex w-full items-center justify-center gap-2.5 rounded-2xl border px-4 py-2.5 text-center text-sm transition duration-300 motion-reveal ${
                           isActive(item.href)
-                            ? "border-accent! bg-accent! font-bold! text-white!"
-                            : "border-border font-normal text-muted hover:border-accent hover:bg-accent-soft hover:font-bold hover:text-foreground"
+                          ? "border-accent! bg-accent! font-bold! text-white!"
+                            : "border-border font-normal text-muted hover:border-accent hover:bg-accent hover:font-bold hover:text-white"
                         }`}
                         style={{ animationDelay: `${index * 70}ms` }}
                       >

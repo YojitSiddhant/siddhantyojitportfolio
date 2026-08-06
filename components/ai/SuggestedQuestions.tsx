@@ -13,7 +13,7 @@ export function SuggestedQuestions({ questions, onSelect }: SuggestedQuestionsPr
           key={question}
           type="button"
           onClick={() => onSelect(question)}
-          className="rounded-full border border-border bg-surface px-3 py-2 text-left text-xs font-medium text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-accent-soft hover:text-accent"
+          className="rounded-full border border-border bg-surface px-3 py-2 text-left text-xs font-medium text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-accent hover:bg-accent hover:text-white"
         >
           {question}
         </button>
