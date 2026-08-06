@@ -59,20 +59,15 @@ export function ChatWindow({
   }
 
   return (
-    <section className="fixed bottom-5 right-5 z-[100] w-64 overflow-hidden rounded-lg bg-white shadow-lg">
-      <div className="relative">
-          <ChatHeader />
+    <section className="fixed bottom-4 right-4 z-[100] flex h-[calc(100dvh-1rem)] w-[calc(100vw-1rem)] overflow-hidden rounded-lg bg-white shadow-lg sm:bottom-6 sm:right-6 sm:h-[680px] sm:w-[440px]">
+      <div className="flex h-full w-full flex-col">
+        <ChatHeader />
 
-          <ChatMessages messages={messages} isSending={isSending} error={error} onRetry={onRetry} />
+        <ChatMessages messages={messages} isSending={isSending} error={error} onRetry={onRetry} />
 
-          <div className="">
-            <ChatInput
-              value={input}
-              onChange={onInputChange}
-              onSend={onSend}
-              isSending={isSending}
-            />
-          </div>
+        <div className="shrink-0">
+          <ChatInput value={input} onChange={onInputChange} onSend={onSend} isSending={isSending} />
+        </div>
       </div>
     </section>
   );

@@ -1,5 +1,3 @@
-import "server-only";
-
 import type { ChatMessage } from "@/types/ai";
 import { buildPortfolioPrompt } from "./prompt";
 
