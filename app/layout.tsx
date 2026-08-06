@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteNavbar } from "@/components/site-navbar";
 import { ChatButton } from "@/components/ai/ChatButton";
+import { SiteThemeProvider } from "@/components/site-theme-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -20,11 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className="relative isolate min-h-full bg-background text-foreground">
-        <div className="relative z-10">
-          <SiteNavbar />
-          {children}
-          <ChatButton />
-        </div>
+        <SiteThemeProvider>
+          <div className="relative z-10">
+            <SiteNavbar />
+            {children}
+            <ChatButton />
+          </div>
+        </SiteThemeProvider>
       </body>
     </html>
   );

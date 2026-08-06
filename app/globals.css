@@ -1,20 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fff9f4;
+  --background: #ffffff;
   --foreground: #19111d;
   --muted: #4b4254;
-  --surface: rgba(255, 255, 255, 0.88);
-  --surface-strong: rgba(255, 255, 255, 0.96);
+  --surface: rgba(255, 255, 255, 1);
+  --surface-strong: rgba(255, 255, 255, 1);
   --border: rgba(72, 49, 93, 0.14);
   --accent: #7c3aed;
   --accent-strong: #ec4899;
   --accent-soft: rgba(124, 58, 237, 0.12);
-  --page-glow:
-    radial-gradient(circle at 0% 0%, rgba(236, 72, 153, 0.18), transparent 34%),
-    radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.16), transparent 32%),
-    radial-gradient(circle at 50% 100%, rgba(16, 185, 129, 0.14), transparent 34%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 249, 244, 0.98));
+  --page-glow: none;
   color-scheme: light;
 }
 
@@ -82,7 +78,7 @@ img {
 }
 
 ::selection {
-  background: rgba(236, 72, 153, 0.2);
+  background: var(--accent-soft);
   color: var(--foreground);
 }
 
