@@ -7,15 +7,15 @@ export function ChatButton() {
   const chat = useChat();
 
   return (
-    <div className="relative z-[90] mx-auto w-fit">
+    <div className="fixed right-4 bottom-4 z-[90] w-fit sm:right-6 sm:bottom-6">
       <button
         type="button"
         onClick={chat.toggleChat}
         aria-label="Open portfolio AI assistant"
-        className="group relative aspect-square h-[var(--sz-btn)] w-[var(--sz-btn)] cursor-pointer rounded-xl border border-solid border-transparent bg-sky-200 bg-[linear-gradient(45deg,#efad21,#ffd60f)] [--sz-btn:68px] [--space:calc(var(--sz-btn)/5.5)] [--gen-sz:calc(var(--space)*2)] [--sz-text:calc(var(--sz-btn)-var(--gen-sz))] [box-shadow:#3c40434d_0_1px_2px_0,#3c404326_0_2px_6px_2px,#0000004d_0_30px_60px_-30px,#34343459_0_-2px_6px_0_inset] transition-transform duration-200 active:scale-[0.95]"
+        className="group relative aspect-square h-[var(--sz-btn)] w-[var(--sz-btn)] cursor-pointer rounded-xl border border-solid border-transparent bg-[linear-gradient(45deg,#1d4ed8,#3b82f6)] [--sz-btn:68px] [--space:calc(var(--sz-btn)/5.5)] [--gen-sz:calc(var(--space)*2)] [--sz-text:calc(var(--sz-btn)-var(--gen-sz))] [box-shadow:#3c40434d_0_1px_2px_0,#3c404326_0_2px_6px_2px,#0000004d_0_30px_60px_-30px,#34343459_0_-2px_6px_0_inset] transition-transform duration-200 active:scale-[0.95]"
       >
         <svg
-          className="absolute left-[calc(var(--sz-text)/7)] top-[calc(var(--sz-text)/7)] z-10 h-[var(--gen-sz)] w-[var(--gen-sz)] animate-pulse overflow-visible text-[#ffea50] transition-all duration-300 group-hover:left-[calc(var(--sz-text)/4)] group-hover:top-[calc(calc(var(--gen-sz))/2)] group-hover:h-[var(--sz-text)] group-hover:w-[var(--sz-text)] group-hover:text-white"
+          className="absolute left-[calc(var(--sz-text)/7)] top-[calc(var(--sz-text)/7)] z-10 h-[var(--gen-sz)] w-[var(--gen-sz)] animate-pulse overflow-visible text-[#dbeafe] transition-all duration-300 group-hover:left-[calc(var(--sz-text)/4)] group-hover:top-[calc(calc(var(--gen-sz))/2)] group-hover:h-[var(--sz-text)] group-hover:w-[var(--sz-text)] group-hover:text-white"
           stroke="none"
           viewBox="0 0 24 24"
           fill="currentColor"
