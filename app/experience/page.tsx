@@ -77,7 +77,9 @@ export default function ExperiencePage() {
 
       <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
         <div className="grid gap-5">
-          {experience.map((item, index) => (
+          {[...experience]
+            .sort((a, b) => a.order - b.order)
+            .map((item, index) => (
             <article
               key={`${item.role}-${item.company}`}
               className="flex flex-col gap-4 border-b border-border pb-5 motion-reveal"
@@ -91,14 +93,13 @@ export default function ExperiencePage() {
                   </div>
                   <div className="mt-2 flex flex-wrap items-center gap-3">
                     {item.logo ? (
-                      <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
+                      <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl bg-transparent">
                         <Image
                           src={item.logo}
                           alt={`${item.company} logo`}
                           width={48}
                           height={48}
-                          className="h-full w-full object-cover"
-                          priority
+                          className="h-full w-full object-contain p-0"
                         />
                       </div>
                     ) : null}
