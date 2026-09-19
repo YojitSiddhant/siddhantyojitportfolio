@@ -241,7 +241,7 @@ export default function Home() {
                   <LayersIcon className="h-4 w-4 text-accent" />
                   Focus areas
                 </p>
-                <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                <div className="accent-cycle mt-4 grid gap-4 sm:grid-cols-2">
                   <FocusCard
                     icon="layers"
                     title="Responsive UI"
@@ -388,7 +388,7 @@ export default function Home() {
           </article>
         </div>
 
-        <section className="grid items-stretch gap-4 md:grid-cols-3">
+        <section className="accent-cycle grid items-stretch gap-4 md:grid-cols-3">
           {values.map((item, index) => (
             <article
               key={item.title}
@@ -412,7 +412,7 @@ export default function Home() {
             <CodeIcon className="h-4 w-4 text-accent" />
             How I work
           </p>
-          <div className="mt-4 grid items-stretch gap-3 lg:grid-cols-3">
+          <div className="accent-cycle mt-4 grid items-stretch gap-3 lg:grid-cols-3">
             {workingStyle.map((item, index) => (
               <div
                 key={item.title}

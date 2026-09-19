@@ -8,9 +8,9 @@
   --surface-strong: rgba(255, 255, 255, 1);
   --border: rgba(15, 23, 42, 0.09);
   --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px rgba(15, 23, 42, 0.12);
-  --accent: #2563eb;
-  --accent-strong: #1d4ed8;
-  --accent-soft: rgba(37, 99, 235, 0.12);
+  --accent: #0f766e;
+  --accent-strong: #115e59;
+  --accent-soft: rgba(15, 118, 110, 0.12);
   --page-glow: none;
   color-scheme: light;
 }
@@ -744,4 +744,17 @@ p {
   .github-detail-button .github-detail-button__text {
     font-size: 0.95em;
   }
+}
+
+/* Rotate the accent across sibling cards so icons are not all one colour */
+.accent-cycle > :nth-child(3n + 2) {
+  --accent: #b45309;
+  --accent-strong: #92400e;
+  --accent-soft: rgba(180, 83, 9, 0.12);
+}
+
+.accent-cycle > :nth-child(3n) {
+  --accent: #6d28d9;
+  --accent-strong: #5b21b6;
+  --accent-soft: rgba(109, 40, 217, 0.12);
 }
