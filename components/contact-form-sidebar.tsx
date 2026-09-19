@@ -60,67 +60,58 @@ export function ContactFormSidebar({ links }: ContactFormSidebarProps) {
     },
   ];
 
+  const details = [
+    { label: "Email", value: links.email },
+    { label: "Phone", value: links.phone },
+    {
+      label: "Availability",
+      value:
+        "Open to Full-Time Software Engineer, Frontend Developer, React Developer, Next.js Developer, and Full Stack Developer opportunities.",
+    },
+    { label: "Preferred Location", value: "Bengaluru, Karnataka" },
+    { label: "Response Time", value: "Usually within 24 hours." },
+  ];
+
   return (
-    <div className="rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 motion-reveal" style={{ animationDelay: "160ms" }}>
-      <div className="flex h-full">
-        <div className="flex h-full w-full flex-col gap-5">
-          <div className="flex flex-wrap items-center gap-3">
-            {quickActions.map(({ label, href, Icon, iconClassName, tone }, index) => {
-              const isExternal = href.startsWith("http");
-              return (
-                <a
-                  key={label}
-                  href={href}
-                  target={isExternal ? "_blank" : undefined}
-                  rel={isExternal ? "noreferrer" : undefined}
-                  aria-label={label}
-                  className={`group inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border shadow-lg transition-all duration-200 ease-out hover:scale-105 hover:shadow-xl motion-reveal sm:h-14 sm:w-14 ${buttonToneClassName[tone]}`}
-                  style={{ animationDelay: `${220 + index * 90}ms` }}
-                >
-                  <Icon className={`h-6 w-6 transition-transform duration-200 group-hover:scale-110 sm:h-7 sm:w-7 ${iconClassName}`} />
-                </a>
-              );
-            })}
-          </div>
+    <div className="flex h-full flex-col gap-4 motion-reveal" style={{ animationDelay: "160ms" }}>
+      <div className="rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6">
+        <p className="text-sm font-black uppercase tracking-wider text-foreground">Connect</p>
+        <div className="mt-4 grid grid-cols-4 gap-3">
+          {quickActions.map(({ label, href, Icon, iconClassName, tone }, index) => {
+            const isExternal = href.startsWith("http");
+            return (
+              <a
+                key={label}
+                href={href}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noreferrer" : undefined}
+                aria-label={label}
+                className={`group flex flex-col items-center gap-2 rounded-xl border px-2 py-4 text-xs font-black uppercase tracking-wider transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md motion-reveal ${buttonToneClassName[tone]}`}
+                style={{ animationDelay: `${220 + index * 90}ms` }}
+              >
+                <Icon className={`h-6 w-6 transition-transform duration-200 group-hover:scale-110 ${iconClassName}`} />
+                <span className="hidden sm:block">{label}</span>
+              </a>
+            );
+          })}
+        </div>
+      </div>
 
-          <div
-            className="flex w-full flex-1 flex-col justify-between rounded-xl border border-border bg-background p-4 motion-reveal"
-            style={{ animationDelay: "420ms" }}
-          >
-            <p className="text-sm font-black uppercase tracking-wider text-foreground">
-              Quick details
-            </p>
-            <p className="mt-1.5 text-xs leading-5 text-muted">
-              Share these details in your message so I can reply quickly and clearly.
-            </p>
-            <div className="mt-3 flex flex-1 flex-col">
-              <div className="flex flex-1 flex-col justify-center gap-1 border-b border-border py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
-                <p className="text-xs font-black uppercase tracking-wider text-foreground">
-                  Availability
-                </p>
-                <p className="max-w-none text-left text-sm text-muted sm:max-w-80 sm:text-right">
-                  Open to Full-Time Software Engineer, Frontend Developer, React Developer, Next.js Developer, and Full Stack Developer opportunities.
-                </p>
-              </div>
-              <div className="flex flex-1 flex-col justify-center gap-1 border-b border-border py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
-                <p className="text-xs font-black uppercase tracking-wider text-foreground">
-                  Preferred Location
-                </p>
-                <p className="max-w-none text-left text-sm text-muted sm:max-w-80 sm:text-right">
-                  Bengaluru, Karnataka
-                </p>
-              </div>
-              <div className="flex flex-1 flex-col justify-center gap-1 pt-3 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
-                <p className="text-xs font-black uppercase tracking-wider text-foreground">
-                  Response Time
-                </p>
-                <p className="max-w-none text-left text-sm text-muted sm:max-w-80 sm:text-right">
-                  Usually within 24 hours.
-                </p>
-              </div>
+      <div className="flex flex-1 flex-col rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 motion-reveal" style={{ animationDelay: "420ms" }}>
+        <p className="text-sm font-black uppercase tracking-wider text-foreground">Quick details</p>
+        <p className="mt-1.5 text-sm leading-6 text-muted">
+          Share these details in your message so I can reply quickly and clearly.
+        </p>
+        <div className="mt-3 flex flex-1 flex-col">
+          {details.map((item) => (
+            <div
+              key={item.label}
+              className="flex flex-1 flex-col justify-center gap-1 border-t border-border py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+            >
+              <p className="shrink-0 text-xs font-black uppercase tracking-wider text-foreground">{item.label}</p>
+              <p className="text-left text-sm text-muted sm:max-w-80 sm:text-right">{item.value}</p>
             </div>
-          </div>
-
+          ))}
         </div>
       </div>
     </div>
