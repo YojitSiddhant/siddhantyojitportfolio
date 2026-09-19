@@ -167,7 +167,7 @@ export default function Home() {
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-background" />
 
       <section className="relative z-10 mx-auto flex w-full max-w-none flex-col gap-5 px-4 pb-8 pt-2 sm:px-6 sm:pb-10 sm:pt-3 lg:px-8 lg:pt-4 motion-reveal">
-        <div className="grid items-start gap-5 lg:grid-cols-2">
+        <div className="grid items-stretch gap-4 lg:grid-cols-2">
           <article
             className="flex flex-col gap-5 rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 text-left motion-reveal"
             style={{ animationDelay: "80ms" }}
@@ -279,7 +279,7 @@ export default function Home() {
           </article>
 
           <article
-            className="flex flex-col gap-5 rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 text-left motion-reveal"
+            className="flex flex-col justify-between gap-5 rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 text-left motion-reveal"
             style={{ animationDelay: "180ms" }}
           >
             <div className="flex items-center justify-between gap-3">
