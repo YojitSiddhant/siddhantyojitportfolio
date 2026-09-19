@@ -9,7 +9,7 @@ type PageShellProps = {
 
 export function PageShell({
   children,
-  maxWidthClassName = "max-w-6xl",
+  maxWidthClassName = "max-w-none",
   sectionClassName = "",
   animated = true,
 }: PageShellProps) {

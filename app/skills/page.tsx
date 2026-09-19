@@ -131,7 +131,7 @@ export default function SkillsPage() {
                 <TechBadgeIcon className="h-4 w-4 text-accent" />
                 {section.title}
               </p>
-              <div className="mx-auto grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mx-auto grid max-w-none gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {section.items.map((skill, index) => (
                   <SkillCard key={skill.name} skill={skill} index={index} sectionIndex={sectionIndex} />
                 ))}

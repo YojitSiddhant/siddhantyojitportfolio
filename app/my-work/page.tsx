@@ -60,7 +60,7 @@ const sortedWorkItems = [...workItems].sort((a, b) => a.order - b.order);
 
 export default function MyWorkPage() {
   return (
-    <PageShell maxWidthClassName="max-w-7xl">
+    <PageShell maxWidthClassName="max-w-none">
       <PageSectionHeader
         className="motion-reveal"
         style={{ animationDelay: "80ms" }}

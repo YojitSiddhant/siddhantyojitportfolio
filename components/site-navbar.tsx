@@ -216,7 +216,7 @@ export function SiteNavbar() {
   return (
     <>
       <header className="sticky top-0 z-50 bg-surface-strong backdrop-blur-md supports-backdrop-filter:bg-surface-strong">
-        <div className="portfolio-navbar-shell mx-auto flex w-full max-w-7xl items-center justify-between px-3 py-3 sm:px-6 sm:py-4 lg:px-8 motion-reveal">
+        <div className="portfolio-navbar-shell mx-auto flex w-full max-w-none items-center justify-between px-3 py-3 sm:px-6 sm:py-4 lg:px-8 motion-reveal">
           <Link
             href="/"
             className="portfolio-navbar-logo relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full shadow-md"
