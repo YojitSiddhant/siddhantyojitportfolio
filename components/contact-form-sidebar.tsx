@@ -1,27 +1,19 @@
 import type { ContactLinks } from "@/components/contact-form-utils";
-import {
-  GitHubIcon,
-  LinkedInIcon,
-  PhoneIcon,
-  WhatsAppIcon,
-} from "@/components/contact-form-icons";
-import { iconToneClassName } from "@/components/contact-form-icons";
 
 type CardTone = "whatsapp" | "phone" | "linkedin" | "github";
 
 type QuickAction = {
   label: string;
   href: string;
-  Icon: ({ className }: { className?: string }) => React.JSX.Element;
-  iconClassName: string;
+  iconSrc: string;
   tone: CardTone;
 };
 
 const buttonToneClassName: Record<CardTone, string> = {
-  whatsapp: "border-border bg-surface text-foreground hover:border-accent hover:bg-accent hover:text-white",
-  phone: "border-border bg-surface text-foreground hover:border-accent hover:bg-accent hover:text-white",
-  linkedin: "border-border bg-surface text-foreground hover:border-accent hover:bg-accent hover:text-white",
-  github: "border-border bg-surface text-foreground hover:border-accent hover:bg-accent hover:text-white",
+  whatsapp: "border-border bg-surface text-foreground",
+  phone: "border-border bg-surface text-foreground",
+  linkedin: "border-border bg-surface text-foreground",
+  github: "border-border bg-surface text-foreground",
 };
 
 type ContactFormSidebarProps = {
@@ -33,29 +25,25 @@ export function ContactFormSidebar({ links }: ContactFormSidebarProps) {
     {
       label: "WhatsApp",
       href: links.whatsapp,
-      Icon: WhatsAppIcon,
-      iconClassName: iconToneClassName.whatsapp,
+      iconSrc: "https://api.iconify.design/logos/whatsapp-icon.svg",
       tone: "whatsapp",
     },
     {
       label: "Call",
       href: `tel:${links.phone.replace(/\s+/g, "")}`,
-      Icon: PhoneIcon,
-      iconClassName: iconToneClassName.phone,
+      iconSrc: "https://api.iconify.design/fluent-emoji-flat/telephone-receiver.svg",
       tone: "phone",
     },
     {
       label: "LinkedIn",
       href: links.linkedin,
-      Icon: LinkedInIcon,
-      iconClassName: iconToneClassName.linkedin,
+      iconSrc: "https://api.iconify.design/logos/linkedin-icon.svg",
       tone: "linkedin",
     },
     {
       label: "GitHub",
       href: links.github,
-      Icon: GitHubIcon,
-      iconClassName: iconToneClassName.github,
+      iconSrc: "https://api.iconify.design/logos/github-icon.svg",
       tone: "github",
     },
   ];
@@ -77,7 +65,7 @@ export function ContactFormSidebar({ links }: ContactFormSidebarProps) {
       <div className="rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6">
         <p className="text-sm font-black uppercase tracking-wider text-foreground">Connect</p>
         <div className="mt-4 grid grid-cols-4 gap-3">
-          {quickActions.map(({ label, href, Icon, iconClassName, tone }, index) => {
+          {quickActions.map(({ label, href, iconSrc, tone }, index) => {
             const isExternal = href.startsWith("http");
             return (
               <a
@@ -89,7 +77,12 @@ export function ContactFormSidebar({ links }: ContactFormSidebarProps) {
                 className={`group flex flex-col items-center gap-2 rounded-xl border px-2 py-4 text-xs font-black uppercase tracking-wider transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md motion-reveal ${buttonToneClassName[tone]}`}
                 style={{ animationDelay: `${220 + index * 90}ms` }}
               >
-                <Icon className={`h-6 w-6 transition-transform duration-200 group-hover:scale-110 ${iconClassName}`} />
+                <img
+                  src={iconSrc}
+                  alt=""
+                  className="h-7 w-7 transition-transform duration-200 group-hover:scale-110"
+                  loading="lazy"
+                />
                 <span className="hidden sm:block">{label}</span>
               </a>
             );

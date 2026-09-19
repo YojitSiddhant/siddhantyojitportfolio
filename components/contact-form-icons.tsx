@@ -163,8 +163,8 @@ export function SendIcon({ className }: IconProps) {
 }
 
 export const iconToneClassName = {
-  whatsapp: "text-foreground",
-  phone: "text-foreground",
-  linkedin: "text-foreground",
-  github: "text-foreground",
+  whatsapp: "text-[#25D366]",
+  phone: "text-[#2563eb]",
+  linkedin: "text-[#0A66C2]",
+  github: "text-[#181717]",
 } as const;
