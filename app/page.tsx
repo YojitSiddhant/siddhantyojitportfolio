@@ -407,26 +407,20 @@ export default function Home() {
           ))}
         </section>
 
-        <section className="rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6">
-          <p className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground">
-            <CodeIcon className="h-4 w-4 text-accent" />
-            How I work
-          </p>
-          <div className="mt-4 grid items-stretch gap-3 lg:grid-cols-3">
-            {workingStyle.map((item, index) => (
-              <div
-                key={item.title}
-                className="flex flex-col items-start rounded-xl border border-border bg-background p-4 text-left motion-reveal"
-                style={{ animationDelay: `${220 + index * 120}ms` }}
-              >
-                <div className="flex items-center gap-2 text-sm font-black text-foreground">
-                  {renderIcon(item.icon, "h-4 w-4 text-accent")}
-                  Approach
-                </div>
-                <p className="mt-2 text-sm leading-7 text-muted">{item.title}</p>
+        <section className="grid items-stretch gap-4 md:grid-cols-3">
+          {workingStyle.map((item, index) => (
+            <article
+              key={item.title}
+              className="flex flex-col items-start rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 text-left motion-reveal"
+              style={{ animationDelay: `${220 + index * 120}ms` }}
+            >
+              <div className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
+                {renderIcon(item.icon, "h-4 w-4 text-accent")}
+                How I work
               </div>
-            ))}
-          </div>
+              <p className="mt-3 text-sm leading-7 text-muted">{item.title}</p>
+            </article>
+          ))}
         </section>
       </section>
     </main>
