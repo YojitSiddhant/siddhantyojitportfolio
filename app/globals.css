@@ -15,6 +15,20 @@
   color-scheme: light;
 }
 
+:root[data-theme="dark"] {
+  --background: #0b0f17;
+  --foreground: #e8ecf3;
+  --muted: #9aa6b8;
+  --surface: #131a26;
+  --surface-strong: #131a26;
+  --border: rgba(255, 255, 255, 0.11);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  --accent: #2dd4bf;
+  --accent-strong: #5eead4;
+  --accent-soft: rgba(45, 212, 191, 0.16);
+  color-scheme: dark;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -33,7 +47,6 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: light;
   min-height: 100%;
   -webkit-text-size-adjust: 100%;
   background: var(--background);
@@ -347,7 +360,7 @@ p {
   outline-offset: -3px;
   transition: all 0.3s;
   cursor: pointer;
-  background: white;
+  background: var(--surface);
   font-size: 0.95em;
   font-weight: 550;
   display: inline-flex;
@@ -435,7 +448,7 @@ p {
   position: absolute;
   width: 8%;
   height: 500%;
-  background: var(--background);
+  background: var(--surface);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-60deg);
@@ -775,4 +788,93 @@ main .grid > :nth-child(5n) {
   --accent: #059669;
   --accent-strong: #047857;
   --accent-soft: rgba(5, 150, 105, 0.12);
+}
+
+/* Dark mode */
+:root[data-theme="dark"] main .grid > :nth-child(5n + 1) {
+  --accent: #60a5fa;
+  --accent-strong: #93c5fd;
+  --accent-soft: rgba(96, 165, 250, 0.16);
+}
+
+:root[data-theme="dark"] main .grid > :nth-child(5n + 2) {
+  --accent: #fb7185;
+  --accent-strong: #fda4af;
+  --accent-soft: rgba(251, 113, 133, 0.16);
+}
+
+:root[data-theme="dark"] main .grid > :nth-child(5n + 3) {
+  --accent: #fbbf24;
+  --accent-strong: #fcd34d;
+  --accent-soft: rgba(251, 191, 36, 0.16);
+}
+
+:root[data-theme="dark"] main .grid > :nth-child(5n + 4) {
+  --accent: #a78bfa;
+  --accent-strong: #c4b5fd;
+  --accent-soft: rgba(167, 139, 250, 0.16);
+}
+
+:root[data-theme="dark"] main .grid > :nth-child(5n) {
+  --accent: #34d399;
+  --accent-strong: #6ee7b7;
+  --accent-soft: rgba(52, 211, 153, 0.16);
+}
+
+/* Buttons and text on accent backgrounds need dark text on the lighter dark-mode accents */
+:root[data-theme="dark"] .send-button,
+:root[data-theme="dark"] .view-detail-button:hover,
+:root[data-theme="dark"] .work-visit-button:hover {
+  color: #06251f;
+}
+
+:root[data-theme="dark"] .github-detail-button {
+  background-color: #e2e8f0;
+  outline-color: #e2e8f0;
+}
+
+:root[data-theme="dark"] .github-detail-button .github-detail-button__text {
+  color: #0f172a;
+}
+
+:root[data-theme="dark"] .github-detail-button svg path {
+  fill: #0f172a;
+}
+
+:root[data-theme="dark"] .github-detail-button:hover {
+  background-color: transparent;
+}
+
+:root[data-theme="dark"] .github-detail-button:hover .github-detail-button__text {
+  color: #e2e8f0;
+}
+
+:root[data-theme="dark"] .github-detail-button:hover svg path {
+  fill: #e2e8f0;
+}
+
+/* Logos that are drawn in black would vanish on dark cards */
+:root[data-theme="dark"] img[src*="nextjs"],
+:root[data-theme="dark"] img[src*="github-original"],
+:root[data-theme="dark"] img[src*="github-icon"],
+:root[data-theme="dark"] img[src*="express"],
+:root[data-theme="dark"] img[src*="vercel"],
+:root[data-theme="dark"] img[src*="prisma"] {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* White text sits on accent fills, which are light in dark mode */
+:root[data-theme="dark"] .text-white,
+:root[data-theme="dark"] [class*="hover:text-white"]:hover,
+:root[data-theme="dark"] [class*="group-hover:text-white"] {
+  color: #06251f !important;
+}
+
+:root[data-theme="dark"] img[src*="mysql"],
+:root[data-theme="dark"] img[src*="fa6-solid"] {
+  filter: brightness(1.6) saturate(1.1);
+}
+
+:root[data-theme="dark"] img[src*="/company-logos/"] {
+  background: #ffffff;
 }
