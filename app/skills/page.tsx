@@ -65,7 +65,7 @@ function SkillCard({
 }) {
   return (
     <article
-      className="flex flex-col items-center justify-center gap-3 rounded-3xl border border-border bg-surface px-4 py-6 text-center motion-reveal"
+      className="flex min-w-36 flex-1 basis-40 flex-col items-center justify-center gap-3 rounded-2xl border border-border bg-surface px-4 py-5 text-center shadow-card motion-reveal"
       style={{ animationDelay: `${220 + sectionIndex * 180 + index * 100}ms` }}
     >
       {skill.textOnly ? null : (
@@ -123,7 +123,7 @@ export default function SkillsPage() {
         }
       />
 
-      <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
+      <section className="motion-reveal" style={{ animationDelay: "160ms" }}>
         <div className="grid gap-8">
           {skillSections.map((section, sectionIndex) => (
             <div key={section.title} className="grid gap-4">
@@ -131,7 +131,7 @@ export default function SkillsPage() {
                 <TechBadgeIcon className="h-4 w-4 text-accent" />
                 {section.title}
               </p>
-              <div className="mx-auto grid max-w-none gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="flex flex-wrap gap-4">
                 {section.items.map((skill, index) => (
                   <SkillCard key={skill.name} skill={skill} index={index} sectionIndex={sectionIndex} />
                 ))}
