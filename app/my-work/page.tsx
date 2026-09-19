@@ -73,33 +73,33 @@ export default function MyWorkPage() {
         right={<div className="text-sm font-black text-foreground sm:text-right">Featured work</div>}
       />
 
-      <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
-        <div className="grid justify-items-stretch gap-10 md:grid-cols-2 md:gap-12 xl:grid-cols-3 xl:gap-14">
+      <section className="motion-reveal" style={{ animationDelay: "160ms" }}>
+        <div className="flex flex-wrap gap-4">
           {sortedWorkItems.map((item, index) => (
             <article
               key={item.title}
-              className="flex h-full w-full max-w-none flex-col items-center gap-6 motion-reveal md:max-w-88 xl:max-w-96"
+              className="flex w-full grow basis-full flex-col items-center justify-center gap-5 rounded-2xl border border-border bg-surface p-6 shadow-card motion-reveal md:basis-[calc(50%-0.5rem)] lg:basis-[calc(25%-0.75rem)]"
               style={{ animationDelay: `${220 + index * 120}ms` }}
             >
               <div className="flex w-full flex-col items-center gap-4 text-center">
                 {item.logo ? (
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
+                  <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
                     <Image
                       src={item.logo}
                       alt={`${item.title} logo`}
-                      width={48}
-                      height={48}
+                      width={64}
+                      height={64}
                       className="h-full w-full object-cover"
                       priority={index === 0}
                     />
                   </div>
                 ) : (
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-dashed border-border bg-surface text-xs font-black uppercase tracking-widest text-muted shadow-sm">
+                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-dashed border-border bg-surface text-xs font-black uppercase tracking-widest text-muted shadow-sm">
                     Photo
                   </div>
                 )}
 
-                <h2 className="sr-only">{item.title}</h2>
+                <h2 className="text-lg font-bold tracking-normal text-foreground">{item.title}</h2>
 
                 {item.links.length > 0 ? <VisitSiteButton href={item.links[0].url} /> : null}
               </div>
