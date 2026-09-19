@@ -19,14 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem("theme");if(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t==="dark")document.documentElement.dataset.theme="dark"}catch(e){}`,
-          }}
-        />
-      </head>
+    <html lang="en" className="h-full antialiased">
       <body className="relative isolate min-h-full bg-background text-foreground">
         <SiteThemeProvider>
           <div className="relative z-10">

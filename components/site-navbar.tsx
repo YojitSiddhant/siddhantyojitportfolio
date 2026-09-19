@@ -1,6 +1,5 @@
 "use client";
 
-import { ThemeToggle } from "@/components/theme-toggle";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -234,8 +233,6 @@ export function SiteNavbar() {
             >
               Siddhant Yojit
             </Link>
-
-            <ThemeToggle />
 
             <button
               type="button"

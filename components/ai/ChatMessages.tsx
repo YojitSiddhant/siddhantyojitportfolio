@@ -42,7 +42,7 @@ export function ChatMessages({ messages, isSending, error, onRetry }: ChatMessag
   }, [messages, isSending, error]);
 
   return (
-    <ul ref={scrollRef} className="min-h-0 flex-1 space-y-3 overflow-y-auto border-t border-border bg-background p-4 pb-6">
+    <ul ref={scrollRef} className="min-h-0 flex-1 space-y-3 overflow-y-auto border-t border-border bg-gradient-to-b from-white via-white to-[#fffafc] p-4 pb-6">
       {hasMessages
         ? displayMessages.map((message) => (
             <li

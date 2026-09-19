@@ -41,7 +41,7 @@ type ChatHeaderProps = {
 
 export function ChatHeader({ onClose }: ChatHeaderProps) {
   return (
-    <header className="relative border-b border-border bg-surface px-3 py-2.5">
+    <header className="relative border-b border-border bg-white px-3 py-2.5">
       <div className="flex items-center justify-between gap-3">
         <div className="flex min-w-0 items-center gap-2">
           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent text-white ring-1 ring-accent">

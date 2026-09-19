@@ -65,7 +65,7 @@ export function ChatWindow({
         aria-hidden="true"
         onClick={onClose}
       />
-      <section className="fixed inset-2 z-[100] flex h-[calc(100dvh-1rem)] w-[calc(100vw-1rem)] max-h-[calc(100dvh-1rem)] max-w-[calc(100vw-1rem)] overflow-hidden rounded-2xl bg-surface shadow-[0_20px_60px_rgba(15,23,42,0.18)] ring-1 ring-border sm:inset-auto sm:bottom-6 sm:right-6 sm:h-[min(760px,calc(100dvh-3rem))] sm:w-[min(520px,calc(100vw-3rem))] lg:h-[min(780px,calc(100dvh-3rem))] lg:w-[min(540px,calc(100vw-3rem))]">
+      <section className="fixed inset-2 z-[100] flex h-[calc(100dvh-1rem)] w-[calc(100vw-1rem)] max-h-[calc(100dvh-1rem)] max-w-[calc(100vw-1rem)] overflow-hidden rounded-2xl bg-white shadow-[0_20px_60px_rgba(15,23,42,0.18)] ring-1 ring-black/5 sm:inset-auto sm:bottom-6 sm:right-6 sm:h-[min(760px,calc(100dvh-3rem))] sm:w-[min(520px,calc(100vw-3rem))] lg:h-[min(780px,calc(100dvh-3rem))] lg:w-[min(540px,calc(100vw-3rem))]">
         <div className="flex h-full w-full flex-col">
           <ChatHeader onClose={onClose} />
 
