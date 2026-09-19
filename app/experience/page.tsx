@@ -93,13 +93,13 @@ export default function ExperiencePage() {
                   </div>
                   <div className="mt-2 flex flex-wrap items-center gap-3">
                     {item.logo ? (
-                      <div className="flex h-12 items-center justify-center overflow-hidden rounded-xl bg-transparent">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
                         <Image
                           src={item.logo}
                           alt={`${item.company} logo`}
-                          width={192}
-                          height={96}
-                          className="h-full w-auto max-w-32 object-contain"
+                          width={48}
+                          height={48}
+                          className="h-full w-full object-cover"
                         />
                       </div>
                     ) : null}
