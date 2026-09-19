@@ -93,28 +93,28 @@ export function ContactFormSidebar({ links }: ContactFormSidebarProps) {
             <p className="mt-1.5 text-xs leading-5 text-muted">
               Share these details in your message so I can reply quickly and clearly.
             </p>
-            <div className="mt-3 grid flex-1 content-between gap-3">
-              <div className="flex flex-col gap-1 border-b border-border pb-3 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
+            <div className="mt-3 flex flex-1 flex-col">
+              <div className="flex flex-1 flex-col justify-center gap-1 border-b border-border py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
                 <p className="text-xs font-black uppercase tracking-wider text-foreground">
                   Availability
                 </p>
-                <p className="max-w-none text-left text-xs text-muted sm:max-w-80 sm:text-right">
+                <p className="max-w-none text-left text-sm text-muted sm:max-w-80 sm:text-right">
                   Open to Full-Time Software Engineer, Frontend Developer, React Developer, Next.js Developer, and Full Stack Developer opportunities.
                 </p>
               </div>
-              <div className="flex flex-col gap-1 border-b border-border pb-3 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
+              <div className="flex flex-1 flex-col justify-center gap-1 border-b border-border py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
                 <p className="text-xs font-black uppercase tracking-wider text-foreground">
                   Preferred Location
                 </p>
-                <p className="max-w-none text-left text-xs text-muted sm:max-w-80 sm:text-right">
+                <p className="max-w-none text-left text-sm text-muted sm:max-w-80 sm:text-right">
                   Bengaluru, Karnataka
                 </p>
               </div>
-              <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
+              <div className="flex flex-1 flex-col justify-center gap-1 pt-3 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
                 <p className="text-xs font-black uppercase tracking-wider text-foreground">
                   Response Time
                 </p>
-                <p className="max-w-none text-left text-xs text-muted sm:max-w-80 sm:text-right">
+                <p className="max-w-none text-left text-sm text-muted sm:max-w-80 sm:text-right">
                   Usually within 24 hours.
                 </p>
               </div>
