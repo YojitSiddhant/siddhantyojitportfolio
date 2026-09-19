@@ -5,7 +5,7 @@ export const experience = [
     duration: "Aug 2026 – Present",
     description:
       "Contributing to full-stack web development with a focus on building responsive user interfaces and scalable product features.\nWorking with modern frontend and backend workflows to improve usability, maintainability, and overall application performance.\nAssisting with API integration, debugging, testing, and iterative feature delivery across web experiences.\nCollaborating with the team to translate product requirements into clean, functional, and user-friendly implementations.",
-    logo: "/company-logos/gharpayy-logo.jpeg",
+    logo: "/company-logos/gharpayy-logo.png",
     order: 1,
   },
   {
