@@ -75,7 +75,7 @@ export default function ExperiencePage() {
         right={<div className="text-sm font-black text-foreground">Work history</div>}
       />
 
-      <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
+      <section className="motion-reveal" style={{ animationDelay: "160ms" }}>
         <div className="grid gap-5">
           {[...experience]
             .sort((a, b) => a.order - b.order)

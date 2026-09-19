@@ -62,7 +62,7 @@ export default function CertificatePage() {
         right={<div className="text-sm font-black text-foreground">Completed learning</div>}
       />
 
-      <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
+      <section className="motion-reveal" style={{ animationDelay: "160ms" }}>
         <div className="grid gap-5">
           {orderedCertificates.map((certificate, index) => (
             <article

@@ -43,7 +43,7 @@ export default function ProjectsPage() {
         right={<div className="text-sm font-black text-foreground">Academic Portfolio</div>}
       />
 
-      <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
+      <section className="motion-reveal" style={{ animationDelay: "160ms" }}>
         <AcademicProjectsShowcase />
       </section>
     </PageShell>

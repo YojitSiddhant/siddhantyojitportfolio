@@ -43,7 +43,7 @@ export default function EducationPage() {
         right={<div className="text-sm font-black text-foreground">Academic background</div>}
       />
 
-      <section className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
+      <section className="motion-reveal" style={{ animationDelay: "160ms" }}>
         <div className="grid gap-5">
           {education.map((item, index) => (
             <article

@@ -20,7 +20,7 @@ export function PageShell({
 
       <section
         className={[
-          "relative z-10 mx-auto flex w-full flex-col gap-4 px-4 pb-8 pt-4 sm:px-6 sm:pb-10 sm:pt-3 lg:px-8 lg:pt-4",
+          "relative z-10 mx-auto flex w-full flex-col gap-4 px-4 pb-4 pt-4 sm:px-6 sm:pb-5 sm:pt-3 lg:px-8 lg:pt-4",
           maxWidthClassName,
           animated ? "motion-reveal" : "",
           sectionClassName,
