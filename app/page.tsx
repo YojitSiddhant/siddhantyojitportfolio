@@ -166,10 +166,10 @@ export default function Home() {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-background" />
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-background" />
 
-      <section className="relative z-10 mx-auto flex w-full max-w-none flex-col gap-5 px-4 pb-10 pt-5 sm:px-6 sm:pb-12 sm:pt-6 lg:px-8 lg:pt-8 motion-reveal">
+      <section className="relative z-10 mx-auto flex w-full max-w-none flex-col gap-5 px-4 pb-8 pt-2 sm:px-6 sm:pb-10 sm:pt-3 lg:px-8 lg:pt-4 motion-reveal">
         <div className="grid items-start gap-5 lg:grid-cols-2">
           <article
-            className="flex flex-col gap-5 border-t border-border px-1 py-4 text-left motion-reveal"
+            className="flex flex-col gap-5 rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 text-left motion-reveal"
             style={{ animationDelay: "80ms" }}
           >
             <div className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
@@ -179,7 +179,7 @@ export default function Home() {
 
             <div className="space-y-5">
               <div className="space-y-4">
-                <h1 className="max-w-4xl text-3xl font-semibold leading-none tracking-normal text-foreground text-balance sm:text-5xl lg:text-7xl">
+                <h1 className="max-w-4xl text-3xl font-semibold leading-none tracking-normal text-foreground text-balance sm:text-5xl lg:text-6xl">
                   {heroNameWords.map((word, index) => (
                     <span
                       key={word}
@@ -279,7 +279,7 @@ export default function Home() {
           </article>
 
           <article
-            className="flex flex-col gap-5 border-t border-border px-1 py-4 text-left motion-reveal"
+            className="flex flex-col gap-5 rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 text-left motion-reveal"
             style={{ animationDelay: "180ms" }}
           >
             <div className="flex items-center justify-between gap-3">
@@ -392,7 +392,7 @@ export default function Home() {
           {values.map((item, index) => (
             <article
               key={item.title}
-              className="flex flex-col items-start border-t border-border px-1 py-4 text-left motion-reveal"
+              className="flex flex-col items-start rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 text-left motion-reveal"
               style={{ animationDelay: `${220 + index * 120}ms` }}
             >
               <div className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">

@@ -16,7 +16,7 @@ export function AcademicProjectCard({ project, index, onOpen }: AcademicProjectC
 
   return (
     <article
-      className="grid gap-4 border-b border-border pb-5 motion-reveal lg:grid-cols-2 lg:items-start lg:gap-8"
+      className="grid gap-4 rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 motion-reveal lg:grid-cols-2 lg:items-start lg:gap-8"
       style={{ animationDelay: `${220 + index * 120}ms` }}
     >
       <div className="min-w-0 flex-1">

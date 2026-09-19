@@ -48,7 +48,7 @@ export default function EducationPage() {
           {education.map((item, index) => (
             <article
               key={`${item.degree}-${item.institute}`}
-              className="flex flex-col gap-2 border-b border-border pb-5 sm:flex-row sm:items-center sm:justify-between motion-reveal"
+              className="flex flex-col gap-2 rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 sm:flex-row sm:items-center sm:justify-between motion-reveal"
               style={{ animationDelay: `${220 + index * 120}ms` }}
             >
               <div className="min-w-0 flex-1">

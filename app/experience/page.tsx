@@ -82,7 +82,7 @@ export default function ExperiencePage() {
             .map((item, index) => (
             <article
               key={`${item.role}-${item.company}`}
-              className="flex flex-col gap-4 border-b border-border pb-5 motion-reveal"
+              className="flex flex-col gap-4 rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 motion-reveal"
               style={{ animationDelay: `${220 + index * 120}ms` }}
             >
               <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">

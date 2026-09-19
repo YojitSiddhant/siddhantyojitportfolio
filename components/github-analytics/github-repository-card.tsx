@@ -21,7 +21,7 @@ export function GitHubRepositoryCard({ repo, compact = false }: GitHubRepository
   const techList = [repo.language, ...repo.topics].filter(Boolean).slice(0, compact ? 3 : 5) as string[];
 
   return (
-    <article className="flex h-full flex-col gap-4 border-b border-border pb-5 motion-reveal">
+    <article className="flex h-full flex-col gap-4 rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 motion-reveal">
       <div className="flex items-start gap-4">
         <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
           <img

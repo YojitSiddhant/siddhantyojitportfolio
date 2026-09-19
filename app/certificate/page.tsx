@@ -67,7 +67,7 @@ export default function CertificatePage() {
           {orderedCertificates.map((certificate, index) => (
             <article
               key={certificate.title}
-              className="flex flex-col gap-4 border-b border-border pb-5 motion-reveal"
+              className="flex flex-col gap-4 rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 motion-reveal"
               style={{ animationDelay: `${220 + index * 120}ms` }}
             >
               <div className="min-w-0">
