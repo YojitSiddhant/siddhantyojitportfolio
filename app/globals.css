@@ -746,15 +746,33 @@ p {
   }
 }
 
-/* Rotate the accent across sibling cards so icons are not all one colour */
-.accent-cycle > :nth-child(3n + 2) {
-  --accent: #b45309;
-  --accent-strong: #92400e;
-  --accent-soft: rgba(180, 83, 9, 0.12);
+/* Rotate the accent across sibling cards and rows so no page is a single colour */
+main .grid > :nth-child(5n + 1) {
+  --accent: #2563eb;
+  --accent-strong: #1d4ed8;
+  --accent-soft: rgba(37, 99, 235, 0.12);
 }
 
-.accent-cycle > :nth-child(3n) {
-  --accent: #6d28d9;
-  --accent-strong: #5b21b6;
-  --accent-soft: rgba(109, 40, 217, 0.12);
+main .grid > :nth-child(5n + 2) {
+  --accent: #e11d48;
+  --accent-strong: #be123c;
+  --accent-soft: rgba(225, 29, 72, 0.12);
+}
+
+main .grid > :nth-child(5n + 3) {
+  --accent: #d97706;
+  --accent-strong: #b45309;
+  --accent-soft: rgba(217, 119, 6, 0.12);
+}
+
+main .grid > :nth-child(5n + 4) {
+  --accent: #7c3aed;
+  --accent-strong: #6d28d9;
+  --accent-soft: rgba(124, 58, 237, 0.12);
+}
+
+main .grid > :nth-child(5n) {
+  --accent: #059669;
+  --accent-strong: #047857;
+  --accent-soft: rgba(5, 150, 105, 0.12);
 }
