@@ -37,7 +37,7 @@ export const skillSections: SkillSection[] = [
       },
       {
         name: "SQL",
-        badge: "SQL",
+        icon: "https://api.iconify.design/vscode-icons/file-type-sql.svg",
         href: "https://www.postgresql.org/docs/current/sql-syntax.html",
       },
     ],
@@ -102,7 +102,7 @@ export const skillSections: SkillSection[] = [
       },
       {
         name: "JSON Server",
-        badge: "JSON",
+        icon: "https://api.iconify.design/vscode-icons/file-type-json.svg",
         href: "https://github.com/typicode/json-server",
       },
     ],
@@ -143,17 +143,17 @@ export const skillSections: SkillSection[] = [
       {
         name: "GitHub Copilot",
         href: "https://github.com/features/copilot",
-        icon: "https://cdn.simpleicons.org/githubcopilot/000000",
+        icon: "https://api.iconify.design/simple-icons/githubcopilot.svg?color=%238534f3",
       },
       {
         name: "Cursor",
         href: "https://cursor.com/",
-        badge: "AI",
+        icon: "https://api.iconify.design/simple-icons/cursor.svg?color=%237c3aed",
       },
       {
         name: "ChatGPT",
         href: "https://chatgpt.com/",
-        badge: "AI",
+        icon: "https://api.iconify.design/simple-icons/openai.svg?color=%2310a37f",
       },
     ],
   },
@@ -168,7 +168,7 @@ export const skillSections: SkillSection[] = [
       {
         name: "Railway",
         href: "https://railway.app/",
-        icon: "https://cdn.simpleicons.org/railway/0B0D0E",
+        icon: "https://api.iconify.design/simple-icons/railway.svg?color=%237c3aed",
       },
     ],
   },
@@ -177,27 +177,27 @@ export const skillSections: SkillSection[] = [
     items: [
       {
         name: "Responsive Web Development",
-        icon: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/svgs/solid/laptop-code.svg",
+        icon: "https://api.iconify.design/fa6-solid/laptop-code.svg?color=%232563eb",
       },
       {
         name: "REST APIs",
-        icon: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/svgs/solid/code.svg",
+        icon: "https://api.iconify.design/fa6-solid/code.svg?color=%23e11d48",
       },
       {
         name: "CRUD Operations",
-        icon: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/svgs/solid/database.svg",
+        icon: "https://api.iconify.design/fa6-solid/database.svg?color=%23d97706",
       },
       {
         name: "API Integration",
-        icon: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/svgs/solid/plug.svg",
+        icon: "https://api.iconify.design/fa6-solid/plug.svg?color=%23059669",
       },
       {
         name: "JWT Authentication",
-        icon: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/svgs/solid/user-shield.svg",
+        icon: "https://api.iconify.design/fa6-solid/user-shield.svg?color=%237c3aed",
       },
       {
         name: "Authentication & Authorization",
-        icon: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/svgs/solid/shield-halved.svg",
+        icon: "https://api.iconify.design/fa6-solid/shield-halved.svg?color=%230f766e",
       },
     ],
   },
