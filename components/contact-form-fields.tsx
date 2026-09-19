@@ -89,7 +89,7 @@ export function ContactFormFields({
   onSubmit,
 }: ContactFormFieldsProps) {
   return (
-    <div className="rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 motion-reveal" style={{ animationDelay: "80ms" }}>
+    <div className="flex flex-col rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 motion-reveal" style={{ animationDelay: "80ms" }}>
       <div className="border-b border-border pb-4">
         <p className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
           <FormIcon className="h-4 w-4 text-accent" />
@@ -97,7 +97,7 @@ export function ContactFormFields({
         </p>
       </div>
 
-      <form onSubmit={onSubmit} noValidate className="mt-4 grid gap-3">
+      <form onSubmit={onSubmit} noValidate className="mt-4 flex flex-1 flex-col gap-3">
         {contactFields.map((field) => {
           const fieldError = errors[field.name];
           const isInvalid = Boolean(fieldError && touched[field.name]);
@@ -130,7 +130,7 @@ export function ContactFormFields({
           );
         })}
 
-        <label className="grid gap-1.5">
+        <label className="flex flex-1 flex-col gap-1.5">
           <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-foreground">
             <ReactAtomIcon className="h-4 w-4 text-accent" />
             Message
@@ -146,7 +146,7 @@ export function ContactFormFields({
             maxLength={1000}
             rows={5}
             aria-invalid={Boolean(errors.message && touched.message)}
-            className={`w-full resize-y rounded-2xl border bg-surface-strong px-4 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted focus:border-accent ${
+            className={`min-h-32 w-full flex-1 resize-y rounded-2xl border bg-surface-strong px-4 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted focus:border-accent ${
               errors.message && touched.message ? "border-accent focus:border-accent-strong" : "border-border"
             }`}
           />

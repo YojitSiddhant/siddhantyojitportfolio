@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <PageShell sectionClassName="gap-4 pb-8 pt-4 sm:pb-10 sm:pt-5 lg:pt-6">
+    <PageShell sectionClassName="gap-4 pb-4 pt-4 sm:pb-4 sm:pt-5 lg:pt-6">
       <PageSectionHeader
         className="motion-reveal"
         style={{ animationDelay: "80ms" }}
