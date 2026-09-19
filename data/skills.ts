@@ -151,9 +151,14 @@ export const skillSections: SkillSection[] = [
         icon: "https://api.iconify.design/simple-icons/cursor.svg?color=%237c3aed",
       },
       {
-        name: "ChatGPT",
-        href: "https://chatgpt.com/",
+        name: "Codex",
+        href: "https://openai.com/codex/",
         icon: "https://api.iconify.design/simple-icons/openai.svg?color=%2310a37f",
+      },
+      {
+        name: "Claude Code",
+        href: "https://www.anthropic.com/claude-code",
+        icon: "https://api.iconify.design/simple-icons/claude.svg?color=%23d97757",
       },
     ],
   },
