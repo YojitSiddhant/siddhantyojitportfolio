@@ -158,7 +158,7 @@ export function ContactFormSection({ links }: { links: ContactLinks }) {
   };
 
   return (
-    <section className="grid gap-5 lg:grid-cols-2 motion-reveal">
+    <section className="grid items-stretch gap-4 lg:grid-cols-2 motion-reveal">
       <ContactFormFields
         values={values}
         errors={errors}

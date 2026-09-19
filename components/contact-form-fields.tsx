@@ -89,7 +89,7 @@ export function ContactFormFields({
   onSubmit,
 }: ContactFormFieldsProps) {
   return (
-    <div className="px-1 py-2 motion-reveal" style={{ animationDelay: "80ms" }}>
+    <div className="rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 motion-reveal" style={{ animationDelay: "80ms" }}>
       <div className="border-b border-border pb-4">
         <p className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
           <FormIcon className="h-4 w-4 text-accent" />

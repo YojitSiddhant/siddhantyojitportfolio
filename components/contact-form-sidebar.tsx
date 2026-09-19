@@ -61,10 +61,10 @@ export function ContactFormSidebar({ links }: ContactFormSidebarProps) {
   ];
 
   return (
-    <div className="px-1 py-2 motion-reveal" style={{ animationDelay: "160ms" }}>
-      <div className="flex justify-end xl:translate-x-10 xl:translate-y-2">
-        <div className="flex h-full w-full max-w-full flex-col xl:max-w-105">
-          <div className="flex flex-wrap items-center justify-center gap-3">
+    <div className="rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 motion-reveal" style={{ animationDelay: "160ms" }}>
+      <div className="flex h-full">
+        <div className="flex h-full w-full flex-col gap-5">
+          <div className="flex flex-wrap items-center gap-3">
             {quickActions.map(({ label, href, Icon, iconClassName, tone }, index) => {
               const isExternal = href.startsWith("http");
               return (
@@ -84,7 +84,7 @@ export function ContactFormSidebar({ links }: ContactFormSidebarProps) {
           </div>
 
           <div
-            className="mx-auto mt-5 w-full max-w-full rounded-3xl border border-border bg-surface-strong px-4 py-3 shadow-sm motion-reveal sm:max-w-95"
+            className="flex w-full flex-1 flex-col justify-between rounded-xl border border-border bg-background p-4 motion-reveal"
             style={{ animationDelay: "420ms" }}
           >
             <p className="text-sm font-black uppercase tracking-wider text-foreground">
@@ -93,20 +93,20 @@ export function ContactFormSidebar({ links }: ContactFormSidebarProps) {
             <p className="mt-1.5 text-xs leading-5 text-muted">
               Share these details in your message so I can reply quickly and clearly.
             </p>
-            <div className="mt-3 grid gap-2.5">
-              <div className="flex flex-col gap-1 border-b border-border pb-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
+            <div className="mt-3 grid flex-1 content-between gap-3">
+              <div className="flex flex-col gap-1 border-b border-border pb-3 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
                 <p className="text-xs font-black uppercase tracking-wider text-foreground">
                   Availability
                 </p>
-                <p className="max-w-none text-left text-xs text-muted sm:max-w-52 sm:text-right">
+                <p className="max-w-none text-left text-xs text-muted sm:max-w-80 sm:text-right">
                   Open to Full-Time Software Engineer, Frontend Developer, React Developer, Next.js Developer, and Full Stack Developer opportunities.
                 </p>
               </div>
-              <div className="flex flex-col gap-1 border-b border-border pb-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
+              <div className="flex flex-col gap-1 border-b border-border pb-3 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
                 <p className="text-xs font-black uppercase tracking-wider text-foreground">
                   Preferred Location
                 </p>
-                <p className="max-w-none text-left text-xs text-muted sm:max-w-52 sm:text-right">
+                <p className="max-w-none text-left text-xs text-muted sm:max-w-80 sm:text-right">
                   Bengaluru, Karnataka
                 </p>
               </div>
@@ -114,7 +114,7 @@ export function ContactFormSidebar({ links }: ContactFormSidebarProps) {
                 <p className="text-xs font-black uppercase tracking-wider text-foreground">
                   Response Time
                 </p>
-                <p className="max-w-none text-left text-xs text-muted sm:max-w-52 sm:text-right">
+                <p className="max-w-none text-left text-xs text-muted sm:max-w-80 sm:text-right">
                   Usually within 24 hours.
                 </p>
               </div>
