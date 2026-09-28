@@ -3,8 +3,10 @@ export const experience = [
     company: "GHARPAYY",
     role: "Full-Stack Developer Intern",
     duration: "Aug 2026 – Present",
+    summary:
+      "Working on GHARPAYY’s internal CRM and operations platform, including Facebook lead ingestion, lead management, Movement OS, owner bookings, reservation workflows, analytics, and production-facing frontend/backend integrations.",
     description:
-      "Contributing to full-stack web development with a focus on building responsive user interfaces and scalable product features.\nWorking with modern frontend and backend workflows to improve usability, maintainability, and overall application performance.\nAssisting with API integration, debugging, testing, and iterative feature delivery across web experiences.\nCollaborating with the team to translate product requirements into clean, functional, and user-friendly implementations.",
+      "Built and improved the Facebook lead ingestion flow for bringing incoming leads into the CRM.\nWorked on CRM workflows, Movement OS, owner bookings, and reservation operations used by internal teams.\nImplemented analytics dashboards, API integrations, Excel exports, and responsive UI improvements.\nFixed and validated production issues while protecting existing RBAC, lead, booking, and operational workflows.",
     logo: "/company-logos/gharpayy-logo.png",
     order: 1,
   },

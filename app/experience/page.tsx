@@ -119,6 +119,9 @@ export default function ExperiencePage() {
               </div>
 
               <div className="grid gap-3 border-t border-border pt-4">
+                {item.summary ? (
+                  <p className="text-[0.95rem] leading-7 font-medium text-foreground">{item.summary}</p>
+                ) : null}
                 {item.description
                   .split(/\r?\n/)
                   .map((highlight) => highlight.trim())
