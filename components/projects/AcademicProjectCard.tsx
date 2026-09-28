@@ -23,7 +23,7 @@ export function AcademicProjectCard({ project, index, onOpen }: AcademicProjectC
         <button
           type="button"
           onClick={openDetails}
-          className="w-full text-center text-xl font-bold tracking-normal text-foreground transition-colors hover:text-accent lg:text-left"
+          className="w-full text-center text-xl font-bold tracking-tight text-foreground transition-colors hover:text-accent lg:text-left"
         >
           {project.title}
         </button>

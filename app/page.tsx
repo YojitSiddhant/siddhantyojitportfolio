@@ -179,7 +179,7 @@ export default function Home() {
 
             <div className="space-y-5">
               <div className="space-y-4">
-                <h1 className="max-w-4xl text-3xl font-semibold leading-none tracking-normal text-foreground text-balance sm:text-5xl lg:text-6xl">
+                <h1 className="max-w-4xl text-3xl font-semibold leading-none tracking-tighter text-foreground text-balance sm:text-5xl lg:text-6xl">
                   {heroNameWords.map((word, index) => (
                     <span
                       key={word}
@@ -288,7 +288,7 @@ export default function Home() {
                   <BriefcaseIcon className="h-4 w-4 text-accent" />
                   Snapshot
                 </p>
-                <h2 className="mt-2 text-2xl font-bold tracking-normal text-foreground">
+                <h2 className="mt-2 text-2xl font-bold tracking-tight text-foreground">
                   {profile.snapshotTitle}
                 </h2>
               </div>
@@ -396,7 +396,7 @@ export default function Home() {
                 {renderIcon(item.icon, "h-4 w-4 text-accent")}
                 Value
               </div>
-              <h3 className="mt-3 text-xl font-bold tracking-normal text-foreground">
+              <h3 className="mt-3 text-xl font-bold tracking-tight text-foreground">
                 {item.title}
               </h3>
               <p className="mt-3 text-sm leading-7 text-muted">{item.description}</p>

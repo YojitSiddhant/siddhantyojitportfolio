@@ -89,7 +89,7 @@ export default function CertificatePage() {
                     </div>
                   ) : null}
                   <div className="min-w-0 self-center">
-                    <h2 className="text-lg font-bold leading-tight tracking-normal text-foreground sm:text-xl">
+                    <h2 className="text-lg font-bold leading-tight tracking-tight text-foreground sm:text-xl">
                       {certificate.title}
                     </h2>
                     <p className="mt-1 text-sm font-black leading-tight text-foreground">{certificate.issuer}</p>

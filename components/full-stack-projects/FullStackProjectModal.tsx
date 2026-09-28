@@ -239,7 +239,7 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
           <div className="min-w-0">
             <h2
               id="full-stack-project-modal-title"
-              className="text-xl font-bold tracking-normal text-foreground sm:text-3xl"
+              className="text-xl font-bold tracking-tight text-foreground sm:text-3xl"
             >
               {project.title}
             </h2>

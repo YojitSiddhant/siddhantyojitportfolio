@@ -35,7 +35,7 @@ export function GitHubRepositoryCard({ repo, compact = false }: GitHubRepository
 
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <h3 className="min-w-0 text-lg font-bold tracking-normal text-foreground">{repo.name}</h3>
+            <h3 className="min-w-0 text-lg font-bold tracking-tight text-foreground">{repo.name}</h3>
             <span className="rounded-full border border-border px-2.5 py-1 text-[11px] font-black uppercase tracking-widest text-accent-strong">
               {repo.language || "Code"}
             </span>

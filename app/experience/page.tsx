@@ -103,7 +103,7 @@ export default function ExperiencePage() {
                         />
                       </div>
                     ) : null}
-                    <h2 className="text-xl font-bold tracking-normal text-foreground">
+                    <h2 className="text-xl font-bold tracking-tight text-foreground">
                       {item.company}
                     </h2>
                   </div>

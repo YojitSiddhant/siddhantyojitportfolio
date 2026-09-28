@@ -149,7 +149,7 @@ export function AcademicProjectModal({ project, open, onClose }: AcademicProject
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground">
               {project.badge}
             </div>
-            <h2 id="academic-project-modal-title" className="mt-3 text-xl font-bold tracking-normal text-foreground sm:text-3xl">
+            <h2 id="academic-project-modal-title" className="mt-3 text-xl font-bold tracking-tight text-foreground sm:text-3xl">
               {project.title}
             </h2>
           </div>

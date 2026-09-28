@@ -2,8 +2,8 @@
 
 :root {
   --background: #f3f4f7;
-  --foreground: #0f172a;
-  --muted: #566074;
+  --foreground: #0b1220;
+  --muted: #243044;
   --surface: rgba(255, 255, 255, 1);
   --surface-strong: rgba(255, 255, 255, 1);
   --border: rgba(15, 23, 42, 0.09);
@@ -26,9 +26,16 @@
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
   --color-accent-soft: var(--accent-soft);
-  --font-sans: "Inter", "Segoe UI", Arial, Helvetica, sans-serif;
-  --font-display: "Inter", "Segoe UI", Arial, Helvetica, sans-serif;
-  --font-mono: "Courier New", Courier, monospace;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-weight-black: 600;
+  --font-weight-extrabold: 600;
+  --tracking-tight: -0.022em;
+  --tracking-tighter: -0.045em;
+  --tracking-wide: 0.02em;
+  --tracking-wider: 0.06em;
+  --tracking-widest: 0.1em;
 }
 
 html {
@@ -45,10 +52,11 @@ body {
   background-color: var(--background);
   background-image: var(--page-glow);
   color: var(--foreground);
-  font-family: "Inter", "Segoe UI", Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
   font-size: 1rem;
-  line-height: 1.7;
-  letter-spacing: 0;
+  line-height: 1.6;
+  letter-spacing: -0.006em;
+  font-feature-settings: "ss01", "cv11", "calt";
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -96,15 +104,16 @@ h4,
 h5,
 h6,
 .font-display {
-  font-family: "Inter", "Segoe UI", Arial, Helvetica, sans-serif;
-  font-weight: 700;
-  letter-spacing: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.022em;
   text-wrap: balance;
   overflow-wrap: anywhere;
 }
 
 h1 {
-  line-height: 0.96;
+  line-height: 1;
+  letter-spacing: -0.045em;
 }
 
 h2,
@@ -122,8 +131,9 @@ button {
 }
 
 p {
-  line-height: 1.75;
+  line-height: 1.65;
   overflow-wrap: anywhere;
+  text-wrap: pretty;
 }
 
 @keyframes blinkCursor {
@@ -308,8 +318,8 @@ p {
 .send-button__text {
   display: block;
   font-size: 0.95rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   transition: transform 0.3s ease-in-out;
 }

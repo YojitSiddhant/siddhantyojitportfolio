@@ -99,7 +99,7 @@ export default function MyWorkPage() {
                   </div>
                 )}
 
-                <h2 className="text-lg font-bold tracking-normal text-foreground">{item.title}</h2>
+                <h2 className="text-lg font-bold tracking-tight text-foreground">{item.title}</h2>
 
                 {item.links.length > 0 ? <VisitSiteButton href={item.links[0].url} /> : null}
               </div>
