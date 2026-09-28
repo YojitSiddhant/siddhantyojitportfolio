@@ -292,9 +292,6 @@ export default function Home() {
                   {profile.snapshotTitle}
                 </h2>
               </div>
-              <div className="rounded-full border border-border px-3 py-1 text-xs font-medium text-accent-strong">
-                {profile.openToOpportunitiesBadge}
-              </div>
             </div>
 
             <div className="grid gap-0">
