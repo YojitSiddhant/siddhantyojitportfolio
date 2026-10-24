@@ -1,7 +1,8 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { PageSectionHeader } from "@/components/page-section-header";
+import { HeaderStat, PageSectionHeader } from "@/components/page-section-header";
 import { PageShell } from "@/components/page-shell";
+import { Reveal } from "@/components/ui/reveal";
 import { certificates } from "@/data/certificates";
 
 export const metadata: Metadata = {
@@ -9,98 +10,43 @@ export const metadata: Metadata = {
   description: "Certificates for Siddhant Yojit.",
 };
 
-function CertificateBadgeIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <path
-        d="M7 5.5A1.5 1.5 0 0 1 8.5 4h7A1.5 1.5 0 0 1 17 5.5v8A1.5 1.5 0 0 1 15.5 15h-7A1.5 1.5 0 0 1 7 13.5v-8Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M9 18.5 10.5 15l1.5 1 1.5-1 1.5 3.5"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path d="M9.5 7.5h5M9.5 10h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function DocumentIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <path
-        d="M8 4.5h6l4 4V19A1.5 1.5 0 0 1 16.5 20h-8A1.5 1.5 0 0 1 7 18.5v-13A1.5 1.5 0 0 1 8.5 4h-.5Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <path d="M14 4.5V9h4.5" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-      <path d="M9 12h6M9 15h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 const orderedCertificates = [...certificates].sort((a, b) => a.order - b.order);
 
 export default function CertificatePage() {
   return (
     <PageShell>
       <PageSectionHeader
-        className="motion-reveal"
-        style={{ animationDelay: "80ms" }}
-        left={
-          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground">
-            <CertificateBadgeIcon className="h-4 w-4 text-accent" />
-            Certificates
-          </div>
+        eyebrow="Certificates"
+        title={
+          <>
+            Completed <span className="serif-accent text-accent">learning</span>
+          </>
         }
-        right={<div className="text-sm font-black text-foreground">Completed learning</div>}
+        aside={<HeaderStat value={String(orderedCertificates.length).padStart(2, "0")} label="certificates" />}
       />
 
-      <section className="motion-reveal" style={{ animationDelay: "160ms" }}>
-        <div className="grid gap-5">
-          {orderedCertificates.map((certificate, index) => (
-            <article
-              key={certificate.title}
-              className="flex flex-col gap-4 rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 motion-reveal"
-              style={{ animationDelay: `${220 + index * 120}ms` }}
-            >
-              <div className="min-w-0">
-                <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-foreground">
-                  <DocumentIcon className="h-4 w-4 text-accent" />
-                  Certificate
-                </div>
-
-                <div className="mt-2 grid grid-cols-[3rem_minmax(0,1fr)] gap-3 sm:flex sm:items-center">
-                  {certificate.logo ? (
-                    <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
-                      <Image
-                        src={certificate.logo}
-                        alt={`${certificate.issuer} logo`}
-                        width={48}
-                        height={48}
-                        className="h-full w-full object-contain p-2"
-                      />
-                    </div>
-                  ) : null}
-                  <div className="min-w-0 self-center">
-                    <h2 className="text-lg font-bold leading-tight tracking-tight text-foreground sm:text-xl">
-                      {certificate.title}
-                    </h2>
-                    <p className="mt-1 text-sm font-black leading-tight text-foreground">{certificate.issuer}</p>
-                  </div>
-                </div>
-
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+      <ul className="grid gap-4 sm:grid-cols-2">
+        {orderedCertificates.map((certificate, index) => (
+          <Reveal as="li" key={certificate.title} delay={(index % 2) * 80} className="card card-interactive flex flex-col p-6 sm:p-8">
+            <div className="flex items-center justify-between gap-4">
+              {certificate.logo ? (
+                <span className="logo-tile h-12 w-12 rounded-xl p-2">
+                  <Image
+                    src={certificate.logo}
+                    alt={`${certificate.issuer} logo`}
+                    width={48}
+                    height={48}
+                    className="h-full w-full object-contain"
+                  />
+                </span>
+              ) : null}
+              <span className="font-mono text-xs text-subtle">Certificate · {String(index + 1).padStart(2, "0")}</span>
+            </div>
+            <h2 className="mt-10 text-2xl tracking-tight text-foreground">{certificate.title}</h2>
+            <p className="mt-2 text-muted">{certificate.issuer}</p>
+          </Reveal>
+        ))}
+      </ul>
     </PageShell>
   );
 }

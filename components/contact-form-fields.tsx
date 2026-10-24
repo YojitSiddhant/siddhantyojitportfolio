@@ -67,6 +67,10 @@ const contactFields: ContactField[] = [
   },
 ];
 
+const inputClassName =
+  "w-full rounded-xl border bg-background/60 px-4 py-3 text-[0.95rem] text-foreground outline-none transition-[border-color,box-shadow] duration-200 placeholder:text-subtle focus:border-accent focus:shadow-[0_0_0_3px_var(--accent-soft)]";
+const invalidClassName = "border-red-400/60";
+
 type ContactFormFieldsProps = {
   values: ContactValues;
   errors: ContactErrors;
@@ -89,23 +93,23 @@ export function ContactFormFields({
   onSubmit,
 }: ContactFormFieldsProps) {
   return (
-    <div className="flex flex-col rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 motion-reveal" style={{ animationDelay: "80ms" }}>
-      <div className="border-b border-border pb-4">
-        <p className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
-          <FormIcon className="h-4 w-4 text-accent" />
-          Send a message
-        </p>
+    <div className="card flex flex-col p-5 sm:p-8 lg:col-span-7">
+      <div className="flex items-center justify-between gap-4 border-b border-border pb-5">
+        <h2 className="text-2xl tracking-tight text-foreground">Send a message</h2>
+        <FormIcon className="h-5 w-5 text-subtle" />
       </div>
 
-      <form onSubmit={onSubmit} noValidate className="mt-4 flex flex-1 flex-col gap-3">
+      <form onSubmit={onSubmit} noValidate className="mt-6 flex flex-1 flex-col gap-5">
+        <div className="grid gap-5 sm:grid-cols-2">
         {contactFields.map((field) => {
           const fieldError = errors[field.name];
           const isInvalid = Boolean(fieldError && touched[field.name]);
+          const errorId = `contact-${field.name}-error`;
 
           return (
-            <label key={field.name} className="grid gap-1.5">
-              <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-foreground">
-                <field.icon className="h-4 w-4 text-accent" />
+            <label key={field.name} className={`grid gap-2 ${field.name === "email" ? "sm:col-span-2" : ""}`}>
+              <span className="inline-flex items-center gap-2 text-sm text-muted">
+                <field.icon className="h-4 w-4 text-subtle" />
                 {field.label}
               </span>
               <input
@@ -122,17 +126,22 @@ export function ContactFormFields({
                 maxLength={field.maxLength}
                 pattern={field.pattern}
                 aria-invalid={isInvalid}
-                className={`w-full rounded-2xl border bg-surface-strong px-4 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted focus:border-accent ${
-                  isInvalid ? "border-accent focus:border-accent-strong" : "border-border"
-                }`}
+                aria-describedby={isInvalid ? errorId : undefined}
+                className={`${inputClassName} ${isInvalid ? invalidClassName : "border-border"}`}
               />
+              {isInvalid ? (
+                <span id={errorId} className="text-xs text-red-300">
+                  {fieldError}
+                </span>
+              ) : null}
             </label>
           );
         })}
+        </div>
 
-        <label className="flex flex-1 flex-col gap-1.5">
-          <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-foreground">
-            <ReactAtomIcon className="h-4 w-4 text-accent" />
+        <label className="flex flex-1 flex-col gap-2">
+          <span className="inline-flex items-center gap-2 text-sm text-muted">
+            <ReactAtomIcon className="h-4 w-4 text-subtle" />
             Message
           </span>
           <textarea
@@ -146,10 +155,16 @@ export function ContactFormFields({
             maxLength={1000}
             rows={5}
             aria-invalid={Boolean(errors.message && touched.message)}
-            className={`min-h-32 w-full flex-1 resize-y rounded-2xl border bg-surface-strong px-4 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted focus:border-accent ${
-              errors.message && touched.message ? "border-accent focus:border-accent-strong" : "border-border"
+            aria-describedby={errors.message && touched.message ? "contact-message-error" : undefined}
+            className={`min-h-40 flex-1 resize-y ${inputClassName} ${
+              errors.message && touched.message ? invalidClassName : "border-border"
             }`}
           />
+          {errors.message && touched.message ? (
+            <span id="contact-message-error" className="text-xs text-red-300">
+              {errors.message}
+            </span>
+          ) : null}
         </label>
 
         <input
@@ -161,10 +176,10 @@ export function ContactFormFields({
           className="sr-only"
         />
 
-        <div className="grid gap-3">
+        <div className="grid gap-3 border-t border-border pt-5">
           <button
             type="submit"
-            className={`send-button w-full justify-center sm:w-fit ${
+            className={`send-button w-full sm:w-fit ${
               status === "submitting" ? "send-button--sending" : ""
             }`}
             aria-busy={status === "submitting"}
@@ -172,7 +187,7 @@ export function ContactFormFields({
           >
             <span className="send-button__svg-wrapper-1" aria-hidden="true">
               <span className="send-button__svg-wrapper">
-                <SendIcon className="send-button__icon h-6 w-6" />
+                <SendIcon className="send-button__icon" />
               </span>
             </span>
             <span className="send-button__text">
@@ -181,7 +196,7 @@ export function ContactFormFields({
           </button>
 
           {submissionError ? (
-            <p className="text-sm text-accent" role="alert">
+            <p className="text-sm text-red-300" role="alert">
               {submissionError}
             </p>
           ) : null}

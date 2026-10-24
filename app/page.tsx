@@ -1,425 +1,132 @@
+import Link from "next/link";
+import { About } from "@/components/home/about";
+import { ContactCta } from "@/components/home/contact-cta";
+import { Hero } from "@/components/home/hero";
+import { EducationList } from "@/components/education/education-list";
+import { ExperienceTimeline } from "@/components/experience/experience-timeline";
+import { FullStackProjectsShowcase } from "@/components/full-stack-projects/full-stack-projects-showcase";
+import { SkillGroups } from "@/components/skills/skill-groups";
+import { ArrowRightIcon } from "@/components/ui/icons";
+import { Reveal } from "@/components/ui/reveal";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { WorkGrid } from "@/components/work/work-grid";
+import { certificates } from "@/data/certificates";
 import { profile } from "@/data/profile";
-
-type IconProps = {
-  className?: string;
-};
-
-function SparkleIcon({ className }: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <path
-        d="M12 3.5 13.9 8l4.5 1.9-4.5 1.9L12 16.3l-1.9-4.5-4.5-1.9 4.5-1.9L12 3.5Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M18.5 14.5 19.3 16.2 21 17l-1.7.8-.8 1.7-.8-1.7-1.7-.8 1.7-.8.8-1.7Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function BriefcaseIcon({ className }: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <path
-        d="M9 7V6a3 3 0 0 1 3-3h0a3 3 0 0 1 3 3v1"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <path
-        d="M4 9.5A1.5 1.5 0 0 1 5.5 8h13A1.5 1.5 0 0 1 20 9.5v8A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5v-8Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <path d="M4 13h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function MapPinIcon({ className }: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <path
-        d="M12 21s6-5.1 6-10.2A6 6 0 1 0 6 10.8C6 15.9 12 21 12 21Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <circle cx="12" cy="10.5" r="2.2" stroke="currentColor" strokeWidth="1.8" />
-    </svg>
-  );
-}
-
-function ShieldIcon({ className }: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <path
-        d="M12 3.5 19 6v5.2c0 4.6-3.1 8.5-7 9.8-3.9-1.3-7-5.2-7-9.8V6l7-2.5Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <path d="m9.5 12.2 1.8 1.8 3.3-3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function CodeIcon({ className }: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <path d="M9 18 3.5 12 9 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="m15 6 5.5 6-5.5 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function LayersIcon({ className }: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <path
-        d="m12 4 7 4-7 4-7-4 7-4Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <path
-        d="m5 12 7 4 7-4"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="m5 16 7 4 7-4"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function CheckIcon({ className }: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
-      <path d="m5 12 4.2 4.2L19 6.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function FocusCard({
-  title,
-  description,
-  icon,
-}: {
-  title: string;
-  description: string;
-  icon: keyof typeof iconMap;
-}) {
-  return (
-    <div className="flex flex-col gap-2 border-t border-border pt-4">
-      <div className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-foreground">
-        {renderIconStatic(icon, "h-4 w-4 text-accent")}
-        {title}
-      </div>
-      <p className="mt-2 text-sm leading-6 text-muted">{description}</p>
-    </div>
-  );
-}
-
-const iconMap = {
-  layers: LayersIcon,
-  shield: ShieldIcon,
-  code: CodeIcon,
-  sparkle: SparkleIcon,
-  check: CheckIcon,
-  briefcase: BriefcaseIcon,
-} as const;
-
-function renderIconStatic(icon: keyof typeof iconMap, className: string) {
-  const Icon = iconMap[icon];
-  return <Icon className={className} />;
-}
+import { projects } from "@/data/projects";
 
 export default function Home() {
-  const heroNameWords = profile.heroTitle.split(" ");
-  const values = profile.valueCards as Array<{ icon: keyof typeof iconMap; title: string; description: string }>;
-  const workingStyle = profile.workingStyle as Array<{ icon: keyof typeof iconMap; title: string }>;
-  const quickNotes = profile.quickNotes as Array<{ icon?: keyof typeof iconMap; label: string; value: string }>;
-  const headerNotes = profile.headerNotes as Array<{ icon?: keyof typeof iconMap; label: string; value: string }>;
-
-  function renderIcon(icon: keyof typeof iconMap | undefined, className: string) {
-    const Icon = icon ? iconMap[icon] : null;
-    return Icon ? <Icon className={className} /> : null;
-  }
-
   return (
-    <main className="relative isolate overflow-x-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-background" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-background" />
+    <main className="relative isolate overflow-x-clip">
+      <Hero />
 
-      <section className="relative z-10 mx-auto flex w-full max-w-none flex-col gap-5 px-4 pb-4 pt-4 sm:px-6 sm:pb-5 sm:pt-3 lg:px-8 lg:pt-4 motion-reveal">
-        <div className="grid items-stretch gap-4 lg:grid-cols-2">
-          <article
-            className="flex flex-col gap-5 rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 text-left motion-reveal"
-            style={{ animationDelay: "80ms" }}
-          >
-            <div className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
-              <SparkleIcon className="h-4 w-4 text-accent" />
-              About me
-            </div>
+      <div className="flex flex-col gap-28 pt-8 sm:gap-36 sm:pt-12">
+        <About />
 
-            <div className="space-y-5">
-              <div className="space-y-4">
-                <h1 className="max-w-4xl text-3xl font-semibold leading-none tracking-tighter text-foreground text-balance sm:text-5xl lg:text-6xl">
-                  {heroNameWords.map((word, index) => (
-                    <span
-                      key={word}
-                      className="mr-2 inline-block transition duration-200 ease-out last:mr-0 hover:text-accent motion-reveal"
-                      style={{ animationDelay: `${160 + index * 110}ms` }}
-                    >
-                      {word}
-                    </span>
-                  ))}
-                </h1>
-                <p className="max-w-2xl text-base leading-7 text-muted text-pretty sm:text-lg">
-                  {profile.introText}
-                </p>
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-2">
-                <div className="flex items-center gap-3 border-t border-border py-4 motion-reveal" style={{ animationDelay: "420ms" }}>
-                  <MapPinIcon className="h-5 w-5 shrink-0 text-accent" />
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-wider text-foreground">Location</p>
-                    <p className="mt-1 text-sm font-medium text-foreground">{profile.location}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 border-t border-border py-4 motion-reveal" style={{ animationDelay: "500ms" }}>
-                  <CodeIcon className="h-5 w-5 shrink-0 text-accent" />
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-wider text-foreground">Core focus</p>
-                    <p className="mt-1 text-sm font-medium text-foreground">{profile.coreFocus}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="border-t border-border pt-4">
-                <p className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
-                  <SparkleIcon className="h-4 w-4 text-accent" />
-                  Quick notes
-                </p>
-                <div className="mt-4 grid gap-0">
-                  {quickNotes.map((item, index) => (
-                    <div
-                      key={item.label}
-                      className="flex gap-3 border-b border-border py-4 last:border-b-0 motion-reveal"
-                      style={{ animationDelay: `${560 + index * 120}ms` }}
-                    >
-                      {renderIcon(item.icon, "mt-0.5 h-4 w-4 shrink-0 text-accent")}
-                      <div className="min-w-0">
-                        <p className="text-xs font-black uppercase tracking-wider text-foreground">
-                          {item.label}
-                        </p>
-                        <p className="mt-1 text-sm leading-6 text-foreground">{item.value}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="border-t border-border pt-4">
-                <p className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
-                  <LayersIcon className="h-4 w-4 text-accent" />
-                  Focus areas
-                </p>
-                <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                  <FocusCard
-                    icon="layers"
-                    title="Responsive UI"
-                    description="Clear, client-facing interfaces that stay usable across screen sizes."
-                  />
-                  <FocusCard
-                    icon="shield"
-                    title="Validation"
-                    description="Testing edge cases, flow clarity, and behavior after content changes."
-                  />
-                  <FocusCard
-                    icon="code"
-                    title="Full stack"
-                    description="Frontend, backend, and database-driven work that fits together cleanly."
-                  />
-                  <FocusCard
-                    icon="briefcase"
-                    title="Handoff"
-                    description="Practical, maintainable UI decisions for long-term product growth."
-                  />
-                  <FocusCard
-                    icon="briefcase"
-                    title="Client feedback"
-                    description="Stakeholder feedback loops that help refine the interface with real context."
-                  />
-                  <FocusCard
-                    icon="code"
-                    title="Workflow clarity"
-                    description="User flows and interactions that stay straightforward as the product grows."
-                  />
-                </div>
-              </div>
-
-            </div>
-          </article>
-
-          <article
-            className="flex flex-col justify-between gap-5 rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 text-left motion-reveal"
-            style={{ animationDelay: "180ms" }}
-          >
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <p className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-foreground">
-                  <BriefcaseIcon className="h-4 w-4 text-accent" />
-                  Snapshot
-                </p>
-                <h2 className="mt-2 text-2xl font-bold tracking-tight text-foreground">
-                  {profile.snapshotTitle}
-                </h2>
-              </div>
-            </div>
-
-            <div className="grid gap-0">
-              {values.map((item, index) => (
-                <div
-                  key={item.title}
-                  className="border-b border-border py-4 last:border-b-0 motion-reveal"
-                  style={{ animationDelay: `${320 + index * 120}ms` }}
-                >
-                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-foreground">
-                    {renderIcon(item.icon, "h-4 w-4 text-accent")}
-                    {item.title}
-                  </div>
-                  <p className="mt-2 text-sm leading-7 text-muted">{item.description}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="border-t border-border pt-4">
-              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
-                <ShieldIcon className="h-4 w-4 text-accent" />
-                What I care about
-              </p>
-              <p className="mt-2 text-sm leading-7 text-foreground">
-                {profile.whatICareAbout}
-              </p>
-            </div>
-
-            <div className="border-t border-border pt-4">
-              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
-                <SparkleIcon className="h-4 w-4 text-accent" />
-                Header notes
-              </p>
-              <div className="mt-4 grid gap-0">
-                {headerNotes.map((item) => (
-                  <div key={item.label} className="flex gap-3 border-b border-border py-4 last:border-b-0">
-                    {renderIcon(item.icon, "mt-0.5 h-4 w-4 shrink-0 text-accent")}
-                    <div className="min-w-0">
-                      <p className="text-xs font-black uppercase tracking-wider text-foreground">
-                        {item.label}
-                      </p>
-                      <p className="mt-1 text-sm leading-6 text-foreground">{item.value}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="border-t border-border pt-4">
-              <p className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
-                <LayersIcon className="h-4 w-4 text-accent" />
-                Working approach
-              </p>
-              <div className="mt-4 grid gap-3">
-                <div className="flex gap-3 border-b border-border pb-4">
-                  <SparkleIcon className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-wider text-foreground">
-                      Build clearly
-                    </p>
-                    <p className="mt-1 text-sm leading-6 text-foreground">
-                      I turn requirements into clean screens and reusable interface sections.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-3 border-b border-border pb-4">
-                  <ShieldIcon className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-wider text-foreground">
-                      Validate carefully
-                    </p>
-                    <p className="mt-1 text-sm leading-6 text-foreground">
-                      I watch responsiveness, edge cases, and flow behavior as content changes.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-3">
-                  <BriefcaseIcon className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-wider text-foreground">
-                      Deliver maintainably
-                    </p>
-                    <p className="mt-1 text-sm leading-6 text-foreground">
-                      I prefer small, well-structured decisions that stay easy to grow over time.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </article>
-        </div>
-
-        <section className="grid items-stretch gap-4 md:grid-cols-3">
-          {values.map((item, index) => (
-            <article
-              key={item.title}
-              className="flex flex-col items-start rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 text-left motion-reveal"
-              style={{ animationDelay: `${220 + index * 120}ms` }}
-            >
-              <div className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
-                {renderIcon(item.icon, "h-4 w-4 text-accent")}
-                Value
-              </div>
-              <h3 className="mt-3 text-xl font-bold tracking-tight text-foreground">
-                {item.title}
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-muted">{item.description}</p>
-            </article>
-          ))}
+        <section aria-labelledby="skills-title" id="skills" className="container-page scroll-mt-24">
+          <Reveal>
+            <SectionHeading
+              id="skills-title"
+              index="02"
+              eyebrow="Toolkit"
+              title={
+                <>
+                  The stack I use to <span className="serif-accent text-accent">ship</span>.
+                </>
+              }
+              description={profile.coreFocus}
+              link={{ href: "/skills", label: "Skills page" }}
+            />
+          </Reveal>
+          <div className="mt-12">
+            <SkillGroups />
+          </div>
         </section>
 
-        <section className="grid items-stretch gap-4 md:grid-cols-3">
-          {workingStyle.map((item, index) => (
-            <article
-              key={item.title}
-              className="flex flex-col items-start rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 text-left motion-reveal"
-              style={{ animationDelay: `${220 + index * 120}ms` }}
+        <section aria-labelledby="projects-title" id="projects" className="container-page scroll-mt-24">
+          <Reveal>
+            <SectionHeading
+              id="projects-title"
+              index="03"
+              eyebrow="Selected work"
+              title={
+                <>
+                  Full-stack products, <span className="serif-accent text-accent">built end to end</span>.
+                </>
+              }
+              description="Frontend, backend, and database work that fits together — open any project for the full case study."
+              link={{ href: "/full-stack-projects", label: "All full-stack projects" }}
+            />
+          </Reveal>
+          <div className="mt-12">
+            <FullStackProjectsShowcase />
+          </div>
+          <Reveal className="mt-4">
+            <Link
+              href="/projects"
+              className="group card card-interactive flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7"
             >
-              <div className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground">
-                {renderIcon(item.icon, "h-4 w-4 text-accent")}
-                How I work
-              </div>
-              <p className="mt-3 text-sm leading-7 text-muted">{item.title}</p>
-            </article>
-          ))}
+              <span>
+                <span className="eyebrow">Academic projects · {String(projects.length).padStart(2, "0")}</span>
+                <span className="mt-2 block text-lg tracking-tight text-foreground">
+                  {projects.map((project) => project.title).join(" · ")}
+                </span>
+              </span>
+              <ArrowRightIcon className="h-5 w-5 shrink-0 text-subtle transition-all group-hover:translate-x-1 group-hover:text-accent" />
+            </Link>
+          </Reveal>
         </section>
-      </section>
+
+        <section aria-labelledby="work-title" id="work" className="container-page scroll-mt-24">
+          <Reveal>
+            <SectionHeading
+              id="work-title"
+              index="04"
+              eyebrow="Client work"
+              title={
+                <>
+                  Live sites I&apos;ve <span className="serif-accent text-accent">contributed to</span>.
+                </>
+              }
+              link={{ href: "/my-work", label: "My Work page" }}
+            />
+          </Reveal>
+          <div className="mt-12">
+            <WorkGrid />
+          </div>
+        </section>
+
+        <section aria-labelledby="experience-title" id="experience" className="container-page scroll-mt-24">
+          <Reveal>
+            <SectionHeading
+              id="experience-title"
+              index="05"
+              eyebrow="Experience & education"
+              title={
+                <>
+                  Where I&apos;ve been <span className="serif-accent text-accent">building</span>.
+                </>
+              }
+              link={{ href: "/experience", label: "Experience page" }}
+            />
+          </Reveal>
+          <div className="mt-12">
+            <ExperienceTimeline />
+          </div>
+
+          <div className="mt-16 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <h3 className="eyebrow eyebrow-accent">Education</h3>
+            <Link href="/certificate" className="link-arrow text-sm">
+              {certificates.length} certificates
+              <ArrowRightIcon className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="mt-6">
+            <EducationList />
+          </div>
+        </section>
+
+        <ContactCta />
+      </div>
     </main>
   );
 }

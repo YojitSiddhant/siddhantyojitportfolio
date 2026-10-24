@@ -2,6 +2,8 @@
 
 import type { MouseEvent } from "react";
 import type { AcademicProjectContent } from "@/components/projects/AcademicProjectContent";
+import { GitHubIcon, PlusIcon } from "@/components/ui/icons";
+import { Reveal } from "@/components/ui/reveal";
 
 type AcademicProjectCardProps = {
   project: AcademicProjectContent;
@@ -15,25 +17,47 @@ export function AcademicProjectCard({ project, index, onOpen }: AcademicProjectC
   };
 
   return (
-    <article
-      className="grid gap-4 rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 motion-reveal lg:grid-cols-2 lg:items-start lg:gap-8"
-      style={{ animationDelay: `${220 + index * 120}ms` }}
-    >
-      <div className="min-w-0 flex-1">
-        <button
-          type="button"
-          onClick={openDetails}
-          className="w-full text-center text-xl font-bold tracking-tight text-foreground transition-colors hover:text-accent lg:text-left"
-        >
-          {project.title}
-        </button>
-      </div>
+    <Reveal as="article" delay={index * 60} className="group border-t border-border py-8 sm:py-10">
+      <div className="grid gap-5 md:grid-cols-12 md:gap-8">
+        <div className="flex items-center gap-3 md:col-span-2 md:flex-col md:items-start">
+          <span className="font-mono text-sm text-accent">{String(index + 1).padStart(2, "0")}</span>
+          {project.badge ? <span className="font-mono text-xs text-subtle">{project.badge}</span> : null}
+        </div>
 
-      <div className="flex min-w-0 justify-center lg:justify-self-end lg:justify-end">
-        <button type="button" onClick={openDetails} className="view-detail-button sm:justify-self-end">
-          View Details
-        </button>
+        <div className="min-w-0 md:col-span-7">
+          <h3 className="text-2xl tracking-tight text-foreground sm:text-3xl">
+            <button type="button" onClick={openDetails} className="text-left transition-colors duration-200 hover:text-accent">
+              {project.title}
+            </button>
+          </h3>
+          <p className="mt-3 max-w-2xl text-[0.95rem] text-muted">{project.overview}</p>
+          <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Tech stack">
+            {project.technologies.map((technology) => (
+              <li key={technology.name} className="chip">
+                {technology.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="flex flex-wrap items-start gap-2 md:col-span-3 md:justify-end">
+          <button type="button" onClick={openDetails} className="btn btn-secondary btn-sm">
+            <PlusIcon className="h-3.5 w-3.5" />
+            Details
+          </button>
+          {project.githubUrl ? (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-secondary btn-sm btn-icon"
+              aria-label={`Open ${project.title} GitHub repository`}
+            >
+              <GitHubIcon className="h-3.5 w-3.5" />
+            </a>
+          ) : null}
+        </div>
       </div>
-    </article>
+    </Reveal>
   );
 }

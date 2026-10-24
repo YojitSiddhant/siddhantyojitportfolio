@@ -63,6 +63,46 @@ export const profile = {
         "Building responsive full-stack applications using React.js, Next.js, Node.js, Express.js, PostgreSQL, and modern development tools.",
     },
   ],
+  focusAreas: [
+    {
+      title: "Responsive UI",
+      description: "Clear, client-facing interfaces that stay usable across screen sizes.",
+    },
+    {
+      title: "Validation",
+      description: "Testing edge cases, flow clarity, and behavior after content changes.",
+    },
+    {
+      title: "Full stack",
+      description: "Frontend, backend, and database-driven work that fits together cleanly.",
+    },
+    {
+      title: "Handoff",
+      description: "Practical, maintainable UI decisions for long-term product growth.",
+    },
+    {
+      title: "Client feedback",
+      description: "Stakeholder feedback loops that help refine the interface with real context.",
+    },
+    {
+      title: "Workflow clarity",
+      description: "User flows and interactions that stay straightforward as the product grows.",
+    },
+  ],
+  workingApproach: [
+    {
+      title: "Build clearly",
+      description: "I turn requirements into clean screens and reusable interface sections.",
+    },
+    {
+      title: "Validate carefully",
+      description: "I watch responsiveness, edge cases, and flow behavior as content changes.",
+    },
+    {
+      title: "Deliver maintainably",
+      description: "I prefer small, well-structured decisions that stay easy to grow over time.",
+    },
+  ],
   workingStyle: [
     {
       icon: "sparkle",

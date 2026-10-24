@@ -119,7 +119,7 @@ function TechIcon({ technology }: { technology: string }) {
     <img
       src={icon.src}
       alt={icon.alt}
-      className="h-4 w-4 shrink-0 object-contain"
+      className="h-4 w-4 shrink-0 rounded-sm bg-logo-tile object-contain p-px"
       loading="lazy"
       referrerPolicy="no-referrer"
     />
@@ -198,7 +198,7 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
     () =>
       [
         "fixed inset-0 z-50 flex items-start justify-center px-3 py-2 sm:items-center sm:px-6 sm:py-8",
-        "bg-background/70 backdrop-blur-sm transition-opacity duration-200 ease-out",
+        "bg-black/70 backdrop-blur-sm transition-opacity duration-200 ease-out",
         open ? "opacity-100" : "pointer-events-none opacity-0",
       ].join(" "),
     [open],
@@ -208,7 +208,7 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
     () =>
       [
         "relative mt-0 w-[min(100%,72rem)] max-h-[calc(100dvh-1rem)] overflow-hidden rounded-2xl border border-border",
-        "bg-background shadow-2xl transition-all duration-200 ease-out sm:rounded-3xl sm:w-[min(92vw,72rem)] sm:max-h-[calc(100dvh-3rem)]",
+        "bg-surface shadow-2xl transition-all duration-200 ease-out sm:rounded-3xl sm:w-[min(92vw,72rem)] sm:max-h-[calc(100dvh-3rem)]",
         open ? "scale-100 opacity-100" : "scale-95 opacity-0",
       ].join(" "),
     [open],
@@ -235,11 +235,11 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
         aria-labelledby="full-stack-project-modal-title"
         className={panelClassName}
       >
-        <div className="flex items-start justify-between gap-4 border-b border-border px-3 py-3 sm:px-6 sm:py-4">
+        <div className="flex items-start justify-between gap-4 px-4 py-4 sm:px-8 sm:py-6">
           <div className="min-w-0">
             <h2
               id="full-stack-project-modal-title"
-              className="text-xl font-bold tracking-tight text-foreground sm:text-3xl"
+              className="text-2xl tracking-tight text-foreground sm:text-4xl"
             >
               {project.title}
             </h2>
@@ -256,25 +256,25 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
           </button>
         </div>
 
-        <div className="max-h-[calc(100dvh-7rem)] overflow-y-auto px-3 py-4 sm:max-h-[calc(100dvh-9rem)] sm:px-6 sm:py-5">
+        <div className="max-h-[calc(100dvh-7rem)] overflow-y-auto px-4 pb-6 sm:max-h-[calc(100dvh-10rem)] sm:px-8 sm:pb-8">
           <div className="grid gap-5">
-            <section className="grid gap-2 border-b border-border pb-4">
-              <p className="text-xs font-black uppercase tracking-widest text-foreground">Project Overview</p>
-              <p className="text-sm leading-7 text-muted">{project.overview}</p>
+            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+              <p className="eyebrow self-start pt-1">Project Overview</p>
+              <p className="text-[0.95rem] leading-7 text-muted">{project.overview}</p>
             </section>
 
-            <section className="grid gap-2 border-b border-border pb-4">
-              <p className="text-xs font-black uppercase tracking-widest text-foreground">Problem Statement</p>
-              <p className="text-sm leading-7 text-muted">{project.problemStatement}</p>
+            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+              <p className="eyebrow self-start pt-1">Problem Statement</p>
+              <p className="text-[0.95rem] leading-7 text-muted">{project.problemStatement}</p>
             </section>
 
-            <section className="grid gap-3 border-b border-border pb-4">
-              <p className="text-xs font-black uppercase tracking-widest text-foreground">Technologies Used</p>
+            <section className="grid gap-3 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+              <p className="eyebrow self-start pt-1">Technologies Used</p>
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((technology) => (
                   <span
                     key={technology}
-                    className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground"
+                    className="chip text-foreground"
                   >
                     <TechIcon technology={technology} />
                     {technology}
@@ -283,57 +283,57 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
               </div>
             </section>
 
-            <section className="grid gap-3 border-b border-border pb-4">
-              <p className="text-xs font-black uppercase tracking-widest text-foreground">Key Features</p>
+            <section className="grid gap-3 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+              <p className="eyebrow self-start pt-1">Key Features</p>
               <div className="grid gap-2">
                 {project.keyFeatures.map((feature) => (
                   <div key={feature} className="flex gap-3">
-                    <BulletIcon className="mt-1 h-4 w-4 shrink-0 text-accent" />
-                    <p className="text-sm leading-7 text-foreground">{feature}</p>
+                    <BulletIcon className="mt-1.5 h-4 w-4 shrink-0 text-accent" />
+                    <p className="text-[0.95rem] leading-7 text-foreground/90">{feature}</p>
                   </div>
                 ))}
               </div>
             </section>
 
-            <section className="grid gap-2 border-b border-border pb-4">
-              <p className="text-xs font-black uppercase tracking-widest text-foreground">My Role</p>
-              <p className="text-sm leading-7 text-muted">{project.myRole}</p>
+            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+              <p className="eyebrow self-start pt-1">My Role</p>
+              <p className="text-[0.95rem] leading-7 text-muted">{project.myRole}</p>
             </section>
 
-            <section className="grid gap-2 border-b border-border pb-4">
-              <p className="text-xs font-black uppercase tracking-widest text-foreground">Challenges Faced</p>
+            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+              <p className="eyebrow self-start pt-1">Challenges Faced</p>
               <div className="grid gap-2">
                 {project.challengesFaced.map((challenge) => (
                   <div key={challenge} className="flex gap-3">
-                    <BulletIcon className="mt-1 h-4 w-4 shrink-0 text-accent" />
-                    <p className="text-sm leading-7 text-foreground">{challenge}</p>
+                    <BulletIcon className="mt-1.5 h-4 w-4 shrink-0 text-accent" />
+                    <p className="text-[0.95rem] leading-7 text-foreground/90">{challenge}</p>
                   </div>
                 ))}
               </div>
             </section>
 
-            <section className="grid gap-2 border-b border-border pb-4">
-              <p className="text-xs font-black uppercase tracking-widest text-foreground">Key Learnings</p>
+            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+              <p className="eyebrow self-start pt-1">Key Learnings</p>
               <div className="grid gap-2">
                 {project.keyLearnings.map((learning) => (
                   <div key={learning} className="flex gap-3">
-                    <BulletIcon className="mt-1 h-4 w-4 shrink-0 text-accent" />
-                    <p className="text-sm leading-7 text-foreground">{learning}</p>
+                    <BulletIcon className="mt-1.5 h-4 w-4 shrink-0 text-accent" />
+                    <p className="text-[0.95rem] leading-7 text-foreground/90">{learning}</p>
                   </div>
                 ))}
               </div>
             </section>
 
             {project.architectureWorkflow?.length ? (
-              <section className="grid gap-2 border-b border-border pb-4">
-                <p className="text-xs font-black uppercase tracking-widest text-foreground">
+              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+                <p className="eyebrow self-start pt-1">
                   Architecture / Workflow
                 </p>
                 <div className="grid gap-2">
                   {project.architectureWorkflow.map((line) => (
                     <div key={line} className="flex gap-3">
-                      <BulletIcon className="mt-1 h-4 w-4 shrink-0 text-accent" />
-                      <p className="text-sm leading-7 text-foreground">{line}</p>
+                      <BulletIcon className="mt-1.5 h-4 w-4 shrink-0 text-accent" />
+                      <p className="text-[0.95rem] leading-7 text-foreground/90">{line}</p>
                     </div>
                   ))}
                 </div>
@@ -341,13 +341,13 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
             ) : null}
 
             {project.futureImprovements?.length ? (
-              <section className="grid gap-2 border-b border-border pb-4">
-                <p className="text-xs font-black uppercase tracking-widest text-foreground">Future Improvements</p>
+              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+                <p className="eyebrow self-start pt-1">Future Improvements</p>
                 <div className="grid gap-2">
                   {project.futureImprovements.map((item) => (
                     <div key={item} className="flex gap-3">
-                      <BulletIcon className="mt-1 h-4 w-4 shrink-0 text-accent" />
-                      <p className="text-sm leading-7 text-foreground">{item}</p>
+                      <BulletIcon className="mt-1.5 h-4 w-4 shrink-0 text-accent" />
+                      <p className="text-[0.95rem] leading-7 text-foreground/90">{item}</p>
                     </div>
                   ))}
                 </div>
@@ -355,13 +355,13 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
             ) : null}
 
             {project.liveDemoUrl ? (
-              <section className="grid gap-2 border-b border-border pb-4">
-                <p className="text-xs font-black uppercase tracking-widest text-foreground">Live Demo</p>
+              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+                <p className="eyebrow self-start pt-1">Live Demo</p>
                 <a
                   href={project.liveDemoUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex w-fit items-center rounded-full border border-border px-3 py-2 text-xs font-black uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:text-accent"
+                  className="btn btn-secondary btn-sm w-fit"
                 >
                   Open Demo
                 </a>
@@ -369,15 +369,15 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
             ) : null}
 
             {project.projectDuration ? (
-              <section className="grid gap-2 border-b border-border pb-4">
-                <p className="text-xs font-black uppercase tracking-widest text-foreground">Project Duration</p>
-                <p className="text-sm leading-7 text-muted">{project.projectDuration}</p>
+              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+                <p className="eyebrow self-start pt-1">Project Duration</p>
+                <p className="text-[0.95rem] leading-7 text-muted">{project.projectDuration}</p>
               </section>
             ) : null}
 
             {project.screenshots && project.screenshots.length > 0 ? (
-              <section className="grid gap-3 border-b border-border pb-4">
-                <p className="text-xs font-black uppercase tracking-widest text-foreground">Screenshots</p>
+              <section className="grid gap-3 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+                <p className="eyebrow self-start pt-1">Screenshots</p>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {project.screenshots.map((image) => (
                     <figure key={image.src} className="overflow-hidden rounded-2xl border border-border bg-surface">

@@ -11,36 +11,18 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <PageShell sectionClassName="gap-4 pb-4 pt-4 sm:pb-4 sm:pt-5 lg:pt-6">
+    <PageShell>
       <PageSectionHeader
-        className="motion-reveal"
-        style={{ animationDelay: "80ms" }}
-        left={
-          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-foreground">
-            <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 text-accent" fill="none">
-              <path
-                d="M4 7.5A1.5 1.5 0 0 1 5.5 6h13A1.5 1.5 0 0 1 20 7.5v9A1.5 1.5 0 0 1 18.5 18h-13A1.5 1.5 0 0 1 4 16.5v-9Z"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinejoin="round"
-              />
-              <path
-                d="m5.5 7.5 6.5 5 6.5-5"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            Contact
-          </div>
+        eyebrow="Contact"
+        title={
+          <>
+            Let&apos;s <span className="serif-accent text-accent">connect</span>
+          </>
         }
-        right={<div className="text-sm font-black text-foreground">Let&apos;s Connect</div>}
+        description="Tell me about the opportunity, project, or how I can help — I usually reply within 24 hours."
       />
 
-      <div className="motion-reveal" style={{ animationDelay: "160ms" }}>
-        <ContactFormSection links={contactLinks} />
-      </div>
+      <ContactFormSection links={contactLinks} />
     </PageShell>
   );
 }

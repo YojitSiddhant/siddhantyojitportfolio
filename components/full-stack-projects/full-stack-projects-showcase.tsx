@@ -49,9 +49,15 @@ export function FullStackProjectsShowcase() {
 
   return (
     <>
-      <div className="grid gap-5">
+      <div className="grid gap-4 md:grid-cols-2">
         {fullStackProjectContent.map((project, index) => (
-          <FullStackProjectCard key={project.title} project={project} index={index} onOpen={handleOpenProject} />
+          <FullStackProjectCard
+            key={project.title}
+            project={project}
+            index={index}
+            featured={index === 0}
+            onOpen={handleOpenProject}
+          />
         ))}
       </div>
 

@@ -9,18 +9,19 @@ type PageShellProps = {
 
 export function PageShell({
   children,
-  maxWidthClassName = "max-w-none",
+  maxWidthClassName = "",
   sectionClassName = "",
   animated = true,
 }: PageShellProps) {
   return (
-    <main className="relative isolate overflow-x-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-background" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-background" />
-
+    <main className="relative isolate overflow-x-clip">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-112 bg-[radial-gradient(60%_100%_at_15%_0%,rgba(243,169,107,0.07),transparent_70%)]"
+      />
       <section
         className={[
-          "relative z-10 mx-auto flex w-full flex-col gap-4 px-4 pb-4 pt-4 sm:px-6 sm:pb-5 sm:pt-3 lg:px-8 lg:pt-4",
+          "container-page relative z-10 flex flex-col gap-12 pt-12 sm:gap-16 sm:pt-20",
           maxWidthClassName,
           animated ? "motion-reveal" : "",
           sectionClassName,

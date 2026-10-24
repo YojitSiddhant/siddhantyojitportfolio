@@ -1,19 +1,11 @@
 import type { ContactLinks } from "@/components/contact-form-utils";
-
-type CardTone = "whatsapp" | "phone" | "linkedin" | "github";
+import { WhatsAppIcon } from "@/components/contact-form-icons";
+import { ArrowUpRightIcon, GitHubIcon, LinkedInIcon, MailIcon, PhoneIcon } from "@/components/ui/icons";
 
 type QuickAction = {
   label: string;
   href: string;
-  iconSrc: string;
-  tone: CardTone;
-};
-
-const buttonToneClassName: Record<CardTone, string> = {
-  whatsapp: "border-border bg-surface text-foreground",
-  phone: "border-border bg-surface text-foreground",
-  linkedin: "border-border bg-surface text-foreground",
-  github: "border-border bg-surface text-foreground",
+  icon: ({ className }: { className?: string }) => React.JSX.Element;
 };
 
 type ContactFormSidebarProps = {
@@ -22,30 +14,10 @@ type ContactFormSidebarProps = {
 
 export function ContactFormSidebar({ links }: ContactFormSidebarProps) {
   const quickActions: QuickAction[] = [
-    {
-      label: "WhatsApp",
-      href: links.whatsapp,
-      iconSrc: "https://api.iconify.design/logos/whatsapp-icon.svg",
-      tone: "whatsapp",
-    },
-    {
-      label: "Call",
-      href: `tel:${links.phone.replace(/\s+/g, "")}`,
-      iconSrc: "https://api.iconify.design/fluent-emoji-flat/telephone-receiver.svg",
-      tone: "phone",
-    },
-    {
-      label: "LinkedIn",
-      href: links.linkedin,
-      iconSrc: "https://api.iconify.design/logos/linkedin-icon.svg",
-      tone: "linkedin",
-    },
-    {
-      label: "GitHub",
-      href: links.github,
-      iconSrc: "https://api.iconify.design/logos/github-icon.svg",
-      tone: "github",
-    },
+    { label: "WhatsApp", href: links.whatsapp, icon: WhatsAppIcon },
+    { label: "Call", href: `tel:${links.phone.replace(/\s+/g, "")}`, icon: PhoneIcon },
+    { label: "LinkedIn", href: links.linkedin, icon: LinkedInIcon },
+    { label: "GitHub", href: links.github, icon: GitHubIcon },
   ];
 
   const details = [
@@ -61,11 +33,24 @@ export function ContactFormSidebar({ links }: ContactFormSidebarProps) {
   ];
 
   return (
-    <div className="flex h-full flex-col gap-4 motion-reveal" style={{ animationDelay: "160ms" }}>
-      <div className="rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6">
-        <p className="text-sm font-black uppercase tracking-wider text-foreground">Connect</p>
-        <div className="mt-4 grid grid-cols-4 gap-3">
-          {quickActions.map(({ label, href, iconSrc, tone }, index) => {
+    <aside className="flex h-full flex-col gap-4 lg:col-span-5" aria-label="Contact details">
+      <a
+        href={`mailto:${links.email}`}
+        className="group card card-interactive flex items-center justify-between gap-4 p-5 sm:p-6"
+      >
+        <span className="min-w-0">
+          <span className="eyebrow">Email directly</span>
+          <span className="mt-2 block truncate text-lg tracking-tight text-foreground group-hover:text-accent">
+            {links.email}
+          </span>
+        </span>
+        <MailIcon className="h-5 w-5 shrink-0 text-subtle group-hover:text-accent" />
+      </a>
+
+      <div className="card p-5 sm:p-6">
+        <p className="eyebrow">Connect</p>
+        <div className="mt-4 grid grid-cols-2 gap-2">
+          {quickActions.map(({ label, href, icon: Icon }) => {
             const isExternal = href.startsWith("http");
             return (
               <a
@@ -73,40 +58,33 @@ export function ContactFormSidebar({ links }: ContactFormSidebarProps) {
                 href={href}
                 target={isExternal ? "_blank" : undefined}
                 rel={isExternal ? "noreferrer" : undefined}
-                aria-label={label}
-                className={`group flex flex-col items-center gap-2 rounded-xl border px-2 py-4 text-xs font-black uppercase tracking-wider transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md motion-reveal ${buttonToneClassName[tone]}`}
-                style={{ animationDelay: `${220 + index * 90}ms` }}
+                className="group flex items-center justify-between gap-2 rounded-xl border border-border px-4 py-3 text-sm text-foreground transition-colors duration-200 hover:border-border-strong hover:bg-white/5"
               >
-                <img
-                  src={iconSrc}
-                  alt=""
-                  className="h-7 w-7 transition-transform duration-200 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <span className="hidden sm:block">{label}</span>
+                <span className="inline-flex items-center gap-2.5">
+                  <Icon className="h-4 w-4 text-muted transition-colors group-hover:text-accent" />
+                  {label}
+                </span>
+                <ArrowUpRightIcon className="btn-arrow h-3.5 w-3.5 text-subtle" />
               </a>
             );
           })}
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6 motion-reveal" style={{ animationDelay: "420ms" }}>
-        <p className="text-sm font-black uppercase tracking-wider text-foreground">Quick details</p>
-        <p className="mt-1.5 text-sm leading-6 text-muted">
+      <div className="card flex flex-1 flex-col p-5 sm:p-6">
+        <p className="eyebrow">Quick details</p>
+        <p className="mt-2 text-sm text-muted">
           Share these details in your message so I can reply quickly and clearly.
         </p>
-        <div className="mt-3 flex flex-1 flex-col">
+        <dl className="mt-4 flex flex-1 flex-col">
           {details.map((item) => (
-            <div
-              key={item.label}
-              className="flex flex-1 flex-col justify-center gap-1 border-t border-border py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
-            >
-              <p className="shrink-0 text-xs font-black uppercase tracking-wider text-foreground">{item.label}</p>
-              <p className="text-left text-sm text-muted sm:max-w-80 sm:text-right">{item.value}</p>
+            <div key={item.label} className="flex flex-col gap-1 border-t border-border py-3.5 sm:flex-row sm:justify-between sm:gap-6">
+              <dt className="shrink-0 text-sm text-foreground">{item.label}</dt>
+              <dd className="text-sm text-muted sm:max-w-72 sm:text-right">{item.value}</dd>
             </div>
           ))}
-        </div>
+        </dl>
       </div>
-    </div>
+    </aside>
   );
 }

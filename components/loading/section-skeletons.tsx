@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useSyncExternalStore } from "react";
 
 type LoaderCard = {
   titleWidth: string;
@@ -50,6 +50,8 @@ function getLoadDuration() {
   }
 }
 
+const subscribeToNothing = () => () => {};
+
 function LoaderBar({
   className,
   duration,
@@ -61,7 +63,7 @@ function LoaderBar({
 }) {
   return (
     <div
-      className={`animate-pulse rounded-full bg-accent/20 ${className}`}
+      className={`animate-pulse rounded-full bg-white/6 ${className}`}
       style={{
         animationDuration: `${duration}ms`,
         animationDelay: `${delay ?? 0}ms`,
@@ -73,7 +75,7 @@ function LoaderBar({
 function LoaderCard({ card, duration, index }: { card: LoaderCard; duration: number; index: number }) {
   return (
     <article
-      className="rounded-3xl border border-border bg-surface p-4 shadow-sm"
+      className="card p-6"
       style={{ animationDelay: `${index * 90}ms` }}
     >
       <LoaderBar className={card.titleWidth} duration={duration} />
@@ -103,7 +105,7 @@ function LoaderCard({ card, duration, index }: { card: LoaderCard; duration: num
       ) : null}
 
       {card.bodyHeightClassName ? (
-        <div className={`mt-4 rounded-2xl bg-accent/10 ${card.bodyHeightClassName}`} />
+        <div className={`mt-4 rounded-xl bg-white/3 ${card.bodyHeightClassName}`} />
       ) : null}
     </article>
   );
@@ -115,17 +117,13 @@ export function SectionSkeletons({
   cards,
   columnsClassName = "grid gap-5 lg:grid-cols-2",
 }: SectionSkeletonsProps) {
-  const [duration, setDuration] = useState(1600);
-
-  useEffect(() => {
-    setDuration(getLoadDuration());
-  }, []);
+  const duration = useSyncExternalStore(subscribeToNothing, getLoadDuration, () => 1600);
 
   const cardCount = useMemo(() => cards.length, [cards.length]);
 
   return (
     <div className="grid gap-5">
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border px-1 py-4">
+      <div className="flex flex-wrap items-end justify-between gap-4 pb-4">
         <LoaderBar className={headerLeftWidth} duration={duration} />
         <LoaderBar className={headerRightWidth} duration={duration} delay={90} />
       </div>

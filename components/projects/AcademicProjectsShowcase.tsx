@@ -49,7 +49,7 @@ export function AcademicProjectsShowcase() {
 
   return (
     <>
-      <div className="grid gap-5">
+      <div className="border-b border-border">
         {academicProjectContent.map((project, index) => (
           <AcademicProjectCard key={project.title} project={project} index={index} onOpen={handleOpenProject} />
         ))}
