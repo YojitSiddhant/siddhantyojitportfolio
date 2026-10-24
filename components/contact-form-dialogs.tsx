@@ -26,7 +26,7 @@ export function ContactFormDialogs({
     <>
       {isPopupOpen ? (
         <div
-          className="fixed inset-0 z-60 flex items-center justify-center bg-black/70 px-4 py-6 backdrop-blur-sm motion-reveal-fade sm:py-8"
+          className="fixed inset-0 z-60 flex items-center justify-center bg-slate-900/25 px-4 py-6 backdrop-blur-sm motion-reveal-fade sm:py-8"
           role="dialog"
           aria-modal="true"
           aria-labelledby="contact-validation-title"
@@ -52,7 +52,7 @@ export function ContactFormDialogs({
               <button
                 type="button"
                 onClick={onClosePopup}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-white/10"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-surface-hover"
                 aria-label="Close validation popup"
               >
                 <span aria-hidden="true">×</span>
@@ -63,7 +63,7 @@ export function ContactFormDialogs({
               {popupErrors.map((error) => (
                 <li
                   key={error.field}
-                  className="rounded-xl border border-red-400/25 bg-red-400/5 px-4 py-3 text-sm text-red-200"
+                  className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
                 >
                   {error.field}: {error.message}
                 </li>
@@ -85,7 +85,7 @@ export function ContactFormDialogs({
 
       {isSuccessOpen ? (
         <div
-          className="fixed inset-0 z-60 flex items-center justify-center bg-black/70 px-4 py-6 backdrop-blur-sm motion-reveal-fade sm:py-8"
+          className="fixed inset-0 z-60 flex items-center justify-center bg-slate-900/25 px-4 py-6 backdrop-blur-sm motion-reveal-fade sm:py-8"
           role="dialog"
           aria-modal="true"
           aria-labelledby="contact-success-title"
@@ -111,7 +111,7 @@ export function ContactFormDialogs({
               <button
                 type="button"
                 onClick={onCloseSuccess}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-white/10"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-surface-hover"
                 aria-label="Close success popup"
               >
                 <span aria-hidden="true">×</span>

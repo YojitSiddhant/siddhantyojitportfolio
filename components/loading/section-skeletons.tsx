@@ -63,7 +63,7 @@ function LoaderBar({
 }) {
   return (
     <div
-      className={`animate-pulse rounded-full bg-white/6 ${className}`}
+      className={`animate-pulse rounded-full bg-surface-hover ${className}`}
       style={{
         animationDuration: `${duration}ms`,
         animationDelay: `${delay ?? 0}ms`,
@@ -105,7 +105,7 @@ function LoaderCard({ card, duration, index }: { card: LoaderCard; duration: num
       ) : null}
 
       {card.bodyHeightClassName ? (
-        <div className={`mt-4 rounded-xl bg-white/3 ${card.bodyHeightClassName}`} />
+        <div className={`mt-4 rounded-xl bg-surface ${card.bodyHeightClassName}`} />
       ) : null}
     </article>
   );

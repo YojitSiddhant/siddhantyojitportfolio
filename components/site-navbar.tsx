@@ -81,7 +81,7 @@ export function SiteNavbar() {
                       href={item.href}
                       aria-current={active ? "page" : undefined}
                       className={`relative rounded-full px-3 py-1.5 text-[0.84rem] transition-colors duration-200 ${
-                        active ? "bg-white/7 text-foreground" : "text-muted hover:text-foreground"
+                        active ? "bg-surface-hover text-foreground" : "text-muted hover:text-foreground"
                       }`}
                     >
                       {item.label}

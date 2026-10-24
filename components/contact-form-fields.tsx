@@ -68,8 +68,8 @@ const contactFields: ContactField[] = [
 ];
 
 const inputClassName =
-  "w-full rounded-xl border bg-background/60 px-4 py-3 text-[0.95rem] text-foreground outline-none transition-[border-color,box-shadow] duration-200 placeholder:text-subtle focus:border-accent focus:shadow-[0_0_0_3px_var(--accent-soft)]";
-const invalidClassName = "border-red-400/60";
+  "w-full rounded-xl border bg-surface-strong px-4 py-3 text-[0.95rem] text-foreground outline-none transition-[border-color,box-shadow] duration-200 placeholder:text-subtle focus:border-accent focus:shadow-[0_0_0_3px_var(--accent-soft)]";
+const invalidClassName = "border-red-400";
 
 type ContactFormFieldsProps = {
   values: ContactValues;
@@ -130,7 +130,7 @@ export function ContactFormFields({
                 className={`${inputClassName} ${isInvalid ? invalidClassName : "border-border"}`}
               />
               {isInvalid ? (
-                <span id={errorId} className="text-xs text-red-300">
+                <span id={errorId} className="text-xs text-red-600">
                   {fieldError}
                 </span>
               ) : null}
@@ -161,7 +161,7 @@ export function ContactFormFields({
             }`}
           />
           {errors.message && touched.message ? (
-            <span id="contact-message-error" className="text-xs text-red-300">
+            <span id="contact-message-error" className="text-xs text-red-600">
               {errors.message}
             </span>
           ) : null}
@@ -196,7 +196,7 @@ export function ContactFormFields({
           </button>
 
           {submissionError ? (
-            <p className="text-sm text-red-300" role="alert">
+            <p className="text-sm text-red-600" role="alert">
               {submissionError}
             </p>
           ) : null}

@@ -25,7 +25,7 @@ function SpecPanel({ project, featured }: { project: FullStackProjectContent; fe
   return (
     <div
       aria-hidden="true"
-      className="relative overflow-hidden rounded-xl border border-border bg-background/60 transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover/card:-translate-y-1"
+      className="relative overflow-hidden rounded-xl border border-border bg-surface-strong transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover/card:-translate-y-1"
     >
       <div className="flex items-center justify-between gap-3 border-b border-border px-4 py-2.5">
         <span className="truncate font-mono text-[0.7rem] text-subtle">{path ?? project.title.toLowerCase()}</span>

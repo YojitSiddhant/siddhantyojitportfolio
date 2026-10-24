@@ -58,7 +58,7 @@ export function ContactFormSidebar({ links }: ContactFormSidebarProps) {
                 href={href}
                 target={isExternal ? "_blank" : undefined}
                 rel={isExternal ? "noreferrer" : undefined}
-                className="group flex items-center justify-between gap-2 rounded-xl border border-border px-4 py-3 text-sm text-foreground transition-colors duration-200 hover:border-border-strong hover:bg-white/5"
+                className="group flex items-center justify-between gap-2 rounded-xl border border-border px-4 py-3 text-sm text-foreground transition-colors duration-200 hover:border-border-strong hover:bg-surface-hover"
               >
                 <span className="inline-flex items-center gap-2.5">
                   <Icon className="h-4 w-4 text-muted transition-colors group-hover:text-accent" />

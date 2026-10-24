@@ -11,7 +11,7 @@ import { workItems } from "@/data/work";
 const gridMask = "radial-gradient(ellipse 70% 60% at 30% 10%, #000 30%, transparent 75%)";
 const heroGridStyle: CSSProperties = {
   backgroundImage:
-    "linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
+    "linear-gradient(to right, rgba(15,23,42,0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,23,42,0.045) 1px, transparent 1px)",
   backgroundSize: "4.5rem 4.5rem",
   maskImage: gridMask,
   WebkitMaskImage: gridMask,
@@ -42,7 +42,7 @@ export function Hero() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -top-40 left-[-10%] -z-10 h-144 w-200 max-w-none rounded-full"
-        style={{ background: "radial-gradient(closest-side, rgba(243,169,107,0.10), transparent)" }}
+        style={{ background: "radial-gradient(closest-side, rgba(37,99,235,0.07), transparent)" }}
       />
 
       <div className="container-page pt-14 pb-16 sm:pt-24 sm:pb-20 lg:pt-28">
@@ -50,7 +50,7 @@ export function Hero() {
           {current ? (
             <Link
               href="/experience"
-              className="inline-flex items-center gap-2.5 rounded-full border border-border bg-white/3 py-1.5 pl-3 pr-4 text-[0.8rem] text-muted transition-colors hover:border-border-strong hover:text-foreground"
+              className="inline-flex items-center gap-2.5 rounded-full border border-border bg-surface py-1.5 pl-3 pr-4 text-[0.8rem] text-muted transition-colors hover:border-border-strong hover:text-foreground"
             >
               <span className="status-dot" aria-hidden="true" />
               <span>
@@ -110,7 +110,7 @@ export function Hero() {
           style={{ animationDelay: "380ms" }}
         >
           {stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col-reverse gap-1 bg-background/90 px-5 py-5 sm:px-6 sm:py-6">
+            <div key={stat.label} className="flex flex-col-reverse gap-1 bg-surface px-5 py-5 sm:px-6 sm:py-6">
               <dt className="text-sm text-muted">{stat.label}</dt>
               <dd className="text-3xl tracking-tight text-foreground sm:text-4xl">{stat.value}</dd>
             </div>

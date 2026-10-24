@@ -19,26 +19,28 @@ export default function Home() {
     <main className="relative isolate overflow-x-clip">
       <Hero />
 
-      <div className="flex flex-col gap-28 pt-8 sm:gap-36 sm:pt-12">
+      <div className="flex flex-col gap-24 pt-8 sm:gap-28 sm:pt-12">
         <About />
 
-        <section aria-labelledby="skills-title" id="skills" className="container-page scroll-mt-24">
-          <Reveal>
-            <SectionHeading
-              id="skills-title"
-              index="02"
-              eyebrow="Toolkit"
-              title={
-                <>
-                  The stack I use to <span className="serif-accent text-accent">ship</span>.
-                </>
-              }
-              description={profile.coreFocus}
-              link={{ href: "/skills", label: "Skills page" }}
-            />
-          </Reveal>
-          <div className="mt-12">
-            <SkillGroups />
+        <section aria-labelledby="skills-title" id="skills" className="scroll-mt-16 border-y border-border bg-surface-strong py-16 sm:py-24">
+          <div className="container-page">
+            <Reveal>
+              <SectionHeading
+                id="skills-title"
+                index="02"
+                eyebrow="Toolkit"
+                title={
+                  <>
+                    The stack I use to <span className="serif-accent text-accent">ship</span>.
+                  </>
+                }
+                description={profile.coreFocus}
+                link={{ href: "/skills", label: "Skills page" }}
+              />
+            </Reveal>
+            <div className="mt-12">
+              <SkillGroups />
+            </div>
           </div>
         </section>
 
@@ -76,22 +78,24 @@ export default function Home() {
           </Reveal>
         </section>
 
-        <section aria-labelledby="work-title" id="work" className="container-page scroll-mt-24">
-          <Reveal>
-            <SectionHeading
-              id="work-title"
-              index="04"
-              eyebrow="Client work"
-              title={
-                <>
-                  Live sites I&apos;ve <span className="serif-accent text-accent">contributed to</span>.
-                </>
-              }
-              link={{ href: "/my-work", label: "My Work page" }}
-            />
-          </Reveal>
-          <div className="mt-12">
-            <WorkGrid />
+        <section aria-labelledby="work-title" id="work" className="scroll-mt-16 border-y border-border bg-surface-strong py-16 sm:py-24">
+          <div className="container-page">
+            <Reveal>
+              <SectionHeading
+                id="work-title"
+                index="04"
+                eyebrow="Client work"
+                title={
+                  <>
+                    Live sites I&apos;ve <span className="serif-accent text-accent">contributed to</span>.
+                  </>
+                }
+                link={{ href: "/my-work", label: "My Work page" }}
+              />
+            </Reveal>
+            <div className="mt-12">
+              <WorkGrid />
+            </div>
           </div>
         </section>
 

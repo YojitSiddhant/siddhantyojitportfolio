@@ -17,7 +17,7 @@ export function PageShell({
     <main className="relative isolate overflow-x-clip">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-112 bg-[radial-gradient(60%_100%_at_15%_0%,rgba(243,169,107,0.07),transparent_70%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-112 bg-[radial-gradient(60%_100%_at_15%_0%,rgba(37,99,235,0.05),transparent_70%)]"
       />
       <section
         className={[

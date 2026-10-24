@@ -42,7 +42,7 @@ export function ChatMessages({ messages, isSending, error, onRetry }: ChatMessag
   }, [messages, isSending, error]);
 
   return (
-    <ul ref={scrollRef} className="min-h-0 flex-1 space-y-3 overflow-y-auto border-t border-border bg-background/40 p-4 pb-6">
+    <ul ref={scrollRef} className="min-h-0 flex-1 space-y-3 overflow-y-auto border-t border-border bg-surface-strong p-4 pb-6">
       {hasMessages
         ? displayMessages.map((message) => (
             <li
@@ -74,12 +74,12 @@ export function ChatMessages({ messages, isSending, error, onRetry }: ChatMessag
       ) : null}
 
       {error ? (
-        <li className="mt-2 rounded-lg border border-red-400/25 bg-red-400/10 p-3 text-sm text-red-200">
+        <li className="mt-2 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
           <div>{error}</div>
           <button
             type="button"
             onClick={onRetry}
-            className="mt-2 inline-flex rounded-full bg-red-300 px-3 py-1.5 text-xs font-semibold text-background"
+            className="mt-2 inline-flex rounded-full bg-red-600 px-3 py-1.5 text-xs font-semibold text-white"
           >
             Retry
           </button>

@@ -56,7 +56,7 @@ export function ChatHeader({ onClose }: ChatHeaderProps) {
           <div className="relative">
             <button
               type="button"
-              className="peer inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-foreground transition hover:bg-white/10 focus-visible:bg-white/10"
+              className="peer inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-foreground transition hover:bg-surface-hover focus-visible:bg-surface-hover"
               aria-label="Chat settings"
             >
               <ChatGearIcon className="size-5 transition-transform duration-200 peer-hover:rotate-90 peer-focus:rotate-90" />
@@ -68,7 +68,7 @@ export function ChatHeader({ onClose }: ChatHeaderProps) {
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground transition hover:bg-white/10 focus-visible:bg-white/10"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground transition hover:bg-surface-hover focus-visible:bg-surface-hover"
             aria-label="Close chat"
           >
             <ChatCloseIcon className="size-5" />

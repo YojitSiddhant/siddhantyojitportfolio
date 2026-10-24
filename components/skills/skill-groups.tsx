@@ -15,14 +15,14 @@ function SkillChip({ skill }: { skill: SkillItem }) {
   );
 
   const className =
-    "inline-flex items-center gap-2.5 rounded-full border border-border bg-white/2 py-1.5 pl-1.5 pr-3.5 text-sm text-foreground transition-colors duration-200";
+    "inline-flex items-center gap-2.5 rounded-full border border-border bg-surface py-1.5 pl-1.5 pr-3.5 text-sm text-foreground transition-colors duration-200";
 
   return skill.href ? (
     <a
       href={skill.href}
       target="_blank"
       rel="noreferrer"
-      className={`${className} hover:border-border-strong hover:bg-white/6`}
+      className={`${className} hover:border-border-strong hover:bg-surface-hover`}
     >
       {content}
     </a>

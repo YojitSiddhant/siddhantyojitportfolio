@@ -113,7 +113,7 @@ export function AcademicProjectModal({ project, open, onClose }: AcademicProject
     () =>
       [
         "fixed inset-0 z-50 flex items-start justify-center px-3 py-2 sm:items-center sm:px-6 sm:py-8",
-        "bg-black/70 backdrop-blur-sm transition-opacity duration-200 ease-out",
+        "bg-slate-900/25 backdrop-blur-sm transition-opacity duration-200 ease-out",
         open ? "opacity-100" : "pointer-events-none opacity-0",
       ].join(" "),
     [open],

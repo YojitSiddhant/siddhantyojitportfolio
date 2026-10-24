@@ -12,7 +12,7 @@ export function ChatButton() {
         type="button"
         onClick={chat.toggleChat}
         aria-label="Open portfolio AI assistant"
-        className="group inline-flex h-12 items-center gap-2.5 rounded-full border border-border-strong bg-surface-strong/90 pr-5 pl-3 text-sm text-foreground shadow-[0_20px_40px_-16px_rgba(0,0,0,0.9)] backdrop-blur-md transition-[border-color,transform] duration-200 hover:border-accent/50 active:scale-95"
+        className="group inline-flex h-12 items-center gap-2.5 rounded-full border border-border-strong bg-white/90 pr-5 pl-3 text-sm text-foreground shadow-[0_10px_30px_-12px_rgba(15,23,42,0.25)] backdrop-blur-md transition-[border-color,transform] duration-200 hover:border-accent/50 active:scale-95"
       >
         <span className="flex h-7 w-7 items-center justify-center rounded-full bg-accent text-accent-foreground transition-transform duration-300 group-hover:rotate-12">
           <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

@@ -22,7 +22,7 @@ export function ChatInput({ value, onChange, onSend, isSending, placeholder }: C
           }
         }}
         placeholder={placeholder ?? "Reply"}
-        className="h-12 w-full rounded-xl border border-border bg-background/60 px-4 pr-12 text-sm text-foreground outline-none transition placeholder:text-subtle focus:border-accent"
+        className="h-12 w-full rounded-xl border border-border bg-surface-strong px-4 pr-12 text-sm text-foreground outline-none transition placeholder:text-subtle focus:border-accent"
       />
       <button
         type="button"

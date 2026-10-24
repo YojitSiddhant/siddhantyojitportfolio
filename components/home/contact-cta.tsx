@@ -7,11 +7,11 @@ import { profile } from "@/data/profile";
 export function ContactCta() {
   return (
     <section aria-labelledby="contact-title" id="contact" className="container-page scroll-mt-24">
-      <Reveal className="card relative overflow-hidden px-6 py-14 sm:px-12 sm:py-20 lg:px-16 lg:py-24">
+      <Reveal className="card relative overflow-hidden bg-surface-strong px-6 py-14 sm:px-12 sm:py-20 lg:px-16 lg:py-24">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -right-32 -bottom-40 h-120 w-120 rounded-full"
-          style={{ background: "radial-gradient(closest-side, rgba(243,169,107,0.14), transparent)" }}
+          style={{ background: "radial-gradient(closest-side, rgba(37,99,235,0.08), transparent)" }}
         />
 
         <p className="eyebrow eyebrow-accent">06 — Contact</p>
