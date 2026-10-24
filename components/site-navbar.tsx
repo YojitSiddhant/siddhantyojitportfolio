@@ -8,7 +8,9 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowUpRightIcon, GitHubIcon, LinkedInIcon } from "@/components/ui/icons";
 import { contactLinks } from "@/data/contact";
 import { navItems } from "@/data/navigation";
+import { navIcons } from "@/components/ui/nav-icons";
 
+const MailNavIcon = navIcons["/contact"];
 const desktopItems = navItems.filter((item) => item.href !== "/" && item.href !== "/contact");
 
 export function SiteNavbar() {
@@ -75,15 +77,23 @@ export function SiteNavbar() {
             <ul className="flex items-center gap-1">
               {desktopItems.map((item) => {
                 const active = isActive(item.href);
+                const Icon = navIcons[item.href];
                 return (
                   <li key={item.href}>
                     <Link
                       href={item.href}
                       aria-current={active ? "page" : undefined}
-                      className={`relative rounded-full px-3 py-1.5 text-[0.84rem] transition-colors duration-200 ${
-                        active ? "bg-surface-hover text-foreground" : "text-muted hover:text-foreground"
+                      className={`group relative inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[0.84rem] transition-colors duration-200 ${
+                        active ? "bg-accent-soft text-accent" : "text-muted hover:bg-surface-hover hover:text-foreground"
                       }`}
                     >
+                      {Icon ? (
+                        <Icon
+                          className={`h-4 w-4 shrink-0 transition-colors duration-200 ${
+                            active ? "text-accent" : "text-subtle group-hover:text-accent"
+                          }`}
+                        />
+                      ) : null}
                       {item.label}
                     </Link>
                   </li>
@@ -98,6 +108,7 @@ export function SiteNavbar() {
               aria-current={isActive("/contact") ? "page" : undefined}
               className="btn btn-primary btn-sm hidden sm:inline-flex"
             >
+              <MailNavIcon className="h-4 w-4" />
               Contact
               <ArrowUpRightIcon className="btn-arrow h-3.5 w-3.5" />
             </Link>
@@ -148,24 +159,34 @@ export function SiteNavbar() {
                   <ul className="grid">
                     {navItems.map((item, index) => {
                       const active = isActive(item.href);
+                      const Icon = navIcons[item.href];
                       return (
                         <li key={item.href} className="border-b border-border">
                           <Link
                             href={item.href}
                             aria-current={active ? "page" : undefined}
                             onClick={() => setIsOpen(false)}
-                            className="group flex items-baseline gap-4 py-3.5 motion-reveal"
+                            className="group flex items-center gap-4 py-3 motion-reveal"
                             style={{ animationDelay: `${60 + index * 35}ms` }}
                           >
-                            <span className="w-6 font-mono text-[0.7rem] text-subtle">
-                              {String(index + 1).padStart(2, "0")}
+                            <span
+                              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition-colors ${
+                                active
+                                  ? "border-accent/30 bg-accent-soft text-accent"
+                                  : "border-border bg-surface-strong text-subtle group-hover:border-accent/30 group-hover:text-accent"
+                              }`}
+                            >
+                              {Icon ? <Icon className="h-5 w-5" /> : null}
                             </span>
                             <span
-                              className={`text-[1.7rem] leading-tight tracking-tight transition-colors sm:text-3xl ${
+                              className={`flex-1 text-[1.6rem] leading-tight tracking-tight transition-colors sm:text-3xl ${
                                 active ? "text-accent" : "text-foreground group-hover:text-accent"
                               }`}
                             >
                               {item.label}
+                            </span>
+                            <span className="font-mono text-[0.7rem] text-subtle">
+                              {String(index + 1).padStart(2, "0")}
                             </span>
                           </Link>
                         </li>
