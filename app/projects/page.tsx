@@ -18,7 +18,7 @@ export default function ProjectsPage() {
         eyebrow="Academic Projects"
         title={
           <>
-            Academic <span className="serif-accent text-accent">portfolio</span>
+            Academic <span className="text-accent">portfolio</span>
           </>
         }
         description="Academic work spanning civic platforms, machine learning, secure authentication, and fraud detection."

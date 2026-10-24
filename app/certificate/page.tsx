@@ -19,7 +19,7 @@ export default function CertificatePage() {
         eyebrow="Certificates"
         title={
           <>
-            Completed <span className="serif-accent text-accent">learning</span>
+            Completed <span className="text-accent">learning</span>
           </>
         }
         aside={<HeaderStat value={String(orderedCertificates.length).padStart(2, "0")} label="certificates" />}

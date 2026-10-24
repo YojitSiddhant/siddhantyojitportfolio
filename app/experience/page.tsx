@@ -16,7 +16,7 @@ export default function ExperiencePage() {
         eyebrow="Experience"
         title={
           <>
-            Work <span className="serif-accent text-accent">history</span>
+            Work <span className="text-accent">history</span>
           </>
         }
         description="Internships building production-facing interfaces, CRM workflows, and live client projects in Bengaluru."

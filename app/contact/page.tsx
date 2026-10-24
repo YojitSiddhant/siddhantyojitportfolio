@@ -16,7 +16,7 @@ export default function ContactPage() {
         eyebrow="Contact"
         title={
           <>
-            Let&apos;s <span className="serif-accent text-accent">connect</span>
+            Let&apos;s <span className="text-accent">connect</span>
           </>
         }
         description="Tell me about the opportunity, project, or how I can help — I usually reply within 24 hours."

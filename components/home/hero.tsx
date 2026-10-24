@@ -66,20 +66,20 @@ export function Hero() {
 
         <h1
           id="hero-title"
-          className="mt-10 text-[clamp(3.4rem,13vw,10.5rem)] font-medium text-foreground motion-reveal"
+          className="mt-10 text-[clamp(3.4rem,12vw,9.5rem)] font-semibold text-foreground motion-reveal"
           style={{ animationDelay: "80ms" }}
         >
-          Siddhant <span className="serif-accent text-accent">Yojit</span>
+          Siddhant <span className="text-accent">Yojit</span>
         </h1>
 
         <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-12 lg:gap-12">
           <p
-            className="max-w-3xl text-2xl leading-tight tracking-tight text-foreground sm:text-3xl lg:col-span-7 lg:text-[2.1rem] motion-reveal"
+            className="max-w-3xl text-2xl font-medium leading-tight tracking-tight text-subtle sm:text-3xl lg:col-span-7 lg:text-[2.1rem] motion-reveal"
             style={{ animationDelay: "180ms" }}
           >
             {profile.snapshotTitle} building{" "}
-            <span className="serif-accent text-[1.08em]">clear interfaces</span>, reusable components, and{" "}
-            <span className="serif-accent text-[1.08em]">reliable workflows</span> for the web.
+            <span className="text-foreground">clear interfaces</span>, reusable components, and{" "}
+            <span className="text-foreground">reliable workflows</span> for the web.
           </p>
 
           <div className="flex flex-col gap-8 lg:col-span-5 motion-reveal" style={{ animationDelay: "280ms" }}>

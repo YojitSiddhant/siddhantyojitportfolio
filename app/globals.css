@@ -39,7 +39,6 @@
   --color-logo-tile: var(--logo-tile);
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
   --tracking-tight: -0.022em;
   --tracking-tighter: -0.045em;
@@ -123,19 +122,22 @@
   .font-display {
     font-family: var(--font-display);
     font-weight: 500;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
     text-wrap: balance;
     overflow-wrap: break-word;
   }
 
   h1 {
-    line-height: 0.95;
-    letter-spacing: -0.05em;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.045em;
   }
 
-  h2,
-  h3 {
-    line-height: 1.08;
+  h2 {
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
   }
 
   p,
@@ -205,13 +207,6 @@
     width: 1.25rem;
     height: 1px;
     background: var(--accent);
-  }
-
-  .serif-accent {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -0.01em;
   }
 
   .card {

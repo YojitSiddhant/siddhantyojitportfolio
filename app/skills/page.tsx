@@ -19,7 +19,7 @@ export default function SkillsPage() {
         eyebrow="Skills"
         title={
           <>
-            Tools &amp; <span className="serif-accent text-accent">technologies</span>
+            Tools &amp; <span className="text-accent">technologies</span>
           </>
         }
         description={profile.coreFocus}

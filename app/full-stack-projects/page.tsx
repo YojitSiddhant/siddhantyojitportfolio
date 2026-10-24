@@ -18,7 +18,7 @@ export default function FullStackProjectsPage() {
         eyebrow="Full Stack Projects"
         title={
           <>
-            Completed <span className="serif-accent text-accent">builds</span>
+            Completed <span className="text-accent">builds</span>
           </>
         }
         description="Full-stack applications spanning REST APIs, relational databases, file workflows, dashboards, and AI integration."

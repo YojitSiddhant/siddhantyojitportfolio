@@ -17,7 +17,7 @@ export default function EducationPage() {
         eyebrow="Education"
         title={
           <>
-            Academic <span className="serif-accent text-accent">background</span>
+            Academic <span className="text-accent">background</span>
           </>
         }
         aside={

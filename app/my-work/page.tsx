@@ -16,7 +16,7 @@ export default function MyWorkPage() {
         eyebrow="My Work"
         title={
           <>
-            Featured <span className="serif-accent text-accent">work</span>
+            Featured <span className="text-accent">work</span>
           </>
         }
         description="Live client sites and platforms I've contributed to. Each opens in a new tab."

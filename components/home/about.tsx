@@ -24,7 +24,7 @@ export function About() {
           eyebrow="About"
           title={
             <>
-              Engineering the <span className="serif-accent text-accent">small details</span> that make products easier to use.
+              Engineering the <span className="text-accent">small details</span> that make products easier to use.
             </>
           }
         />
@@ -34,7 +34,7 @@ export function About() {
         <Reveal className="flex flex-col gap-10 lg:col-span-7 lg:justify-between lg:gap-8">
           <p className="text-lg leading-relaxed text-foreground/90 sm:text-xl xl:text-[1.35rem]">{profile.introText}</p>
           <figure className="border-l-2 border-accent pl-6">
-            <blockquote className="serif-accent text-2xl leading-snug text-foreground sm:text-[1.7rem]">
+            <blockquote className="text-xl font-medium leading-snug tracking-tight text-foreground sm:text-2xl">
               “{profile.whatICareAbout}”
             </blockquote>
             <figcaption className="eyebrow mt-4">What I care about</figcaption>
@@ -80,7 +80,7 @@ export function About() {
           <ol className="mt-6 grid flex-1 auto-rows-fr divide-y divide-border overflow-hidden rounded-[1.25rem] border border-border bg-surface-strong">
             {profile.workingApproach.map((step, index) => (
               <li key={step.title} className="grid grid-cols-[2.5rem_minmax(0,1fr)] items-center gap-2 p-5 sm:px-6">
-                <span className="serif-accent text-3xl leading-none text-accent">{index + 1}.</span>
+                <span className="font-mono text-sm text-accent">{String(index + 1).padStart(2, "0")}</span>
                 <div>
                   <p className="text-lg tracking-tight text-foreground">{step.title}</p>
                   <p className="mt-1 text-sm text-muted">{step.description}</p>

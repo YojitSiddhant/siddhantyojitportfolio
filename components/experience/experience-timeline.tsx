@@ -37,7 +37,7 @@ export function ExperienceTimeline() {
                 <h3 className="text-2xl tracking-tight text-foreground sm:text-[1.7rem]">
                   {item.role}
                   <span className="text-muted"> · </span>
-                  <span className="serif-accent text-accent">{item.company}</span>
+                  <span className="text-accent">{item.company}</span>
                 </h3>
 
                 {"summary" in item && item.summary ? (
