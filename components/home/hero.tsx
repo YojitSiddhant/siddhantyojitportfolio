@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { ArrowDownIcon, ArrowUpRightIcon, GitHubIcon, LinkedInIcon, MapPinIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, ArrowUpRightIcon, GitHubIcon, LinkedInIcon, MapPinIcon } from "@/components/ui/icons";
 import { contactLinks } from "@/data/contact";
 import { education } from "@/data/education";
 import { experience } from "@/data/experience";
@@ -85,10 +85,10 @@ export function Hero() {
           <div className="flex flex-col gap-8 lg:col-span-5 motion-reveal" style={{ animationDelay: "280ms" }}>
             <p className="text-base text-muted sm:text-lg">{introLead}</p>
             <div className="flex flex-wrap items-center gap-3">
-              <a href="#projects" className="btn btn-primary">
+              <Link href="/full-stack-projects" className="btn btn-primary">
                 View projects
-                <ArrowDownIcon className="h-4 w-4" />
-              </a>
+                <ArrowRightIcon className="h-4 w-4" />
+              </Link>
               <Link href="/contact" className="btn btn-secondary">
                 Contact me
                 <ArrowUpRightIcon className="btn-arrow h-4 w-4" />
