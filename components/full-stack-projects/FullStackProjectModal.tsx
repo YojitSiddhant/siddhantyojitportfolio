@@ -29,7 +29,7 @@ function BulletIcon({ className }: { className?: string }) {
   );
 }
 
-const technologyIcons: Record<string, { src: string; alt: string }> = {
+export const technologyIcons: Record<string, { src: string; alt: string }> = {
   "Node.js": {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
     alt: "Node.js logo",

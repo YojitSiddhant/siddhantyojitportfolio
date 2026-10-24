@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
 
 import type { MouseEvent } from "react";
 import type { AcademicProjectContent } from "@/components/projects/AcademicProjectContent";
@@ -33,7 +34,14 @@ export function AcademicProjectCard({ project, index, onOpen }: AcademicProjectC
           <p className="mt-3 max-w-2xl text-[0.95rem] text-muted">{project.overview}</p>
           <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Tech stack">
             {project.technologies.map((technology) => (
-              <li key={technology.name} className="chip">
+              <li key={technology.name} className="chip text-foreground/80">
+                <img
+                  src={technology.src}
+                  alt=""
+                  className="h-4 w-4 shrink-0 object-contain"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                />
                 {technology.name}
               </li>
             ))}

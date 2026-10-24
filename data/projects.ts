@@ -65,8 +65,7 @@ export const projects = [
       },
       {
         name: "Flask",
-        src: "/project-icons/flask-logo.svg",
-        iconClassName: "h-5 w-12",
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg",
       },
       {
         name: "scikit-learn",
@@ -74,8 +73,7 @@ export const projects = [
       },
       {
         name: "Pandas",
-        src: "https://pandas.pydata.org/static/img/pandas.svg",
-        iconClassName: "h-5 w-14",
+        src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg",
       },
       {
         name: "NumPy",

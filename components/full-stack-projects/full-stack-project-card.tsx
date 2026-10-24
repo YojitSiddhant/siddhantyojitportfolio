@@ -1,7 +1,9 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
 
 import type { MouseEvent } from "react";
 import type { FullStackProjectContent } from "@/components/full-stack-projects/FullStackProjectContent";
+import { technologyIcons } from "@/components/full-stack-projects/FullStackProjectModal";
 import { ArrowUpRightIcon, GitHubIcon, PlusIcon } from "@/components/ui/icons";
 import { Reveal } from "@/components/ui/reveal";
 
@@ -96,7 +98,16 @@ export function FullStackProjectCard({ project, index, featured = false, onOpen 
 
         <ul className="mt-6 flex flex-wrap gap-1.5" aria-label="Tech stack">
           {project.technologies.map((technology) => (
-            <li key={technology} className="chip">
+            <li key={technology} className="chip text-foreground/80">
+              {technologyIcons[technology] ? (
+                <img
+                  src={technologyIcons[technology].src}
+                  alt=""
+                  className="h-4 w-4 shrink-0 object-contain"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                />
+              ) : null}
               {technology}
             </li>
           ))}
