@@ -32,7 +32,7 @@ const stats = [
   { value: "MCA", label: latestDegree.institute, Icon: AcademicCapIcon },
 ];
 
-export function Hero() {
+export function Hero({ githubStats }: { githubStats: { contributions: number; repositories: number; mergedPullRequests: number; pullRequests: number; commits: number } }) {
   return (
     <section aria-labelledby="hero-title" className="relative isolate overflow-hidden">
       <div
@@ -116,6 +116,16 @@ export function Hero() {
               <dd className="flex items-center justify-between gap-3 text-3xl tracking-tight text-foreground sm:text-4xl"><span>{stat.value}</span><stat.Icon className="h-5 w-5 text-accent sm:h-6 sm:w-6" /></dd>
             </div>
           ))}
+        </dl>
+
+        <dl className="mt-4 grid grid-cols-2 gap-px overflow-hidden rounded-[1.25rem] border border-border bg-border sm:grid-cols-3 lg:grid-cols-5 motion-reveal" style={{ animationDelay: "440ms" }}>
+          {[
+            [githubStats.contributions, "Contributions"],
+            [githubStats.repositories, "Repositories"],
+            [githubStats.mergedPullRequests, "Merged PRs"],
+            [githubStats.pullRequests, "Pull requests"],
+            [githubStats.commits, "Commits"],
+          ].map(([value, label]) => <div key={label} className="bg-surface px-4 py-4 sm:px-5 sm:py-5"><dd className="text-2xl tracking-tight text-foreground sm:text-3xl">{value || "—"}</dd><dt className="mt-1 text-xs text-muted">GitHub {label}</dt></div>)}
         </dl>
 
       </div>
