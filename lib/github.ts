@@ -110,7 +110,7 @@ async function githubFetch<T>(path: string): Promise<T> {
 async function githubGraphQL<T>(query: string, variables: Record<string, string>) {
   const token = process.env.GITHUB_TOKEN;
   if (!token) throw new Error("GITHUB_TOKEN is required for GitHub contribution data");
-  const response = await fetch("https://api.github.com/graphql", { method: "POST", headers: { ...getHeaders(), "Content-Type": "application/json" }, body: JSON.stringify({ query, variables }), next: { revalidate: 3600 } });
+  const response = await fetch("https://api.github.com/graphql", { method: "POST", headers: { ...getHeaders(), "Content-Type": "application/json" }, body: JSON.stringify({ query, variables }), cache: "no-store" });
   if (!response.ok) throw new Error(`GitHub GraphQL request failed (${response.status})`);
   const payload = (await response.json()) as { data?: T; errors?: Array<{ message: string }> };
   if (payload.errors?.length || !payload.data) throw new Error(payload.errors?.[0]?.message || "GitHub GraphQL request failed");

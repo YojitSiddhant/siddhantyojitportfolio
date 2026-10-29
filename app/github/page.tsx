@@ -23,6 +23,6 @@ export default async function GitHubPage() {
   }
   const monthCounts = new Map<string, number>();
   calendarWeeks.flatMap((week) => week.contributionDays).forEach((day) => monthCounts.set(day.date.slice(0, 7), (monthCounts.get(day.date.slice(0, 7)) || 0) + day.contributionCount));
-  const months = Array.from({ length: 12 }, (_, index) => { const date = new Date(Date.UTC(to.getUTCFullYear(), to.getUTCMonth() - 11 + index, 1)); return { label: date.toLocaleDateString("en-US", { month: "short" }), value: monthCounts.get(date.toISOString().slice(0, 7)) || 0 }; });
+  const months = Array.from({ length: 12 }, (_, index) => { const date = new Date(Date.UTC(to.getUTCFullYear(), index, 1)); return { label: date.toLocaleDateString("en-US", { month: "short" }), value: monthCounts.get(date.toISOString().slice(0, 7)) || 0 }; });
   return <PageShell><PageSectionHeader eyebrow="GitHub" title={<>Code in <span className="text-accent">motion</span></>} description={`A precise, live view of my GitHub contribution history in ${to.getUTCFullYear()}.`} aside={<HeaderStat value={String(contributions.contributionCalendar.totalContributions)} label={`contributions · ${to.getUTCFullYear()}`} />} /><GitHubDashboard months={months} weeks={calendarWeeks} totalContributions={contributions.contributionCalendar.totalContributions} totalCommits={contributions.totalCommitContributions} totalPrs={contributions.totalPullRequestContributions} year={to.getUTCFullYear()} /></PageShell>;
 }
