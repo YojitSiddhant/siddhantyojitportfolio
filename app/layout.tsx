@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SiteNavbar } from "@/components/site-navbar";
 import { SiteFooter } from "@/components/site-footer";
-import { ChatButton } from "@/components/ai/ChatButton";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -84,7 +83,6 @@ export default function RootLayout({
             {children}
           </div>
           <SiteFooter />
-          <ChatButton />
         </div>
       </body>
     </html>
