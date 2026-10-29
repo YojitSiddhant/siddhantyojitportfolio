@@ -18,7 +18,7 @@ export default async function GitHubPage() {
   const calendarEnd = new Date(Date.UTC(to.getUTCFullYear(), 11, 31));
   const calendarWeeks: GitHubContributionWeek[] = [];
   for (let cursor = new Date(calendarStart); cursor <= calendarEnd; cursor.setUTCDate(cursor.getUTCDate() + 7)) {
-    const days = Array.from({ length: 7 }, (_, offset) => { const date = new Date(cursor); date.setUTCDate(date.getUTCDate() + offset); const key = date.toISOString().slice(0, 10); const existing = contributionMap.get(key); return existing || { date: key, contributionCount: 0, weekday: offset }; });
+    const days = Array.from({ length: 7 }, (_, offset) => { const date = new Date(cursor); date.setUTCDate(date.getUTCDate() + offset); const key = date.toISOString().slice(0, 10); const existing = contributionMap.get(key); return existing || { date: key, contributionCount: 0, contributionLevel: "NONE" as const, weekday: offset }; });
     calendarWeeks.push({ contributionDays: days });
   }
   const monthCounts = new Map<string, number>();
