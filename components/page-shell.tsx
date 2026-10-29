@@ -28,8 +28,8 @@ export function PageShell({
     "/certificate": ["#9333ea", "#7e22ce", "rgba(168,85,247,0.1)"],
     "/contact": ["#047857", "#065f46", "rgba(16,185,129,0.1)"],
   };
-  const [accent, accentStrong, accentSoft] = palettes[pathname] ?? palettes["/"];
-  const toneStyle = { "--accent": accent, "--accent-strong": accentStrong, "--accent-soft": accentSoft } as CSSProperties;
+  const [pageAccent, , pageAccentSoft] = palettes[pathname] ?? palettes["/"];
+  const toneStyle = { "--page-accent": pageAccent, "--page-accent-soft": pageAccentSoft } as CSSProperties;
   return (
     <main className="relative isolate overflow-x-clip" style={toneStyle}>
       <div
