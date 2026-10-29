@@ -7,6 +7,8 @@ import { experience } from "@/data/experience";
 import { fullStackProjects } from "@/data/full-stack-projects";
 import { profile } from "@/data/profile";
 import { workItems } from "@/data/work";
+import { GitHubContributionCard } from "@/components/home/github-contribution-card";
+import type { GitHubContributionWeek } from "@/lib/github";
 
 const gridMask = "radial-gradient(ellipse 70% 60% at 30% 10%, #000 30%, transparent 75%)";
 const heroGridStyle: CSSProperties = {
@@ -32,7 +34,7 @@ const stats = [
   { value: "MCA", label: latestDegree.institute, Icon: AcademicCapIcon },
 ];
 
-export function Hero({ githubContributions, githubYear }: { githubContributions: number; githubYear: number }) {
+export function Hero({ githubContributions, githubYear, githubWeeks }: { githubContributions: number; githubYear: number; githubWeeks: GitHubContributionWeek[] }) {
   return (
     <section aria-labelledby="hero-title" className="relative isolate overflow-hidden">
       <div
@@ -122,6 +124,7 @@ export function Hero({ githubContributions, githubYear }: { githubContributions:
           <div className="flex items-center gap-3"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent"><GitHubIcon className="h-5 w-5" /></span><div><p className="text-sm font-medium text-foreground">GitHub activity</p><p className="text-xs text-muted">Public contribution count for {githubYear}</p></div></div>
           <div className="flex items-baseline gap-2"><span className="text-2xl tracking-tight text-foreground">{githubContributions || "—"}</span><span className="text-xs font-black uppercase tracking-widest text-muted">contributions</span><a href={contactLinks.github} target="_blank" rel="noreferrer" className="ml-2 text-xs font-black uppercase tracking-widest text-accent hover:text-accent-strong">View profile</a></div>
         </div>
+        {githubWeeks.length > 0 ? <GitHubContributionCard weeks={githubWeeks} year={githubYear} total={githubContributions} /> : null}
       </div>
     </section>
   );
