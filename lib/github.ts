@@ -63,6 +63,10 @@ export type GitHubCommit = {
 
 export type GitHubLanguages = Record<string, number>;
 export type GitHubSearchCommit = GitHubCommit & { repository?: { full_name?: string; name?: string } };
+export type GitHubContributionDay = { date: string; contributionCount: number; weekday: number };
+export type GitHubContributionWeek = { contributionDays: GitHubContributionDay[] };
+export type GitHubContributionCalendar = { totalContributions: number; weeks: GitHubContributionWeek[] };
+export type GitHubContributionData = { contributionCalendar: GitHubContributionCalendar; totalCommitContributions: number; totalPullRequestContributions: number };
 
 const apiBase = "https://api.github.com";
 const apiVersion = "2026-03-10";
@@ -95,6 +99,22 @@ async function githubFetch<T>(path: string): Promise<T> {
   }
 
   return (await response.json()) as T;
+}
+
+async function githubGraphQL<T>(query: string, variables: Record<string, string>) {
+  const token = process.env.GITHUB_TOKEN;
+  if (!token) throw new Error("GITHUB_TOKEN is required for GitHub contribution data");
+  const response = await fetch("https://api.github.com/graphql", { method: "POST", headers: { ...getHeaders(), "Content-Type": "application/json" }, body: JSON.stringify({ query, variables }), next: { revalidate: 3600 } });
+  if (!response.ok) throw new Error(`GitHub GraphQL request failed (${response.status})`);
+  const payload = (await response.json()) as { data?: T; errors?: Array<{ message: string }> };
+  if (payload.errors?.length || !payload.data) throw new Error(payload.errors?.[0]?.message || "GitHub GraphQL request failed");
+  return payload.data;
+}
+
+export async function getGitHubContributionData(username: string, from: string, to: string) {
+  const query = `query($login: String!, $from: DateTime!, $to: DateTime!) { user(login: $login) { contributionsCollection(from: $from, to: $to) { totalCommitContributions totalPullRequestContributions contributionCalendar { totalContributions weeks { contributionDays { date contributionCount weekday } } } } } }`;
+  const data = await githubGraphQL<{ user: { contributionsCollection: GitHubContributionData } }>(query, { login: username, from, to });
+  return data.user.contributionsCollection;
 }
 
 export async function getGitHubUser(username: string) {
