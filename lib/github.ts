@@ -66,7 +66,13 @@ export type GitHubSearchCommit = GitHubCommit & { repository?: { full_name?: str
 export type GitHubContributionDay = { date: string; contributionCount: number; weekday: number };
 export type GitHubContributionWeek = { contributionDays: GitHubContributionDay[] };
 export type GitHubContributionCalendar = { totalContributions: number; weeks: GitHubContributionWeek[] };
-export type GitHubContributionData = { contributionCalendar: GitHubContributionCalendar; totalCommitContributions: number; totalPullRequestContributions: number };
+export type GitHubContributionData = {
+  contributionCalendar: GitHubContributionCalendar;
+  totalCommitContributions: number;
+  totalPullRequestContributions: number;
+  commitContributionsByRepository: Array<{ repository: { nameWithOwner: string }; contributions: { totalCount: number } }>;
+  pullRequestContributionsByRepository: Array<{ repository: { nameWithOwner: string }; contributions: { totalCount: number } }>;
+};
 
 const apiBase = "https://api.github.com";
 const apiVersion = "2026-03-10";
@@ -112,7 +118,7 @@ async function githubGraphQL<T>(query: string, variables: Record<string, string>
 }
 
 export async function getGitHubContributionData(username: string, from: string, to: string) {
-  const query = `query($login: String!, $from: DateTime!, $to: DateTime!) { user(login: $login) { contributionsCollection(from: $from, to: $to) { totalCommitContributions totalPullRequestContributions contributionCalendar { totalContributions weeks { contributionDays { date contributionCount weekday } } } } } }`;
+  const query = `query($login: String!, $from: DateTime!, $to: DateTime!) { user(login: $login) { contributionsCollection(from: $from, to: $to) { totalCommitContributions totalPullRequestContributions commitContributionsByRepository(maxRepositories: 100) { repository { nameWithOwner } contributions { totalCount } } pullRequestContributionsByRepository(maxRepositories: 100) { repository { nameWithOwner } contributions { totalCount } } contributionCalendar { totalContributions weeks { contributionDays { date contributionCount weekday } } } } } }`;
   const data = await githubGraphQL<{ user: { contributionsCollection: GitHubContributionData } }>(query, { login: username, from, to });
   return data.user.contributionsCollection;
 }
