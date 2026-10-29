@@ -62,6 +62,7 @@ export type GitHubCommit = {
 };
 
 export type GitHubLanguages = Record<string, number>;
+export type GitHubSearchCommit = GitHubCommit & { repository?: { full_name?: string; name?: string } };
 
 const apiBase = "https://api.github.com";
 const apiVersion = "2026-03-10";
@@ -83,7 +84,7 @@ function getHeaders() {
 async function githubFetch<T>(path: string): Promise<T> {
   const response = await fetch(`${apiBase}${path}`, {
     headers: getHeaders(),
-    cache: "no-store",
+    next: { revalidate: 3600 },
   });
 
   if (!response.ok) {
@@ -129,6 +130,14 @@ export async function getGitHubRepoCommits(
       username,
     )}&since=${encodeURIComponent(sinceISO)}&per_page=100`,
   );
+}
+
+export async function searchGitHubCommits(query: string, perPage = 100) {
+  return githubFetch<{ total_count: number; items: GitHubSearchCommit[] }>(`/search/commits?q=${encodeURIComponent(query)}&sort=author-date&order=desc&per_page=${perPage}`);
+}
+
+export async function searchGitHubPullRequests(query: string) {
+  return githubFetch<{ total_count: number; items: Array<{ repository_url?: string }> }>(`/search/issues?q=${encodeURIComponent(`${query} is:pr`)}&per_page=100`);
 }
 
 export function formatGitHubDate(dateString: string) {
