@@ -18,7 +18,7 @@ export default async function Home() {
     <main className="relative isolate overflow-x-clip">
       <Hero githubContributions={githubContributions} githubYear={year} />
 
-      <div className="pt-8 sm:pt-12">
+      <div className="pt-6 sm:pt-8">
         <About />
       </div>
     </main>

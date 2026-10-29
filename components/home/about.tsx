@@ -31,7 +31,7 @@ export function About() {
         />
       </Reveal>
 
-      <div className="mt-12 grid gap-10 lg:mt-16 lg:grid-cols-12 lg:gap-12">
+      <div className="mt-8 grid gap-8 lg:mt-12 lg:grid-cols-12 lg:gap-10">
         <Reveal className="flex flex-col gap-10 lg:col-span-7 lg:justify-between lg:gap-8">
           <p className="text-lg leading-relaxed text-foreground/90 sm:text-xl xl:text-[1.35rem]">{profile.introText}</p>
           <figure className="border-l-2 border-accent pl-6">
@@ -65,7 +65,7 @@ export function About() {
         </Reveal>
       </div>
 
-      <ul className="mt-16 grid gap-4 md:grid-cols-3 lg:mt-20">
+      <ul className="mt-12 grid gap-4 md:grid-cols-3 lg:mt-14">
         {profile.valueCards.map((card, index) => (
           <Reveal as="li" key={card.title} delay={index * 80} className="card card-interactive flex flex-col p-6 sm:p-7">
             <span className="flex items-center justify-between"><span className="font-mono text-xs text-accent">{String(index + 1).padStart(2, "0")}</span>{index === 0 ? <CodeIcon className="h-5 w-5 text-accent" /> : index === 1 ? <BriefcaseIcon className="h-5 w-5 text-accent" /> : <AcademicCapIcon className="h-5 w-5 text-accent" />}</span>
@@ -75,7 +75,7 @@ export function About() {
         ))}
       </ul>
 
-      <div className="mt-16 grid gap-12 md:grid-cols-12 md:gap-8 lg:mt-20">
+      <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-8 lg:mt-14">
         <Reveal className="flex flex-col md:col-span-5">
           <h3 className="eyebrow eyebrow-accent">How I work</h3>
           <ol className="mt-6 grid flex-1 auto-rows-fr divide-y divide-border overflow-hidden rounded-[1.25rem] border border-border bg-surface-strong">

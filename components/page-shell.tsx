@@ -38,7 +38,7 @@ export function PageShell({
       />
       <section
         className={[
-          "container-page relative z-10 flex flex-col gap-12 pt-12 sm:gap-16 sm:pt-20",
+          "container-page relative z-10 flex flex-col gap-8 pt-10 sm:gap-12 sm:pt-16",
           maxWidthClassName,
           animated ? "motion-reveal" : "",
           sectionClassName,

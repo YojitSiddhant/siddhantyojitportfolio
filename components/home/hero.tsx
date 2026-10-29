@@ -107,7 +107,7 @@ export function Hero({ githubContributions, githubYear }: { githubContributions:
         </div>
 
         <dl
-          className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-[1.25rem] border border-border bg-border sm:mt-20 lg:grid-cols-4 motion-reveal"
+          className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-[1.25rem] border border-border bg-border sm:mt-14 lg:grid-cols-4 motion-reveal"
           style={{ animationDelay: "380ms" }}
         >
           {stats.map((stat) => (
