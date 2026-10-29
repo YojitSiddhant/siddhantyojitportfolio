@@ -118,7 +118,7 @@ async function githubGraphQL<T>(query: string, variables: Record<string, string>
 }
 
 export async function getGitHubContributionData(username: string, from: string, to: string) {
-  const query = `query($login: String!, $from: DateTime!, $to: DateTime!) { user(login: $login) { contributionsCollection(from: $from, to: $to, includePrivateContributions: false) { totalCommitContributions totalPullRequestContributions commitContributionsByRepository(maxRepositories: 100) { repository { nameWithOwner } contributions { totalCount } } pullRequestContributionsByRepository(maxRepositories: 100) { repository { nameWithOwner } contributions { totalCount } } contributionCalendar { totalContributions weeks { contributionDays { date contributionCount contributionLevel weekday } } } } } }`;
+  const query = `query($login: String!, $from: DateTime!, $to: DateTime!) { user(login: $login) { contributionsCollection(from: $from, to: $to) { totalCommitContributions totalPullRequestContributions commitContributionsByRepository(maxRepositories: 100) { repository { nameWithOwner } contributions { totalCount } } pullRequestContributionsByRepository(maxRepositories: 100) { repository { nameWithOwner } contributions { totalCount } } contributionCalendar { totalContributions weeks { contributionDays { date contributionCount contributionLevel weekday } } } } } }`;
   const data = await githubGraphQL<{ user: { contributionsCollection: GitHubContributionData } }>(query, { login: username, from, to });
   return data.user.contributionsCollection;
 }
