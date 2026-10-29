@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { ArrowRightIcon, ArrowUpRightIcon, GitHubIcon, LinkedInIcon, MapPinIcon } from "@/components/ui/icons";
+import { AcademicCapIcon, ArrowRightIcon, ArrowUpRightIcon, BriefcaseIcon, CodeIcon, GitHubIcon, LinkedInIcon, MapPinIcon } from "@/components/ui/icons";
 import { contactLinks } from "@/data/contact";
 import { education } from "@/data/education";
 import { experience } from "@/data/experience";
@@ -22,16 +22,17 @@ const latestDegree = education[0];
 const introLead = profile.introText.split(/(?<=\.)\s/)[0];
 
 const stats = [
-  { value: String(fullStackProjects.length).padStart(2, "0"), label: "Full-stack builds" },
-  { value: String(workItems.length).padStart(2, "0"), label: "Live client sites" },
+  { value: String(fullStackProjects.length).padStart(2, "0"), label: "Full-stack builds", Icon: CodeIcon },
+  { value: String(workItems.length).padStart(2, "0"), label: "Live client sites", Icon: BriefcaseIcon },
   {
     value: String(experience.filter((item) => /intern/i.test(item.role)).length).padStart(2, "0"),
     label: "Internships",
+    Icon: BriefcaseIcon,
   },
-  { value: "MCA", label: latestDegree.institute },
+  { value: "MCA", label: latestDegree.institute, Icon: AcademicCapIcon },
 ];
 
-export function Hero() {
+export function Hero({ githubContributions, githubYear }: { githubContributions: number; githubYear: number }) {
   return (
     <section aria-labelledby="hero-title" className="relative isolate overflow-hidden">
       <div
@@ -112,10 +113,15 @@ export function Hero() {
           {stats.map((stat) => (
             <div key={stat.label} className="flex flex-col-reverse gap-1 bg-surface px-5 py-5 sm:px-6 sm:py-6">
               <dt className="text-sm text-muted">{stat.label}</dt>
-              <dd className="text-3xl tracking-tight text-foreground sm:text-4xl">{stat.value}</dd>
+              <dd className="flex items-center justify-between gap-3 text-3xl tracking-tight text-foreground sm:text-4xl"><span>{stat.value}</span><stat.Icon className="h-5 w-5 text-accent sm:h-6 sm:w-6" /></dd>
             </div>
           ))}
         </dl>
+
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-4 rounded-[1.25rem] border border-border bg-surface-strong px-5 py-4 sm:px-6 motion-reveal" style={{ animationDelay: "440ms" }}>
+          <div className="flex items-center gap-3"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent"><GitHubIcon className="h-5 w-5" /></span><div><p className="text-sm font-medium text-foreground">GitHub activity</p><p className="text-xs text-muted">Public contribution count for {githubYear}</p></div></div>
+          <div className="flex items-baseline gap-2"><span className="text-2xl tracking-tight text-foreground">{githubContributions || "—"}</span><span className="text-xs font-black uppercase tracking-widest text-muted">contributions</span><a href={contactLinks.github} target="_blank" rel="noreferrer" className="ml-2 text-xs font-black uppercase tracking-widest text-accent hover:text-accent-strong">View profile</a></div>
+        </div>
       </div>
     </section>
   );

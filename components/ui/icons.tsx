@@ -73,6 +73,18 @@ export function MapPinIcon({ className }: IconProps) {
   );
 }
 
+export function CodeIcon({ className }: IconProps) {
+  return <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 4l-4 16" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+}
+
+export function BriefcaseIcon({ className }: IconProps) {
+  return <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none"><rect x="3" y="6.5" width="18" height="13" rx="2" stroke="currentColor" strokeWidth="1.7" /><path d="M8 6.5V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1.5M3 11h18M10 11v2h4v-2" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" /></svg>;
+}
+
+export function AcademicCapIcon({ className }: IconProps) {
+  return <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none"><path d="m3 9 9-4 9 4-9 4-9-4Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" /><path d="M7 11.5V16c2.8 2.2 7.2 2.2 10 0v-4.5M21 9v6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" /></svg>;
+}
+
 export function CloseIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none">
