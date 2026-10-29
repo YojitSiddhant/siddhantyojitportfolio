@@ -32,7 +32,7 @@ const stats = [
   { value: "MCA", label: latestDegree.institute, Icon: AcademicCapIcon },
 ];
 
-export function Hero() {
+export function Hero({ githubContributions, githubYear }: { githubContributions: number | null; githubYear: number }) {
   return (
     <section aria-labelledby="hero-title" className="relative isolate overflow-hidden">
       <div
@@ -117,6 +117,8 @@ export function Hero() {
             </div>
           ))}
         </dl>
+
+        {githubContributions !== null ? <div className="mt-4 flex flex-wrap items-center justify-between gap-4 rounded-[1.25rem] border border-border bg-surface-strong px-5 py-4 text-center sm:px-6 motion-reveal" style={{ animationDelay: "440ms" }}><div className="flex items-center gap-3"><span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-soft text-accent"><GitHubIcon className="h-4 w-4" /></span><div className="text-left"><p className="text-sm font-medium text-foreground">GitHub contributions</p><p className="text-xs text-muted">Public contributions in {githubYear}</p></div></div><p className="text-2xl tracking-tight text-foreground"><span>{githubContributions}</span> <span className="text-xs font-black uppercase tracking-widest text-muted">contributions</span></p></div> : null}
 
 
       </div>
