@@ -111,9 +111,9 @@ export function Hero({ githubStats }: { githubStats: { contributions: number; re
           style={{ animationDelay: "380ms" }}
         >
           {stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col-reverse gap-1 bg-surface px-5 py-5 sm:px-6 sm:py-6">
+            <div key={stat.label} className="flex flex-col-reverse items-center gap-1 bg-surface px-5 py-5 text-center sm:px-6 sm:py-6">
               <dt className="text-sm text-muted">{stat.label}</dt>
-              <dd className="flex items-center justify-between gap-3 text-3xl tracking-tight text-foreground sm:text-4xl"><span>{stat.value}</span><stat.Icon className="h-5 w-5 text-accent sm:h-6 sm:w-6" /></dd>
+              <dd className="flex items-center justify-center gap-3 text-3xl tracking-tight text-foreground sm:text-4xl"><span>{stat.value}</span><stat.Icon className="h-5 w-5 text-accent sm:h-6 sm:w-6" /></dd>
             </div>
           ))}
         </dl>
@@ -125,7 +125,7 @@ export function Hero({ githubStats }: { githubStats: { contributions: number; re
             [githubStats.mergedPullRequests, "Merged PRs"],
             [githubStats.pullRequests, "Pull requests"],
             [githubStats.commits, "Commits"],
-          ].map(([value, label]) => <div key={label} className="bg-surface px-4 py-4 sm:px-5 sm:py-5"><dd className="text-2xl tracking-tight text-foreground sm:text-3xl">{value || "—"}</dd><dt className="mt-1 text-xs text-muted">GitHub {label}</dt></div>)}
+          ].map(([value, label]) => <div key={label} className="flex flex-col items-center bg-surface px-4 py-4 text-center sm:px-5 sm:py-5"><span className="mb-2 flex h-8 w-8 items-center justify-center rounded-lg bg-accent-soft text-accent"><GitHubIcon className="h-4 w-4" /></span><dd className="text-2xl tracking-tight text-foreground sm:text-3xl">{value}</dd><dt className="mt-1 text-xs text-muted">GitHub {label}</dt></div>)}
         </dl>
 
       </div>

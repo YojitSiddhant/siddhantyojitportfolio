@@ -1,6 +1,7 @@
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { profile } from "@/data/profile";
+import { AcademicCapIcon, BriefcaseIcon, CodeIcon } from "@/components/ui/icons";
 
 const keyFacts = [
   { label: "Location", value: profile.location },
@@ -67,7 +68,7 @@ export function About() {
       <ul className="mt-16 grid gap-4 md:grid-cols-3 lg:mt-20">
         {profile.valueCards.map((card, index) => (
           <Reveal as="li" key={card.title} delay={index * 80} className="card card-interactive flex flex-col p-6 sm:p-7">
-            <span className="font-mono text-xs text-accent">{String(index + 1).padStart(2, "0")}</span>
+            <span className="flex items-center justify-between"><span className="font-mono text-xs text-accent">{String(index + 1).padStart(2, "0")}</span>{index === 0 ? <CodeIcon className="h-5 w-5 text-accent" /> : index === 1 ? <BriefcaseIcon className="h-5 w-5 text-accent" /> : <AcademicCapIcon className="h-5 w-5 text-accent" />}</span>
             <h3 className="mt-5 text-xl tracking-tight text-foreground">{card.title}</h3>
             <p className="mt-3 text-sm text-muted">{card.description}</p>
           </Reveal>
