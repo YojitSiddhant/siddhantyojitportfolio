@@ -75,10 +75,10 @@ export function AcademicProjectCard({ project, index, onOpen }: AcademicProjectC
             {project.keyFeatures.slice(0, 4).map((feature, featureIndex) => (
               <li
                 key={feature}
-                className="flex items-center gap-3 border-b border-border px-5 py-3 text-[0.82rem] text-muted last:border-b-0"
+                className="flex items-start gap-3 border-b border-border px-5 py-3 text-[0.82rem] text-muted last:border-b-0"
               >
-                <span className="font-mono text-[0.65rem] text-subtle">{String(featureIndex + 1).padStart(2, "0")}</span>
-                <span className="truncate">{feature}</span>
+                <span className="mt-0.5 shrink-0 font-mono text-[0.65rem] text-subtle">{String(featureIndex + 1).padStart(2, "0")}</span>
+                <span className="min-w-0 break-words">{feature}</span>
               </li>
             ))}
           </ul>

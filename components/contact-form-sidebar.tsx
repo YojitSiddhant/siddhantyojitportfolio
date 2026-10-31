@@ -36,15 +36,15 @@ export function ContactFormSidebar({ links }: ContactFormSidebarProps) {
     <aside className="flex h-full flex-col gap-4 lg:col-span-5" aria-label="Contact details">
       <a
         href={`mailto:${links.email}`}
-        className="group card card-interactive flex items-center justify-between gap-4 p-5 sm:p-6"
+        className="group card card-interactive flex items-start justify-between gap-4 p-5 sm:p-6"
       >
         <span className="min-w-0">
           <span className="eyebrow">Email directly</span>
-          <span className="mt-2 block truncate text-lg tracking-tight text-foreground group-hover:text-accent">
+          <span className="mt-2 block break-words text-lg tracking-tight text-foreground group-hover:text-accent">
             {links.email}
           </span>
         </span>
-        <MailIcon className="h-5 w-5 shrink-0 text-subtle group-hover:text-accent" />
+        <MailIcon className="mt-0.5 h-5 w-5 shrink-0 text-subtle group-hover:text-accent" />
       </a>
 
       <div className="card p-5 sm:p-6">

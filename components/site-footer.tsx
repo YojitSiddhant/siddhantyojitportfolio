@@ -88,7 +88,7 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-border">
-        <div className="container-page flex flex-col gap-2 py-6 pr-36 text-xs text-subtle sm:flex-row sm:items-center sm:justify-between sm:pr-44">
+        <div className="container-page flex flex-col gap-2 pt-6 pb-20 text-xs text-subtle sm:flex-row sm:items-center sm:justify-between sm:py-6 sm:pr-44">
           <p>© {year} Siddhant Yojit. All rights reserved.</p>
           <p className="font-mono">Built with Next.js &amp; Tailwind CSS</p>
         </div>
