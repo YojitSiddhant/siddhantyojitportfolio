@@ -47,18 +47,31 @@ export function FullStackProjectsShowcase() {
     };
   }, []);
 
+  const [featuredProject, ...restProjects] = fullStackProjectContent;
+
   return (
     <>
-      <div className="grid gap-4 md:grid-cols-2">
-        {fullStackProjectContent.map((project, index) => (
+      <div className="grid gap-4">
+        {featuredProject ? (
           <FullStackProjectCard
-            key={project.title}
-            project={project}
-            index={index}
-            featured={index === 0}
+            key={featuredProject.title}
+            project={featuredProject}
+            index={0}
+            featured
             onOpen={handleOpenProject}
           />
-        ))}
+        ) : null}
+
+        <div className="grid gap-4 md:grid-cols-2">
+          {restProjects.map((project, index) => (
+            <FullStackProjectCard
+              key={project.title}
+              project={project}
+              index={index + 1}
+              onOpen={handleOpenProject}
+            />
+          ))}
+        </div>
       </div>
 
       <FullStackProjectModal project={activeProject} open={isModalOpen} onClose={handleCloseProject} />

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRightIcon, GitHubIcon, LinkedInIcon, MailIcon } from "@/components/ui/icons";
+import { ArrowDownIcon, ArrowUpRightIcon, GitHubIcon, LinkedInIcon, MailIcon } from "@/components/ui/icons";
 import { contactLinks } from "@/data/contact";
 import { navItems } from "@/data/navigation";
 import { profile } from "@/data/profile";
@@ -8,7 +8,28 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative mt-24 border-t border-border bg-surface-strong sm:mt-32">
+    <footer className="relative mt-24 border-t border-border sm:mt-32">
+      {/* CTA band */}
+      <div className="border-b border-border bg-surface-strong">
+        <div className="container-page flex flex-col items-center gap-6 py-16 text-center sm:py-20">
+          <p className="eyebrow justify-center">Let&apos;s work together</p>
+          <h2 className="max-w-2xl text-3xl tracking-tight text-foreground sm:text-5xl">
+            Have a project in mind? <span className="text-accent">Let&apos;s talk.</span>
+          </h2>
+          <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
+            <Link href="/contact" className="btn btn-primary">
+              Contact me
+              <ArrowUpRightIcon className="btn-arrow h-4 w-4" />
+            </Link>
+            <a href="/siddhant-yojit-resume.pdf" download className="btn btn-secondary">
+              Download resume
+              <ArrowDownIcon className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Sitemap */}
       <div className="container-page grid gap-12 py-14 sm:grid-cols-2 md:py-16 lg:grid-cols-12">
         <div className="sm:col-span-2 lg:col-span-5">
           <p className="text-2xl tracking-tight text-foreground">

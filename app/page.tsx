@@ -17,10 +17,7 @@ export default async function Home() {
   return (
     <main className="relative isolate overflow-x-clip">
       <Hero githubContributions={githubContributions} githubYear={year} />
-
-      <div className="pt-6 sm:pt-8">
-        <About />
-      </div>
+      <About />
     </main>
   );
 }

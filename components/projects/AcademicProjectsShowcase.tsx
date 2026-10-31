@@ -49,7 +49,7 @@ export function AcademicProjectsShowcase() {
 
   return (
     <>
-      <div className="border-b border-border">
+      <div>
         {academicProjectContent.map((project, index) => (
           <AcademicProjectCard key={project.title} project={project} index={index} onOpen={handleOpenProject} />
         ))}

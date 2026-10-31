@@ -2,22 +2,25 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #111827;
-  --muted: #526071;
-  --subtle: #64748b;
+  --foreground: #1d1d1f;
+  --muted: #515154;
+  --subtle: #6e6e73;
   --surface: #ffffff;
-  --surface-strong: #f8fafc;
-  --surface-hover: #f1f5f9;
-  --border: #e5e7eb;
-  --border-strong: #d1d5db;
-  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px -8px rgba(15, 23, 42, 0.06);
-  --shadow-raised: 0 1px 2px rgba(15, 23, 42, 0.04), 0 18px 40px -18px rgba(15, 23, 42, 0.16);
-  --accent: #2563eb;
-  --accent-strong: #1d4ed8;
-  --accent-soft: rgba(37, 99, 235, 0.1);
+  --surface-strong: #f5f5f7;
+  --surface-hover: #ededf0;
+  --border: rgba(60, 60, 67, 0.13);
+  --border-strong: rgba(60, 60, 67, 0.22);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 16px -8px rgba(0, 0, 0, 0.06);
+  --shadow-raised: 0 1px 2px rgba(0, 0, 0, 0.04), 0 18px 40px -18px rgba(0, 0, 0, 0.16);
+  --accent: #0071e3;
+  --accent-strong: #0058b9;
+  --accent-soft: rgba(0, 113, 227, 0.1);
   --accent-foreground: #ffffff;
   --logo-tile: #ffffff;
   --header-height: 4rem;
+  --ease-apple: cubic-bezier(0.28, 0.11, 0.32, 1);
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.6);
   color-scheme: light;
 }
 
@@ -40,6 +43,7 @@
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ease-apple: cubic-bezier(0.28, 0.11, 0.32, 1);
   --tracking-tight: -0.022em;
   --tracking-tighter: -0.045em;
   --tracking-wide: 0.02em;
@@ -98,7 +102,7 @@
   }
 
   ::selection {
-    background: rgba(37, 99, 235, 0.16);
+    background: rgba(0, 113, 227, 0.16);
     color: var(--foreground);
   }
 
@@ -219,9 +223,9 @@
 
   .card-interactive {
     transition:
-      border-color 250ms ease,
-      box-shadow 350ms cubic-bezier(0.2, 0.8, 0.2, 1),
-      transform 350ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      border-color 250ms var(--ease-apple),
+      box-shadow 350ms var(--ease-apple),
+      transform 350ms var(--ease-apple);
   }
 
   .card-interactive:hover {
@@ -260,6 +264,23 @@
     background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
   }
 
+  /* ---------- Liquid Glass (floating chrome only — never content cards) ---------- */
+
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 var(--glass-border);
+  }
+
+  @supports not (backdrop-filter: blur(1px)) {
+    .glass {
+      background: rgba(255, 255, 255, 0.94);
+    }
+  }
+
   /* ---------- Buttons ---------- */
 
   .btn {
@@ -279,11 +300,11 @@
     white-space: nowrap;
     cursor: pointer;
     transition:
-      background-color 200ms ease,
-      border-color 200ms ease,
-      box-shadow 200ms ease,
-      color 200ms ease,
-      transform 200ms ease;
+      background-color 200ms var(--ease-apple),
+      border-color 200ms var(--ease-apple),
+      box-shadow 200ms var(--ease-apple),
+      color 200ms var(--ease-apple),
+      transform 200ms var(--ease-apple);
   }
 
   .btn:active {
@@ -298,12 +319,12 @@
   .btn-primary {
     background: var(--accent);
     color: var(--accent-foreground);
-    box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    box-shadow: 0 1px 2px rgba(0, 113, 227, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.16);
   }
 
   .btn-primary:hover {
     background: var(--accent-strong);
-    box-shadow: 0 8px 20px -8px rgba(37, 99, 235, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    box-shadow: 0 8px 20px -8px rgba(0, 113, 227, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.16);
   }
 
   .btn-secondary {
@@ -384,7 +405,7 @@
 
   .send-button:hover {
     background: var(--accent-strong);
-    box-shadow: 0 8px 20px -8px rgba(37, 99, 235, 0.55);
+    box-shadow: 0 8px 20px -8px rgba(0, 113, 227, 0.55);
   }
 
   .send-button:active {

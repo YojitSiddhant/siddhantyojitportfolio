@@ -1,6 +1,5 @@
 import Link from "next/link";
-import type { CSSProperties } from "react";
-import { AcademicCapIcon, ArrowRightIcon, ArrowUpRightIcon, BriefcaseIcon, CodeIcon, GitHubIcon, LinkedInIcon, MapPinIcon } from "@/components/ui/icons";
+import { AcademicCapIcon, ArrowDownIcon, ArrowRightIcon, ArrowUpRightIcon, BriefcaseIcon, CodeIcon, GitHubIcon, LinkedInIcon, MapPinIcon } from "@/components/ui/icons";
 import { contactLinks } from "@/data/contact";
 import { education } from "@/data/education";
 import { experience } from "@/data/experience";
@@ -8,18 +7,8 @@ import { fullStackProjects } from "@/data/full-stack-projects";
 import { profile } from "@/data/profile";
 import { workItems } from "@/data/work";
 
-const gridMask = "radial-gradient(ellipse 70% 60% at 30% 10%, #000 30%, transparent 75%)";
-const heroGridStyle: CSSProperties = {
-  backgroundImage:
-    "linear-gradient(to right, rgba(15,23,42,0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,23,42,0.045) 1px, transparent 1px)",
-  backgroundSize: "4.5rem 4.5rem",
-  maskImage: gridMask,
-  WebkitMaskImage: gridMask,
-};
-
-const current =[...experience].sort((a, b) => a.order - b.order)[0];
+const current = [...experience].sort((a, b) => a.order - b.order)[0];
 const latestDegree = education[0];
-const introLead = profile.introText.split(/(?<=\.)\s/)[0];
 
 const stats = [
   { value: String(fullStackProjects.length).padStart(2, "0"), label: "Full-stack builds", Icon: CodeIcon },
@@ -37,17 +26,12 @@ export function Hero({ githubContributions, githubYear }: { githubContributions:
     <section aria-labelledby="hero-title" className="relative isolate overflow-hidden">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={heroGridStyle}
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-40 left-[-10%] -z-10 h-144 w-200 max-w-none rounded-full"
-        style={{ background: "radial-gradient(closest-side, rgba(37,99,235,0.07), transparent)" }}
+        className="pointer-events-none absolute -top-48 left-1/2 -z-10 h-160 w-320 max-w-none -translate-x-1/2 rounded-full"
+        style={{ background: "radial-gradient(closest-side, rgba(0,113,227,0.08), transparent)" }}
       />
 
-      <div className="container-page pt-14 pb-16 sm:pt-24 sm:pb-20 lg:pt-28">
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-3 motion-reveal">
+      <div className="container-page flex flex-col items-center pt-20 pb-20 text-center sm:pt-28 sm:pb-24 lg:pt-36">
+        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 motion-reveal">
           {current ? (
             <Link
               href="/experience"
@@ -67,60 +51,68 @@ export function Hero({ githubContributions, githubYear }: { githubContributions:
 
         <h1
           id="hero-title"
-          className="mt-10 text-[clamp(3.4rem,12vw,9.5rem)] font-semibold text-foreground motion-reveal"
+          className="mt-8 max-w-5xl text-[clamp(2.8rem,9vw,7rem)] font-semibold text-foreground motion-reveal"
           style={{ animationDelay: "80ms" }}
         >
-          Siddhant <span className="text-accent">Yojit</span>
+          Building clear, reliable <span className="text-accent">full-stack products</span>.
         </h1>
 
-        <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-12 lg:gap-12">
-          <p
-            className="max-w-3xl text-2xl font-medium leading-tight tracking-tight text-subtle sm:text-3xl lg:col-span-7 lg:text-[2.1rem] motion-reveal"
-            style={{ animationDelay: "180ms" }}
-          >
-            {profile.snapshotTitle} building{" "}
-            <span className="text-foreground">clear interfaces</span>, reusable components, and{" "}
-            <span className="text-foreground">reliable workflows</span> for the web.
-          </p>
-
-          <div className="flex flex-col gap-8 lg:col-span-5 motion-reveal" style={{ animationDelay: "280ms" }}>
-            <p className="text-base text-muted sm:text-lg">{introLead}</p>
-            <div className="flex flex-wrap items-center gap-3">
-              <Link href="/full-stack-projects" className="btn btn-primary">
-                View projects
-                <ArrowRightIcon className="h-4 w-4" />
-              </Link>
-              <Link href="/contact" className="btn btn-secondary">
-                Contact me
-                <ArrowUpRightIcon className="btn-arrow h-4 w-4" />
-              </Link>
-              <span className="flex items-center gap-2">
-                <a href={contactLinks.github} target="_blank" rel="noreferrer" className="btn btn-secondary btn-icon" aria-label="GitHub profile">
-                  <GitHubIcon className="h-4 w-4" />
-                </a>
-                <a href={contactLinks.linkedin} target="_blank" rel="noreferrer" className="btn btn-secondary btn-icon" aria-label="LinkedIn profile">
-                  <LinkedInIcon className="h-4 w-4" />
-                </a>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <dl
-          className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-[1.25rem] border border-border bg-border sm:mt-14 lg:grid-cols-4 motion-reveal"
-          style={{ animationDelay: "380ms" }}
+        <p
+          className="mt-7 max-w-2xl text-lg leading-relaxed text-muted motion-reveal sm:text-xl"
+          style={{ animationDelay: "180ms" }}
         >
-          {stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col-reverse items-center gap-1 bg-surface px-5 py-5 text-center sm:px-6 sm:py-6">
-              <dt className="text-sm text-muted">{stat.label}</dt>
-              <dd className="flex items-center justify-center gap-3 text-3xl tracking-tight text-foreground sm:text-4xl"><span>{stat.value}</span><stat.Icon className="h-5 w-5 text-accent sm:h-6 sm:w-6" /></dd>
-            </div>
-          ))}
-        </dl>
+          {profile.snapshotTitle} based in {profile.location.split(",")[0]} — React.js, Next.js, Node.js, and
+          Express.js, with REST APIs and database-driven workflows on PostgreSQL and MySQL.
+        </p>
 
-        {githubContributions !== null ? <div className="mt-4 flex flex-wrap items-center justify-between gap-4 rounded-[1.25rem] border border-border bg-surface-strong px-5 py-4 text-center sm:px-6 motion-reveal" style={{ animationDelay: "440ms" }}><div className="flex items-center gap-3"><span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-soft text-accent"><GitHubIcon className="h-4 w-4" /></span><div className="text-left"><p className="text-sm font-medium text-foreground">GitHub contributions</p><p className="text-xs text-muted">Public contributions in {githubYear}</p></div></div><p className="text-2xl tracking-tight text-foreground"><span>{githubContributions}</span> <span className="text-xs font-black uppercase tracking-widest text-muted">contributions</span></p></div> : null}
+        <div
+          className="mt-9 flex flex-wrap items-center justify-center gap-3 motion-reveal"
+          style={{ animationDelay: "280ms" }}
+        >
+          <Link href="/full-stack-projects" className="btn btn-primary">
+            View projects
+            <ArrowRightIcon className="h-4 w-4" />
+          </Link>
+          <a href="/siddhant-yojit-resume.pdf" download className="btn btn-secondary">
+            Download resume
+            <ArrowDownIcon className="h-4 w-4" />
+          </a>
+          <Link href="/contact" className="btn btn-secondary">
+            Contact me
+            <ArrowUpRightIcon className="btn-arrow h-4 w-4" />
+          </Link>
+          <span className="flex items-center gap-2">
+            <a href={contactLinks.github} target="_blank" rel="noreferrer" className="btn btn-secondary btn-icon" aria-label="GitHub profile">
+              <GitHubIcon className="h-4 w-4" />
+            </a>
+            <a href={contactLinks.linkedin} target="_blank" rel="noreferrer" className="btn btn-secondary btn-icon" aria-label="LinkedIn profile">
+              <LinkedInIcon className="h-4 w-4" />
+            </a>
+          </span>
+        </div>
+      </div>
 
+      <div className="border-t border-border bg-surface-strong motion-reveal" style={{ animationDelay: "380ms" }}>
+        <div className="container-page">
+          <dl className="grid grid-cols-2 divide-x divide-y divide-border sm:grid-cols-4 sm:divide-y-0">
+            {stats.map((stat) => (
+              <div key={stat.label} className="flex flex-col items-center gap-2 py-8 text-center">
+                <dd className="flex items-center gap-2.5 text-4xl tracking-tight text-foreground sm:text-5xl">
+                  <stat.Icon className="h-5 w-5 text-accent sm:h-6 sm:w-6" />
+                  {stat.value}
+                </dd>
+                <dt className="text-sm text-muted">{stat.label}</dt>
+              </div>
+            ))}
+          </dl>
 
+          {githubContributions !== null ? (
+            <p className="border-t border-border py-4 text-center text-sm text-muted">
+              <span className="text-foreground">{githubContributions}</span> public GitHub contributions in{" "}
+              {githubYear}
+            </p>
+          ) : null}
+        </div>
       </div>
     </section>
   );

@@ -56,88 +56,95 @@ export function SiteNavbar() {
 
   return (
     <>
-      <header
-        className={`sticky top-0 z-50 h-(--header-height) border-b transition-colors duration-300 ${
-          isScrolled || isOpen
-            ? "border-border bg-background/80 backdrop-blur-xl"
-            : "border-transparent bg-transparent"
-        }`}
-      >
-        <div className="container-page flex h-full items-center justify-between gap-6">
-          <Link href="/" className="group flex items-center gap-3" aria-label="Siddhant Yojit — home">
-            <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full ring-1 ring-border-strong">
-              <Image src="/favicon.png" alt="" fill sizes="32px" className="object-cover" />
-            </span>
-            <span className="text-[0.95rem] font-medium tracking-tight text-foreground">
-              Siddhant Yojit
-            </span>
-          </Link>
-
-          <nav aria-label="Primary" className="hidden xl:block">
-            <ul className="flex items-center gap-1">
-              {desktopItems.map((item) => {
-                const active = isActive(item.href);
-                const Icon = navIcons[item.href];
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      aria-current={active ? "page" : undefined}
-                      className={`group relative inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[0.84rem] transition-colors duration-200 ${
-                        active ? "bg-accent-soft text-accent" : "text-muted hover:bg-surface-hover hover:text-foreground"
-                      }`}
-                    >
-                      {Icon ? (
-                        <Icon
-                          className={`h-4 w-4 shrink-0 transition-colors duration-200 ${
-                            active ? "text-accent" : "text-subtle group-hover:text-accent"
-                          }`}
-                        />
-                      ) : null}
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-
-          <div className="flex items-center gap-2">
-            <Link
-              href="/contact"
-              aria-current={isActive("/contact") ? "page" : undefined}
-              className="btn btn-primary btn-sm hidden sm:inline-flex"
-            >
-              <MailNavIcon className="h-4 w-4" />
-              Contact
-              <ArrowUpRightIcon className="btn-arrow h-3.5 w-3.5" />
+      <div className="sticky top-0 z-50 h-(--header-height)">
+        {/* Scroll edge effect: fades content beneath the floating bar instead of a hard line */}
+        <div
+          aria-hidden="true"
+          className={`pointer-events-none absolute inset-x-0 top-0 -z-10 h-24 bg-gradient-to-b from-background to-transparent transition-opacity duration-300 ${
+            isScrolled ? "opacity-100" : "opacity-0"
+          }`}
+        />
+        <header className="container-page flex h-full items-center">
+          <div
+            className={`glass flex h-12 w-full items-center justify-between gap-6 rounded-full px-4 transition-[background-color,box-shadow] duration-300 sm:px-5 ${
+              isScrolled || isOpen ? "" : "bg-transparent shadow-none backdrop-blur-none"
+            }`}
+          >
+            <Link href="/" className="group flex items-center gap-2.5 shrink-0" aria-label="Siddhant Yojit — home">
+              <span className="relative h-7 w-7 shrink-0 overflow-hidden rounded-full ring-1 ring-border-strong">
+                <Image src="/favicon.png" alt="" fill sizes="28px" className="object-cover" />
+              </span>
+              <span className="text-[0.9rem] font-medium tracking-tight text-foreground">
+                Siddhant Yojit
+              </span>
             </Link>
 
-            <button
-              ref={menuButtonRef}
-              type="button"
-              className="btn btn-secondary btn-sm gap-2 xl:hidden"
-              onClick={() => setIsOpen((current) => !current)}
-              aria-expanded={isOpen}
-              aria-controls="site-navigation-sheet"
-            >
-              <span>{isOpen ? "Close" : "Menu"}</span>
-              <span aria-hidden="true" className="relative block h-2.5 w-3.5">
-                <span
-                  className={`absolute left-0 h-px w-full bg-current transition-transform duration-300 ${
-                    isOpen ? "top-1/2 rotate-45" : "top-0"
-                  }`}
-                />
-                <span
-                  className={`absolute left-0 h-px w-full bg-current transition-transform duration-300 ${
-                    isOpen ? "top-1/2 -rotate-45" : "bottom-0"
-                  }`}
-                />
-              </span>
-            </button>
+            <nav aria-label="Primary" className="hidden xl:block">
+              <ul className="flex items-center gap-1">
+                {desktopItems.map((item) => {
+                  const active = isActive(item.href);
+                  const Icon = navIcons[item.href];
+                  return (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        aria-current={active ? "page" : undefined}
+                        className={`group relative inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[0.84rem] transition-colors duration-200 ${
+                          active ? "bg-accent-soft text-accent" : "text-muted hover:bg-surface-hover hover:text-foreground"
+                        }`}
+                      >
+                        {Icon ? (
+                          <Icon
+                            className={`h-4 w-4 shrink-0 transition-colors duration-200 ${
+                              active ? "text-accent" : "text-subtle group-hover:text-accent"
+                            }`}
+                          />
+                        ) : null}
+                        {item.label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+
+            <div className="flex items-center gap-2 shrink-0">
+              <Link
+                href="/contact"
+                aria-current={isActive("/contact") ? "page" : undefined}
+                className="btn btn-primary btn-sm hidden sm:inline-flex"
+              >
+                <MailNavIcon className="h-4 w-4" />
+                Contact
+                <ArrowUpRightIcon className="btn-arrow h-3.5 w-3.5" />
+              </Link>
+
+              <button
+                ref={menuButtonRef}
+                type="button"
+                className="btn btn-secondary btn-sm gap-2 xl:hidden"
+                onClick={() => setIsOpen((current) => !current)}
+                aria-expanded={isOpen}
+                aria-controls="site-navigation-sheet"
+              >
+                <span>{isOpen ? "Close" : "Menu"}</span>
+                <span aria-hidden="true" className="relative block h-2.5 w-3.5">
+                  <span
+                    className={`absolute left-0 h-px w-full bg-current transition-transform duration-300 ${
+                      isOpen ? "top-1/2 rotate-45" : "top-0"
+                    }`}
+                  />
+                  <span
+                    className={`absolute left-0 h-px w-full bg-current transition-transform duration-300 ${
+                      isOpen ? "top-1/2 -rotate-45" : "bottom-0"
+                    }`}
+                  />
+                </span>
+              </button>
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
+      </div>
 
       {isOpen
         ? createPortal(

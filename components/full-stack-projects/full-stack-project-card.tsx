@@ -74,7 +74,7 @@ export function FullStackProjectCard({ project, index, featured = false, onOpen 
       as="article"
       delay={(index % 2) * 80}
       className={`group/card card card-interactive flex flex-col gap-8 p-5 sm:p-7 ${
-        featured ? "md:col-span-2 lg:grid lg:grid-cols-12 lg:items-center lg:gap-10 lg:p-10" : ""
+        featured ? "bg-surface-strong lg:grid lg:grid-cols-12 lg:items-center lg:gap-12 lg:p-12" : ""
       }`}
     >
       <div className={`flex flex-col ${featured ? "lg:col-span-5" : "flex-1"}`}>
@@ -85,7 +85,7 @@ export function FullStackProjectCard({ project, index, featured = false, onOpen 
           {featured ? <span className="chip">Featured</span> : null}
         </div>
 
-        <h3 className={`mt-6 tracking-tight text-foreground ${featured ? "text-3xl sm:text-4xl" : "text-2xl"}`}>
+        <h3 className={`mt-6 tracking-tight text-foreground ${featured ? "text-4xl sm:text-5xl" : "text-2xl"}`}>
           <button
             type="button"
             onClick={openDetails}
