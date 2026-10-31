@@ -22,13 +22,14 @@ export function ChatInput({ value, onChange, onSend, isSending, placeholder }: C
           }
         }}
         placeholder={placeholder ?? "Reply"}
-        className="h-12 w-full rounded-xl border border-border bg-surface-strong px-4 pr-12 text-sm text-foreground outline-none transition placeholder:text-subtle focus:border-accent"
+        className="h-12 w-full rounded-xl border border-border bg-surface-strong px-4 pr-14 text-sm text-foreground outline-none transition placeholder:text-subtle focus:border-accent"
       />
       <button
         type="button"
         disabled={isSending || !value.trim()}
         onClick={onSend}
-        className="absolute right-5 top-1/2 -translate-y-1/2 rounded-full p-2 text-accent transition hover:bg-accent hover:text-accent-foreground focus-visible:bg-accent focus-visible:text-accent-foreground disabled:cursor-not-allowed disabled:opacity-40"
+        aria-label="Send message"
+        className="btn btn-primary btn-icon absolute right-4 top-1/2 -translate-y-1/2 p-0"
       >
         <svg
           className="size-4"

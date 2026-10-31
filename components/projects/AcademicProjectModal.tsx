@@ -158,7 +158,7 @@ export function AcademicProjectModal({ project, open, onClose }: AcademicProject
             ref={closeButtonRef}
             type="button"
             onClick={onClose}
-            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-accent hover:text-accent"
+            className="btn btn-secondary btn-icon shrink-0"
             aria-label="Close project details"
           >
             <CloseIcon className="h-5 w-5" />

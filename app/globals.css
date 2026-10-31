@@ -339,6 +339,17 @@
     background: var(--surface-strong);
   }
 
+  /* Ghost / plain: icon-only utility actions (close, settings) — no border, no fill */
+  .btn-plain {
+    background: none;
+    color: var(--foreground);
+    box-shadow: none;
+  }
+
+  .btn-plain:hover {
+    background: var(--surface-hover);
+  }
+
   .btn-sm {
     min-height: 2.25rem;
     padding: 0 0.95rem;

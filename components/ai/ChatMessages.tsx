@@ -79,7 +79,7 @@ export function ChatMessages({ messages, isSending, error, onRetry }: ChatMessag
           <button
             type="button"
             onClick={onRetry}
-            className="mt-2 inline-flex rounded-full bg-red-600 px-3 py-1.5 text-xs font-semibold text-white"
+            className="btn btn-secondary btn-sm mt-2 text-red-600 hover:text-red-700"
           >
             Retry
           </button>
