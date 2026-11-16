@@ -4,9 +4,9 @@ export const experience = [
     role: "Full-Stack Developer Intern",
     duration: "Aug 2026 – Present",
     summary:
-      "Working on GHARPAYY’s internal CRM and operations platform, including Facebook lead ingestion, lead management, Movement OS, owner bookings, reservation workflows, analytics, and production-facing frontend/backend integrations.",
+      "Working across GHARPAYY’s internal CRM and operations ecosystem, including GHARPAYY -OS, Auto Sync, Gharpayy-Ops, and AI Listing Ingestion with production-facing frontend/backend integrations.",
     description:
-      "Built and improved the Facebook lead ingestion flow for bringing incoming leads into the CRM.\nWorked on CRM workflows, Movement OS, owner bookings, and reservation operations used by internal teams.\nImplemented analytics dashboards, API integrations, Excel exports, and responsive UI improvements.\nFixed and validated production issues while protecting existing RBAC, lead, booking, and operational workflows.",
+      "Built and improved Facebook lead ingestion, CRM workflows, Movement OS, Coverage OS, Auto Sync, OCR, and AI-assisted listing ingestion flows.\nDelivered owner bookings, property inventory, reservation, finance, PG owner portal, and operational control-tower workflows.\nImplemented performance dashboards, analytics, API integrations, Excel exports, provider integrations, and responsive UI improvements.\nFixed and validated production issues across RBAC, authentication, lead, booking, OCR, data persistence, deployment, and operational workflows.",
     logo: "/company-logos/gharpayy-logo.png",
     order: 1,
   },
