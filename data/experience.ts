@@ -20,40 +20,4 @@ export const experience = [
     logo: "/company-logos/techvanta-logo-v3.jpeg",
     order: 2,
   },
-  {
-    company: "GHARPAYY Local Auto Sync 100X",
-    role: "Full-Stack Project",
-    duration: "Oct 2026",
-    summary:
-      "Built a local-first operations system combining a Next.js frontend, FastAPI backend, and MySQL persistence for secure WhatsApp screenshot capture, OCR review, analytics, and Auto Sync workflows.",
-    description:
-      "Implemented screenshot capture, English OCR extraction, message parsing, business labels, duplicate-message handling, and clear-capture controls.\nBuilt secure authentication, sessions, RBAC, zone selection, Super Admin user and zone management, and screenshot isolation.\nAdded OCR analytics, review tooling, ML foundation work, model evaluation, controlled model promotion, and cross-zone duplicate phone detection.\nPrepared production deployment with FastAPI Docker configuration, Render support, CI workflows, reliability improvements, and automated verification.",
-    technologies: ["Next.js", "TypeScript", "FastAPI", "MySQL", "OCR", "Docker"],
-    logo: "/company-logos/gharpayy-logo.png",
-    order: 3,
-  },
-  {
-    company: "Gharpayy-Ops",
-    role: "Full-Stack Operations Platform",
-    duration: "Aug 2026 – Oct 2026",
-    summary:
-      "Contributed to GHARPAYY’s production operations platform across Movement OS, Coverage OS, Auto Sync, owner portals, booking workflows, founder analytics, and operational control towers.",
-    description:
-      "Built and improved Super Local Auto Sync, continuous screenshot capture, OCR extraction, WhatsApp coverage, analytics, exports, and duplicate-lead detection.\nDelivered owner booking, property inventory, PG owner portal, visit request, finance, reservation, and settlement workflows.\nImproved Founder Admin, Supply Hub, Watchtower, Command Center, Movement OS, Total Vision, and operational reporting dashboards.\nFixed authentication, permissions, loading, data consistency, responsiveness, search, export, and production reliability issues across the platform.",
-    technologies: ["React", "TypeScript", "Node.js", "MongoDB", "OCR", "Analytics"],
-    logo: "/company-logos/gharpayy-logo.png",
-    order: 4,
-  },
-  {
-    company: "Gharpayy AI Listing Ingestion",
-    role: "Full-Stack Project",
-    duration: "Sep 2026",
-    summary:
-      "Built an AI-assisted rental listing ingestion prototype with provider integrations, listing cleaning, authentication, persistence, analytics, and deployment preparation.",
-    description:
-      "Implemented listing ingestion from multiple Facebook and social data providers using Apify, SocialCrawl, and ScrapeCreators integrations.\nAdded listing cleaning, fallback handling, transient provider retries, ingestion persistence, bulk selection, and delete workflows.\nBuilt authentication, settings management, post-fetch statistics, production dashboard routing, and static frontend serving.\nPrepared Kubernetes deployment configuration and added backend regression tests for providers, auth, persistence, cleaning, and retries.",
-    technologies: ["FastAPI", "Python", "JavaScript", "MySQL", "Apify", "OCR"],
-    logo: "/company-logos/gharpayy-logo.png",
-    order: 5,
-  },
 ];
