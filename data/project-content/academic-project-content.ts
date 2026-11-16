@@ -171,6 +171,3 @@ export const academicProjectContent: AcademicProjectContent[] = projects.map((pr
   futureImprovements: contentByTitle[project.title]?.futureImprovements,
 }));
 
-export function getAcademicProjectContent(title: string) {
-  return academicProjectContent.find((project) => project.title === title);
-}
