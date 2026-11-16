@@ -32,4 +32,16 @@ export const experience = [
     logo: "/company-logos/gharpayy-logo.png",
     order: 3,
   },
+  {
+    company: "Gharpayy-Ops",
+    role: "Full-Stack Operations Platform",
+    duration: "Aug 2026 – Oct 2026",
+    summary:
+      "Contributed to GHARPAYY’s production operations platform across Movement OS, Coverage OS, Auto Sync, owner portals, booking workflows, founder analytics, and operational control towers.",
+    description:
+      "Built and improved Super Local Auto Sync, continuous screenshot capture, OCR extraction, WhatsApp coverage, analytics, exports, and duplicate-lead detection.\nDelivered owner booking, property inventory, PG owner portal, visit request, finance, reservation, and settlement workflows.\nImproved Founder Admin, Supply Hub, Watchtower, Command Center, Movement OS, Total Vision, and operational reporting dashboards.\nFixed authentication, permissions, loading, data consistency, responsiveness, search, export, and production reliability issues across the platform.",
+    technologies: ["React", "TypeScript", "Node.js", "MongoDB", "OCR", "Analytics"],
+    logo: "/company-logos/gharpayy-logo.png",
+    order: 4,
+  },
 ];
