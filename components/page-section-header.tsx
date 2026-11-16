@@ -21,7 +21,7 @@ export function PageSectionHeader({ eyebrow, title, description, aside, classNam
           <span aria-hidden="true">/</span>
           <span className="text-accent">{eyebrow}</span>
         </nav>
-        <h1 className="mt-6 text-[2.6rem] text-foreground sm:text-6xl lg:text-7xl">{title}</h1>
+        <h1 className="mt-6 text-[clamp(2.1rem,10vw,2.6rem)] text-foreground sm:text-6xl lg:text-7xl short:mt-4 short:text-5xl">{title}</h1>
         {description ? <p className="mt-6 max-w-2xl text-base text-muted sm:text-lg">{description}</p> : null}
       </div>
       {aside ? <div className="lg:col-span-4 lg:justify-self-end">{aside}</div> : null}

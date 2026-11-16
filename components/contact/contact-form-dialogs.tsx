@@ -26,7 +26,7 @@ export function ContactFormDialogs({
     <>
       {isPopupOpen ? (
         <div
-          className="fixed inset-0 z-60 flex items-center justify-center bg-slate-900/25 px-4 py-6 backdrop-blur-sm motion-reveal-fade sm:py-8"
+          className="modal-overlay fixed inset-0 z-60 flex items-center justify-center bg-slate-900/25 backdrop-blur-sm motion-reveal-fade"
           role="dialog"
           aria-modal="true"
           aria-labelledby="contact-validation-title"
@@ -34,11 +34,11 @@ export function ContactFormDialogs({
           onClick={onClosePopup}
         >
           <div
-            className="w-full max-w-104 max-h-screen overflow-hidden rounded-2xl border border-border-strong bg-surface-strong p-5 shadow-2xl motion-sheet sm:max-h-screen sm:p-6"
+            className="summary-scrollbar w-full max-w-104 max-h-full overflow-y-auto overscroll-contain rounded-2xl border border-border-strong bg-surface-strong p-5 shadow-2xl motion-sheet sm:p-6 short:p-4"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">
-              <div>
+              <div className="min-w-0">
                 <p
                   id="contact-validation-title"
                   className="text-lg tracking-tight text-foreground"
@@ -85,7 +85,7 @@ export function ContactFormDialogs({
 
       {isSuccessOpen ? (
         <div
-          className="fixed inset-0 z-60 flex items-center justify-center bg-slate-900/25 px-4 py-6 backdrop-blur-sm motion-reveal-fade sm:py-8"
+          className="modal-overlay fixed inset-0 z-60 flex items-center justify-center bg-slate-900/25 backdrop-blur-sm motion-reveal-fade"
           role="dialog"
           aria-modal="true"
           aria-labelledby="contact-success-title"
@@ -93,11 +93,11 @@ export function ContactFormDialogs({
           onClick={onCloseSuccess}
         >
           <div
-            className="w-full max-w-104 max-h-screen overflow-hidden rounded-2xl border border-border-strong bg-surface-strong p-5 shadow-2xl motion-sheet sm:max-h-screen sm:p-6"
+            className="summary-scrollbar w-full max-w-104 max-h-full overflow-y-auto overscroll-contain rounded-2xl border border-border-strong bg-surface-strong p-5 shadow-2xl motion-sheet sm:p-6 short:p-4"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">
-              <div>
+              <div className="min-w-0">
                 <p
                   id="contact-success-title"
                   className="text-lg tracking-tight text-foreground"

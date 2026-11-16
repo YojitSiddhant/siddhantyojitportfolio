@@ -110,14 +110,14 @@ export function AcademicProjectModal({ project, open, onClose }: AcademicProject
   }, [open, project, onClose]);
 
   const overlayClassName = [
-    "fixed inset-0 z-50 flex items-start justify-center px-3 py-2 sm:items-center sm:px-6 sm:py-8",
+    "modal-overlay fixed inset-0 z-50 flex items-center justify-center",
     "bg-slate-900/25 backdrop-blur-sm transition-opacity duration-200 ease-out",
     open ? "opacity-100" : "pointer-events-none opacity-0",
   ].join(" ");
 
   const panelClassName = [
-    "relative mt-0 w-[min(100%,72rem)] max-h-[calc(100dvh-1rem)] overflow-hidden rounded-2xl border border-border",
-    "bg-surface shadow-2xl transition-all duration-200 ease-out sm:rounded-3xl sm:w-[min(92vw,72rem)] sm:max-h-[calc(100dvh-3rem)]",
+    "relative flex w-full max-w-6xl max-h-full flex-col overflow-hidden rounded-2xl border border-border",
+    "bg-surface shadow-2xl transition-all duration-200 ease-out sm:rounded-3xl short:rounded-2xl",
     open ? "scale-100 opacity-100" : "scale-95 opacity-0",
   ].join(" ");
 
@@ -136,12 +136,12 @@ export function AcademicProjectModal({ project, open, onClose }: AcademicProject
       aria-hidden={!open}
     >
       <div ref={modalRef} role="dialog" aria-modal="true" aria-labelledby="academic-project-modal-title" className={panelClassName}>
-        <div className="flex items-start justify-between gap-4 px-4 py-4 sm:px-8 sm:py-6">
+        <div className="flex shrink-0 items-start justify-between gap-4 px-4 py-4 sm:px-8 sm:py-6 short:px-5 short:py-3">
           <div className="min-w-0">
             <div className="chip text-foreground">
               {project.badge}
             </div>
-            <h2 id="academic-project-modal-title" className="mt-3 text-2xl tracking-tight text-foreground sm:text-4xl">
+            <h2 id="academic-project-modal-title" className="mt-3 text-2xl tracking-tight text-foreground sm:text-4xl short:mt-2 short:text-xl">
               {project.title}
             </h2>
           </div>
@@ -157,19 +157,19 @@ export function AcademicProjectModal({ project, open, onClose }: AcademicProject
           </button>
         </div>
 
-        <div className="max-h-[calc(100dvh-7rem)] overflow-y-auto px-4 pb-6 sm:max-h-[calc(100dvh-10rem)] sm:px-8 sm:pb-8">
+        <div className="summary-scrollbar min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 pb-6 sm:px-8 sm:pb-8 short:px-5 short:pb-5">
           <div className="grid gap-5">
-            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
               <p className="eyebrow self-start pt-1">Project Overview</p>
               <p className="text-[0.95rem] leading-7 text-muted">{project.overview}</p>
             </section>
 
-            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
               <p className="eyebrow self-start pt-1">Problem Statement</p>
               <p className="text-[0.95rem] leading-7 text-muted">{project.problemStatement}</p>
             </section>
 
-            <section className="grid gap-3 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+            <section className="grid gap-3 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
               <p className="eyebrow self-start pt-1">Key Features</p>
               <div className="grid gap-2">
                 {project.keyFeatures.map((feature) => (
@@ -181,7 +181,7 @@ export function AcademicProjectModal({ project, open, onClose }: AcademicProject
               </div>
             </section>
 
-            <section className="grid gap-3 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+            <section className="grid gap-3 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
               <p className="eyebrow self-start pt-1">Technologies Used</p>
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map(({ name, src, iconClassName }) => (
@@ -196,18 +196,18 @@ export function AcademicProjectModal({ project, open, onClose }: AcademicProject
               </div>
             </section>
 
-            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
               <p className="eyebrow self-start pt-1">My Role</p>
               <p className="text-[0.95rem] leading-7 text-muted">{project.myRole}</p>
             </section>
 
-            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
               <p className="eyebrow self-start pt-1">Key Learnings</p>
               <p className="text-[0.95rem] leading-7 text-muted">{project.keyLearnings}</p>
             </section>
 
             {project.futureImprovements && project.futureImprovements.length > 0 ? (
-              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
                 <p className="eyebrow self-start pt-1">
                   Future Improvements
                 </p>
@@ -222,7 +222,7 @@ export function AcademicProjectModal({ project, open, onClose }: AcademicProject
               </section>
             ) : null}
 
-            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
               <p className="eyebrow self-start pt-1">Challenges Faced</p>
               <div className="grid gap-2">
                 {project.challengesFaced.map((challenge) => (
@@ -235,7 +235,7 @@ export function AcademicProjectModal({ project, open, onClose }: AcademicProject
             </section>
 
             {project.architectureWorkflow ? (
-              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
                 <p className="eyebrow self-start pt-1">
                   Architecture / Workflow
                 </p>
@@ -244,7 +244,7 @@ export function AcademicProjectModal({ project, open, onClose }: AcademicProject
             ) : null}
 
             {project.githubUrl ? (
-              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
                 <p className="eyebrow self-start pt-1">GitHub Repository</p>
                 <a
                   href={project.githubUrl}
@@ -258,14 +258,14 @@ export function AcademicProjectModal({ project, open, onClose }: AcademicProject
             ) : null}
 
             {project.projectDuration ? (
-              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
                 <p className="eyebrow self-start pt-1">Project Duration</p>
                 <p className="text-[0.95rem] leading-7 text-muted">{project.projectDuration}</p>
               </section>
             ) : null}
 
             {project.screenshots && project.screenshots.length > 0 ? (
-              <section className="grid gap-3 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+              <section className="grid gap-3 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
                 <p className="eyebrow self-start pt-1">Screenshots</p>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {project.screenshots.map((image) => (

@@ -30,7 +30,7 @@ export function Hero({ githubContributions, githubYear }: { githubContributions:
         style={{ background: "radial-gradient(closest-side, rgba(0,113,227,0.08), transparent)" }}
       />
 
-      <div className="container-page flex flex-col items-center pt-20 pb-20 text-center sm:pt-28 sm:pb-24 lg:pt-36">
+      <div className="container-page flex flex-col items-center pt-16 pb-16 text-center sm:pt-28 sm:pb-24 lg:pt-36 short:pt-10 short:pb-12">
         <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 motion-reveal">
           {current ? (
             <Link
@@ -51,14 +51,14 @@ export function Hero({ githubContributions, githubYear }: { githubContributions:
 
         <h1
           id="hero-title"
-          className="mt-8 max-w-5xl text-[clamp(2.8rem,9vw,7rem)] font-semibold text-foreground motion-reveal"
+          className="mt-8 max-w-5xl text-[clamp(2.4rem,9vw,7rem)] font-semibold short:mt-5 short:text-[clamp(2.25rem,6vw,3.75rem)] text-foreground motion-reveal"
           style={{ animationDelay: "80ms" }}
         >
           Building clear, reliable <span className="text-accent">full-stack products</span>.
         </h1>
 
         <p
-          className="mt-7 max-w-2xl text-lg leading-relaxed text-muted motion-reveal sm:text-xl"
+          className="mt-7 max-w-2xl text-base leading-relaxed text-muted motion-reveal sm:text-xl short:mt-4 short:text-base"
           style={{ animationDelay: "180ms" }}
         >
           {profile.snapshotTitle} based in {profile.location.split(",")[0]} — React.js, Next.js, Node.js, and
@@ -66,7 +66,7 @@ export function Hero({ githubContributions, githubYear }: { githubContributions:
         </p>
 
         <div
-          className="mt-9 flex flex-wrap items-center justify-center gap-3 motion-reveal"
+          className="mt-9 flex flex-wrap items-center justify-center gap-3 motion-reveal short:mt-6"
           style={{ animationDelay: "280ms" }}
         >
           <Link href="/full-stack-projects" className="btn btn-primary">
@@ -96,8 +96,8 @@ export function Hero({ githubContributions, githubYear }: { githubContributions:
         <div className="container-page">
           <dl className="grid grid-cols-2 divide-x divide-y divide-border sm:grid-cols-4 sm:divide-y-0">
             {stats.map((stat) => (
-              <div key={stat.label} className="flex flex-col items-center gap-2 py-8 text-center">
-                <dd className="flex items-center gap-2.5 text-4xl tracking-tight text-foreground sm:text-5xl">
+              <div key={stat.label} className="flex min-w-0 flex-col items-center gap-2 px-2 py-8 text-center short:py-5">
+                <dd className="flex items-center gap-2.5 text-3xl tracking-tight text-foreground sm:text-5xl short:text-4xl">
                   <stat.Icon className="h-5 w-5 text-accent sm:h-6 sm:w-6" />
                   {stat.value}
                 </dd>

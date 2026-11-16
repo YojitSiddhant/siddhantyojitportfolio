@@ -95,15 +95,15 @@ export function SiteNavbar() {
         />
         <header className="container-page flex h-full items-center">
           <div
-            className={`glass flex h-12 w-full items-center justify-between gap-6 rounded-full px-4 transition-[background-color,box-shadow] duration-300 sm:px-5 ${
+            className={`glass flex h-12 w-full items-center justify-between gap-3 rounded-full px-3 transition-[background-color,box-shadow] duration-300 sm:gap-6 sm:px-5 ${
               isScrolled || isOpen ? "" : "bg-transparent shadow-none backdrop-blur-none"
             }`}
           >
-            <Link href="/" className="group flex items-center gap-2.5 shrink-0" aria-label="Siddhant Yojit — home">
+            <Link href="/" className="group flex min-w-0 items-center gap-2.5" aria-label="Siddhant Yojit — home">
               <span className="relative h-7 w-7 shrink-0 overflow-hidden rounded-full ring-1 ring-border-strong">
                 <Image src="/favicon.png" alt="" fill sizes="28px" className="object-cover" />
               </span>
-              <span className="text-[0.9rem] font-medium tracking-tight text-foreground">
+              <span className="truncate text-[0.9rem] font-medium tracking-tight text-foreground">
                 Siddhant Yojit
               </span>
             </Link>
@@ -191,8 +191,8 @@ export function SiteNavbar() {
                 tabIndex={-1}
                 className="relative flex h-full flex-col overflow-y-auto outline-none motion-sheet"
               >
-                <nav aria-label="Mobile" className="container-page flex-1 pt-6 pb-8">
-                  <ul className="grid">
+                <nav aria-label="Mobile" className="container-page flex-1 pt-6 pb-[max(2rem,env(safe-area-inset-bottom))] short:pt-3 short:pb-5">
+                  <ul className="grid short:grid-cols-2 short:gap-x-8">
                     {navItems.map((item, index) => {
                       const active = isActive(item.href);
                       const Icon = navIcons[item.href];
@@ -202,11 +202,11 @@ export function SiteNavbar() {
                             href={item.href}
                             aria-current={active ? "page" : undefined}
                             onClick={() => setIsOpen(false)}
-                            className="group flex items-center gap-4 py-3 motion-reveal"
+                            className="group flex items-center gap-4 py-3 motion-reveal short:gap-3 short:py-2"
                             style={{ animationDelay: `${60 + index * 35}ms` }}
                           >
                             <span
-                              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition-colors ${
+                              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition-colors short:h-8 short:w-8 ${
                                 active
                                   ? "border-accent/30 bg-accent-soft text-accent"
                                   : "border-border bg-surface-strong text-subtle group-hover:border-accent/30 group-hover:text-accent"
@@ -215,7 +215,7 @@ export function SiteNavbar() {
                               {Icon ? <Icon className="h-5 w-5" /> : null}
                             </span>
                             <span
-                              className={`flex-1 text-[1.6rem] leading-tight tracking-tight transition-colors sm:text-3xl ${
+                              className={`min-w-0 flex-1 text-[1.6rem] leading-tight tracking-tight transition-colors sm:text-3xl short:text-xl ${
                                 active ? "text-accent" : "text-foreground group-hover:text-accent"
                               }`}
                             >
@@ -230,9 +230,9 @@ export function SiteNavbar() {
                     })}
                   </ul>
 
-                  <div className="mt-8 flex flex-wrap items-center gap-3">
-                    <a href={`mailto:${contactLinks.email}`} className="btn btn-primary">
-                      {contactLinks.email}
+                  <div className="mt-8 flex flex-wrap items-center gap-3 short:mt-5">
+                    <a href={`mailto:${contactLinks.email}`} className="btn btn-primary min-w-0">
+                      <span className="truncate">{contactLinks.email}</span>
                     </a>
                     <a href={contactLinks.github} target="_blank" rel="noreferrer" className="btn btn-secondary btn-icon" aria-label="GitHub profile">
                       <GitHubIcon className="h-4 w-4" />

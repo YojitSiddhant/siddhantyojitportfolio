@@ -195,14 +195,14 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
   }, [open, project, onClose]);
 
   const overlayClassName = [
-    "fixed inset-0 z-50 flex items-start justify-center px-3 py-2 sm:items-center sm:px-6 sm:py-8",
+    "modal-overlay fixed inset-0 z-50 flex items-center justify-center",
     "bg-slate-900/25 backdrop-blur-sm transition-opacity duration-200 ease-out",
     open ? "opacity-100" : "pointer-events-none opacity-0",
   ].join(" ");
 
   const panelClassName = [
-    "relative mt-0 w-[min(100%,72rem)] max-h-[calc(100dvh-1rem)] overflow-hidden rounded-2xl border border-border",
-    "bg-surface shadow-2xl transition-all duration-200 ease-out sm:rounded-3xl sm:w-[min(92vw,72rem)] sm:max-h-[calc(100dvh-3rem)]",
+    "relative flex w-full max-w-6xl max-h-full flex-col overflow-hidden rounded-2xl border border-border",
+    "bg-surface shadow-2xl transition-all duration-200 ease-out sm:rounded-3xl short:rounded-2xl",
     open ? "scale-100 opacity-100" : "scale-95 opacity-0",
   ].join(" ");
 
@@ -227,11 +227,11 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
         aria-labelledby="full-stack-project-modal-title"
         className={panelClassName}
       >
-        <div className="flex items-start justify-between gap-4 px-4 py-4 sm:px-8 sm:py-6">
+        <div className="flex shrink-0 items-start justify-between gap-4 px-4 py-4 sm:px-8 sm:py-6 short:px-5 short:py-3">
           <div className="min-w-0">
             <h2
               id="full-stack-project-modal-title"
-              className="text-2xl tracking-tight text-foreground sm:text-4xl"
+              className="text-2xl tracking-tight text-foreground sm:text-4xl short:text-xl"
             >
               {project.title}
             </h2>
@@ -248,19 +248,19 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
           </button>
         </div>
 
-        <div className="max-h-[calc(100dvh-7rem)] overflow-y-auto px-4 pb-6 sm:max-h-[calc(100dvh-10rem)] sm:px-8 sm:pb-8">
+        <div className="summary-scrollbar min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 pb-6 sm:px-8 sm:pb-8 short:px-5 short:pb-5">
           <div className="grid gap-5">
-            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
               <p className="eyebrow self-start pt-1">Project Overview</p>
               <p className="text-[0.95rem] leading-7 text-muted">{project.overview}</p>
             </section>
 
-            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
               <p className="eyebrow self-start pt-1">Problem Statement</p>
               <p className="text-[0.95rem] leading-7 text-muted">{project.problemStatement}</p>
             </section>
 
-            <section className="grid gap-3 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+            <section className="grid gap-3 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
               <p className="eyebrow self-start pt-1">Technologies Used</p>
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((technology) => (
@@ -275,7 +275,7 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
               </div>
             </section>
 
-            <section className="grid gap-3 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+            <section className="grid gap-3 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
               <p className="eyebrow self-start pt-1">Key Features</p>
               <div className="grid gap-2">
                 {project.keyFeatures.map((feature) => (
@@ -287,12 +287,12 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
               </div>
             </section>
 
-            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
               <p className="eyebrow self-start pt-1">My Role</p>
               <p className="text-[0.95rem] leading-7 text-muted">{project.myRole}</p>
             </section>
 
-            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
               <p className="eyebrow self-start pt-1">Challenges Faced</p>
               <div className="grid gap-2">
                 {project.challengesFaced.map((challenge) => (
@@ -304,7 +304,7 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
               </div>
             </section>
 
-            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+            <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
               <p className="eyebrow self-start pt-1">Key Learnings</p>
               <div className="grid gap-2">
                 {project.keyLearnings.map((learning) => (
@@ -317,7 +317,7 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
             </section>
 
             {project.architectureWorkflow?.length ? (
-              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
                 <p className="eyebrow self-start pt-1">
                   Architecture / Workflow
                 </p>
@@ -333,7 +333,7 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
             ) : null}
 
             {project.futureImprovements?.length ? (
-              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
                 <p className="eyebrow self-start pt-1">Future Improvements</p>
                 <div className="grid gap-2">
                   {project.futureImprovements.map((item) => (
@@ -347,7 +347,7 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
             ) : null}
 
             {project.liveDemoUrl ? (
-              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
                 <p className="eyebrow self-start pt-1">Live Demo</p>
                 <a
                   href={project.liveDemoUrl}
@@ -361,14 +361,14 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
             ) : null}
 
             {project.projectDuration ? (
-              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+              <section className="grid gap-2 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
                 <p className="eyebrow self-start pt-1">Project Duration</p>
                 <p className="text-[0.95rem] leading-7 text-muted">{project.projectDuration}</p>
               </section>
             ) : null}
 
             {project.screenshots && project.screenshots.length > 0 ? (
-              <section className="grid gap-3 border-t border-border pt-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
+              <section className="grid gap-3 border-t border-border pt-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-5 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-6">
                 <p className="eyebrow self-start pt-1">Screenshots</p>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {project.screenshots.map((image) => (
