@@ -9,7 +9,6 @@ const levelClasses: Record<GitHubContributionDay["contributionLevel"], string> =
 };
 
 const weekdayLabels = ["", "Mon", "", "Wed", "", "Fri", ""];
-
 function formatDate(date: string) {
   return new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", year: "numeric" }).format(
     new Date(`${date}T00:00:00Z`),
@@ -27,16 +26,7 @@ export function GitHubHeatmap({ calendar }: { calendar: GitHubContributionCalend
   return (
     <section aria-labelledby="github-activity-title" className="border-t border-border py-8">
       <div className="rounded-xl border border-[#d0d7de] bg-white p-5 text-[#24292f] shadow-sm sm:p-7">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 id="github-activity-title" className="text-xl font-medium tracking-tight sm:text-2xl">
-            {calendar.totalContributions.toLocaleString("en-IN")} contributions in the last year
-          </h2>
-          <a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile" target="_blank" rel="noreferrer" className="text-sm text-[#57606a] transition-colors hover:text-[#24292f]">
-            Contribution settings <span aria-hidden="true">⌄</span>
-          </a>
-        </div>
-
-        <div className="mt-6 overflow-x-auto rounded-lg border border-[#d0d7de] p-4 sm:p-5" tabIndex={0} aria-label="Scrollable GitHub contribution heat map">
+        <div className="overflow-x-auto rounded-lg border border-[#d0d7de] p-4 sm:p-5" tabIndex={0} aria-label="Scrollable GitHub contribution heat map">
           <div className="flex min-w-[58rem] gap-3">
             <div className="grid w-10 shrink-0 grid-rows-[1.25rem_repeat(7,0.8rem)] gap-1.5 text-xs font-medium text-[#57606a]">
               <span />
@@ -73,6 +63,7 @@ export function GitHubHeatmap({ calendar }: { calendar: GitHubContributionCalend
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );
