@@ -213,6 +213,55 @@ const contentByTitle: Record<string, Omit<FullStackProjectContent, "title" | "te
       "Support more personalized recommendations",
     ],
   },
+  "Gharpayy Local Auto Sync 100X": {
+    overview:
+      "A local-first operations system combining a Next.js frontend, FastAPI backend, MySQL persistence, and review-oriented OCR for WhatsApp screenshots.",
+    problemStatement:
+      "Operations teams need a controlled workflow for turning local screenshots and operational inputs into reviewable structured records.",
+    keyFeatures: [
+      "Local-first operations workflow",
+      "WhatsApp screenshot upload",
+      "English OCR processing",
+      "Review-oriented extraction",
+      "MySQL persistence",
+      "Automated testing",
+    ],
+    myRole:
+      "I contributed to the full-stack product workflow across the Next.js interface, backend integration, persistence, and OCR-oriented feature structure.",
+    challengesFaced: [
+      "Keeping OCR output reviewable instead of silently accepting uncertain data",
+      "Coordinating a separate frontend and FastAPI backend",
+      "Designing a local-first workflow around operational data",
+    ],
+    keyLearnings: [
+      "How OCR features benefit from explicit review boundaries",
+      "How frontend and backend contracts shape operational tools",
+      "How persistence and migrations support reliable workflows",
+    ],
+    architectureWorkflow: [
+      "Users work through the Next.js operations interface",
+      "The FastAPI backend handles processing and application logic",
+      "OCR output is persisted in MySQL for review and follow-up",
+    ],
+  },
+  "Gharpayy AI Listing Ingestion": {
+    overview: "An AI-assisted listing ingestion project for bringing listing data into a structured product workflow.",
+    problemStatement: "Listing workflows need a consistent way to collect, structure, and prepare incoming data for downstream use.",
+    keyFeatures: ["Listing ingestion", "Structured data processing", "AI-assisted workflow", "API integration"],
+    myRole: "I contributed to the project structure and the workflow for turning incoming listing data into usable application records.",
+    challengesFaced: ["Maintaining consistent listing fields", "Handling ingestion workflow states", "Keeping AI-assisted processing useful and reviewable"],
+    keyLearnings: ["How ingestion pipelines support product workflows", "How structured records improve downstream operations", "How AI features need clear boundaries and validation"],
+    architectureWorkflow: ["Listing data enters the ingestion workflow", "The application structures and processes incoming records", "Prepared listing data becomes available to downstream product features"],
+  },
+  A: {
+    overview: "A full-stack project repository from the TECG/Gharpayy product work.",
+    problemStatement: "The project provides an application workflow for a product-focused engineering use case.",
+    keyFeatures: ["Application workflow", "Frontend and backend integration"],
+    myRole: "I contributed to the implementation and refinement of the project workflow.",
+    challengesFaced: ["Keeping the application flow clear", "Connecting the interface with backend behavior"],
+    keyLearnings: ["How product requirements shape full-stack implementation", "How clear boundaries improve maintainability"],
+    architectureWorkflow: ["Users interact with the application interface", "Application logic processes the workflow", "The project exposes the resulting product experience"],
+  },
 };
 
 export const fullStackProjectContent: FullStackProjectContent[] = fullStackProjects.map((project) => ({
