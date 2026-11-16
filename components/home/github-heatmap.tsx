@@ -52,10 +52,7 @@ export function GitHubHeatmap({ calendar }: { calendar: GitHubContributionCalend
             </div>
           </div>
 
-          <div className="mt-5 flex items-center justify-between gap-4 text-sm text-[#1d1d1f]">
-            <a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-your-profile/adding-an-achievements-section-to-your-profile" target="_blank" rel="noreferrer" className="hover:text-[#24292f]">
-              Learn how we count contributions
-            </a>
+          <div className="mt-5 flex items-center justify-end gap-4 text-sm text-[#1d1d1f]">
             <div className="flex shrink-0 items-center gap-1.5">
               <span>Less</span>
               {(["NONE", "FIRST_QUARTILE", "SECOND_QUARTILE", "THIRD_QUARTILE", "FOURTH_QUARTILE"] as const).map((level) => <span key={level} className={`h-3.5 w-3.5 rounded-[3px] ${levelClasses[level]}`} aria-hidden="true" />)}
