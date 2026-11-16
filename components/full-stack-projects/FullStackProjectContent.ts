@@ -254,13 +254,34 @@ const contentByTitle: Record<string, Omit<FullStackProjectContent, "title" | "te
     architectureWorkflow: ["Listing data enters the ingestion workflow", "The application structures and processes incoming records", "Prepared listing data becomes available to downstream product features"],
   },
   A: {
-    overview: "A full-stack project repository from the TECG/Gharpayy product work.",
-    problemStatement: "The project provides an application workflow for a product-focused engineering use case.",
-    keyFeatures: ["Application workflow", "Frontend and backend integration"],
-    myRole: "I contributed to the implementation and refinement of the project workflow.",
-    challengesFaced: ["Keeping the application flow clear", "Connecting the interface with backend behavior"],
-    keyLearnings: ["How product requirements shape full-stack implementation", "How clear boundaries improve maintainability"],
-    architectureWorkflow: ["Users interact with the application interface", "Application logic processes the workflow", "The project exposes the resulting product experience"],
+    overview: "A full-stack application from the TECG/Gharpayy product work with a responsive interface, API-connected workflows, and backend request handling.",
+    problemStatement: "The project needed a dependable product workflow that connected user actions in the interface to structured backend operations.",
+    keyFeatures: [
+      "Responsive application interface",
+      "Structured user workflow",
+      "Form and input handling",
+      "Frontend state management",
+      "REST API integration",
+      "Error and loading states",
+      "Database-backed operations",
+    ],
+    myRole: "I contributed to the frontend workflow, API integration, backend behavior, and refinement of the product experience.",
+    challengesFaced: [
+      "Keeping the user workflow clear across multiple states",
+      "Connecting frontend actions to reliable API behavior",
+      "Handling loading, error, and empty states consistently",
+    ],
+    keyLearnings: [
+      "How typed data flow improves full-stack maintainability",
+      "How API boundaries shape frontend architecture",
+      "How clear state handling improves product reliability",
+    ],
+    architectureWorkflow: [
+      "Users interact with the component-based application interface",
+      "Frontend state and validation prepare user actions",
+      "REST APIs route requests to backend services",
+      "Backend operations read and write structured application data",
+    ],
   },
 };
 
