@@ -30,7 +30,7 @@ export const profile = {
     {
       icon: "briefcase",
       label: "Current role",
-      value: "UI Developer Intern at Tech Vanta Labs Pvt. Ltd. (Jan 2026 - Jul 2026), contributing to responsive React.js and Next.js applications while collaborating on live client projects.",
+      value: "Frontend Developer Intern at Tech Vanta Labs Pvt. Ltd. (Jan 2026 - Jul 2026), contributing to responsive React.js and Next.js applications while collaborating on live client projects.",
     },
     {
       icon: "code",
