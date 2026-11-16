@@ -20,4 +20,16 @@ export const experience = [
     logo: "/company-logos/techvanta-logo-v3.jpeg",
     order: 2,
   },
+  {
+    company: "GHARPAYY Local Auto Sync 100X",
+    role: "Full-Stack Project",
+    duration: "Oct 2026",
+    summary:
+      "Built a local-first operations system combining a Next.js frontend, FastAPI backend, and MySQL persistence for secure WhatsApp screenshot capture, OCR review, analytics, and Auto Sync workflows.",
+    description:
+      "Implemented screenshot capture, English OCR extraction, message parsing, business labels, duplicate-message handling, and clear-capture controls.\nBuilt secure authentication, sessions, RBAC, zone selection, Super Admin user and zone management, and screenshot isolation.\nAdded OCR analytics, review tooling, ML foundation work, model evaluation, controlled model promotion, and cross-zone duplicate phone detection.\nPrepared production deployment with FastAPI Docker configuration, Render support, CI workflows, reliability improvements, and automated verification.",
+    technologies: ["Next.js", "TypeScript", "FastAPI", "MySQL", "OCR", "Docker"],
+    logo: "/company-logos/gharpayy-logo.png",
+    order: 3,
+  },
 ];

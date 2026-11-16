@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
 import { experience } from "@/data/experience";
 import { Reveal } from "@/components/ui/reveal";
-import { CloseIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, CloseIcon } from "@/components/ui/icons";
 
 const orderedExperience = [...experience].sort((a, b) => a.order - b.order);
 const gharpayyWorkstreams = [
@@ -61,8 +61,54 @@ const gharpayyCommitHighlights = [
   ["11fe507", "Oct 30, 2026", "Updated Super Local Auto Sync integration, batching, and navigation."],
 ] as const;
 
+const autoSyncCommitHighlights = [
+  ["24c2216", "Oct 22, 2026", "Added the clear capture button."],
+  ["4d2a205", "Oct 21, 2026", "Prepared FastAPI Docker deployment for Render."],
+  ["6c76c5b", "Oct 21, 2026", "Prepared production deployment configuration."],
+  ["972c2e4", "Oct 21, 2026", "Updated UI changes and typography."],
+  ["7a50548", "Oct 21, 2026", "Fixed label issues and duplicate messages."],
+  ["4dd2d52", "Oct 21, 2026", "Added correct business-label message capture with badges."],
+  ["4f28ada", "Oct 21, 2026", "Fixed message capture issues with labels."],
+  ["3f7e1cb", "Oct 21, 2026", "Improved message extraction."],
+  ["cfd4849", "Oct 21, 2026", "Improved the working capture flow."],
+  ["bcdb793", "Oct 21, 2026", "Fixed issues and removed old files."],
+  ["1c80fa1", "Oct 20, 2026", "Improved OCR processing."],
+  ["2090cf4", "Oct 20, 2026", "Fixed the missing Analytics page button."],
+  ["7c1afbc", "Oct 20, 2026", "Added the Analytics page."],
+  ["0e8ce21", "Oct 20, 2026", "Removed the login page from the workflow."],
+  ["d037b38", "Oct 20, 2026", "Fixed login page UI."],
+  ["58581db", "Oct 20, 2026", "Completed final security and end-to-end verification."],
+  ["4394bf2", "Oct 20, 2026", "Added Super Admin OCR review and ML analytics."],
+  ["ca258cd", "Oct 20, 2026", "Added cross-zone duplicate phone-number detection."],
+  ["18c87da", "Oct 20, 2026", "Secured Auto Sync capture sessions and zone selection."],
+  ["d6a44bc", "Oct 20, 2026", "Added Super Admin zone and user management."],
+  ["7e57e72", "Oct 20, 2026", "Added backend RBAC and screenshot isolation."],
+  ["a3dcadd", "Oct 20, 2026", "Added authentication, users, zones, and sessions."],
+  ["b02b8d5", "Oct 20, 2026", "Fixed the final frontend lifecycle and verification flow."],
+  ["55772af", "Oct 20, 2026", "Completed remaining Phase 9E work."],
+  ["8c93081", "Oct 20, 2026", "Investigated real screenshot OCR and targeted accuracy fixes."],
+  ["db35554", "Oct 20, 2026", "Added real-world ML evaluation."],
+  ["62eecbf", "Oct 20, 2026", "Added model registry and controlled promotion."],
+  ["1beda10", "Oct 20, 2026", "Added a human-verified learning dataset."],
+  ["4b8f7ea", "Oct 20, 2026", "Integrated FastAPI in shadow mode."],
+  ["f7abd7a", "Oct 20, 2026", "Trained the first ML model."],
+  ["9e4ee52", "Oct 20, 2026", "Added the OCR baseline."],
+  ["4e2fb35", "Oct 20, 2026", "Measured existing OCR accuracy."],
+  ["8eecdc4", "Oct 20, 2026", "Added the ML foundation."],
+  ["d0f82a6", "Oct 20, 2026", "Improved capture and UI changes."],
+  ["5d4d680", "Oct 20, 2026", "Implemented Tower Auto Sync and PR-based CI."],
+  ["a6302e7", "Oct 20, 2026", "Hardened Auto Sync security, storage, concurrency, and performance."],
+  ["fc659f1", "Oct 20, 2026", "Improved Auto Sync reliability and stabilized CI tests."],
+  ["060049e", "Oct 20, 2026", "Connected the UI to the source."],
+  ["23f134e", "Oct 20, 2026", "Finalized local MySQL development setup."],
+  ["0ad81da", "Oct 20, 2026", "Completed local development environment setup."],
+  ["b8b3ffe", "Oct 20, 2026", "Set up the Next.js, FastAPI, and MySQL project foundation."],
+  ["e9e7cc8", "Oct 20, 2026", "Created the initial Next.js project."],
+] as const;
+
 export function ExperienceTimeline() {
   const [isGharpayySummaryOpen, setIsGharpayySummaryOpen] = useState(false);
+  const [activeSummaryIndex, setActiveSummaryIndex] = useState(0);
 
   useEffect(() => {
     if (!isGharpayySummaryOpen) return;
@@ -89,7 +135,7 @@ export function ExperienceTimeline() {
                 <p className="flex items-center gap-2 font-mono text-xs text-subtle">{isCurrent ? <span className="status-dot" aria-hidden="true" /> : null}{item.duration}</p>
                 <h3 className="mt-3 text-2xl tracking-tight text-foreground sm:text-[1.7rem]">
                   {item.role}<span className="text-muted"> · </span><span className="text-accent">{item.company}</span>
-                  {item.company === "GHARPAYY" ? <button type="button" aria-label="Open GHARPAYY work summary" aria-haspopup="dialog" onClick={() => setIsGharpayySummaryOpen(true)} className="ml-3 inline-flex h-3 w-3 translate-y-[-0.12em] rounded-full bg-orange-500 align-middle shadow-[0_0_0_4px_rgba(249,115,22,0.12)] transition-transform hover:scale-125 focus-visible:outline-orange-500" /> : null}
+                  {item.company === "GHARPAYY" || item.company === "GHARPAYY Local Auto Sync 100X" ? <button type="button" aria-label={`Open ${item.company} work summary`} aria-haspopup="dialog" onClick={() => { setActiveSummaryIndex(item.company === "GHARPAYY" ? 0 : 1); setIsGharpayySummaryOpen(true); }} className="ml-3 inline-flex h-3 w-3 translate-y-[-0.12em] rounded-full bg-orange-500 align-middle shadow-[0_0_0_4px_rgba(249,115,22,0.12)] transition-transform hover:scale-125 focus-visible:outline-orange-500" /> : null}
                 </h3>
                 {"summary" in item && item.summary ? <p className="mt-4 text-[0.98rem] text-foreground/90">{item.summary}</p> : null}
                 <ul className="mt-5 grid gap-3">{highlights.map((highlight) => <li key={highlight} className="flex gap-3 text-sm text-muted sm:text-[0.95rem]"><span aria-hidden="true" className="mt-[0.65em] h-0.5 w-2.5 shrink-0 rounded-full bg-accent/80" /><span>{highlight}</span></li>)}</ul>
@@ -102,7 +148,9 @@ export function ExperienceTimeline() {
 
       {isGharpayySummaryOpen ? createPortal(<div className="fixed inset-0 z-[100] flex min-h-dvh items-center justify-center bg-black/35 p-4 backdrop-blur-sm sm:p-6" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setIsGharpayySummaryOpen(false); }}>
         <section role="dialog" aria-modal="true" aria-labelledby="gharpayy-summary-title" className="summary-scrollbar card max-h-[min(720px,calc(100dvh-2rem))] w-full max-w-4xl rounded-[2rem] overflow-y-auto p-6 shadow-2xl sm:p-8">
-          <div className="flex items-start justify-between gap-6"><div><p className="eyebrow eyebrow-accent">Work summary</p><h2 id="gharpayy-summary-title" className="mt-3 text-3xl tracking-tight sm:text-4xl">GHARPAYY -OS</h2><p className="mt-2 font-mono text-xs text-subtle">Aug 2026 – Present · through the latest commit</p></div><div className="flex shrink-0 items-start gap-3"><div className="rounded-xl border border-accent/20 bg-accent-soft px-4 py-2 text-right"><p className="font-mono text-2xl leading-none text-accent">81</p><p className="mt-1 text-[0.68rem] uppercase tracking-wider text-muted">total commits</p></div><button type="button" aria-label="Close GHARPAYY work summary" onClick={() => setIsGharpayySummaryOpen(false)} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted transition-colors hover:bg-surface-hover hover:text-foreground"><CloseIcon className="h-5 w-5" /></button></div></div>
+          <div className="flex items-start justify-between gap-6"><div><p className="eyebrow eyebrow-accent">Work summary</p><h2 id="gharpayy-summary-title" className="mt-3 text-3xl tracking-tight sm:text-4xl">{activeSummaryIndex === 0 ? "GHARPAYY -OS" : "GHARPAYY Local Auto Sync 100X"}</h2><p className="mt-2 font-mono text-xs text-subtle">{activeSummaryIndex === 0 ? "Aug 2026 – Present · through the latest commit" : "Oct 2026 · through the latest commit"}</p></div><div className="flex shrink-0 items-start gap-3"><div className="rounded-xl border border-accent/20 bg-accent-soft px-4 py-2 text-right"><p className="font-mono text-2xl leading-none text-accent">{activeSummaryIndex === 0 ? "81" : "71"}</p><p className="mt-1 text-[0.68rem] uppercase tracking-wider text-muted">total commits</p></div><button type="button" aria-label="Close work summary" onClick={() => setIsGharpayySummaryOpen(false)} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted transition-colors hover:bg-surface-hover hover:text-foreground"><CloseIcon className="h-5 w-5" /></button></div></div>
+          <div className="mt-6 flex items-center justify-between border-y border-border py-2"><button type="button" disabled={activeSummaryIndex === 0} onClick={() => setActiveSummaryIndex(0)} className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-muted transition-colors hover:bg-surface-hover hover:text-foreground disabled:pointer-events-none disabled:opacity-30"><ArrowRightIcon className="h-4 w-4 rotate-180" /> Overview</button><span className="font-mono text-xs text-subtle">{activeSummaryIndex + 1} / 2</span><button type="button" disabled={activeSummaryIndex === 1} onClick={() => setActiveSummaryIndex(1)} className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-muted transition-colors hover:bg-surface-hover hover:text-foreground disabled:pointer-events-none disabled:opacity-30">Commit history <ArrowRightIcon className="h-4 w-4" /></button></div>
+          {activeSummaryIndex === 0 ? <>
           <p className="mt-6 text-base leading-7 text-foreground/85">Full-stack work across GHARPAYY’s internal CRM and operations platform, connecting production workflows, data accuracy, analytics, and frontend experiences.</p>
           <div className="mt-7 grid gap-6 sm:grid-cols-2">{gharpayyWorkstreams.map(([title, description]) => <article key={title} className="border-t border-border pt-4"><h3 className="text-lg text-foreground">{title}</h3><p className="mt-2 text-sm leading-6 text-muted">{description}</p></article>)}</div>
           <div className="mt-10 border-t border-border pt-7">
@@ -115,6 +163,13 @@ export function ExperienceTimeline() {
             </ol>
           </div>
           <div className="mt-8 rounded-xl border border-accent/20 bg-accent-soft p-4 text-sm text-foreground/85"><span className="font-medium text-accent">Scope:</span> 41 authored feature/fix commits across frontend, backend, MongoDB schemas, APIs, analytics, exports, and automated regression tests.</div>
+          </> : <>
+            <p className="mt-6 text-base leading-7 text-foreground/85">A local-first operations system combining a Next.js frontend, FastAPI backend, and MySQL persistence for secure WhatsApp screenshot capture, OCR review, analytics, and Auto Sync workflows.</p>
+            <div className="mt-7 grid gap-4">{["Screenshot capture, English OCR extraction, message parsing, business labels, duplicate-message handling, and clear-capture controls.", "Secure authentication, sessions, RBAC, zone selection, Super Admin user and zone management, and screenshot isolation.", "OCR analytics, review tooling, ML foundation work, model evaluation, controlled model promotion, and cross-zone duplicate phone detection.", "Production deployment preparation with FastAPI Docker configuration, Render support, CI workflows, reliability improvements, and automated verification."].map((item) => <div key={item} className="flex gap-3 border-t border-border pt-4 text-sm leading-6 text-muted"><span aria-hidden="true" className="mt-[0.65em] h-0.5 w-2.5 shrink-0 rounded-full bg-accent/80" />{item}</div>)}</div>
+            <div className="mt-8 flex flex-wrap gap-2">{["Next.js", "TypeScript", "FastAPI", "MySQL", "OCR", "Docker"].map((technology) => <span key={technology} className="chip">{technology}</span>)}</div>
+            <div className="mt-10 border-t border-border pt-7"><div className="flex flex-wrap items-end justify-between gap-3"><div><p className="eyebrow eyebrow-accent">Detailed delivery history</p><h3 className="mt-2 text-2xl tracking-tight text-foreground">Your Auto Sync commit record</h3></div><p className="font-mono text-xs text-subtle">44 feature/fix commits · Oct 20 – Oct 22, 2026</p></div><ol className="mt-5 divide-y divide-border rounded-2xl border border-border">{autoSyncCommitHighlights.map(([hash, date, description]) => <li key={hash} className="grid gap-2 p-4 sm:grid-cols-[7rem_1fr] sm:gap-5"><div className="font-mono text-xs text-subtle"><span className="text-accent">{hash}</span><br />{date}</div><p className="text-sm leading-6 text-foreground/85">{description}</p></li>)}</ol></div>
+            <div className="mt-8 rounded-xl border border-accent/20 bg-accent-soft p-4 text-sm text-foreground/85"><span className="font-medium text-accent">Scope:</span> 44 authored feature/fix commits across frontend, backend, OCR, ML foundations, security, analytics, deployment, and CI.</div>
+          </>}
         </section>
       </div>, document.body) : null}
     </>
