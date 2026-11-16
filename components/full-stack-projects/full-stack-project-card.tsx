@@ -98,7 +98,7 @@ export function FullStackProjectCard({ project, index, featured = false, onOpen 
 
         <ul className="mt-6 flex flex-wrap gap-1.5" aria-label="Tech stack">
           {project.technologies.map((technology) => (
-            <li key={technology} className="chip text-foreground/80">
+            <li key={technology} className="chip text-foreground">
               {technologyIcons[technology] ? (
                 <img
                   src={technologyIcons[technology].src}

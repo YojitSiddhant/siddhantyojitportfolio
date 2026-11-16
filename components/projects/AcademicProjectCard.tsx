@@ -34,7 +34,7 @@ export function AcademicProjectCard({ project, index, onOpen }: AcademicProjectC
           <p className="mt-4 max-w-xl text-[0.98rem] text-muted">{project.overview}</p>
           <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Tech stack">
             {project.technologies.map((technology) => (
-              <li key={technology.name} className="chip text-foreground/80">
+              <li key={technology.name} className="chip text-foreground">
                 <img
                   src={technology.src}
                   alt=""

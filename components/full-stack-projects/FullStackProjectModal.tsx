@@ -281,7 +281,7 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
                 {project.keyFeatures.map((feature) => (
                   <div key={feature} className="flex gap-3">
                     <BulletIcon className="mt-1.5 h-4 w-4 shrink-0 text-accent" />
-                    <p className="text-[0.95rem] leading-7 text-foreground/90">{feature}</p>
+                    <p className="text-[0.95rem] leading-7 text-foreground">{feature}</p>
                   </div>
                 ))}
               </div>
@@ -298,7 +298,7 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
                 {project.challengesFaced.map((challenge) => (
                   <div key={challenge} className="flex gap-3">
                     <BulletIcon className="mt-1.5 h-4 w-4 shrink-0 text-accent" />
-                    <p className="text-[0.95rem] leading-7 text-foreground/90">{challenge}</p>
+                    <p className="text-[0.95rem] leading-7 text-foreground">{challenge}</p>
                   </div>
                 ))}
               </div>
@@ -310,7 +310,7 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
                 {project.keyLearnings.map((learning) => (
                   <div key={learning} className="flex gap-3">
                     <BulletIcon className="mt-1.5 h-4 w-4 shrink-0 text-accent" />
-                    <p className="text-[0.95rem] leading-7 text-foreground/90">{learning}</p>
+                    <p className="text-[0.95rem] leading-7 text-foreground">{learning}</p>
                   </div>
                 ))}
               </div>
@@ -325,7 +325,7 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
                   {project.architectureWorkflow.map((line) => (
                     <div key={line} className="flex gap-3">
                       <BulletIcon className="mt-1.5 h-4 w-4 shrink-0 text-accent" />
-                      <p className="text-[0.95rem] leading-7 text-foreground/90">{line}</p>
+                      <p className="text-[0.95rem] leading-7 text-foreground">{line}</p>
                     </div>
                   ))}
                 </div>
@@ -339,7 +339,7 @@ export function FullStackProjectModal({ project, open, onClose }: FullStackProje
                   {project.futureImprovements.map((item) => (
                     <div key={item} className="flex gap-3">
                       <BulletIcon className="mt-1.5 h-4 w-4 shrink-0 text-accent" />
-                      <p className="text-[0.95rem] leading-7 text-foreground/90">{item}</p>
+                      <p className="text-[0.95rem] leading-7 text-foreground">{item}</p>
                     </div>
                   ))}
                 </div>

@@ -6,8 +6,8 @@
 :root {
   --background: #ffffff;
   --foreground: #1d1d1f;
-  --muted: #515154;
-  --subtle: #6e6e73;
+  --muted: #1d1d1f;
+  --subtle: #1d1d1f;
   --surface: #ffffff;
   --surface-strong: #ffffff;
   --surface-hover: #ededf0;
@@ -128,7 +128,7 @@
   h6,
   .font-display {
     font-family: var(--font-display);
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.25;
     text-wrap: balance;
@@ -136,13 +136,13 @@
   }
 
   h1 {
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1;
     letter-spacing: -0.045em;
   }
 
   h2 {
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.035em;
   }

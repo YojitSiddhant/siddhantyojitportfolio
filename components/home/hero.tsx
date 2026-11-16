@@ -51,7 +51,7 @@ export function Hero({ githubContributions, githubYear }: { githubContributions:
 
         <h1
           id="hero-title"
-          className="mt-8 max-w-5xl text-[clamp(2.4rem,9vw,7rem)] font-semibold short:mt-5 short:text-[clamp(2.25rem,6vw,3.75rem)] text-foreground motion-reveal"
+          className="mt-8 max-w-5xl text-[clamp(2.4rem,9vw,7rem)] font-bold short:mt-5 short:text-[clamp(2.25rem,6vw,3.75rem)] text-foreground motion-reveal"
           style={{ animationDelay: "80ms" }}
         >
           Building clear, reliable <span className="text-accent">full-stack products</span>.
