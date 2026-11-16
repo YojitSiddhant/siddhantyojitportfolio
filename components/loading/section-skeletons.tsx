@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useSyncExternalStore } from "react";
+import { useSyncExternalStore } from "react";
 
 type LoaderCard = {
   titleWidth: string;
@@ -119,8 +119,6 @@ export function SectionSkeletons({
 }: SectionSkeletonsProps) {
   const duration = useSyncExternalStore(subscribeToNothing, getLoadDuration, () => 1600);
 
-  const cardCount = useMemo(() => cards.length, [cards.length]);
-
   return (
     <div className="grid gap-5">
       <div className="flex flex-wrap items-end justify-between gap-4 pb-4">
@@ -129,7 +127,7 @@ export function SectionSkeletons({
       </div>
 
       <section className={columnsClassName}>
-        {cards.slice(0, cardCount).map((card, index) => (
+        {cards.map((card, index) => (
           <LoaderCard key={`${card.titleWidth}-${index}`} card={card} duration={duration} index={index} />
         ))}
       </section>

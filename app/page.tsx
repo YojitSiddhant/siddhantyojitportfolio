@@ -3,7 +3,7 @@ import { Hero } from "@/components/home/hero";
 import { GitHubHeatmap } from "@/components/home/github-heatmap";
 import { getGitHubContributionData, type GitHubContributionCalendar } from "@/lib/github";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export default async function Home() {
   const now = new Date();

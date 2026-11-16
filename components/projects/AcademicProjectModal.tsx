@@ -1,7 +1,7 @@
 "use client";
 
 import { createPortal } from "react-dom";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { AcademicProjectContent } from "@/data/project-content/academic-project-content";
 
 const FOCUSABLE_SELECTOR = [
@@ -109,25 +109,17 @@ export function AcademicProjectModal({ project, open, onClose }: AcademicProject
     }
   }, [open, project, onClose]);
 
-  const overlayClassName = useMemo(
-    () =>
-      [
-        "fixed inset-0 z-50 flex items-start justify-center px-3 py-2 sm:items-center sm:px-6 sm:py-8",
-        "bg-slate-900/25 backdrop-blur-sm transition-opacity duration-200 ease-out",
-        open ? "opacity-100" : "pointer-events-none opacity-0",
-      ].join(" "),
-    [open],
-  );
+  const overlayClassName = [
+    "fixed inset-0 z-50 flex items-start justify-center px-3 py-2 sm:items-center sm:px-6 sm:py-8",
+    "bg-slate-900/25 backdrop-blur-sm transition-opacity duration-200 ease-out",
+    open ? "opacity-100" : "pointer-events-none opacity-0",
+  ].join(" ");
 
-  const panelClassName = useMemo(
-    () =>
-      [
-        "relative mt-0 w-[min(100%,72rem)] max-h-[calc(100dvh-1rem)] overflow-hidden rounded-2xl border border-border",
-        "bg-surface shadow-2xl transition-all duration-200 ease-out sm:rounded-3xl sm:w-[min(92vw,72rem)] sm:max-h-[calc(100dvh-3rem)]",
-        open ? "scale-100 opacity-100" : "scale-95 opacity-0",
-      ].join(" "),
-    [open],
-  );
+  const panelClassName = [
+    "relative mt-0 w-[min(100%,72rem)] max-h-[calc(100dvh-1rem)] overflow-hidden rounded-2xl border border-border",
+    "bg-surface shadow-2xl transition-all duration-200 ease-out sm:rounded-3xl sm:w-[min(92vw,72rem)] sm:max-h-[calc(100dvh-3rem)]",
+    open ? "scale-100 opacity-100" : "scale-95 opacity-0",
+  ].join(" ");
 
   if (!portalTarget || !project) {
     return null;
