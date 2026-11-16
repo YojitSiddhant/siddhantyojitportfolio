@@ -83,4 +83,15 @@ export const workItems: WorkItem[] = [
     ],
     order: 7,
   },
+  {
+    title: "Gharpayy CRM",
+    logo: "/company-logos/gharpayy-logo.png",
+    links: [
+      {
+        label: "Visit Site",
+        url: "https://os.gharpayy.in/login?redirect=%2F",
+      },
+    ],
+    order: 8,
+  },
 ];
