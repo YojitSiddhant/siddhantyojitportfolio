@@ -44,4 +44,16 @@ export const experience = [
     logo: "/company-logos/gharpayy-logo.png",
     order: 4,
   },
+  {
+    company: "Gharpayy AI Listing Ingestion",
+    role: "Full-Stack Project",
+    duration: "Sep 2026",
+    summary:
+      "Built an AI-assisted rental listing ingestion prototype with provider integrations, listing cleaning, authentication, persistence, analytics, and deployment preparation.",
+    description:
+      "Implemented listing ingestion from multiple Facebook and social data providers using Apify, SocialCrawl, and ScrapeCreators integrations.\nAdded listing cleaning, fallback handling, transient provider retries, ingestion persistence, bulk selection, and delete workflows.\nBuilt authentication, settings management, post-fetch statistics, production dashboard routing, and static frontend serving.\nPrepared Kubernetes deployment configuration and added backend regression tests for providers, auth, persistence, cleaning, and retries.",
+    technologies: ["FastAPI", "Python", "JavaScript", "MySQL", "Apify", "OCR"],
+    logo: "/company-logos/gharpayy-logo.png",
+    order: 5,
+  },
 ];
