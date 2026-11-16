@@ -107,10 +107,21 @@ export function Hero({ githubContributions, githubYear }: { githubContributions:
           </dl>
 
           {githubContributions !== null ? (
-            <p className="border-t border-border py-4 text-center text-sm text-muted">
-              <span className="text-foreground">{githubContributions}</span> public GitHub contributions in{" "}
-              {githubYear}
-            </p>
+            <div className="border-t border-border py-4 text-center text-sm text-muted">
+              <a
+                href={contactLinks.github}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 transition-colors hover:text-foreground"
+                aria-label="View GitHub profile and contributions"
+              >
+                <GitHubIcon className="h-4 w-4 text-accent" />
+                <span>
+                  <span className="text-foreground">{githubContributions}</span> public GitHub contributions in{" "}
+                  {githubYear}
+                </span>
+              </a>
+            </div>
           ) : null}
         </div>
       </div>
