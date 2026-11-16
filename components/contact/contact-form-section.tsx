@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, type ChangeEvent, type FocusEvent, type FormEvent } from "react";
-import { ContactFormDialogs } from "@/components/contact-form-dialogs";
-import { ContactFormFields } from "@/components/contact-form-fields";
-import { ContactFormSidebar } from "@/components/contact-form-sidebar";
+import { ContactFormDialogs } from "@/components/contact/contact-form-dialogs";
+import { ContactFormFields } from "@/components/contact/contact-form-fields";
+import { ContactFormSidebar } from "@/components/contact/contact-form-sidebar";
 import {
   fieldLabels,
   formatPhoneInput,
@@ -17,7 +17,7 @@ import {
   type ContactValues,
   type PopupError,
   type SubmissionState,
-} from "@/components/contact-form-utils";
+} from "@/lib/contact-form/utils";
 
 export function ContactFormSection({ links }: { links: ContactLinks }) {
   const [values, setValues] = useState<ContactValues>(initialValues);

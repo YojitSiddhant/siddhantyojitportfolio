@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import type { MouseEvent } from "react";
-import type { FullStackProjectContent } from "@/components/full-stack-projects/FullStackProjectContent";
+import type { FullStackProjectContent } from "@/data/project-content/full-stack-project-content";
 import { technologyIcons } from "@/components/full-stack-projects/FullStackProjectModal";
 import { ArrowUpRightIcon, GitHubIcon, PlusIcon } from "@/components/ui/icons";
 import { Reveal } from "@/components/ui/reveal";

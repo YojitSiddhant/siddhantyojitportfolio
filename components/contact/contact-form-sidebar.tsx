@@ -1,5 +1,5 @@
-import type { ContactLinks } from "@/components/contact-form-utils";
-import { WhatsAppIcon } from "@/components/contact-form-icons";
+import type { ContactLinks } from "@/lib/contact-form/utils";
+import { WhatsAppIcon } from "@/lib/contact-form/icons";
 import { ArrowUpRightIcon, GitHubIcon, LinkedInIcon, MailIcon, PhoneIcon } from "@/components/ui/icons";
 
 type QuickAction = {

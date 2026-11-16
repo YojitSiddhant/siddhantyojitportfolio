@@ -2,7 +2,7 @@
 
 import { createPortal } from "react-dom";
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { FullStackProjectContent } from "@/components/full-stack-projects/FullStackProjectContent";
+import type { FullStackProjectContent } from "@/data/project-content/full-stack-project-content";
 
 const FOCUSABLE_SELECTOR = [
   "a[href]",

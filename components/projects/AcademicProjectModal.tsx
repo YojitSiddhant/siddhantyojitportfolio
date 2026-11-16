@@ -2,7 +2,7 @@
 
 import { createPortal } from "react-dom";
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { AcademicProjectContent } from "@/components/projects/AcademicProjectContent";
+import type { AcademicProjectContent } from "@/data/project-content/academic-project-content";
 
 const FOCUSABLE_SELECTOR = [
   "a[href]",

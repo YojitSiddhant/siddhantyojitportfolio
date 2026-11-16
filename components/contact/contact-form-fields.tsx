@@ -6,13 +6,13 @@ import {
   UserIcon,
   PhoneIcon,
   MailIcon,
-} from "@/components/contact-form-icons";
+} from "@/lib/contact-form/icons";
 import type {
   ContactErrors,
   ContactTouched,
   ContactValues,
   SubmissionState,
-} from "@/components/contact-form-utils";
+} from "@/lib/contact-form/utils";
 
 type ContactField = {
   label: string;

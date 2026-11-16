@@ -6,7 +6,7 @@ import { AcademicProjectModal } from "@/components/projects/AcademicProjectModal
 import {
   academicProjectContent,
   type AcademicProjectContent,
-} from "@/components/projects/AcademicProjectContent";
+} from "@/data/project-content/academic-project-content";
 
 export function AcademicProjectsShowcase() {
   const [activeProject, setActiveProject] = useState<AcademicProjectContent | null>(null);

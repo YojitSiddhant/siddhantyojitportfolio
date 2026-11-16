@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ContactFormSection } from "@/components/contact-form-section";
+import { ContactFormSection } from "@/components/contact/contact-form-section";
 import { PageSectionHeader } from "@/components/page-section-header";
 import { PageShell } from "@/components/page-shell";
 import { contactLinks } from "@/data/contact";

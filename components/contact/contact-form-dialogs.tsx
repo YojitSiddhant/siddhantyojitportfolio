@@ -1,7 +1,7 @@
 "use client";
 
 import { createPortal } from "react-dom";
-import type { PopupError } from "@/components/contact-form-utils";
+import type { PopupError } from "@/lib/contact-form/utils";
 
 type ContactFormDialogsProps = {
   popupErrors: PopupError[];

@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import type { MouseEvent } from "react";
-import type { AcademicProjectContent } from "@/components/projects/AcademicProjectContent";
+import type { AcademicProjectContent } from "@/data/project-content/academic-project-content";
 import { GitHubIcon, PlusIcon } from "@/components/ui/icons";
 import { Reveal } from "@/components/ui/reveal";
 

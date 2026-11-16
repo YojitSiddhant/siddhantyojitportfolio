@@ -6,7 +6,7 @@ import { FullStackProjectModal } from "@/components/full-stack-projects/FullStac
 import {
   fullStackProjectContent,
   type FullStackProjectContent,
-} from "@/components/full-stack-projects/FullStackProjectContent";
+} from "@/data/project-content/full-stack-project-content";
 
 export function FullStackProjectsShowcase() {
   const [activeProject, setActiveProject] = useState<FullStackProjectContent | null>(null);
